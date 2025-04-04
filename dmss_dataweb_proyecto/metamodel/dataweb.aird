@@ -4,7 +4,7 @@
     <semanticResources>dataweb.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_To0MgBCaEfCeBdM6bX_W4Q">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_UZie0BCaEfCeBdM6bX_W4Q" name="dataweb class diagram" repPath="#_UZT1UBCaEfCeBdM6bX_W4Q" changeId="1743779245053">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_UZie0BCaEfCeBdM6bX_W4Q" name="dataweb class diagram" repPath="#_UZT1UBCaEfCeBdM6bX_W4Q" changeId="1743779598635">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="dataweb.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -430,9 +430,9 @@
         <children xmi:type="notation:Node" xmi:id="_8kHtUBFTEfClCafI-NF8Yg" type="2003" element="_8j_xgBFTEfClCafI-NF8Yg">
           <children xmi:type="notation:Node" xmi:id="_8kHtUxFTEfClCafI-NF8Yg" type="5007"/>
           <children xmi:type="notation:Node" xmi:id="_8kIUYBFTEfClCafI-NF8Yg" type="7004">
-            <children xmi:type="notation:Node" xmi:id="__8jowBFTEfClCafI-NF8Yg" type="3010" element="__8bs8BFTEfClCafI-NF8Yg">
-              <styles xmi:type="notation:FontStyle" xmi:id="__8jowRFTEfClCafI-NF8Yg" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="__8jowhFTEfClCafI-NF8Yg"/>
+            <children xmi:type="notation:Node" xmi:id="_VMYh4BFnEfClCafI-NF8Yg" type="3010" element="_VMNiwBFnEfClCafI-NF8Yg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_VMYh4RFnEfClCafI-NF8Yg" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_VMYh4hFnEfClCafI-NF8Yg"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_8kIUYRFTEfClCafI-NF8Yg"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_8kIUYhFTEfClCafI-NF8Yg"/>
@@ -1012,17 +1012,6 @@
             <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
           </endLabelStyleDescription>
         </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="__8bs8RFTEfClCafI-NF8Yg" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
-          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-        </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:FlatContainerStyleDescription" xmi:id="__8ewQhFTEfClCafI-NF8Yg" arcWidth="8" arcHeight="8" borderSizeComputationExpression="1" tooltipExpression="service:renderTooltip" roundedCorner="true" widthComputationExpression="12" heightComputationExpression="10" backgroundStyle="Liquid">
-          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
-          <backgroundColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-          <foregroundColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@userColorsPalettes[name='Ecore%20Palette']/@entries[name='EClass']"/>
-        </computedStyleDescriptions>
         <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_jzEtSBFhEfClCafI-NF8Yg" routingStyle="manhattan">
           <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           <centerLabelStyleDescription xmi:type="style:CenterLabelStyleDescription" xmi:id="_jzEtSRFhEfClCafI-NF8Yg" showIcon="false" labelExpression="service:render">
@@ -1032,6 +1021,17 @@
           <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_jzEtShFhEfClCafI-NF8Yg" labelSize="6" showIcon="false" labelExpression="service:eKeysLabel">
             <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
           </endLabelStyleDescription>
+        </computedStyleDescriptions>
+        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_VMNiwRFnEfClCafI-NF8Yg" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
+          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+        </computedStyleDescriptions>
+        <computedStyleDescriptions xmi:type="style:FlatContainerStyleDescription" xmi:id="_VMR0MxFnEfClCafI-NF8Yg" arcWidth="8" arcHeight="8" borderSizeComputationExpression="1" tooltipExpression="service:renderTooltip" roundedCorner="true" widthComputationExpression="12" heightComputationExpression="10" backgroundStyle="Liquid">
+          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+          <backgroundColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          <foregroundColor xmi:type="description:UserFixedColor" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@userColorsPalettes[name='Ecore%20Palette']/@entries[name='EClass']"/>
         </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
@@ -1788,12 +1788,12 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="__8ewRBFTEfClCafI-NF8Yg" labelColor="239,41,41" description="__8ewQhFTEfClCafI-NF8Yg" borderSize="1" borderSizeComputationExpression="1" borderColor="239,41,41" backgroundStyle="Liquid" foregroundColor="255,252,216"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_VMR0NRFnEfClCafI-NF8Yg" labelColor="239,41,41" description="_VMR0MxFnEfClCafI-NF8Yg" borderSize="1" borderSizeComputationExpression="1" borderColor="239,41,41" backgroundStyle="Liquid" foregroundColor="255,252,216"/>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="__8bs8BFTEfClCafI-NF8Yg" name="Tipo" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/dmss_dataweb_proyecto/metamodel/dataweb.ecore#//ContenidoMultimedia/Tipo}' must be set&#xA;ERROR : The typed element must have a type">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_VMNiwBFnEfClCafI-NF8Yg" name="Tipo" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/dmss_dataweb_proyecto/metamodel/dataweb.ecore#//ContenidoMultimedia/Tipo}' must be set&#xA;ERROR : The typed element must have a type">
         <target xmi:type="ecore:EAttribute" href="dataweb.ecore#//ContenidoMultimedia/Tipo"/>
         <semanticElements xmi:type="ecore:EAttribute" href="dataweb.ecore#//ContenidoMultimedia/Tipo"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="__8bs8hFTEfClCafI-NF8Yg" labelColor="239,41,41" labelAlignment="LEFT" description="__8bs8RFTEfClCafI-NF8Yg" borderColor="239,41,41"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_VMNiwhFnEfClCafI-NF8Yg" labelColor="239,41,41" labelAlignment="LEFT" description="_VMNiwRFnEfClCafI-NF8Yg" borderColor="239,41,41"/>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
