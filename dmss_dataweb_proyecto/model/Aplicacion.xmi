@@ -1,3 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataweb:Aplicacion xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:dataweb="http://www.example.org/dataweb" xsi:schemaLocation="http://www.example.org/dataweb ../metamodel/dataweb.ecore"/>
+<dataweb:Aplicacion
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dataweb="http://www.example.org/dataweb"
+    xsi:schemaLocation="http://www.example.org/dataweb ../metamodel/dataweb.ecore"
+    Nombre="Universidad de Extremadura Data Management"
+    Descripcion="App uex">
+  <roles Nombre="Administrador"
+      accesoapaginapantalla="//@paginapantallas.0"/>
+  <roles Nombre="Profesor"
+      accesoapaginapantalla="//@paginapantallas.2"/>
+  <roles Nombre="Alumno"
+      accesoapaginapantalla="//@paginapantallas.1"/>
+  <redessociales
+      Nombre="Facebook"
+      paginapantalla="//@paginapantallas.1 //@paginapantallas.2"/>
+  <redessociales
+      Nombre="Twitter"
+      paginapantalla="//@paginapantallas.1 //@paginapantallas.2"/>
+  <paginapantallas
+      xsi:type="dataweb:Index"
+      Nombre="Home Administrador"
+      usuario="//@roles.0"/>
+  <paginapantallas
+      xsi:type="dataweb:Index"
+      Nombre="Home Alumno"
+      usuario="//@roles.2"
+      redsocial="//@redessociales.0 //@redessociales.1"/>
+  <paginapantallas
+      xsi:type="dataweb:Index"
+      Nombre="Home Profesor"
+      usuario="//@roles.1"
+      redsocial="//@redessociales.0 //@redessociales.1"/>
+  <paginapantallas
+      xsi:type="dataweb:CrearInstancia"/>
+  <paginapantallas
+      xsi:type="dataweb:DetallesInstancia"/>
+  <paginapantallas
+      xsi:type="dataweb:ActualizacionInstancia"/>
+  <paginapantallas
+      xsi:type="dataweb:BorradoInstancia"/>
+  <paginapantallas
+      xsi:type="dataweb:IndiceEntidad"/>
+  <paginapantallas
+      xsi:type="dataweb:IndiceDetalle"/>
+  <paginapantallas
+      xsi:type="dataweb:IndiceExtendido"/>
+  <paginapantallas
+      xsi:type="dataweb:Cuestionario"
+      Nombre="Satisfacion del curso"/>
+  <paginapantallas
+      xsi:type="dataweb:Pregunta"/>
+  <paginapantallas
+      xsi:type="dataweb:Encuesta"/>
+  <paginapantallas
+      xsi:type="dataweb:Pregunta"/>
+  <paginapantallas
+      xsi:type="dataweb:CRUD"/>
+  <basedatos
+      Nombre="Uex">
+    <tablas
+        Nombre="Titulo">
+      <atributos
+          Nombre="Nombre"
+          TipoAtributo="String"
+          PrimaryKey="true"/>
+      <atributos
+          Nombre="Creditos"/>
+      <atributos
+          Nombre="Optativa"
+          TipoAtributo="Boolean"/>
+    </tablas>
+    <tablas
+        Nombre="Asignatura">
+      <atributos
+          Nombre="Nombre"
+          TipoAtributo="String"
+          PrimaryKey="true"/>
+      <atributos
+          Nombre="ID"/>
+      <atributos
+          Nombre="Parcial"
+          TipoAtributo="Boolean"/>
+    </tablas>
+  </basedatos>
+</dataweb:Aplicacion>
