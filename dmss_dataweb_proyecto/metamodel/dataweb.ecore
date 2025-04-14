@@ -4,19 +4,7 @@
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
   </eAnnotations>
-  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Aplicacion">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="R04_RedSocialYRSS R06b_EncuestaYCuestionario"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="R04_RedSocialYRSS" value="&#xA;  &#x9;&#x9;&#x9;RedSocial.allInstances()->size() >= 1 and RSSFuente.allInstances()->size() >= 1"/>
-      <details key="R06b_EncuestaYCuestionario" value="&#xA;  &#x9;&#x9;&#x9;Encuesta.allInstances()->size() >= 1 and Cuestionario.allInstances()->size() >= 1"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="roles" lowerBound="1" upperBound="-1"
         eType="#//Rol" containment="true"/>
@@ -34,16 +22,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entidad">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="R02_CrudIncompatible R03_IndiceYDetalle R05_SinReferenciaCiclica R06_SinReferenciaCiclica R08_UnaPaginaIndice"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="R02_CrudIncompatible" value="&#xA;&#x9;&#x9;  &#x9;self.crud.oclIsUndefined() or (&#xA;&#x9;&#x9;    self.indice.oclIsUndefined() and&#xA;&#x9;&#x9;    self.indiceExtendido.oclIsUndefined() and&#xA;&#x9;&#x9;    self.indiceDetalle.oclIsUndefined() and&#xA;&#x9;&#x9;    self.detalle.oclIsUndefined() and&#xA;&#x9;&#x9;    self.creacion.oclIsUndefined() and&#xA;&#x9;&#x9;    self.actualizacion.oclIsUndefined() and&#xA;&#x9;&#x9;    self.borrado.oclIsUndefined())"/>
-      <details key="R03_IndiceYDetalle" value="&#xA;  &#x9;&#x9;&#x9;(IndiceEntidad = true or IndiceExtendido = true) = (IndiceDetalle = true)"/>
-      <details key="R05_SinReferenciaCiclica" value="&#xA;  &#x9;&#x9;&#x9;self &lt;> self.entidadRefereenciada"/>
-      <details key="R06_SinReferenciaCiclica" value="&#xA;  &#x9;&#x9;&#x9;self.entidadRefereenciada->forAll(e | not e.entidadRefereenciada->includes(self))"/>
-      <details key="R08_UnaPaginaIndice" value="&#xA;  &#x9;&#x9;&#x9;self.indice->select(p | p.tipo = 'Indice')->size() &lt;= 1"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" lowerBound="1"
         upperBound="-1" eType="#//Atributo" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -57,7 +35,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Atributo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="TipoAtributo" eType="#//TipoAtributo"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PrimaryKey" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PrimaryKey" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CrearInstancia" eSuperTypes="#//DependienteDeEntidad"/>
   <eClassifiers xsi:type="ecore:EClass" name="IndiceExtendido" eSuperTypes="#//Indice"/>
@@ -67,12 +46,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="IndiceDetalle" eSuperTypes="#//Indice"/>
   <eClassifiers xsi:type="ecore:EClass" name="BorradoInstancia" eSuperTypes="#//DependienteDeEntidad"/>
   <eClassifiers xsi:type="ecore:EClass" name="Cuestionario" eSuperTypes="#//Interactiva">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="R07_PreguntaConRespuesta"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="R07_PreguntaConRespuesta" value="&#xA;  &#x9;&#x9;&#x9;self.pregunta->forAll(p | p.respuesta &lt;> null)"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Evaluado" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
@@ -96,18 +69,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Encuesta" eSuperTypes="#//Interactiva"/>
   <eClassifiers xsi:type="ecore:EClass" name="Interactiva" abstract="true" eSuperTypes="#//PaginaPantalla">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="D03_numeroPregVF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"
-        volatile="true" transient="true" derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.pregunta->select(p | p.Tipo = TipoPregunta::V_F)->size()"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="D04_numeroPregSelect" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"
-        volatile="true" transient="true" derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.pregunta->select(p | p.Tipo = TipoPregunta::OpcionMultiple)->size()"/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TipoPregunta">
     <eLiterals name="OpcionMultiple"/>
@@ -121,20 +82,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rol">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="D01_numeroEntidadesAccesibles"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"
-        volatile="true" transient="true" derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.Rol->collect(r | r.entidadesAccesibles)->flatten()->size()"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="D02_paginasMediasAccesibles"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
-        volatile="true" transient="true" derived="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="self.Rol->collect(r | r.paginasAccesibles->size())->sum() / self.Rol->size().toReal()"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entidades" upperBound="-1"
         eType="#//Entidad" eOpposite="#//Entidad/usuarios"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="accesoapaginapantalla"
@@ -146,24 +93,12 @@
         eType="#//PaginaPantalla" eOpposite="#//PaginaPantalla/redsocial"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Indice" abstract="true" eSuperTypes="#//DependienteDeEntidad">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="R09_AtributosDeEntidad"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="R09_AtributosDeEntidad" value="&#xA;  &#x9;&#x9;&#x9;self.atributos->forAll(a | a.entidad = self.entidad)"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Atributos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContenidoMultimedia">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Tipo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PaginaPantalla" abstract="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="R01_UnaSolaIndexHome"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="R01_UnaSolaIndexHome" value="&#xA;  &#x9;&#x9;&#x9;Index.allInstances()->size() = 1"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usuario" lowerBound="1"
         upperBound="-1" eType="#//Rol" eOpposite="#//Rol/accesoapaginapantalla"/>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated dataweb -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="dataweb.presentation.DatawebModelWizardID"
+            name="%_UI_DatawebModelWizard_label"
+            class="dataweb.presentation.DatawebModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DatawebModelFile.gif">
+         <description>%_UI_DatawebModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated dataweb -->
+      <editor
+            id="dataweb.presentation.DatawebEditorID"
+            name="%_UI_DatawebEditor_label"
+            icon="icons/full/obj16/DatawebModelFile.gif"
+            extensions="dataweb"
+            class="dataweb.presentation.DatawebEditor"
+            contributorClass="dataweb.presentation.DatawebActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

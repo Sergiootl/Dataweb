@@ -4,64 +4,94 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:dataweb="http://www.example.org/dataweb"
-    xsi:schemaLocation="http://www.example.org/dataweb ../metamodel/dataweb.ecore"
     Nombre="Universidad de Extremadura Data Management"
     Descripcion="App uex">
   <roles Nombre="Administrador"
-      accesoapaginapantalla="//@paginapantallas.0"/>
+      accesoapaginapantalla="//@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.6 //@paginapantallas.7 //@paginapantallas.8 //@paginapantallas.12 //@paginapantallas.11 //@paginapantallas.10 //@paginapantallas.9"/>
   <roles Nombre="Profesor"
-      accesoapaginapantalla="//@paginapantallas.2"/>
+      entidades="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.0"/>
   <roles Nombre="Alumno"
-      accesoapaginapantalla="//@paginapantallas.1"/>
+      entidades="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.0"/>
   <redessociales
       Nombre="Facebook"
-      paginapantalla="//@paginapantallas.1 //@paginapantallas.2"/>
+      paginapantalla="//@paginapantallas.1"/>
   <redessociales
-      Nombre="Twitter"
-      paginapantalla="//@paginapantallas.1 //@paginapantallas.2"/>
+      Nombre="Twitter"/>
   <paginapantallas
       xsi:type="dataweb:Index"
       Nombre="Home Administrador"
       usuario="//@roles.0"/>
   <paginapantallas
-      xsi:type="dataweb:Index"
-      Nombre="Home Alumno"
-      usuario="//@roles.2"
-      redsocial="//@redessociales.0 //@redessociales.1"/>
+      xsi:type="dataweb:CrearInstancia"
+      Nombre="Asignatura 01"
+      usuario="//@roles.0"
+      redsocial="//@redessociales.0"/>
   <paginapantallas
-      xsi:type="dataweb:Index"
-      Nombre="Home Profesor"
-      usuario="//@roles.1"
-      redsocial="//@redessociales.0 //@redessociales.1"/>
+      xsi:type="dataweb:DetallesInstancia"
+      Nombre="Asignatura 01"
+      usuario="//@roles.0"/>
   <paginapantallas
-      xsi:type="dataweb:CrearInstancia"/>
+      xsi:type="dataweb:ActualizacionInstancia"
+      Nombre="Asignatura 01"
+      usuario="//@roles.0"/>
   <paginapantallas
-      xsi:type="dataweb:DetallesInstancia"/>
+      xsi:type="dataweb:BorradoInstancia"
+      Nombre="Asignatura 01"
+      usuario="//@roles.0"/>
   <paginapantallas
-      xsi:type="dataweb:ActualizacionInstancia"/>
+      xsi:type="dataweb:IndiceEntidad"
+      Nombre="Asignatura 01"
+      usuario="//@roles.0"/>
   <paginapantallas
-      xsi:type="dataweb:BorradoInstancia"/>
+      xsi:type="dataweb:IndiceDetalle"
+      Nombre="Asignatura 01"
+      usuario="//@roles.0"/>
   <paginapantallas
-      xsi:type="dataweb:IndiceEntidad"/>
-  <paginapantallas
-      xsi:type="dataweb:IndiceDetalle"/>
-  <paginapantallas
-      xsi:type="dataweb:IndiceExtendido"/>
+      xsi:type="dataweb:IndiceExtendido"
+      Nombre="Asignatura 01"
+      usuario="//@roles.0"/>
   <paginapantallas
       xsi:type="dataweb:Cuestionario"
-      Nombre="Satisfacion del curso"/>
+      Nombre="Satisfacion del curso"
+      usuario="//@roles.0"/>
   <paginapantallas
-      xsi:type="dataweb:Pregunta"/>
+      xsi:type="dataweb:Pregunta"
+      Nombre="¿De que color es el perro blanco?"
+      usuario="//@roles.0"
+      cuestionarios="//@paginapantallas.8">
+    <respuestas
+        Rcorrecta="//@paginapantallas.8"
+        Texto="Negro"/>
+    <respuestas
+        Rcorrecta="//@paginapantallas.8"
+        Texto="Blanco"/>
+  </paginapantallas>
   <paginapantallas
-      xsi:type="dataweb:Encuesta"/>
+      xsi:type="dataweb:Encuesta"
+      Nombre="Satisfacion del curso"
+      usuario="//@roles.0"/>
   <paginapantallas
-      xsi:type="dataweb:Pregunta"/>
+      xsi:type="dataweb:Pregunta"
+      Nombre=" ¿Que mejorarias?"
+      usuario="//@roles.0">
+    <respuestas
+        Rcorrecta="//@paginapantallas.8"
+        Texto="Teoria"/>
+    <respuestas
+        Rcorrecta="//@paginapantallas.8"
+        Texto="Práctica"/>
+  </paginapantallas>
   <paginapantallas
-      xsi:type="dataweb:CRUD"/>
+      xsi:type="dataweb:CRUD"
+      Nombre="Asignatura 01"
+      usuario="//@roles.0"/>
   <basedatos
       Nombre="Uex">
     <tablas
-        Nombre="Titulo">
+        Nombre="Titulo"
+        indice="//@paginapantallas.5"
+        entidadRefereenciada="//@basedatos.0/@tablas.1"
+        usuarios="//@roles.1 //@roles.2">
       <atributos
           Nombre="Nombre"
           TipoAtributo="String"
@@ -73,7 +103,9 @@
           TipoAtributo="Boolean"/>
     </tablas>
     <tablas
-        Nombre="Asignatura">
+        Nombre="Asignatura"
+        indice="//@paginapantallas.5"
+        usuarios="//@roles.1 //@roles.2">
       <atributos
           Nombre="Nombre"
           TipoAtributo="String"
