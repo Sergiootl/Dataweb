@@ -1,0 +1,45 @@
+[comment encoding = UTF-8 /]
+[module generateSQL('http://www.example.org/dataweb')]
+
+[template public generateSQL(anAplicacion : Aplicacion)]
+[comment @main/]
+[file (anAplicacion.Nombre + '.sql', false, 'UTF-8')]
+
+[for (baseDeDatos : BaseDatos | anAplicacion.basedatos)]
+    -- Script de creación de base de datos
+    CREATE DATABASE IF NOT EXISTS [baseDeDatos.Nombre/];
+    USE [baseDeDatos.Nombre/];
+
+    -- Creación de entidades
+    [for (entidad : Entidad | baseDeDatos.tablas)]
+        -- Creación de la entidad [entidad.Nombre/]
+        CREATE TABLE IF NOT EXISTS [entidad.Nombre/] (
+                ID INT NOT NULL AUTO_INCREMENT,
+	            -- Atributos
+            	[for (atributo : Atributo | entidad.atributos)]
+	                [if (atributo.TipoAtributo = 'TipoAtributo:Texto')]
+	                    [atributo.Nombre/] VARCHAR(255),
+	                [/if]
+	                [if (atributo.TipoAtributo = 'TipoAtributo:Booleano')]
+	                    [atributo.Nombre/] BOOLEAN,
+	                [/if]
+	                [if (atributo.TipoAtributo = 'TipoAtributo:Entero')]
+	                    [atributo.Nombre/] INT,
+	                [/if]
+	                [if (atributo.TipoAtributo = 'TipoAtributo:FechaHora')]
+	                    [atributo.Nombre/] DATETIME,
+	                [/if]
+	                [if (atributo.TipoAtributo = 'TipoAtributo:Archivo')]
+	                    [atributo.Nombre/] LONGBLOB,
+	                [/if]
+            	[/for]
+	            PRIMARY KEY (PrimaryKey)
+[comment]	            [for (referencia : entidadRefereenciada | entidad.entidadRefereenciada)]
+	                FOREIGN KEY ([referencia.AtributoNombre/]) 
+	                REFERENCES [referencia.destino.Nombre]([referencia.AtributoNombre]),
+	            [/for][/comment]
+        );
+    [/for]
+[/for]
+[/file]
+[/template]
