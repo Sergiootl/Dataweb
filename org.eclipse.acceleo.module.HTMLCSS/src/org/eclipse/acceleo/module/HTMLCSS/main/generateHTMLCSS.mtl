@@ -1,0 +1,10 @@
+[comment encoding = UTF-8 /]
+[module generateHTMLCSS('http://www.example.org/dataweb')]
+
+
+[template public generateElement(anAplicacion : Aplicacion)]
+[comment @main/]
+[file (anAplicacion.Nombre, false, 'UTF-8')]
+
+[/file]
+[/template]
