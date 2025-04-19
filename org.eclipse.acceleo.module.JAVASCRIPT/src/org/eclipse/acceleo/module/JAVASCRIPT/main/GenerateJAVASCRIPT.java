@@ -42,7 +42,7 @@ public class GenerateJAVASCRIPT extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generateJAVASCRIPT" };
+    public static final String[] TEMPLATE_NAMES = { "generateVista" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).

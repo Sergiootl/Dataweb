@@ -42,7 +42,7 @@ public class GenerateHTMLCSS extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generateElement" };
+    public static final String[] TEMPLATE_NAMES = { "generateAplicacion" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).
