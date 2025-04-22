@@ -6,13 +6,26 @@
     -- Creación de entidades
         -- Creación de la entidad Titulo
         CREATE TABLE IF NOT EXISTS Titulo (
-                ID INT NOT NULL AUTO_INCREMENT,
-	            -- Atributos
-	            PRIMARY KEY (PrimaryKey)
+            -- Atributos
+                    Nombre VARCHAR(255)
+                    Creditos INT
+                    Optativa BOOLEAN
+
+            -- Clave primaria
+                , PRIMARY KEY (
+                        Nombre
+                )
         );
         -- Creación de la entidad Asignatura
         CREATE TABLE IF NOT EXISTS Asignatura (
-                ID INT NOT NULL AUTO_INCREMENT,
-	            -- Atributos
-	            PRIMARY KEY (PrimaryKey)
+            -- Atributos
+                    Nombre VARCHAR(255)
+                    ID INT
+                    Parcial BOOLEAN
+
+            -- Clave primaria
+                , PRIMARY KEY (
+                        Nombre
+                )
         );
+

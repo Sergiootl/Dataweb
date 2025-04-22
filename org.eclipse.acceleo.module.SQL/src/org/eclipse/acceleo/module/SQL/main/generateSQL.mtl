@@ -14,32 +14,30 @@
     [for (entidad : Entidad | baseDeDatos.tablas)]
         -- Creación de la entidad [entidad.Nombre/]
         CREATE TABLE IF NOT EXISTS [entidad.Nombre/] (
-                ID INT NOT NULL AUTO_INCREMENT,
-	            -- Atributos
-            	[for (atributo : Atributo | entidad.atributos)]
-	                [if (atributo.TipoAtributo = 'TipoAtributo:Texto')]
-	                    [atributo.Nombre/] VARCHAR(255),
-	                [/if]
-	                [if (atributo.TipoAtributo = 'TipoAtributo:Booleano')]
-	                    [atributo.Nombre/] BOOLEAN,
-	                [/if]
-	                [if (atributo.TipoAtributo = 'TipoAtributo:Entero')]
-	                    [atributo.Nombre/] INT,
-	                [/if]
-	                [if (atributo.TipoAtributo = 'TipoAtributo:FechaHora')]
-	                    [atributo.Nombre/] DATETIME,
-	                [/if]
-	                [if (atributo.TipoAtributo = 'TipoAtributo:Archivo')]
-	                    [atributo.Nombre/] LONGBLOB,
-	                [/if]
-            	[/for]
-	            PRIMARY KEY (PrimaryKey)
-[comment]	            [for (referencia : entidadRefereenciada | entidad.entidadRefereenciada)]
-	                FOREIGN KEY ([referencia.AtributoNombre/]) 
-	                REFERENCES [referencia.destino.Nombre]([referencia.AtributoNombre]),
-	            [/for][/comment]
+            -- Atributos
+            [for (atributo : Atributo | entidad.atributos)]
+                [if (atributo.TipoAtributo = TipoAtributo::_'String')] 
+                    [atributo.Nombre/] VARCHAR(255)
+                [/if]
+                [if (atributo.TipoAtributo = TipoAtributo::_'Boolean')] 
+                    [atributo.Nombre/] BOOLEAN
+                [/if]
+                [if (atributo.TipoAtributo = TipoAtributo::_'Integer')] 
+                    [atributo.Nombre/] INT
+                [/if]
+            [/for]
+
+            -- Clave primaria
+            [if (entidad.atributos->exists(a : Atributo | a.PrimaryKey = true))]
+                , PRIMARY KEY (
+                    [for (atributo : Atributo | entidad.atributos->select(a : Atributo | a.PrimaryKey = true)) separator(', ')]
+                        [atributo.Nombre/]
+                    [/for]
+                )
+            [/if]
         );
     [/for]
 [/for]
+
 [/file]
 [/template]
