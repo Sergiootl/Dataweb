@@ -1,10 +1,66 @@
 [module generateHTMLCSS('http://www.example.org/dataweb')]
  
- 
-
 [template public generateAplicacion(a : Aplicacion)]
 [comment @main /]
-[file ('index.html', false, 'UTF-8')]
+
+[file ('/HTML/styles.css', false, 'UTF-8')]
+  /* styles.css - Contiene todos los estilos para la aplicación */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 28px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  }
+
+  .main-content {
+    width: 80%;
+    padding-right: 20px;
+  }
+
+  .sidebar {
+    width: 20%;
+    background-color: #f9f9f9;
+    padding: 10px;
+  }
+
+  .menu {
+    background-color: #eaeaea;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer {
+    background-color: #ddd;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+[/file]
+
+[file ('/HTML/index.html', false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,20 +73,28 @@
     <h1>[a.Nombre/]</h1>
   </div>
 
-  <div class="social">
-    <h3>Redes Sociales:</h3>
-    [for (rs : RedSocial | a.redessociales)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <div class="menu">
-    <h2>Roles de acceso a la información:</h2>
-    <ol>
+  <div class="container">
+    <div class="main-content">
+      <h2>Bienvenidos a la página principal de [a.Nombre/]</h2>
+      <p>Roles de acceso a la información:
+<ol>
       [for (r : Rol | a.roles)]
         <li><a href="[r.Nombre.toLowerCase()/]/index.html">[r.Nombre/]</a></li>
       [/for]
-    </ol>
+	</p>
+    </div>
+
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      [for (rs : RedSocial | a.redessociales)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+      [/for]
+    </div>
+  </div>
+
+  <div class="menu">
+    <h2>Páginas disponibles</h2>
+    
   </div>
 
   <div class="footer">
@@ -40,26 +104,23 @@
 </html>
 [/file]
 
-[file ('styles.css', false, 'UTF-8')]
-/* styles.css - Contiene todos los estilos para la aplicación */
-[/file]
-
 [for (r : Rol | a.roles)]
   [generateRolIndex(r)/]
 [/for]
-
+[comment]
 [for (p : PaginaPantalla | a.paginapantallas)]
   [generatePagina(p)/]
-[/for]
+[/for][/comment]
 [/template]
 
 [template public generateRolIndex(r : Rol)]
-[file (r.Nombre.toLowerCase().concat('/index.html'), false, 'UTF-8')]
+[file ('/HTML/' + r.Nombre.toLowerCase() + '/index.html', false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Página principal del Rol [r.Nombre/]</title>
+  <!-- Referencia al archivo CSS -->
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -67,30 +128,40 @@
     <h1>Pantalla principal del Rol [r.Nombre/]</h1>
   </div>
 
-  <div class="social">
-    <h3>Redes Sociales:</h3>
-    [for (rs : RedSocial | r.accesoapaginapantalla.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
+  <div class="container">
+    <!-- Contenido principal del rol -->
+    <div class="main-content">
+      <h2>Bienvenido al Rol [r.Nombre/]</h2>
+      <p>A continuación, podrás acceder al listado de páginas a las que tiene acceso:</p>
+	<ol>
+	  <li><a href="../../index.html">Salir</a></li>
+	  [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+	    <li><a href="../../[p.Nombre.toLowerCase()/].html">[p.Nombre/]</a></li>
+	  [/for]
+	</ol>
+    </div>
 
-  <div class="menu">
-    <h2>Listado de páginas a las que tiene acceso:</h2>
-    <ol>
-      <li><a href="../index.html">Salir</a></li>
-      [for (p : PaginaPantalla | r.accesoapaginapantalla)]
-        [if (not p.oclIsKindOf(PreguntaEncuesta) and not p.oclIsKindOf(PreguntaCuestionario))]
-          <li><a href="../[p.Nombre.toLowerCase()/].html">[p.Nombre/]</a></li>
-        [/if]
+    <!-- Barra lateral con redes sociales -->
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      [for (rs : RedSocial | r.accesoapaginapantalla.redsocial)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
       [/for]
-    </ol>
+    </div>
+  </div>
+  <div class="footer">
+    <p>© [r.Nombre/]- Todos los derechos reservados</p>
   </div>
 </body>
 </html>
 [/file]
 [/template]
 
-[template public generatePagina(p : PaginaPantalla)]
+
+
+
+
+[comment][template public generatePagina(p : PaginaPantalla)]
   [if (p.oclIsKindOf(Indice))]
     [generateIndice(p.oclAsType(Indice))/]
   [/if]
@@ -556,4 +627,4 @@
 </body>
 </html>
 [/file]
-[/template]
+[/template][/comment][/comment]
