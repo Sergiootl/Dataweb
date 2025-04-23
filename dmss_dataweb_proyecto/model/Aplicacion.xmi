@@ -14,7 +14,7 @@
       accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
   <roles Nombre="Estudiante"
       entidades="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.2"
-      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
+      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.9"/>
   <roles Nombre="Personal de Administración y servicios"
       entidades="//@basedatos.0/@tablas.0"
       accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
@@ -96,7 +96,7 @@
   <paginapantallas
       xsi:type="dataweb:Normal"
       Nombre="Evento"
-      usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
+      usuario="//@roles.0 //@roles.1 //@roles.3 //@roles.2"
       redsocial="//@redessociales.1 //@redessociales.0"
       Contenido="Hola, evento de programacion"/>
   <paginapantallas
@@ -136,7 +136,7 @@
           TipoAtributo="Boolean"/>
     </tablas>
     <tablas
-        Nombre="Alumno"
+        Nombre="Estudiante"
         entidadRefereenciada="//@basedatos.0/@tablas.1"
         usuarios="//@roles.2 //@roles.0">
       <atributos

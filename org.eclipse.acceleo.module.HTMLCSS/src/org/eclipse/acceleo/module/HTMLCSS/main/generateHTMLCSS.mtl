@@ -133,7 +133,7 @@
       <ol>
         <li><a href="../../index.html">Salir</a></li>
         [for (p : PaginaPantalla | r.accesoapaginapantalla)]
-          <li><a href="../../[p.Nombre.toLowerCase()/].html">[p.entidad.Nombre/] [p.Nombre/]</a></li>
+          <li><a href="../../[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] [p.eClass().name/] [p.Nombre/]</a></li>
         [/for]
       </ol>
     </div>
