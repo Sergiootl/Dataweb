@@ -31,8 +31,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" lowerBound="1"
         upperBound="-1" eType="#//Atributo" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="indice" lowerBound="1"
-        eType="#//Indice"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entidadRefereenciada" upperBound="-1"
         eType="#//Entidad"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usuarios" lowerBound="1"
@@ -56,16 +54,16 @@
     <eAnnotations source="DSLDoc"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Evaluado" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preguntasC" lowerBound="1"
+        upperBound="-1" eType="#//Pregunta" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Pregunta" eSuperTypes="#//Interactiva">
+  <eClassifiers xsi:type="ecore:EClass" name="Pregunta">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Tipo" eType="#//TipoPregunta"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="respuestas" upperBound="-1"
         eType="#//Respuesta" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="encuestas" upperBound="-1"
-        eType="#//Encuesta"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cuestionarios" upperBound="-1"
-        eType="#//Cuestionario"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Rcorrecta" lowerBound="1"
+        eType="#//Respuesta"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DependienteDeEntidad" abstract="true"
       eSuperTypes="#//PaginaPantalla"/>
@@ -74,7 +72,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contenidomultimedia" upperBound="-1"
         eType="#//ContenidoMultimedia" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Encuesta" eSuperTypes="#//Interactiva"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Encuesta" eSuperTypes="#//Interactiva">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preguntasE" lowerBound="1"
+        upperBound="-1" eType="#//Pregunta" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Interactiva" abstract="true" eSuperTypes="#//PaginaPantalla">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -84,8 +85,6 @@
     <eLiterals name="Corta" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Respuesta">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Rcorrecta" lowerBound="1"
-        eType="#//Cuestionario"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rol">
@@ -112,6 +111,8 @@
         upperBound="-1" eType="#//Rol" eOpposite="#//Rol/accesoapaginapantalla"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="redsocial" upperBound="-1"
         eType="#//RedSocial" eOpposite="#//RedSocial/paginapantalla"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entidad" lowerBound="1"
+        eType="#//Entidad"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Index" eSuperTypes="#//PaginaPantalla"/>
   <eClassifiers xsi:type="ecore:EEnum" name="TipoAtributo">

@@ -107,10 +107,9 @@
 [for (r : Rol | a.roles)]
   [generateRolIndex(r)/]
 [/for]
-[comment]
 [for (p : PaginaPantalla | a.paginapantallas)]
   [generatePagina(p)/]
-[/for][/comment]
+[/for]
 [/template]
 
 [template public generateRolIndex(r : Rol)]
@@ -120,7 +119,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Página principal del Rol [r.Nombre/]</title>
-  <!-- Referencia al archivo CSS -->
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -129,28 +127,26 @@
   </div>
 
   <div class="container">
-    <!-- Contenido principal del rol -->
     <div class="main-content">
       <h2>Bienvenido al Rol [r.Nombre/]</h2>
       <p>A continuación, podrás acceder al listado de páginas a las que tiene acceso:</p>
-	<ol>
-	  <li><a href="../../index.html">Salir</a></li>
-	  [for (p : PaginaPantalla | r.accesoapaginapantalla)]
-	    <li><a href="../../[p.Nombre.toLowerCase()/].html">[p.Nombre/]</a></li>
-	  [/for]
-	</ol>
+      <ol>
+        <li><a href="../../index.html">Salir</a></li>
+        [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+          <li><a href="../../[p.Nombre.toLowerCase()/].html">[p.entidad.Nombre/] [p.Nombre/]</a></li>
+        [/for]
+      </ol>
     </div>
-
-    <!-- Barra lateral con redes sociales -->
-    <div class="sidebar social">
+	<div class="sidebar social">
       <h3>Redes Sociales:</h3>
       [for (rs : RedSocial | r.accesoapaginapantalla.redsocial)]
         <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
       [/for]
     </div>
   </div>
+
   <div class="footer">
-    <p>© [r.Nombre/]- Todos los derechos reservados</p>
+    <p>© [r.Nombre/] - Todos los derechos reservados</p>
   </div>
 </body>
 </html>
@@ -158,10 +154,7 @@
 [/template]
 
 
-
-
-
-[comment][template public generatePagina(p : PaginaPantalla)]
+[template public generatePagina(p : PaginaPantalla)]
   [if (p.oclIsKindOf(Indice))]
     [generateIndice(p.oclAsType(Indice))/]
   [/if]
@@ -199,77 +192,85 @@
   [/if]
 [/template]
 
-[template public generateIndice(i : Indice)]
-[file (i.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
+[comment][template public generateIndice(i : Indice)]
+[file ('/HTML/' + i.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Índice de [i.Nombre/]</title>
+  <title>Índice de [i.Nombre/] Rol [i.usuario.Nombre/]</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="header">
-    <h1>Pantalla índice de [i.Nombre/]</h1>
+    <h1>Pantalla índice de [i.Nombre/] Rol [i.usuario.Nombre/]</h1>
   </div>
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | i.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
+  <div class="container">
+    <div class="main-content">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            [for (bd : BaseDatos | i.eContainer().eContainer().oclAsType(Aplicacion).basedatos)] <!-- Recorre todas las bases de datos -->
+			  [for (ent : Entidad | bd.tablas)] <!-- Recorre las entidades dentro de cada base de datos -->
+			    [for (pagina : PaginaPantalla | ent.entidad)] <!-- Recorre las páginas asociadas a cada entidad -->
+			      <!-- Aquí puedes generar las columnas de la tabla para los atributos de la entidad -->
+			      [for (attr : Atributo | ent.atributos)]
+			        <th>[attr.Nombre/]</th>
+			      [/for]
+			    [/for]
+			  [/for]
+			[/for]
 
-  <div class="content">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
           [for (bd : BaseDatos | i.eContainer().eContainer().oclAsType(Aplicacion).basedatos)]
             [for (ent : Entidad | bd.tablas)]
               [if (ent.indice = i)]
-                [for (attr : Atributo | ent.atributos)]
-                  <th>[attr.Nombre/]</th>
+                [for (id : Integer | Sequence{1..2})]
+                  <tr>
+                    <td>[id/]</td>
+                    [for (attr : Atributo | ent.atributos)]
+                      <td>[ent.Nombre/]_0[id/]</td>
+                    [/for]
+                    <td>
+                      <a href="detalle_[ent.Nombre.toLowerCase()/].html" class="button">Detalles</a>
+                      <a href="borrar_[ent.Nombre.toLowerCase()/].html" class="button">Borrar</a>
+                    </td>
+                  </tr>
                 [/for]
               [/if]
             [/for]
-          [/for] 
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        [for (bd : BaseDatos | i.eContainer().eContainer().oclAsType(Aplicacion).basedatos)]
-          [for (ent : Entidad | bd.tablas)]
-            [if (ent.indice = i)]
-              [for (id : Integer | Sequence{1..2})]
-                <tr>
-                  <td>[id/]</td>
-                  [for (attr : Atributo | ent.atributos)]
-                    <td>[ent.Nombre/]_0[id/]</td>
-                  [/for]
-                  <td>
-                    <a href="detalle_[ent.Nombre.toLowerCase()/].html" class="button">Detalles</a>
-                    <a href="borrar_[ent.Nombre.toLowerCase()/].html" class="button">Borrar</a>
-                  </td>
-                </tr>
-              [/for]
-            [/if]
           [/for]
-        [/for]
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+      <div class="actions">
+        <a href="crear_[i.Nombre.toLowerCase()/].html" class="button">Crear Nuevo</a>
+        <a href="[i.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+      </div>
+    </div>
+
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      [for (rs : RedSocial | i.redsocial)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+      [/for]
+    </div>
   </div>
-  
-  <div class="actions">
-    <a href="crear_[i.Nombre.toLowerCase()/].html" class="button">Crear Nuevo</a>
-    <a href="[i.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+
+  <div class="footer">
+    <p>© [i.usuario.Nombre/] - Todos los derechos reservados</p>
   </div>
 </body>
 </html>
 [/file]
-[/template]
+[/template][/comment]
 
-[template public generateDetalle(d : DetallesInstancia)]
+
+[comment][template public generateDetalle(d : DetallesInstancia)]
 [file ('detalle_'.concat(d.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
@@ -627,4 +628,4 @@
 </body>
 </html>
 [/file]
-[/template][/comment][/comment]
+[/template][/comment]

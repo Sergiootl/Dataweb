@@ -8,8 +8,7 @@
         CREATE TABLE IF NOT EXISTS Titulo (
             -- Atributos
                     Nombre VARCHAR(255)
-                    Creditos INT
-                    Optativa BOOLEAN
+                    Creditos totales INT
 
             -- Clave primaria
                 , PRIMARY KEY (
@@ -19,13 +18,38 @@
         -- Creación de la entidad Asignatura
         CREATE TABLE IF NOT EXISTS Asignatura (
             -- Atributos
-                    Nombre VARCHAR(255)
-                    ID INT
-                    Parcial BOOLEAN
+                    01 INT
+                    Creditos INT
+                    Optativa BOOLEAN
 
             -- Clave primaria
                 , PRIMARY KEY (
-                        Nombre
+                        01
+                )
+        );
+        -- Creación de la entidad Alumno
+        CREATE TABLE IF NOT EXISTS Alumno (
+            -- Atributos
+                    Nombre VARCHAR(255)
+                    Apellidos VARCHAR(255)
+                    DNI INT
+
+            -- Clave primaria
+                , PRIMARY KEY (
+                        DNI
+                )
+        );
+        -- Creación de la entidad Profesor
+        CREATE TABLE IF NOT EXISTS Profesor (
+            -- Atributos
+                    Nombre VARCHAR(255)
+                    Apellidos VARCHAR(255)
+                    DNI INT
+                    Departamento VARCHAR(255)
+
+            -- Clave primaria
+                , PRIMARY KEY (
+                        DNI
                 )
         );
 
