@@ -29,6 +29,7 @@
       Nombre="1"
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
       redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"
       Descripcion="¿Cuanto te ha gustado la app?">
     <preguntasE
         Tipo="Corta"
@@ -44,6 +45,7 @@
       Nombre="1"
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
       redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"
       Descripcion="¿Cuantos minutos tiene una hora?">
     <preguntasC
         Texto="¿Cuantos minutos tiene una hora?"
@@ -91,33 +93,39 @@
       xsi:type="dataweb:IndiceEntidad"
       Nombre="Titulo"
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
-      redsocial="//@redessociales.0 //@redessociales.1"/>
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:IndiceExtendido"
       Nombre="Titulo"
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
-      redsocial="//@redessociales.0 //@redessociales.1"/>
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:IndiceDetalle"
       Nombre="Titulo"
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
-      redsocial="//@redessociales.0 //@redessociales.1"/>
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:Normal"
       Nombre="Evento"
       usuario="//@roles.0 //@roles.1 //@roles.3 //@roles.2"
       redsocial="//@redessociales.1 //@redessociales.0"
+      entidad="//@basedatos.0/@tablas.3"
       Contenido="Hola, evento de programacion"/>
   <paginapantallas
       xsi:type="dataweb:Index"
       Nombre="Home"
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
-      redsocial="//@redessociales.0 //@redessociales.1"/>
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:CRUD"
       Nombre="Titulo"
       usuario="//@roles.0 //@roles.1 //@roles.3"
-      redsocial="//@redessociales.0 //@redessociales.1"/>
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"/>
   <basedatos
       Nombre="Uex">
     <tablas
