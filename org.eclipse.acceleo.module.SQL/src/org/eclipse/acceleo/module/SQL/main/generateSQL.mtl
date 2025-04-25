@@ -14,8 +14,11 @@
     [for (entidad : Entidad | baseDeDatos.tablas)]
         -- Creación de la entidad [entidad.Nombre/]
         CREATE TABLE IF NOT EXISTS [entidad.Nombre/] (
+            -- Clave primaria obligatoria
+            id_[entidad.Nombre/] INT NOT NULL AUTO_INCREMENT,
+
             -- Atributos
-            [for (atributo : Atributo | entidad.atributos)]
+            [for (atributo : Atributo | entidad.atributos) separator(',')]
                 [if (atributo.TipoAtributo = TipoAtributo::_'String')] 
                     [atributo.Nombre/] VARCHAR(255)
                 [/if]
@@ -27,14 +30,15 @@
                 [/if]
             [/for]
 
+            [if (entidad.atributos->notEmpty())],[/if]
+
             -- Clave primaria
-            [if (entidad.atributos->exists(a : Atributo | a.PrimaryKey = true))]
-                , PRIMARY KEY (
-                    [for (atributo : Atributo | entidad.atributos->select(a : Atributo | a.PrimaryKey = true)) separator(', ')]
-                        [atributo.Nombre/]
-                    [/for]
-                )
-            [/if]
+            PRIMARY KEY (id_[entidad.Nombre/])
+
+            -- Claves foráneas (referencias a otras entidades)
+            [for (referencia : Entidad | entidad.entidadRefereenciada)]
+                , FOREIGN KEY (id_[referencia.Nombre/]) REFERENCES [referencia.Nombre/](id_[referencia.Nombre/])
+            [/for]
         );
     [/for]
 [/for]
