@@ -27,8 +27,8 @@
                         01
                 )
         );
-        -- Creación de la entidad Alumno
-        CREATE TABLE IF NOT EXISTS Alumno (
+        -- Creación de la entidad Estudiante
+        CREATE TABLE IF NOT EXISTS Estudiante (
             -- Atributos
                     Nombre VARCHAR(255)
                     Apellidos VARCHAR(255)

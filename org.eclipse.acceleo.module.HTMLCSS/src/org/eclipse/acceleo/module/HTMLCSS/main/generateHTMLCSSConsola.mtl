@@ -1,4 +1,4 @@
-[module generateHTMLCSS('http://www.example.org/dataweb')]
+[module generateHTMLCSSConsola('http://www.example.org/dataweb')]
  
 [template public generateAplicacion(a : Aplicacion)]
 [comment @main /]

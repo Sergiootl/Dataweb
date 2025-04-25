@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module generateDOC('http://www.example.org/dataweb')]
+[module generateDOC('b')]
 [template public generateDOC(anEPackage : EPackage)]
 [comment @main]
 [file (anEPackage.name+'.html', false, 'UTF-8')]

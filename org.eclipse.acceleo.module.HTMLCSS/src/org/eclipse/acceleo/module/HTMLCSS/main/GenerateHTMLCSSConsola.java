@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.acceleo.module.JAVASCRIPT.main;
+package org.eclipse.acceleo.module.HTMLCSS.main;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,24 +25,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'GenerateJAVASCRIPT' generation module.
+ * Entry point of the 'GenerateHTMLCSSConsola' generation module.
  *
  * @generated
  */
-public class GenerateJAVASCRIPT extends AbstractAcceleoGenerator {
+public class GenerateHTMLCSSConsola extends AbstractAcceleoGenerator {
     /**
      * The name of the module.
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/org/eclipse/acceleo/module/JAVASCRIPT/main/generateJAVASCRIPT";
+    public static final String MODULE_FILE_NAME = "/org/eclipse/acceleo/module/HTMLCSS/main/generateHTMLCSSConsola";
     
     /**
      * The name of the templates that are to be generated.
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generateVista" };
+    public static final String[] TEMPLATE_NAMES = { "generateAplicacion" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).
@@ -65,7 +65,7 @@ public class GenerateJAVASCRIPT extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public GenerateJAVASCRIPT() {
+    public GenerateHTMLCSSConsola() {
         // Empty implementation
     }
 
@@ -85,7 +85,7 @@ public class GenerateJAVASCRIPT extends AbstractAcceleoGenerator {
      *             the model cannot be loaded.
      * @generated
      */
-    public GenerateJAVASCRIPT(URI modelURI, File targetFolder,
+    public GenerateHTMLCSSConsola(URI modelURI, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(modelURI, targetFolder, arguments);
     }
@@ -106,7 +106,7 @@ public class GenerateJAVASCRIPT extends AbstractAcceleoGenerator {
      *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
      * @generated
      */
-    public GenerateJAVASCRIPT(EObject model, File targetFolder,
+    public GenerateHTMLCSSConsola(EObject model, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(model, targetFolder, arguments);
     }
@@ -141,7 +141,7 @@ public class GenerateJAVASCRIPT extends AbstractAcceleoGenerator {
                  * add in "arguments" this "String" attribute.
                  */
                 
-                GenerateJAVASCRIPT generator = new GenerateJAVASCRIPT(modelURI, folder, arguments);
+                GenerateHTMLCSSConsola generator = new GenerateHTMLCSSConsola(modelURI, folder, arguments);
                 
                 /*
                  * Add the properties from the launch arguments.

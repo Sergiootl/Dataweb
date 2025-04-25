@@ -1,0 +1,631 @@
+[module generateHTMLCSSWeb('http://www.example.org/dataweb')]
+ 
+[template public generateAplicacion(a : Aplicacion)]
+[comment @main /]
+
+[file ('/HTML/styles.css', false, 'UTF-8')]
+  /* styles.css - Contiene todos los estilos para la aplicación */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 28px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  }
+
+  .main-content {
+    width: 80%;
+    padding-right: 20px;
+  }
+
+  .sidebar {
+    width: 20%;
+    background-color: #f9f9f9;
+    padding: 10px;
+  }
+
+  .menu {
+    background-color: #eaeaea;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer {
+    background-color: #ddd;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+[/file]
+
+[file ('/HTML/index.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>[a.Nombre/] - Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>[a.Nombre/]</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <h2>Bienvenidos a la página principal de [a.Nombre/]</h2>
+      <p>Roles de acceso a la información:
+<ol>
+      [for (r : Rol | a.roles)]
+        <li><a href="[r.Nombre.toLowerCase()/]/index.html">[r.Nombre/]</a></li>
+      [/for]
+	</p>
+    </div>
+
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      [for (rs : RedSocial | a.redessociales)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+      [/for]
+    </div>
+  </div>
+
+  <div class="menu">
+    <h2>Páginas disponibles</h2>
+    
+  </div>
+
+  <div class="footer">
+    <p>[a.Descripcion/]</p>
+  </div>
+</body>
+</html>
+[/file]
+
+[for (r : Rol | a.roles)]
+  [generateRolIndex(r)/]
+[/for]
+[for (p : PaginaPantalla | a.paginapantallas)]
+  [generatePagina(p)/]
+[/for]
+[/template]
+
+[template public generateRolIndex(r : Rol)]
+[file ('/HTML/' + r.Nombre.toLowerCase() + '/index.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Página principal del Rol [r.Nombre/]</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Pantalla principal del Rol [r.Nombre/]</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <h2>Bienvenido al Rol [r.Nombre/]</h2>
+      <p>A continuación, podrás acceder al listado de páginas a las que tiene acceso:</p>
+      <ol>
+        <li><a href="../../index.html">Salir</a></li>
+        [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+          <li><a href="../../[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] [p.eClass().name/] [p.Nombre/]</a></li>
+        [/for]
+      </ol>
+    </div>
+	<div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      [for (rs : RedSocial | r.accesoapaginapantalla.redsocial)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+      [/for]
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© [r.Nombre/] - Todos los derechos reservados</p>
+  </div>
+</body>
+</html>
+[/file]
+[/template]
+
+
+[template public generatePagina(p : PaginaPantalla)]
+  [if (p.oclIsKindOf(Indice))]
+    [generateIndice(p.oclAsType(Indice))/]
+  [/if]
+  
+  [if (p.oclIsKindOf(DetallesInstancia))]
+    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
+      [generateDetalle(de.oclAsType(DetallesInstancia))/]
+    [/let]
+  [/if]
+  
+  [if (p.oclIsKindOf(CrearInstancia))]
+    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
+      [generateCreacion(de.oclAsType(CrearInstancia))/]
+    [/let]
+  [/if]
+  
+  [if (p.oclIsKindOf(BorradoInstancia))]
+    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
+      [generateBorrado(de.oclAsType(BorradoInstancia))/]
+    [/let]
+  [/if]
+  
+  [if (p.oclIsKindOf(CRUD))]
+    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
+      [generateCRUD(de.oclAsType(CRUD))/]
+    [/let]
+  [/if]
+  
+  [if (p.oclIsKindOf(Cuestionario))]
+    [generateCuestionario(p.oclAsType(Cuestionario))/]
+  [/if]
+  
+  [if (p.oclIsKindOf(Encuesta))]
+    [generateEncuesta(p.oclAsType(Encuesta))/]
+  [/if]
+[/template]
+
+[comment][template public generateIndice(i : Indice)]
+[file ('/HTML/' + i.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Índice de [i.Nombre/] Rol [i.usuario.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Pantalla índice de [i.Nombre/] Rol [i.usuario.Nombre/]</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            [for (bd : BaseDatos | i.eContainer().eContainer().oclAsType(Aplicacion).basedatos)] <!-- Recorre todas las bases de datos -->
+			  [for (ent : Entidad | bd.tablas)] <!-- Recorre las entidades dentro de cada base de datos -->
+			    [for (pagina : PaginaPantalla | ent.entidad)] <!-- Recorre las páginas asociadas a cada entidad -->
+			      <!-- Aquí puedes generar las columnas de la tabla para los atributos de la entidad -->
+			      [for (attr : Atributo | ent.atributos)]
+			        <th>[attr.Nombre/]</th>
+			      [/for]
+			    [/for]
+			  [/for]
+			[/for]
+
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          [for (bd : BaseDatos | i.eContainer().eContainer().oclAsType(Aplicacion).basedatos)]
+            [for (ent : Entidad | bd.tablas)]
+              [if (ent.indice = i)]
+                [for (id : Integer | Sequence{1..2})]
+                  <tr>
+                    <td>[id/]</td>
+                    [for (attr : Atributo | ent.atributos)]
+                      <td>[ent.Nombre/]_0[id/]</td>
+                    [/for]
+                    <td>
+                      <a href="detalle_[ent.Nombre.toLowerCase()/].html" class="button">Detalles</a>
+                      <a href="borrar_[ent.Nombre.toLowerCase()/].html" class="button">Borrar</a>
+                    </td>
+                  </tr>
+                [/for]
+              [/if]
+            [/for]
+          [/for]
+        </tbody>
+      </table>
+      <div class="actions">
+        <a href="crear_[i.Nombre.toLowerCase()/].html" class="button">Crear Nuevo</a>
+        <a href="[i.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+      </div>
+    </div>
+
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      [for (rs : RedSocial | i.redsocial)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+      [/for]
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© [i.usuario.Nombre/] - Todos los derechos reservados</p>
+  </div>
+</body>
+</html>
+[/file]
+[/template][/comment]
+
+
+[comment][template public generateDetalle(d : DetallesInstancia)]
+[file ('detalle_'.concat(d.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle de [d.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Pantalla de detalle de [d.Nombre/]</h1>
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | d.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <div class="content">
+    <div class="field">
+      <label>ID:</label>
+      <span>[d.Nombre/]_01</span>
+    </div>
+
+    [let app : Aplicacion = d.eContainer().eContainer().oclAsType(Aplicacion)]
+      [for (bd : BaseDatos | app.basedatos)]
+        [for (ent : Entidad | bd.tablas)]
+          [if (ent.indice = d)]
+            [for (attr : Atributo | ent.atributos)]
+              <div class="field">
+                <label>[attr.Nombre/]:</label>
+                <span>
+                  [if (attr.TipoAtributo = TipoAtributo::Integer)]123[/if]
+                  [if (attr.TipoAtributo = TipoAtributo::Boolean)]true[/if]
+                  [if (attr.TipoAtributo = TipoAtributo::String)]Texto de ejemplo[/if]
+                </span>
+              </div>
+            [/for]
+          [/if]
+        [/for]
+      [/for]
+    [/let]
+  </div>
+
+  <div class="actions">
+    <a href="editar_[d.Nombre.toLowerCase()/].html" class="button">Editar</a>
+    <a href="borrar_[d.Nombre.toLowerCase()/].html" class="button">Borrar</a>
+    <a href="[d.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+  </div>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateCreacion(c : CrearInstancia)]
+[file ('crear_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear [c.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Página de creación de [c.Nombre/]</h1>
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | c.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <div class="content">
+    <form>
+      [for (attr : Atributo | c.eContainer(Aplicacion).basedatos.tablas.atributos)]
+        <div class="field">
+          <label for="[attr.Nombre/]">[attr.Nombre/]:</label>
+          [if (attr.TipoAtributo = TipoAtributo::Integer)]
+            <input type="number" id="[attr.Nombre/]" name="[attr.Nombre/]" required>
+          [/if]
+          [if (attr.TipoAtributo = TipoAtributo::Boolean)]
+            <input type="checkbox" id="[attr.Nombre/]" name="[attr.Nombre/]">
+          [/if]
+          [if (attr.TipoAtributo = TipoAtributo::String)]
+            <input type="text" id="[attr.Nombre/]" name="[attr.Nombre/]" required>
+          [/if]
+        </div>
+      [/for]
+      
+      [for (ref : Entidad | c.eContainer(Aplicacion).basedatos.tablas)]
+        <div class="field">
+          <label for="[ref.Nombre/]">[ref.Nombre/]:</label>
+          <select id="[ref.Nombre/]" name="[ref.Nombre/]" required>
+            <option value="">Seleccione...</option>
+            <option value="1">[ref.Nombre/]_01</option>
+            <option value="2">[ref.Nombre/]_02</option>
+          </select>
+        </div>
+      [/for]
+      
+      <div class="actions">
+        <button type="submit">Guardar</button>
+        <button type="button" onclick="window.location.href='[c.usuario.Nombre.toLowerCase()/]/index.html'">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateBorrado(b : BorradoInstancia)]
+[file ('borrar_'.concat(b.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Borrar [b.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Pantalla de borrar [b.Nombre/]</h1>
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | b.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <div class="content">
+    <p>¿Está seguro que desea borrar el siguiente elemento?</p>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          [for (attr : Atributo | b.eContainer(Aplicacion).basedatos.tablas.atributos->select(a | a.PrimaryKey))]
+            <th>[attr.Nombre/]</th>
+          [/for]
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          [for (attr : Atributo | b.eContainer(Aplicacion).basedatos.tablas.atributos->select(a | a.PrimaryKey))]
+            <td>[b.Nombre/]_01</td>
+          [/for]
+          <td><a href="borrado_exitoso.html" class="button">Confirmar Borrado</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <a href="index_[b.Nombre.toLowerCase()/].html" class="button">Cancelar</a>
+  </div>
+</body>
+</html>
+[/file]
+
+[file ('borrado_exitoso.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Borrado exitoso</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Página de borrado de [b.Nombre/]</h1>
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | b.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <div class="content">
+    <p>>> [b.Nombre/] borrado exitosamente!!</p>
+    <p>Nota: No se eliminan los datos correspondientes a las referencias de la [b.Nombre/]:</p>
+    <ul>
+      [for (ref : Entidad | b.eContainer(Aplicacion).basedatos.tablas )]
+        <li>[ref.Nombre/]: [ref.Nombre/]_01</li>
+      [/for]
+    </ul>
+  </div>
+  
+  <div class="actions">
+    <a href="index_[b.Nombre.toLowerCase()/].html" class="button">Volver al listado</a>
+  </div>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateCRUD(c : CRUD)]
+[file (c.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD [c.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Pantalla de CRUD para [c.Nombre/]</h1>
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | c.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <div class="menu">
+    <h2>Operaciones disponibles:</h2>
+    <ol>
+      <li><a href="[c.usuario.Nombre.toLowerCase()/]/index.html">Salir</a></li>
+      <li><a href="index_[c.Nombre.toLowerCase()/].html">Listar [c.Nombre/]</a></li>
+      <li><a href="crear_[c.Nombre.toLowerCase()/].html">Crear nuevo [c.Nombre/]</a></li>
+      <li><a href="borrar_[c.Nombre.toLowerCase()/].html">Borrar [c.Nombre/]</a></li>
+    </ol>
+  </div>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateCuestionario(q : Cuestionario)]
+[file (q.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuestionario: [q.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Cuestionario: [q.Nombre/]</h1>
+    [if (q.Evaluado)]
+      <p><strong>Este cuestionario es evaluado</strong></p>
+    [/if]
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | q.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <form>
+    [for (p : PreguntaCuestionario | q.preguntascuestionario)]
+      <div class="question">
+        <p><strong>[p.Texto/]</strong></p>
+         
+        [if (p.Tipo = TipoPregunta::OpcionMultiple)]
+          [for (r : RespuestaCuestionario | p.respuestas_cuestionario)]
+            <input type="radio" name="pregunta_[p.Texto/]" value="[r.Texto/]" required> [r.Texto/]<br/>
+          [/for]
+        [/if]
+
+        [if (p.Tipo = TipoPregunta::V_F)]
+          <input type="radio" name="pregunta_[p.Texto/]" value="true" required> Verdadero<br/>
+          <input type="radio" name="pregunta_[p.Texto/]" value="false" required> Falso<br/>
+        [/if]
+
+        [if (p.Tipo = TipoPregunta::Corta)]
+          <input type="text" name="pregunta_[p.Texto/]" placeholder="Tu respuesta..." required><br/>
+        [/if]
+
+        [if (q.Evaluado)]
+          <div class="correct-answer">
+            <strong>Respuesta correcta:</strong> 
+            [for (r : RespuestaCuestionario | p.respuestas_cuestionario)]
+              [  r.correcta.Texto / ]
+            [/for]
+          </div>
+        [/if]
+      </div>
+    [/for]
+
+    <div class="actions">
+      <button type="submit">Enviar Cuestionario</button>
+      <button type="button" onclick="window.location.href='[q.usuario.Nombre.toLowerCase()/]/index.html'">Cancelar</button>
+    </div>
+  </form>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateEncuesta(e : Encuesta)]
+[file (e.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Encuesta: [e.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Encuesta: [e.Nombre/]</h1>
+    <p>[e.Descripcion/]</p>
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | e.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <form>
+    <h3>Preguntas:</h3>
+    [for (p : PreguntaEncuesta | e.preguntasencuesta)]
+      <div class="question">
+        <p><strong>[p.Texto/]</strong></p>
+        [if (p.Tipo = TipoPregunta::OpcionMultiple)]
+          [for (r : RespuestaEncuesta | p.respuestas_encuesta)]
+            <input type="radio" name="pregunta_[p.Texto/]" value="[r.Texto/]" required> [r.Texto/]<br/>
+          [/for]
+        [/if]
+        [if (p.Tipo = TipoPregunta::V_F)]
+          <input type="radio" name="pregunta_[p.Texto/]" value="true" required> Verdadero<br/>
+          <input type="radio" name="pregunta_[p.Texto/]" value="false" required> Falso<br/>
+        [/if]
+        [if (p.Tipo = TipoPregunta::Corta)]
+          <input type="text" name="pregunta_[p.Texto/]" placeholder="Tu respuesta..." required><br/>
+        [/if]
+      </div>
+    [/for]
+    
+    <div class="actions">
+      <button type="submit">Enviar Encuesta</button>
+      <button type="button" onclick="window.location.href='[e.usuario.Nombre.toLowerCase()/]/index.html'">Cancelar</button>
+    </div>
+  </form>
+</body>
+</html>
+[/file]
+[/template][/comment]
