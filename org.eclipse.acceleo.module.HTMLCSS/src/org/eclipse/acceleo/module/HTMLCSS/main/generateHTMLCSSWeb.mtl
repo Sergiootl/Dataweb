@@ -49,18 +49,17 @@
     font-size: 14px;
     color: #555;
   }
-	.twitter-timeline-container {
-  width: 100%;
-  height: 400px; /* O la altura que desees */
-  overflow: hidden;
-}
 
-	
-	.twitter-timeline {
-	  border: none;
-	  overflow: hidden;
-	}
+  .twitter-timeline-container {
+    width: 100%;
+    height: 400px; /* O la altura que desees */
+    overflow: hidden;
+  }
 
+  .twitter-timeline {
+    border: none;
+    overflow: hidden;
+  }
 
   a {
     color: #0066cc;
@@ -70,7 +69,52 @@
   a:hover {
     text-decoration: underline;
   }
+
+  /* Estilos para los bloques horizontales de acciones */
+  .actions {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .action-block {
+    display: inline-block;
+    width: 22%;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .action-block h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .action-block p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .action-block button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .action-block button:hover {
+    background-color: #0056b3;
+  }
 [/file]
+
 
 [file ('/HTML/index.html', false, 'UTF-8')]
 <!DOCTYPE html>
@@ -227,86 +271,45 @@
   [/if]
 [/template]
 
-[comment][template public generateIndice(i : Indice)]
+[template public generateIndice(i : Indice)]
 [file ('/HTML/' + i.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Índice de [i.Nombre/] Rol [i.usuario.Nombre/]</title>
+  <title>Listado de [i.Nombre/]</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="header">
-    <h1>Pantalla índice de [i.Nombre/] Rol [i.usuario.Nombre/]</h1>
+    <h1>Listado de [i.Nombre/]</h1>
   </div>
 
-  <div class="container">
-    <div class="main-content">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            [for (bd : BaseDatos | i.eContainer().eContainer().oclAsType(Aplicacion).basedatos)] <!-- Recorre todas las bases de datos -->
-			  [for (ent : Entidad | bd.tablas)] <!-- Recorre las entidades dentro de cada base de datos -->
-			    [for (pagina : PaginaPantalla | ent.entidad)] <!-- Recorre las páginas asociadas a cada entidad -->
-			      <!-- Aquí puedes generar las columnas de la tabla para los atributos de la entidad -->
-			      [for (attr : Atributo | ent.atributos)]
-			        <th>[attr.Nombre/]</th>
-			      [/for]
-			    [/for]
-			  [/for]
-			[/for]
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | i.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
 
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          [for (bd : BaseDatos | i.eContainer().eContainer().oclAsType(Aplicacion).basedatos)]
-            [for (ent : Entidad | bd.tablas)]
-              [if (ent.indice = i)]
-                [for (id : Integer | Sequence{1..2})]
-                  <tr>
-                    <td>[id/]</td>
-                    [for (attr : Atributo | ent.atributos)]
-                      <td>[ent.Nombre/]_0[id/]</td>
-                    [/for]
-                    <td>
-                      <a href="detalle_[ent.Nombre.toLowerCase()/].html" class="button">Detalles</a>
-                      <a href="borrar_[ent.Nombre.toLowerCase()/].html" class="button">Borrar</a>
-                    </td>
-                  </tr>
-                [/for]
-              [/if]
-            [/for]
-          [/for]
-        </tbody>
-      </table>
-      <div class="actions">
-        <a href="crear_[i.Nombre.toLowerCase()/].html" class="button">Crear Nuevo</a>
-        <a href="[i.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-      </div>
-    </div>
-
-    <div class="sidebar social">
-      <h3>Redes Sociales:</h3>
-      [for (rs : RedSocial | i.redsocial)]
-        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+  <div class="content">
+    <h3>Listado de [i.Nombre/]:</h3>
+    <ul style="padding-left: 20px;">
+      <li>0. <a href="#">Salir</a></li>
+      [for (inst : Entidad | i.instancias)]
+        <li>[inst.Nombre/] - <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a></li>
       [/for]
-    </div>
-  </div>
-
-  <div class="footer">
-    <p>© [i.usuario.Nombre/] - Todos los derechos reservados</p>
+    </ul>
   </div>
 </body>
 </html>
 [/file]
-[/template][/comment]
+[/template]
 
 
-[comment][template public generateDetalle(d : DetallesInstancia)]
-[file ('detalle_'.concat(d.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+[template public generateDetalle(d : DetallesInstancia)]
+[file ('/HTML/detalle_'.concat(d.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -327,34 +330,38 @@
   </div>
 
   <div class="content">
-    <div class="field">
-      <label>ID:</label>
-      <span>[d.Nombre/]_01</span>
-    </div>
-
-    [let app : Aplicacion = d.eContainer().eContainer().oclAsType(Aplicacion)]
-      [for (bd : BaseDatos | app.basedatos)]
-        [for (ent : Entidad | bd.tablas)]
-          [if (ent.indice = d)]
-            [for (attr : Atributo | ent.atributos)]
-              <div class="field">
-                <label>[attr.Nombre/]:</label>
-                <span>
-                  [if (attr.TipoAtributo = TipoAtributo::Integer)]123[/if]
-                  [if (attr.TipoAtributo = TipoAtributo::Boolean)]true[/if]
-                  [if (attr.TipoAtributo = TipoAtributo::String)]Texto de ejemplo[/if]
-                </span>
-              </div>
-            [/for]
-          [/if]
-        [/for]
-      [/for]
-    [/let]
-  </div>
+    <h3>Campos:</h3>
+	[for (ent : Entidad | d.entidad)] 
+  	<div class="field">
+	    [for (attr : Atributo | ent.atributos)] 
+	      <p>
+	        [attr.Nombre/] // 
+	        [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
+	        [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
+	        [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
+	      </p>
+	    [/for]
+	    <!-- Aquí se muestran las claves foráneas de la entidad -->
+	    [for (referencia : Entidad | ent.entidadRefereenciada)] 
+	      <p>- Id_[referencia.Nombre/][  ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
+	    [/for]
+		<div class="options" style="margin-top: 20px;">
+	      <h4>Listado de opciones:</h4>
+	      <ol style="padding-left: 20px;">
+	        <li style="margin-bottom: 10px;">
+	          <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
+	        </li>
+	        [for (referencia : Entidad | ent.entidadRefereenciada)] 
+	          <li style="margin-bottom: 10px;">
+	            <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [  ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
+	          </li>
+	        [/for]
+	      </ol>
+	    </div>
+  	</div>
+	[/for]
 
   <div class="actions">
-    <a href="editar_[d.Nombre.toLowerCase()/].html" class="button">Editar</a>
-    <a href="borrar_[d.Nombre.toLowerCase()/].html" class="button">Borrar</a>
     <a href="[d.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
   </div>
 </body>
@@ -362,18 +369,186 @@
 [/file]
 [/template]
 
+
 [template public generateCreacion(c : CrearInstancia)]
-[file ('crear_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+[file ('/HTML/crear_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Crear [c.Nombre/]</title>
+  <title>Crear nuevo [c.Nombre/]</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="header">
-    <h1>Página de creación de [c.Nombre/]</h1>
+    <h1>Crear nuevo [c.Nombre/]</h1>
+  </div>
+
+  <form action="guardar_[c.Nombre.toLowerCase()/].html" method="post">
+    <div class="content">
+      <h3>Introduce los campos:</h3>
+      [for (ent : Entidad | c.entidad)] 
+        <div class="field">
+          <h3>[ent.Nombre/]:</h3>
+          [for (attr : Atributo | ent.atributos)] 
+            <p>
+              <label for="[attr.Nombre/]">[attr.Nombre/]:</label>
+              [if (attr.TipoAtributo = TipoAtributo::String)]
+                <input type="text" name="[attr.Nombre/]" id="[attr.Nombre/]" />
+              [/if]
+              [if (attr.TipoAtributo = TipoAtributo::Integer)]
+                <input type="number" name="[attr.Nombre/]" id="[attr.Nombre/]" />
+              [/if]
+              [if (attr.TipoAtributo = TipoAtributo::Boolean)]
+                <select name="[attr.Nombre/]" id="[attr.Nombre/]">
+                  <option value="true">Sí</option>
+                  <option value="false">No</option>
+                </select>
+              [/if]
+            </p>
+          [/for]
+
+          <!-- Claves foráneas como select de entidades referenciadas -->
+          [for (referencia : Entidad | ent.entidadRefereenciada)] 
+            <p>
+              <label for="ref_[referencia.Nombre/]">ID del [referencia.Nombre/]:</label>
+              <input type="text" name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]" placeholder="Referencia a [referencia.Nombre/]" />
+            </p>
+          [/for]
+        </div>
+      [/for]
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="button">Confirmar</button>
+      <button type="reset" class="button">Cancelar</button>
+      <a href="[c.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+    </div>
+  </form>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateBorrado(b : BorradoInstancia)]
+[file ('/HTML/borrar_'.concat(b.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Borrar [b.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    function confirmarBorrado() {
+      document.getElementById("mensajeConfirmacion").style.display = "block";
+      document.getElementById("botonBorrar").disabled = true;
+    }
+  </script>
+</head>
+<body>
+  <div class="header">
+    [for (ent : Entidad | b.entidad)]
+      <h1>Página de borrado de la asignatura [ent.Nombre/]</h1>
+    [/for]
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | b.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <div class="confirm" style="margin-top: 30px;">
+    [for (ent : Entidad | b.entidad)]
+      <p><strong>¿Está seguro de borrar [ent.Nombre/]?</strong></p>
+    [/for]
+    <button id="botonBorrar" onclick="confirmarBorrado()" class="button" style="background-color: red; color: white;">Borrar</button>
+  </div>
+
+  <div id="mensajeConfirmacion" style="display: none; margin-top: 20px; color: green;">
+    <strong>La entidad se ha borrado con éxito.</strong>
+  </div>
+
+  <div class="note" style="margin-top: 40px;">
+    <p><strong>Nota:</strong> No se eliminan los datos correspondientes a las referencias de la [b.Nombre/]:</p>
+    <ul>
+      [for (ent : Entidad | b.entidad)]
+        [for (referencia : Entidad | ent.entidadRefereenciada)]
+          <li>- Id_[referencia.Nombre/] [ ' [' 'ID del ' + referencia.Nombre + ']' /] // Referencia a la entidad [referencia.Nombre/]</li>
+        [/for]
+      [/for]
+    </ul>
+  </div>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateCRUD(c : CRUD)]
+[file ('/HTML/'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de acciones de [c.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Listado de acciones de [c.Nombre/]</h1>
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+    [for (rs : RedSocial | c.redsocial)]
+      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+    [/for]
+  </div>
+
+  <div class="actions">
+    <div class="action-block">
+      <h4>Crear nuevo</h4>
+      <p>Crea un nuevo elemento de tipo [c.Nombre/].</p>
+      <a href="crear_[c.Nombre.toLowerCase()/].html"><button>Crear</button></a>
+    </div>
+
+    <div class="action-block">
+      <h4>Listar</h4>
+      <p>Consulta el listado completo de [c.Nombre/].</p>
+      <a href="indice_[c.Nombre.toLowerCase()/].html"><button>Listar</button></a>
+    </div>
+
+    <div class="action-block">
+      <h4>Borrar</h4>
+      <p>Elimina un elemento existente de [c.Nombre/].</p>
+      <a href="borrar_[c.Nombre.toLowerCase()/].html"><button>Borrar</button></a>
+    </div>
+
+    <div class="action-block">
+      <h4>Salir</h4>
+      <p>Regresar al menú anterior o página principal.</p>
+      <a href="[c.usuario.Nombre.toLowerCase()/]/index.html"><button>Salir</button></a>
+    </div>
+  </div>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateCuestionario(c : Cuestionario)]
+[file ('/HTML/cuestionario_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuestionario [c.Nombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Cuestionario interactivo: [c.Nombre/]</h1>
   </div>
 
   <div class="social">
@@ -384,36 +559,39 @@
   </div>
 
   <div class="content">
-    <form>
-      [for (attr : Atributo | c.eContainer(Aplicacion).basedatos.tablas.atributos)]
-        <div class="field">
-          <label for="[attr.Nombre/]">[attr.Nombre/]:</label>
-          [if (attr.TipoAtributo = TipoAtributo::Integer)]
-            <input type="number" id="[attr.Nombre/]" name="[attr.Nombre/]" required>
+    <p><strong>Descripción:</strong> [c.Descripcion/]</p>
+    <form action="#" method="post">
+      [let i : Integer = 1 /]
+      
+      [for (preg : Pregunta | c.preguntasC)]
+        <div class="pregunta">
+          <p><strong>Pregunta [i/]:</strong> [preg.Texto/]</p>
+
+          [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+            [for (resp : Respuesta | preg.respuestas)]
+              <label>
+                <input type="radio" name="preg_[i/]" value="[resp.Texto/]"> [resp.Texto/]
+              </label><br>
+            [/for]
           [/if]
-          [if (attr.TipoAtributo = TipoAtributo::Boolean)]
-            <input type="checkbox" id="[attr.Nombre/]" name="[attr.Nombre/]">
+
+          [if (preg.Tipo = TipoPregunta::V_F)]
+            <label><input type="radio" name="preg_[i/]" value="Verdadero"> Verdadero</label><br>
+            <label><input type="radio" name="preg_[i/]" value="Falso"> Falso</label><br>
           [/if]
-          [if (attr.TipoAtributo = TipoAtributo::String)]
-            <input type="text" id="[attr.Nombre/]" name="[attr.Nombre/]" required>
+
+          [if (preg.Tipo = TipoPregunta::Corta)]
+            <input type="text" name="preg_[i/]" placeholder="Escribe tu respuesta..."><br>
           [/if]
         </div>
+        
+        <!-- Incrementar el contador para la siguiente pregunta -->
+        [set i = i + 1 /]
       [/for]
-      
-      [for (ref : Entidad | c.eContainer(Aplicacion).basedatos.tablas)]
-        <div class="field">
-          <label for="[ref.Nombre/]">[ref.Nombre/]:</label>
-          <select id="[ref.Nombre/]" name="[ref.Nombre/]" required>
-            <option value="">Seleccione...</option>
-            <option value="1">[ref.Nombre/]_01</option>
-            <option value="2">[ref.Nombre/]_02</option>
-          </select>
-        </div>
-      [/for]
-      
-      <div class="actions">
-        <button type="submit">Guardar</button>
-        <button type="button" onclick="window.location.href='[c.usuario.Nombre.toLowerCase()/]/index.html'">Cancelar</button>
+
+      <div class="actions" style="margin-top: 30px;">
+        <button type="submit">Enviar respuestas</button>
+        <button type="reset">Cancelar</button>
       </div>
     </form>
   </div>
@@ -422,109 +600,23 @@
 [/file]
 [/template]
 
-[template public generateBorrado(b : BorradoInstancia)]
-[file ('borrar_'.concat(b.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+
+
+[template public generateEncuesta(c : Encuesta)]
+[file ('/HTML/encuesta_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Borrar [b.Nombre/]</title>
+  <title>Encuesta - [c.Nombre/]</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
   <div class="header">
-    <h1>Pantalla de borrar [b.Nombre/]</h1>
-  </div>
-
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | b.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <div class="content">
-    <p>¿Está seguro que desea borrar el siguiente elemento?</p>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          [for (attr : Atributo | b.eContainer(Aplicacion).basedatos.tablas.atributos->select(a | a.PrimaryKey))]
-            <th>[attr.Nombre/]</th>
-          [/for]
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          [for (attr : Atributo | b.eContainer(Aplicacion).basedatos.tablas.atributos->select(a | a.PrimaryKey))]
-            <td>[b.Nombre/]_01</td>
-          [/for]
-          <td><a href="borrado_exitoso.html" class="button">Confirmar Borrado</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="actions">
-    <a href="index_[b.Nombre.toLowerCase()/].html" class="button">Cancelar</a>
-  </div>
-</body>
-</html>
-[/file]
-
-[file ('borrado_exitoso.html', false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Borrado exitoso</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Página de borrado de [b.Nombre/]</h1>
-  </div>
-
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | b.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <div class="content">
-    <p>>> [b.Nombre/] borrado exitosamente!!</p>
-    <p>Nota: No se eliminan los datos correspondientes a las referencias de la [b.Nombre/]:</p>
-    <ul>
-      [for (ref : Entidad | b.eContainer(Aplicacion).basedatos.tablas )]
-        <li>[ref.Nombre/]: [ref.Nombre/]_01</li>
-      [/for]
-    </ul>
-  </div>
-  
-  <div class="actions">
-    <a href="index_[b.Nombre.toLowerCase()/].html" class="button">Volver al listado</a>
-  </div>
-</body>
-</html>
-[/file]
-[/template]
-
-[template public generateCRUD(c : CRUD)]
-[file (c.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>CRUD [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Pantalla de CRUD para [c.Nombre/]</h1>
+    <h1>Encuesta: [c.Nombre/]</h1>
   </div>
 
   <div class="social">
@@ -534,133 +626,47 @@
     [/for]
   </div>
 
-  <div class="menu">
-    <h2>Operaciones disponibles:</h2>
-    <ol>
-      <li><a href="[c.usuario.Nombre.toLowerCase()/]/index.html">Salir</a></li>
-      <li><a href="index_[c.Nombre.toLowerCase()/].html">Listar [c.Nombre/]</a></li>
-      <li><a href="crear_[c.Nombre.toLowerCase()/].html">Crear nuevo [c.Nombre/]</a></li>
-      <li><a href="borrar_[c.Nombre.toLowerCase()/].html">Borrar [c.Nombre/]</a></li>
-    </ol>
-  </div>
-</body>
-</html>
-[/file]
-[/template]
+  <div class="content">
+    <h3>Descripción de la Encuesta:</h3>
+    <p>[c.Descripcion/]</p>
 
-[template public generateCuestionario(q : Cuestionario)]
-[file (q.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Cuestionario: [q.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Cuestionario: [q.Nombre/]</h1>
-    [if (q.Evaluado)]
-      <p><strong>Este cuestionario es evaluado</strong></p>
-    [/if]
-  </div>
+    <!-- Formulario para responder la encuesta -->
+    <form action="#" method="post">
+      
+      <!-- Iteramos sobre las preguntas de la encuesta -->
+      [for (preg : Pregunta | c.preguntasE)]
+        <div class="pregunta">
+          <p><strong>Pregunta:</strong> [preg.Texto/]</p>
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | q.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <form>
-    [for (p : PreguntaCuestionario | q.preguntascuestionario)]
-      <div class="question">
-        <p><strong>[p.Texto/]</strong></p>
-         
-        [if (p.Tipo = TipoPregunta::OpcionMultiple)]
-          [for (r : RespuestaCuestionario | p.respuestas_cuestionario)]
-            <input type="radio" name="pregunta_[p.Texto/]" value="[r.Texto/]" required> [r.Texto/]<br/>
-          [/for]
-        [/if]
-
-        [if (p.Tipo = TipoPregunta::V_F)]
-          <input type="radio" name="pregunta_[p.Texto/]" value="true" required> Verdadero<br/>
-          <input type="radio" name="pregunta_[p.Texto/]" value="false" required> Falso<br/>
-        [/if]
-
-        [if (p.Tipo = TipoPregunta::Corta)]
-          <input type="text" name="pregunta_[p.Texto/]" placeholder="Tu respuesta..." required><br/>
-        [/if]
-
-        [if (q.Evaluado)]
-          <div class="correct-answer">
-            <strong>Respuesta correcta:</strong> 
-            [for (r : RespuestaCuestionario | p.respuestas_cuestionario)]
-              [  r.correcta.Texto / ]
+          <!-- Si la pregunta es de opción múltiple -->
+          [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+            [for (resp : Respuesta | preg.respuestas)]
+              <label>
+                <input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="[resp.Texto/]"> [resp.Texto/]
+              </label><br>
             [/for]
-          </div>
-        [/if]
-      </div>
-    [/for]
+          [/if]
 
-    <div class="actions">
-      <button type="submit">Enviar Cuestionario</button>
-      <button type="button" onclick="window.location.href='[q.usuario.Nombre.toLowerCase()/]/index.html'">Cancelar</button>
-    </div>
-  </form>
+          <!-- Si la pregunta es de verdadero o falso -->
+          [if (preg.Tipo = TipoPregunta::V_F)]
+            <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Verdadero"> Verdadero</label><br>
+            <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Falso"> Falso</label><br>
+          [/if]
+
+          <!-- Si la pregunta es de respuesta corta -->
+          [if (preg.Tipo = TipoPregunta::Corta)]
+            <input type="text" name="[preg.Texto.replaceAll(' ', '_')/]" placeholder="Escribe tu respuesta..."><br>
+          [/if]
+        </div>
+      [/for]
+
+      <!-- Botón para enviar la encuesta -->
+      <button type="submit">Enviar Encuesta</button>
+    </form>
+  </div>
+
 </body>
 </html>
+
 [/file]
 [/template]
-
-[template public generateEncuesta(e : Encuesta)]
-[file (e.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Encuesta: [e.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Encuesta: [e.Nombre/]</h1>
-    <p>[e.Descripcion/]</p>
-  </div>
-
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | e.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <form>
-    <h3>Preguntas:</h3>
-    [for (p : PreguntaEncuesta | e.preguntasencuesta)]
-      <div class="question">
-        <p><strong>[p.Texto/]</strong></p>
-        [if (p.Tipo = TipoPregunta::OpcionMultiple)]
-          [for (r : RespuestaEncuesta | p.respuestas_encuesta)]
-            <input type="radio" name="pregunta_[p.Texto/]" value="[r.Texto/]" required> [r.Texto/]<br/>
-          [/for]
-        [/if]
-        [if (p.Tipo = TipoPregunta::V_F)]
-          <input type="radio" name="pregunta_[p.Texto/]" value="true" required> Verdadero<br/>
-          <input type="radio" name="pregunta_[p.Texto/]" value="false" required> Falso<br/>
-        [/if]
-        [if (p.Tipo = TipoPregunta::Corta)]
-          <input type="text" name="pregunta_[p.Texto/]" placeholder="Tu respuesta..." required><br/>
-        [/if]
-      </div>
-    [/for]
-    
-    <div class="actions">
-      <button type="submit">Enviar Encuesta</button>
-      <button type="button" onclick="window.location.href='[e.usuario.Nombre.toLowerCase()/]/index.html'">Cancelar</button>
-    </div>
-  </form>
-</body>
-</html>
-[/file]
-[/template][/comment]

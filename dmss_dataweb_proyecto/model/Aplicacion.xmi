@@ -53,6 +53,15 @@
       <respuestas
           Texto="70"/>
     </preguntasC>
+    <preguntasC
+        Tipo="V_F"
+        Texto="El caballo blanco de santiago es blanco"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.1/@respuestas.0">
+      <respuestas
+          Texto="Verdadero"/>
+      <respuestas
+          Texto="Falso"/>
+    </preguntasC>
   </paginapantallas>
   <paginapantallas
       xsi:type="dataweb:CrearInstancia"
