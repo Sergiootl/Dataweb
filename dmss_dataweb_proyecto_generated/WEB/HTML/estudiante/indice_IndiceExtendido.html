@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado extendido de </title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Listado extendido de </h1>
+  </div>
+
+  <div class="social">
+    <h3>Redes sociales:</h3>
+  </div>
+
+  <div class="content">
+    <h3>Listado con filtros de instancias de :</h3>
+    <form method="get" action="#">
+      <label for="filtroGenero">Filtrar por GÃ©nero:</label>
+      <select name="filtroGenero" id="filtroGenero">
+        <option value="CienciaFiccion">Ciencia FicciÃ³n</option>
+        <option value="Fantasia">FantasÃ­a</option>
+        <option value="Terror">Terror</option>
+      </select>
+      <button type="submit">Aplicar filtro</button>
+    </form>
+
+    <h4>Resultados de bÃºsqueda:</h4>
+    <ul style="padding-left: 20px;">
+    </ul>
+
+    <p>Este Ã­ndice incluye paginaciÃ³n y la posibilidad de filtrar por gÃ©nero.</p>
+    <div class="pagination">
+      <button>Anterior</button>
+      <button>Siguiente</button>
+    </div>
+  </div>
+</body>
+</html>
+

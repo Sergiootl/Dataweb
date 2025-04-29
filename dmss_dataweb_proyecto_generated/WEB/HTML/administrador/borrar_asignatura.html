@@ -1,0 +1,67 @@
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Borrar Asignatura</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script>
+          function confirmarBorrado() {
+            document.getElementById("mensajeConfirmacion").style.display = "block";
+            document.getElementById("botonBorrar").disabled = true;
+          }
+        </script>
+      </head>
+      <body>
+        <div class="header">
+            <h1>PÃ¡gina de borrado de la asignatura Asignatura</h1>
+        </div>
+
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+              <h3>Â¿EstÃ¡s seguro de borrar esta entidad?</h3>
+                <p><strong>Â¿EstÃ¡ seguro de borrar Asignatura?</strong></p>
+
+              <button id="botonBorrar" onclick="confirmarBorrado()" class="button" style="background-color: red; color: white;">Borrar</button>
+
+              <div id="mensajeConfirmacion" style="display: none; margin-top: 20px; color: green;">
+                <strong>La entidad se ha borrado con Ã©xito.</strong>
+              </div>
+
+              <div class="note" style="margin-top: 40px;">
+                <p><strong>Nota:</strong> No se eliminan los datos correspondientes a las referencias de la Asignatura:</p>
+                <ul>
+                      <li>- Id_Titulo  [ID del Titulo] // Referencia a la entidad Titulo</li>
+                      <li>- Id_Profesor  [ID del Profesor] // Referencia a la entidad Profesor</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asÃ­ncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demÃ¡s redes sociales como enlaces -->
+              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
+                  Twitter</a></p>
+              <p>- <a href="https://www.web.com" target="_blank" class="social-link">
+                  Web</a></p>
+          </div>
+        </div>
+
+        <div class="footer">
+          AplicaciÃ³n generada automÃ¡ticamente.
+        </div>
+
+      </body>
+      </html>

@@ -5,114 +5,137 @@
 
 [file ('/HTML/styles.css', false, 'UTF-8')]
   /* styles.css - Contiene todos los estilos para la aplicación */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfcfa;
+}
 
-  .header {
-    background-color: #f4f4f4;
-    padding: 20px;
-    text-align: center;
-    font-weight: 300;
-    font-size: 28px;
-  }
+.header {
+  background-color: #6c5ce7;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-weight: 300;
+  font-size: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+}
 
-  .container {
-    display: flex;
-    flex-direction: row;
-    padding: 20px;
-  }
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  .main-content {
-    width: 80%;
-    padding-right: 20px;
-  }
+.main-content {
+  width: 80%;
+  padding-right: 20px;
+  margin-left: 20px;
+}
 
-  .sidebar {
-    width: 20%;
-    background-color: #f9f9f9;
-    padding: 10px;
-  }
+.sidebar {
+  width: 20%;
+  background-color: #f0f0ff;
+  padding: 10px;
+  border-left: 3px solid #6c5ce7;
+  border-radius: 8px;
+}
 
-  .menu {
-    background-color: #eaeaea;
-    padding: 20px;
-    text-align: center;
-  }
+.menu {
+  background-color: #ffeaa7;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #2d3436;
+}
 
-  .footer {
-    background-color: #ddd;
-    text-align: center;
-    padding: 10px;
-    font-size: 14px;
-    color: #555;
-  }
+.footer {
+  background-color: #dfe6e9;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+}
 
-  .twitter-timeline-container {
-    width: 100%;
-    height: 400px; /* O la altura que desees */
-    overflow: hidden;
-  }
+.twitter-timeline-container {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
 
-  .twitter-timeline {
-    border: none;
-    overflow: hidden;
-  }
+.twitter-timeline {
+  border: none;
+  overflow: hidden;
+}
 
-  a {
-    color: #0066cc;
-    text-decoration: none;
-  }
+a {
+  color: #0984e3;
+  text-decoration: none;
+}
 
-  a:hover {
-    text-decoration: underline;
-  }
+a:hover {
+  text-decoration: underline;
+  color: #6c5ce7;
+}
 
-  /* Estilos para los bloques horizontales de acciones */
-  .actions {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 20px;
-  }
+/* Estilos para los bloques horizontales de acciones */
+.actions {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+}
 
-  .action-block {
-    display: inline-block;
-    width: 22%;
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    background-color: #fff;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-  }
+.action-block {
+  display: inline-block;
+  width: 22%;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+}
 
-  .action-block h4 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
+.action-block:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+}
 
-  .action-block p {
-    font-size: 14px;
-    margin-bottom: 15px;
-  }
+.action-block h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #2d3436;
+}
 
-  .action-block button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
+.action-block p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #636e72;
+}
 
-  .action-block button:hover {
-    background-color: #0056b3;
-  }
+.action-block button {
+  padding: 10px 20px;
+  background-color: #00b894;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.action-block button:hover {
+  background-color: #019875;
+}
+
 [/file]
 
 
@@ -130,15 +153,17 @@
   </div>
 
   <div class="container">
-    <div class="main-content">
-      <h2>Bienvenidos a la página principal de [a.Nombre/]</h2>
-      <p>Roles de acceso a la información:
-	<ol>
-      [for (r : Rol | a.roles)]
-        <li><a href="[r.Nombre.toLowerCase()/]/index.html">[r.Nombre/]</a></li>
-      [/for]
-	</p>
-    </div>
+<div class="main-content">
+  <h2>Bienvenidos a la página principal de [a.Nombre/]</h2>
+  <p>Roles de acceso a la información:</p>
+  <ol>
+    [for (r : Rol | a.roles)]
+      <li><a href="[r.Nombre.toLowerCase()/]/index_[r.Nombre.toLowerCase()/].html">[r.Nombre/]</a></li>
+    [/for]
+  </ol>
+</div>
+
+
 
 	<div class="sidebar social">
 	  <h3>Redes Sociales:</h3>
@@ -181,7 +206,7 @@
 [/template]
 
 [template public generateRolIndex(r : Rol)]
-[file ('/HTML/' + r.Nombre.toLowerCase() + '/index.html', false, 'UTF-8')]
+[file ('/HTML/'.concat(r.Nombre.toLowerCase()).concat('/index_').concat(r.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -199,12 +224,48 @@
       <h2>Bienvenido al Rol [r.Nombre/]</h2>
       <p>A continuación, podrás acceder al listado de páginas a las que tiene acceso:</p>
       <ol>
-        [for (p : PaginaPantalla | r.accesoapaginapantalla)]
-          <li><a href="../../[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] [p.eClass().name/] [p.Nombre/]</a></li>
-        [/for]
+      [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+  [if (p.oclIsKindOf(IndiceEntidad))] 
+    <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceEntidad [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(IndiceExtendido))] 
+    <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceExtendido [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(IndiceDetalle))] 
+    <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceDetalle [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(CrearInstancia))] 
+    <li><a href="crear_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CrearInstancia [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(ActualizacionInstancia))] 
+    <li><a href="actualizacion_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] ActualizacionInstancia [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(DetallesInstancia))] 
+    <li><a href="detalle_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] DetallesInstancia [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(BorradoInstancia))] 
+    [let b : BorradoInstancia = p.oclAsType(BorradoInstancia)]
+     <li><a href="borrar_[b.entidad.Nombre.toLowerCase()/].html">[ '[' + b.entidad.Nombre + ']' /] BorradoInstancia [b.Nombre/]</a></li>
+    [/let]
+  [/if]
+  [if (p.oclIsKindOf(CRUD))] 
+    <li><a href="crud_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CRUD [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(Cuestionario))] 
+    <li><a href="cuestionario_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Cuestionario [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(Encuesta))] 
+    <li><a href="encuesta_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Encuesta [p.Nombre/]</a></li>
+  [/if]
+  [if (p.oclIsKindOf(Normal))] 
+    <li><a href="[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Página Normal [p.Nombre/]</a></li>
+  [/if]
+[/for]
+
       </ol>
     </div>
-	<div class="sidebar social">
+
+    <div class="sidebar social">
       <h3>Redes Sociales:</h3>
       [for (rs : RedSocial | r.accesoapaginapantalla.redsocial)]
         <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
@@ -218,15 +279,28 @@
 </body>
 </html>
 [/file]
-
 [/template]
 
-
 [template public generatePagina(p : PaginaPantalla)]
-  [if (p.oclIsKindOf(Indice))]
-    [generateIndice(p.oclAsType(Indice))/]
+  
+  [if (p.oclIsKindOf(IndiceEntidad))]
+    [let de : IndiceEntidad = p.oclAsType(IndiceEntidad)]
+      [generateIndiceEntidad(de)/]
+    [/let]
   [/if]
   
+  [if (p.oclIsKindOf(IndiceExtendido))]
+    [let de : IndiceExtendido = p.oclAsType(IndiceExtendido)]
+      [generateIndiceExtendido(de)/]
+    [/let]
+  [/if]
+  
+  [if (p.oclIsKindOf(IndiceDetalle))]
+    [let de : IndiceDetalle = p.oclAsType(IndiceDetalle)]
+      [generateIndiceDetalle(de)/]
+    [/let]
+  [/if]
+
   [if (p.oclIsKindOf(DetallesInstancia))]
     [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
       [generateDetalle(de.oclAsType(DetallesInstancia))/]
@@ -258,343 +332,865 @@
   [if (p.oclIsKindOf(Encuesta))]
     [generateEncuesta(p.oclAsType(Encuesta))/]
   [/if]
-[/template]
-
-[template public generateIndice(i : Indice)]
-[file ('/HTML/' + i.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Listado de [i.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Listado de [i.Nombre/]</h1>
-  </div>
-
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | i.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <div class="content">
-    <h3>Listado de [i.Nombre/]:</h3>
-    <ul style="padding-left: 20px;">
-      <li>0. <a href="#">Salir</a></li>
-      [for (inst : Entidad | i.instancias)]
-        <li>[inst.Nombre/] - <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a></li>
-      [/for]
-    </ul>
-  </div>
-</body>
-</html>
-[/file]
-[/template]
-
-[template public generateDetalle(d : DetallesInstancia)]
-[file ('/HTML/detalle_'.concat(d.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Detalle de [d.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Pantalla de detalle de [d.Nombre/]</h1>
-  </div>
-
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | d.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <div class="content">
-    <h3>Campos:</h3>
-	[for (ent : Entidad | d.entidad)] 
-  	<div class="field">
-	    [for (attr : Atributo | ent.atributos)] 
-	      <p>
-	        [attr.Nombre/] // 
-	        [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
-	        [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
-	        [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
-	      </p>
-	    [/for]
-	    <!-- Aquí se muestran las claves foráneas de la entidad -->
-	    [for (referencia : Entidad | ent.entidadRefereenciada)] 
-	      <p>- Id_[referencia.Nombre/][  ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
-	    [/for]
-		<div class="options" style="margin-top: 20px;">
-	      <h4>Listado de opciones:</h4>
-	      <ol style="padding-left: 20px;">
-	        <li style="margin-bottom: 10px;">
-	          <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
-	        </li>
-	        [for (referencia : Entidad | ent.entidadRefereenciada)] 
-	          <li style="margin-bottom: 10px;">
-	            <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [  ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
-	          </li>
-	        [/for]
-	      </ol>
-	    </div>
-  	</div>
-	[/for]
-
-  <div class="actions">
-    <a href="[d.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-  </div>
-</body>
-</html>
-[/file]
+  
+  [if (p.oclIsKindOf(ActualizacionInstancia))]
+    [let a : ActualizacionInstancia = p.oclAsType(ActualizacionInstancia)]
+      [generateActualizacion(a)/]
+    [/let]
+  [/if]
+  
+  [if (p.oclIsKindOf(Normal))]
+    [let normal : Normal = p.oclAsType(Normal)]
+      [generateContenidoNormal(normal)/]
+    [/let]
+  [/if]
+  
 [/template]
 
 [template public generateCreacion(c : CrearInstancia)]
-[file ('/HTML/crear_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Crear nuevo [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Crear nuevo [c.Nombre/]</h1>
-  </div>
-
-  <form action="guardar_[c.Nombre.toLowerCase()/].html" method="post">
-    <div class="content">
-      <h3>Introduce los campos:</h3>
-      [for (ent : Entidad | c.entidad)] 
-        <div class="field">
-          <h3>[ent.Nombre/]:</h3>
-          [for (attr : Atributo | ent.atributos)] 
-            <p>
-              <label for="[attr.Nombre/]">[attr.Nombre/]:</label>
-              [if (attr.TipoAtributo = TipoAtributo::String)]
-                <input type="text" name="[attr.Nombre/]" id="[attr.Nombre/]" />
-              [/if]
-              [if (attr.TipoAtributo = TipoAtributo::Integer)]
-                <input type="number" name="[attr.Nombre/]" id="[attr.Nombre/]" />
-              [/if]
-              [if (attr.TipoAtributo = TipoAtributo::Boolean)]
-                <select name="[attr.Nombre/]" id="[attr.Nombre/]">
-                  <option value="true">Sí</option>
-                  <option value="false">No</option>
-                </select>
-              [/if]
-            </p>
-          [/for]
-
-          <!-- Claves foráneas como select de entidades referenciadas -->
-          [for (referencia : Entidad | ent.entidadRefereenciada)] 
-            <p>
-              <label for="ref_[referencia.Nombre/]">ID del [referencia.Nombre/]:</label>
-              <input type="text" name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]" placeholder="Referencia a [referencia.Nombre/]" />
-            </p>
-          [/for]
+  [for (acceso : Rol | c.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/crear_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Crear nuevo [c.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+      </head>
+      <body>
+        <div class="header">
+          Crear nuevo [c.Nombre/]
         </div>
-      [/for]
-    </div>
 
-    <div class="actions">
-      <button type="submit" class="button">Confirmar</button>
-      <button type="reset" class="button">Cancelar</button>
-      <a href="[c.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-    </div>
-  </form>
-</body>
-</html>
-[/file]
+        <div class="container">
+          <div class="main-content">
+            <form action="guardar_[c.Nombre.toLowerCase()/].html" method="post">
+              <div class="content">
+                <h3>Introduce los campos:</h3>
+                [for (ent : Entidad | c.entidad)] 
+                  <div class="field">
+                    <h3>[ent.Nombre/]:</h3>
+                    [for (attr : Atributo | ent.atributos)] 
+                      <p>
+                        <label for="[attr.Nombre/]">[attr.Nombre/]:</label>
+                        [if (attr.TipoAtributo = TipoAtributo::String)]
+                          <input type="text" name="[attr.Nombre/]" id="[attr.Nombre/]" />
+                        [/if]
+                        [if (attr.TipoAtributo = TipoAtributo::Integer)]
+                          <input type="number" name="[attr.Nombre/]" id="[attr.Nombre/]" />
+                        [/if]
+                        [if (attr.TipoAtributo = TipoAtributo::Boolean)]
+                          <select name="[attr.Nombre/]" id="[attr.Nombre/]">
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                          </select>
+                        [/if]
+                      </p>
+                    [/for]
+
+                    [for (referencia : Entidad | ent.entidadRefereenciada)] 
+                      <p>
+                        <label for="ref_[referencia.Nombre/]">ID del [referencia.Nombre/]:</label>
+                        <input type="text" name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]" placeholder="Referencia a [referencia.Nombre/]" />
+                      </p>
+                    [/for]
+                  </div>
+                [/for]
+              </div>
+              <div class="actions">
+                <button type="submit">Confirmar</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            [for (rs : RedSocial | c.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+        </div>
+
+        <div class="footer">
+          Aplicación generada automáticamente.
+        </div>
+      </body>
+      </html>
+    [/file]
+  [/for]
+[/template]
+
+[template public generateDetalle(d : DetallesInstancia)]
+  [for (acceso : Rol | d.usuario)]  <!-- Revisa si d.usuario está bien definido -->
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/detalle_').concat(d.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Detalle de [d.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+      </head>
+      <body>
+        <div class="header">
+          <h1>Pantalla de detalle de [d.Nombre/]</h1>
+        </div>
+
+        <div class="container">
+          <div class="main-content">
+
+            <div class="content">
+              <h3>Campos:</h3>
+              [for (ent : Entidad | d.entidad)] 
+                <div class="field">
+                  [for (attr : Atributo | ent.atributos)] 
+                    <p>
+                      [attr.Nombre/] // 
+                      [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
+                      [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
+                      [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
+                    </p>
+                  [/for]
+
+                  <!-- Aquí se muestran las claves foráneas de la entidad -->
+                  [for (referencia : Entidad | ent.entidadRefereenciada)] 
+                    <p>- Id_[referencia.Nombre/][ ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
+                  [/for]
+
+                  <div class="options" style="margin-top: 20px;">
+                    <h4>Listado de opciones:</h4>
+                    <ol style="padding-left: 20px;">
+                      <li style="margin-bottom: 10px;">
+                        <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
+                      </li>
+                      [for (referencia : Entidad | ent.entidadRefereenciada)] 
+                        <li style="margin-bottom: 10px;">
+                          <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [ ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
+                        </li>
+                      [/for]
+                    </ol>
+                  </div>
+                </div>
+              [/for]
+            </div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | d.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+        </div>
+
+        <div class="footer">
+          Aplicación generada automáticamente.
+        </div>
+      </body>
+      </html>
+
+    [/file]
+  [/for]
+[/template]
+
+[template public generateActualizacion(a : ActualizacionInstancia)]
+  [for (acceso : Rol | a.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/actualizacion_').concat(a.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Actualización de [a.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+      </head>
+      <body>
+        <div class="header">
+          <h1>Pantalla de actualización de [a.Nombre/]</h1>
+        </div>
+
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+              <h3>Campos para actualización:</h3>
+              <form method="POST" action="[a.usuario.Nombre.toLowerCase()/]/actualizar/[a.Nombre.toLowerCase()/].html">
+
+                [for (ent : Entidad | a.entidad)]
+                  <div class="field">
+                    [for (attr : Atributo | ent.atributos)]
+                      <p>
+                        [attr.Nombre/] // 
+                        [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
+                        [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
+                        [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
+                      </p>
+
+                      <!-- Campos para ser actualizados -->
+                      [if (attr.TipoAtributo = TipoAtributo::String)]
+                        <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
+                        [let nombreAttr : String = attr.Nombre]
+                          <input type="text" id="[attr.Nombre/]_input" name="[attr.Nombre/]" 
+                                 value="[a.eGet(a.eClass().getEStructuralFeature(nombreAttr))/]">
+                        [/let]
+                      [/if]
+
+                      [if (attr.TipoAtributo = TipoAtributo::Integer)]
+                        <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
+                        [let nombreAttr : String = attr.Nombre]
+                          <input type="number" id="[attr.Nombre/]_input" name="[attr.Nombre/]" 
+                                 value="[a.eGet(a.eClass().getEStructuralFeature(nombreAttr))/]">
+                        [/let]
+                      [/if]
+
+                      [if (attr.TipoAtributo = TipoAtributo::Boolean)]
+                        <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
+                        [let nombreAttr : String = attr.Nombre]
+                          <input type="checkbox" id="[attr.Nombre/]_input" name="[attr.Nombre/]" 
+                                 [if a.eGet(a.eClass().getEStructuralFeature(nombreAttr)) = true]checked[/if]>
+                        [/let]
+                      [/if]
+
+                    [/for]
+
+                    <!-- Claves foráneas de la entidad -->
+                    [for (referencia : Entidad | ent.entidadRefereenciada)] 
+                      <p>- Id_[referencia.Nombre/][ ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
+                    [/for]
+                  </div>
+                [/for]
+
+                <!-- Botones para actualizar o cancelar -->
+                <div class="actions">
+                  <button type="submit" class="button">Actualizar</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | a.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+        </div>
+
+        <div class="footer">
+          Aplicación generada automáticamente.
+        </div>
+
+      </body>
+      </html>
+
+    [/file]
+  [/for]
 [/template]
 
 [template public generateBorrado(b : BorradoInstancia)]
-[file ('/HTML/borrar_'.concat(b.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+  [for (acceso : Rol | b.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/borrar_').concat(b.entidad.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Borrar [b.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script>
+          function confirmarBorrado() {
+            document.getElementById("mensajeConfirmacion").style.display = "block";
+            document.getElementById("botonBorrar").disabled = true;
+          }
+        </script>
+      </head>
+      <body>
+        <div class="header">
+          [for (ent : Entidad | b.entidad)]
+            <h1>Página de borrado de la asignatura [ent.Nombre/]</h1>
+          [/for]
+        </div>
+
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+              <h3>¿Estás seguro de borrar esta entidad?</h3>
+              [for (ent : Entidad | b.entidad)]
+                <p><strong>¿Está seguro de borrar [ent.Nombre/]?</strong></p>
+              [/for]
+
+              <button id="botonBorrar" onclick="confirmarBorrado()" class="button" style="background-color: red; color: white;">Borrar</button>
+
+              <div id="mensajeConfirmacion" style="display: none; margin-top: 20px; color: green;">
+                <strong>La entidad se ha borrado con éxito.</strong>
+              </div>
+
+              <div class="note" style="margin-top: 40px;">
+                <p><strong>Nota:</strong> No se eliminan los datos correspondientes a las referencias de la [b.Nombre/]:</p>
+                <ul>
+                  [for (ent : Entidad | b.entidad)]
+                    [for (referencia : Entidad | ent.entidadRefereenciada)]
+                      <li>- Id_[referencia.Nombre/] [ ' [' 'ID del ' + referencia.Nombre + ']' /] // Referencia a la entidad [referencia.Nombre/]</li>
+                    [/for]
+                  [/for]
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | b.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+        </div>
+
+        <div class="footer">
+          Aplicación generada automáticamente.
+        </div>
+
+      </body>
+      </html>
+    [/file]
+  [/for]
+[/template]
+
+[template public generateIndiceEntidad(i : IndiceEntidad)]
+  [for (acceso : Rol | i.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_').concat(i.indiceNombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Borrar [b.Nombre/]</title>
+  <title>Listado de [i.indiceNombre/]</title>
   <link rel="stylesheet" href="styles.css">
-  <script>
-    function confirmarBorrado() {
-      document.getElementById("mensajeConfirmacion").style.display = "block";
-      document.getElementById("botonBorrar").disabled = true;
-    }
-  </script>
 </head>
 <body>
   <div class="header">
-    [for (ent : Entidad | b.entidad)]
-      <h1>Página de borrado de la asignatura [ent.Nombre/]</h1>
-    [/for]
+    <h1>Listado de [i.indiceNombre/]</h1>
   </div>
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | b.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <h3>Listado de instancias de [i.entidadNombre/]:</h3>
+        <ul style="padding-left: 20px;">
+          [for (inst : Entidad | i.instancias)]
+            <li>[inst.id/] - [inst.Nombre/] - 
+              <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a>
+            </li>
+          [/for]
+        </ul>
+        <p>Este índice muestra sólo los campos básicos de la entidad [i.entidadNombre/], como su identificador y nombre.</p>
+      </div>
+
+      <div class="actions">
+        <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+      </div>
+    </div>
+
+    <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | b.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
   </div>
 
-  <div class="confirm" style="margin-top: 30px;">
-    [for (ent : Entidad | b.entidad)]
-      <p><strong>¿Está seguro de borrar [ent.Nombre/]?</strong></p>
-    [/for]
-    <button id="botonBorrar" onclick="confirmarBorrado()" class="button" style="background-color: red; color: white;">Borrar</button>
-  </div>
-
-  <div id="mensajeConfirmacion" style="display: none; margin-top: 20px; color: green;">
-    <strong>La entidad se ha borrado con éxito.</strong>
-  </div>
-
-  <div class="note" style="margin-top: 40px;">
-    <p><strong>Nota:</strong> No se eliminan los datos correspondientes a las referencias de la [b.Nombre/]:</p>
-    <ul>
-      [for (ent : Entidad | b.entidad)]
-        [for (referencia : Entidad | ent.entidadRefereenciada)]
-          <li>- Id_[referencia.Nombre/] [ ' [' 'ID del ' + referencia.Nombre + ']' /] // Referencia a la entidad [referencia.Nombre/]</li>
-        [/for]
-      [/for]
-    </ul>
+  <div class="footer">
+    Aplicación generada automáticamente.
   </div>
 </body>
 </html>
-[/file]
+
+  [/file]
+  [/for]
 [/template]
 
+
+[template public generateIndiceExtendido(i : IndiceExtendido)]
+  [for (acceso : Rol | i.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_').concat(i.indiceNombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado extendido de [i.indiceNombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Listado extendido de [i.indiceNombre/]</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="filters">
+        <h3>Filtrar por género:</h3>
+        <form method="get" action="#">
+          <label for="filtroGenero">Género:</label>
+          <select name="filtroGenero" id="filtroGenero">
+            <option value="CienciaFiccion">Ciencia Ficción</option>
+            <option value="Fantasia">Fantasía</option>
+            <option value="Terror">Terror</option>
+          </select>
+          <button type="submit">Aplicar filtro</button>
+        </form>
+      </div>
+
+      <div class="content">
+        <h4>Resultados de búsqueda:</h4>
+        <ul style="padding-left: 20px;">
+          [for (inst : Entidad | i.instancias)]
+            <li>[inst.id/] - [inst.Nombre/] - 
+              <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a>
+            </li>
+          [/for]
+        </ul>
+        <p>Este índice incluye paginación y la posibilidad de filtrar por género.</p>
+        
+        <div class="pagination">
+          <button>Anterior</button>
+          <button>Siguiente</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+      </div>
+    </div>
+
+    <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | b.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+  </div>
+
+  <div class="footer">
+    Aplicación generada automáticamente.
+  </div>
+</body>
+</html>
+
+  [/file]
+  [/for]
+[/template]
+
+
+[template public generateIndiceDetalle(i : IndiceDetalle)]
+  [for (acceso : Rol | i.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_').concat(i.indiceNombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado y detalle de [i.indiceNombre/]</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Listado y detalle de [i.indiceNombre/]</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <h3>Listado de instancias de [i.entidadNombre/]:</h3>
+        <ul style="padding-left: 20px;">
+          [for (inst : Entidad | i.instancias)]
+            <li>[inst.id/] - [inst.Nombre/] - 
+              <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a>
+            </li>
+          [/for]
+        </ul>
+
+        <h3>Detalle de la instancia seleccionada:</h3>
+        [if (i.instanciaSeleccionada)]
+          <div class="detalle">
+            <p><strong>ID:</strong> [i.instanciaSeleccionada.id/]</p>
+            <p><strong>Nombre:</strong> [i.instanciaSeleccionada.Nombre/]</p>
+            <p><strong>Descripción:</strong> [i.instanciaSeleccionada.Descripcion/]</p>
+          </div>
+        [/if]
+
+        <p>Este índice muestra todas las instancias y permite ver los detalles de una instancia seleccionada.</p>
+        
+        <div class="actions">
+          <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | b.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+  </div>
+
+  <div class="footer">
+    Aplicación generada automáticamente.
+  </div>
+</body>
+</html>
+
+  [/file]
+  [/for]
+[/template]
+
+
+[template public generateContenidoNormal(p : Normal)]
+  [for (acceso : Rol | p.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/pagina_').concat(p.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>[p.Nombre/] - Página de contenido</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>[p.Nombre/]</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <h3>Contenido:</h3>
+        <p>[p.texto/]</p>
+
+        [for (img : Imagen | p.imagenes)]
+          <div class="image">
+            <img src="[img.url/]" alt="[img.descripcion/]">
+          </div>
+        [/for]
+
+        [for (video : Video | p.videos)]
+          <div class="video">
+            <video controls>
+              <source src="[video.url/]" type="video/mp4">
+              Tu navegador no soporta el formato de video.
+            </video>
+          </div>
+        [/for]
+
+        [for (tabla : Tabla | p.tablas)]
+          <div class="table">
+            <h4>[tabla.Nombre/]</h4>
+            <table>
+              [for (fila : Fila | tabla.filas)]
+                <tr>
+                  [for (celda : Celda | fila.celdas)]
+                    <td>[celda.Contenido/]</td>
+                  [/for]
+                </tr>
+              [/for]
+            </table>
+          </div>
+        [/for]
+
+        <div class="actions">
+          <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
+        </div>
+      </div>
+
+    <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | p.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+  </div>
+
+  <div class="footer">
+    Aplicación generada automáticamente.
+  </div>
+</body>
+</html>
+
+    [/file]
+  [/for]
+[/template]
+
+
 [template public generateCRUD(c : CRUD)]
-[file ('/HTML/'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+  [for (acceso : Rol | c.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/CRUD_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Listado de acciones de [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
   <div class="header">
     <h1>Listado de acciones de [c.Nombre/]</h1>
   </div>
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | c.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
+  <div class="container">
+    <div class="main-content">
+      <div class="actions">
+        <div class="action-block">
+          <h4>Crear nuevo</h4>
+          <p>Crea un nuevo elemento de tipo [c.Nombre/].</p>
+          <a href="crear_[c.Nombre.toLowerCase()/].html"><button>Crear</button></a>
+        </div>
+
+        <div class="action-block">
+          <h4>Listar</h4>
+          <p>Consulta el listado completo de [c.Nombre/].</p>
+          <a href="indice_[c.Nombre.toLowerCase()/].html"><button>Listar</button></a>
+        </div>
+
+        <div class="action-block">
+          <h4>Borrar</h4>
+          <p>Elimina un elemento existente de [c.Nombre/].</p>
+          <a href="borrar_[c.Nombre.toLowerCase()/].html"><button>Borrar</button></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | c.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
   </div>
 
-  <div class="actions">
-    <div class="action-block">
-      <h4>Crear nuevo</h4>
-      <p>Crea un nuevo elemento de tipo [c.Nombre/].</p>
-      <a href="crear_[c.Nombre.toLowerCase()/].html"><button>Crear</button></a>
-    </div>
-
-    <div class="action-block">
-      <h4>Listar</h4>
-      <p>Consulta el listado completo de [c.Nombre/].</p>
-      <a href="indice_[c.Nombre.toLowerCase()/].html"><button>Listar</button></a>
-    </div>
-
-    <div class="action-block">
-      <h4>Borrar</h4>
-      <p>Elimina un elemento existente de [c.Nombre/].</p>
-      <a href="borrar_[c.Nombre.toLowerCase()/].html"><button>Borrar</button></a>
-    </div>
-
-    <div class="action-block">
-      <h4>Salir</h4>
-      <p>Regresar al menú anterior o página principal.</p>
-      <a href="[c.usuario.Nombre.toLowerCase()/]/index.html"><button>Salir</button></a>
-    </div>
+  <div class="footer">
+    Aplicación generada automáticamente.
   </div>
 </body>
 </html>
-[/file]
+
+    [/file]
+  [/for]
 [/template]
 
+
 [template public generateCuestionario(c : Cuestionario)]
-[file ('/HTML/cuestionario_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+  [for (acceso : Rol | c.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/cuestionario_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Cuestionario [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
   <div class="header">
     <h1>Cuestionario interactivo: [c.Nombre/]</h1>
   </div>
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | c.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <p><strong>Descripción:</strong> [c.Descripcion/]</p>
+        <form action="#" method="post">
+          [let i : Integer = 1 /]
+          
+          [for (preg : Pregunta | c.preguntasC)]
+            <div class="pregunta">
+              <p><strong>Pregunta [i/]:</strong> [preg.Texto/]</p>
 
-  <div class="content">
-    <p><strong>Descripción:</strong> [c.Descripcion/]</p>
-    <form action="#" method="post">
-      [let i : Integer = 1 /]
-      
-      [for (preg : Pregunta | c.preguntasC)]
-        <div class="pregunta">
-          <p><strong>Pregunta [i/]:</strong> [preg.Texto/]</p>
+              [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+                [for (resp : Respuesta | preg.respuestas)]
+                  <label>
+                    <input type="radio" name="preg_[i/]" value="[resp.Texto/]"> [resp.Texto/]
+                  </label><br>
+                [/for]
+              [/if]
 
-          [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
-            [for (resp : Respuesta | preg.respuestas)]
-              <label>
-                <input type="radio" name="preg_[i/]" value="[resp.Texto/]"> [resp.Texto/]
-              </label><br>
-            [/for]
-          [/if]
+              [if (preg.Tipo = TipoPregunta::V_F)]
+                <label><input type="radio" name="preg_[i/]" value="Verdadero"> Verdadero</label><br>
+                <label><input type="radio" name="preg_[i/]" value="Falso"> Falso</label><br>
+              [/if]
 
-          [if (preg.Tipo = TipoPregunta::V_F)]
-            <label><input type="radio" name="preg_[i/]" value="Verdadero"> Verdadero</label><br>
-            <label><input type="radio" name="preg_[i/]" value="Falso"> Falso</label><br>
-          [/if]
+              [if (preg.Tipo = TipoPregunta::Corta)]
+                <input type="text" name="preg_[i/]" placeholder="Escribe tu respuesta..."><br>
+              [/if]
+            </div>
+            
+            [set i = i + 1 /]
+          [/for]
 
-          [if (preg.Tipo = TipoPregunta::Corta)]
-            <input type="text" name="preg_[i/]" placeholder="Escribe tu respuesta..."><br>
-          [/if]
-        </div>
-        
-        <!-- Incrementar el contador para la siguiente pregunta -->
-        [set i = i + 1 /]
-      [/for]
-
-      <div class="actions" style="margin-top: 30px;">
-        <button type="submit">Enviar respuestas</button>
-        <button type="reset">Cancelar</button>
+          <div class="actions" style="margin-top: 30px;">
+            <button type="submit">Enviar respuestas</button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
+
+    <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | c.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
   </div>
+
+  <div class="footer">
+    Aplicación generada automáticamente.
+  </div>
+
 </body>
 </html>
-[/file]
+
+    [/file]
+  [/for]
 [/template]
 
+
 [template public generateEncuesta(c : Encuesta)]
-[file ('/HTML/encuesta_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+  [for (acceso : Rol | c.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/encuesta_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Encuesta - [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
@@ -602,54 +1198,77 @@
     <h1>Encuesta: [c.Nombre/]</h1>
   </div>
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | c.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <h3>Descripción de la Encuesta:</h3>
+        <p>[c.Descripcion/]</p>
+
+        <!-- Formulario para responder la encuesta -->
+        <form action="#" method="post">
+          
+          <!-- Iteramos sobre las preguntas de la encuesta -->
+          [for (preg : Pregunta | c.preguntasE)]
+            <div class="pregunta">
+              <p><strong>Pregunta:</strong> [preg.Texto/]</p>
+
+              <!-- Si la pregunta es de opción múltiple -->
+              [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+                [for (resp : Respuesta | preg.respuestas)]
+                  <label>
+                    <input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="[resp.Texto/]"> [resp.Texto/]
+                  </label><br>
+                [/for]
+              [/if]
+
+              <!-- Si la pregunta es de verdadero o falso -->
+              [if (preg.Tipo = TipoPregunta::V_F)]
+                <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Verdadero"> Verdadero</label><br>
+                <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Falso"> Falso</label><br>
+              [/if]
+
+              <!-- Si la pregunta es de respuesta corta -->
+              [if (preg.Tipo = TipoPregunta::Corta)]
+                <input type="text" name="[preg.Texto.replaceAll(' ', '_')/]" placeholder="Escribe tu respuesta..."><br>
+              [/if]
+            </div>
+          [/for]
+
+          <!-- Botón para enviar la encuesta -->
+          <button type="submit">Enviar Encuesta</button>
+        </form>
+      </div>
+    </div>
+
+   <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demás redes sociales como enlaces -->
+            [for (rs : RedSocial | c.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
   </div>
 
-  <div class="content">
-    <h3>Descripción de la Encuesta:</h3>
-    <p>[c.Descripcion/]</p>
-
-    <!-- Formulario para responder la encuesta -->
-    <form action="#" method="post">
-      
-      <!-- Iteramos sobre las preguntas de la encuesta -->
-      [for (preg : Pregunta | c.preguntasE)]
-        <div class="pregunta">
-          <p><strong>Pregunta:</strong> [preg.Texto/]</p>
-
-          <!-- Si la pregunta es de opción múltiple -->
-          [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
-            [for (resp : Respuesta | preg.respuestas)]
-              <label>
-                <input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="[resp.Texto/]"> [resp.Texto/]
-              </label><br>
-            [/for]
-          [/if]
-
-          <!-- Si la pregunta es de verdadero o falso -->
-          [if (preg.Tipo = TipoPregunta::V_F)]
-            <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Verdadero"> Verdadero</label><br>
-            <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Falso"> Falso</label><br>
-          [/if]
-
-          <!-- Si la pregunta es de respuesta corta -->
-          [if (preg.Tipo = TipoPregunta::Corta)]
-            <input type="text" name="[preg.Texto.replaceAll(' ', '_')/]" placeholder="Escribe tu respuesta..."><br>
-          [/if]
-        </div>
-      [/for]
-
-      <!-- Botón para enviar la encuesta -->
-      <button type="submit">Enviar Encuesta</button>
-    </form>
+  <div class="footer">
+    Aplicación generada automáticamente.
   </div>
 
 </body>
 </html>
 
-[/file]
+    [/file]
+  [/for]
 [/template]
+

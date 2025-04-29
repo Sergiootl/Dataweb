@@ -1,558 +1,278 @@
+[comment encoding = UTF-8 /]
 [module generateHTMLCSSConsola('http://www.example.org/dataweb')]
  
+
 [template public generateAplicacion(a : Aplicacion)]
 [comment @main /]
-[file ('/HTML/index.html', false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>[a.Nombre/] - Home</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>[a.Nombre/]</h1>
-  </div>
+[file ('/src/view/MainMenu.java', false, 'UTF-8')]
+package src.view;
 
-  <div class="container">
-    <div class="main-content">
-      <h2>Bienvenidos a la página principal de [a.Nombre/]</h2>
-      <p>Roles de acceso a la información:
-<ol>
-      [for (r : Rol | a.roles)]
-        <li><a href="[r.Nombre.toLowerCase()/]/index.html">[r.Nombre/]</a></li>
-      [/for]
-	</p>
-    </div>
+import java.util.Scanner;
 
-<div class="sidebar social">
-  <h3>Redes Sociales:</h3>
-  
-  <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-  <div class="twitter-timeline-container">
-    <a class="twitter-timeline" 
-       data-width="100%" 
-       data-height="400"
-       href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-  </div>
-
-  <!-- Cargar el script de Twitter de manera asíncrona -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-  <!-- Mostrar las demás redes sociales como enlaces -->
-  [for (rs : RedSocial | a.redessociales)]
-    <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-        [rs.Nombre/]</a></p>
-  [/for]
-</div>
-
-
-
-
-
-
-</div>
-
-
-  </div>
-
-  <div class="menu">
-    <h2>Páginas disponibles</h2>
-    
-  </div>
-
-  <div class="footer">
-    <p>[a.Descripcion/]</p>
-  </div>
-</body>
-</html>
+public class MainMenu {
+    public static void main(String['[]'/] args) {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println("=== [a.Nombre/] ===");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("0. Salir");
+            [for (r : Rol | a.roles)]
+                System.out.println([a.roles->indexOf(r) + 1/] + ". [r.Nombre/]");
+            [/for]
+            System.out.print("Selecciona una opción 0-[a.roles->size()/]: ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+            switch(opcion) {
+                [for (r : Rol | a.roles)]
+                case [a.roles->indexOf(r) + 1/]:
+                    Menu[r.Nombre/].mostrar();
+                    break;
+                [/for]
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+        sc.close();
+    }
+}
 [/file]
 
 [for (r : Rol | a.roles)]
-  [generateRolIndex(r)/]
+    [generateRolMenu(r)/]
 [/for]
+
 [for (p : PaginaPantalla | a.paginapantallas)]
-  [generatePagina(p)/]
-[/for]
-[/template]
-
-[template public generateRolIndex(r : Rol)]
-[file ('/HTML/' + r.Nombre.toLowerCase() + '/index.html', false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Página principal del Rol [r.Nombre/]</title>
-  <link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Pantalla principal del Rol [r.Nombre/]</h1>
-  </div>
-
-  <div class="container">
-    <div class="main-content">
-      <h2>Bienvenido al Rol [r.Nombre/]</h2>
-      <p>A continuación, podrás acceder al listado de páginas a las que tiene acceso:</p>
-      <ol>
-        <li><a href="../../index.html">Salir</a></li>
-        [for (p : PaginaPantalla | r.accesoapaginapantalla)]
-          <li><a href="../../[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] [p.eClass().name/] [p.Nombre/]</a></li>
-        [/for]
-      </ol>
-    </div>
-	<div class="sidebar social">
-      <h3>Redes Sociales:</h3>
-      [for (rs : RedSocial | r.accesoapaginapantalla.redsocial)]
-        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-      [/for]
-    </div>
-  </div>
-
-  <div class="footer">
-    <p>© [r.Nombre/] - Todos los derechos reservados</p>
-  </div>
-</body>
-</html>
-[/file]
-[/template]
-
-
-[template public generatePagina(p : PaginaPantalla)]
-  [if (p.oclIsKindOf(Indice))]
-    [generateIndice(p.oclAsType(Indice))/]
-  [/if]
-  
-  [if (p.oclIsKindOf(DetallesInstancia))]
-    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
-      [generateDetalle(de.oclAsType(DetallesInstancia))/]
-    [/let]
-  [/if]
-  
-  [if (p.oclIsKindOf(CrearInstancia))]
-    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
-      [generateCreacion(de.oclAsType(CrearInstancia))/]
-    [/let]
-  [/if]
-  
-  [if (p.oclIsKindOf(BorradoInstancia))]
-    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
-      [generateBorrado(de.oclAsType(BorradoInstancia))/]
-    [/let]
-  [/if]
-  
   [if (p.oclIsKindOf(CRUD))]
-    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
-      [generateCRUD(de.oclAsType(CRUD))/]
-    [/let]
+    [generateCRUDConsola(p.oclAsType(CRUD))/]
   [/if]
-  
-  [if (p.oclIsKindOf(Cuestionario))]
-    [generateCuestionario(p.oclAsType(Cuestionario))/]
+  [if (p.oclIsKindOf(IndiceEntidad))]
+    [generateIndiceConsola(p.oclAsType(IndiceEntidad))/]
   [/if]
-  
-  [if (p.oclIsKindOf(Encuesta))]
-    [generateEncuesta(p.oclAsType(Encuesta))/]
+  [if (p.oclIsKindOf(DetallesInstancia))]
+    [generateDetalleConsola(p.oclAsType(DetallesInstancia))/]
   [/if]
+  [if (p.oclIsKindOf(CrearInstancia))]
+    [generateCrearConsola(p.oclAsType(CrearInstancia))/]
+  [/if]
+  [if (p.oclIsKindOf(BorradoInstancia))]
+    [generateBorrarConsola(p.oclAsType(BorradoInstancia))/]
+  [/if]
+[/for]
+
 [/template]
 
-[template public generateIndice(i : Indice)]
-[file ('/HTML/' + i.Nombre.toLowerCase().concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Listado de [i.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Listado de [i.Nombre/]</h1>
-  </div>
+[template public generateRolMenu(r : Rol)]
+[file ('/src/view/Menu' + r.Nombre + '.java', false, 'UTF-8')]
+package src.view;
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | i.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
+import java.util.Scanner;
 
-  <div class="content">
-    <h3>Listado de [i.Nombre/]:</h3>
-    <ul style="padding-left: 20px;">
-      <li>0. <a href="#">Salir</a></li>
-      [for (inst : Entidad | i.instancias)]
-        <li>[inst.Nombre/] - <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a></li>
-      [/for]
-    </ul>
-  </div>
-</body>
-</html>
-[/file]
-[/template]
+public class Menu[r.Nombre/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println("=== Pantalla principal del Rol [r.Nombre/] ===");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("0. Salir");
 
+            int contador = 1;
+            [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+                System.out.println(contador + ". [p.Nombre/]");
+                contador++;
+            [/for]
 
+			
+            System.out.print("Selecciona una opción 0-"+(contador-1)+": ");
+            opcion = sc.nextInt();
+            sc.nextLine();
 
-[template public generateDetalle(d : DetallesInstancia)]
-[file ('/HTML/detalle_'.concat(d.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Detalle de [d.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Pantalla de detalle de [d.Nombre/]</h1>
-  </div>
-
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | d.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <div class="content">
-    <h3>Campos:</h3>
-	[for (ent : Entidad | d.entidad)] 
-  	<div class="field">
-	    [for (attr : Atributo | ent.atributos)] 
-	      <p>
-	        [attr.Nombre/] // 
-	        [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
-	        [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
-	        [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
-	      </p>
-	    [/for]
-	    <!-- Aquí se muestran las claves foráneas de la entidad -->
-	    [for (referencia : Entidad | ent.entidadRefereenciada)] 
-	      <p>- Id_[referencia.Nombre/][  ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
-	    [/for]
-		<div class="options" style="margin-top: 20px;">
-	      <h4>Listado de opciones:</h4>
-	      <ol style="padding-left: 20px;">
-	        <li style="margin-bottom: 10px;">
-	          <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
-	        </li>
-	        [for (referencia : Entidad | ent.entidadRefereenciada)] 
-	          <li style="margin-bottom: 10px;">
-	            <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [  ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
-	          </li>
-	        [/for]
-	      </ol>
-	    </div>
-  	</div>
-	[/for]
-
-  <div class="actions">
-    <a href="[d.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-  </div>
-</body>
-</html>
-[/file]
-[/template]
-
-
-[template public generateCreacion(c : CrearInstancia)]
-[file ('/HTML/crear_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Crear nuevo [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Crear nuevo [c.Nombre/]</h1>
-  </div>
-
-  <form action="guardar_[c.Nombre.toLowerCase()/].html" method="post">
-    <div class="content">
-      <h3>Introduce los campos:</h3>
-      [for (ent : Entidad | c.entidad)] 
-        <div class="field">
-          <h3>[ent.Nombre/]:</h3>
-          [for (attr : Atributo | ent.atributos)] 
-            <p>
-              <label for="[attr.Nombre/]">[attr.Nombre/]:</label>
-              [if (attr.TipoAtributo = TipoAtributo::String)]
-                <input type="text" name="[attr.Nombre/]" id="[attr.Nombre/]" />
-              [/if]
-              [if (attr.TipoAtributo = TipoAtributo::Integer)]
-                <input type="number" name="[attr.Nombre/]" id="[attr.Nombre/]" />
-              [/if]
-              [if (attr.TipoAtributo = TipoAtributo::Boolean)]
-                <select name="[attr.Nombre/]" id="[attr.Nombre/]">
-                  <option value="true">Sí</option>
-                  <option value="false">No</option>
-                </select>
-              [/if]
-            </p>
-          [/for]
-
-          <!-- Claves foráneas como select de entidades referenciadas -->
-          [for (referencia : Entidad | ent.entidadRefereenciada)] 
-            <p>
-              <label for="ref_[referencia.Nombre/]">ID del [referencia.Nombre/]:</label>
-              <input type="text" name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]" placeholder="Referencia a [referencia.Nombre/]" />
-            </p>
-          [/for]
-        </div>
-      [/for]
-    </div>
-
-    <div class="actions">
-      <button type="submit" class="button">Confirmar</button>
-      <button type="reset" class="button">Cancelar</button>
-      <a href="[c.usuario.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-    </div>
-  </form>
-</body>
-</html>
-[/file]
-[/template]
-
-[template public generateBorrado(b : BorradoInstancia)]
-[file ('/HTML/borrar_'.concat(b.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Borrar [b.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    function confirmarBorrado() {
-      document.getElementById("mensajeConfirmacion").style.display = "block";
-      document.getElementById("botonBorrar").disabled = true;
+            switch(opcion) {
+                [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+                case [r.accesoapaginapantalla->indexOf(p) + 1/]:
+                    [if (p.oclIsKindOf(CRUD))]
+                    CRUD[p.Nombre/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(IndiceEntidad))]
+                    Indice[p.Nombre/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(CrearInstancia))]
+                    Crear[p.Nombre/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(BorradoInstancia))]
+                    Borrar[p.Nombre/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(DetallesInstancia))]
+                    Detalle[p.Nombre/].mostrar(0);
+                    [/if]
+                    break;
+                [/for]
+                case 0:
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
     }
-  </script>
-</head>
-<body>
-  <div class="header">
-    [for (ent : Entidad | b.entidad)]
-      <h1>Página de borrado de la asignatura [ent.Nombre/]</h1>
-    [/for]
-  </div>
+}
+[/file]
+[/template]
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | b.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
+[template public generateCRUDConsola(c : CRUD)]
+[file ('/src/view/CRUD' + c.Nombre + '.java', false, 'UTF-8')]
+package src.view;
 
-  <div class="confirm" style="margin-top: 30px;">
-    [for (ent : Entidad | b.entidad)]
-      <p><strong>¿Está seguro de borrar [ent.Nombre/]?</strong></p>
-    [/for]
-    <button id="botonBorrar" onclick="confirmarBorrado()" class="button" style="background-color: red; color: white;">Borrar</button>
-  </div>
+import java.util.Scanner;
 
-  <div id="mensajeConfirmacion" style="display: none; margin-top: 20px; color: green;">
-    <strong>La entidad se ha borrado con éxito.</strong>
-  </div>
+public class CRUD[c.Nombre/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println("=== CRUD [c.Nombre/] ===");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("0. Salir");
+            System.out.println("1. Listar [c.Nombre/]");
+            System.out.println("2. Crear [c.Nombre/]");
+            System.out.println("3. Borrar [c.Nombre/]");
+            System.out.print("Selecciona una opción 0-3 : ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+            switch(opcion) {
+                case 1:
+                    System.out.println("Listando [c.Nombre/]");
+                    break;
+                case 2:
+                    System.out.println("Creando nuevo [c.Nombre/]");
+                    break;
+                case 3:
+                    System.out.println("Borrando [c.Nombre/]");
+                    break;
+                case 0:
+                    System.out.println("Volviendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+}
+[/file]
+[/template]
 
-  <div class="note" style="margin-top: 40px;">
-    <p><strong>Nota:</strong> No se eliminan los datos correspondientes a las referencias de la [b.Nombre/]:</p>
-    <ul>
-      [for (ent : Entidad | b.entidad)]
-        [for (referencia : Entidad | ent.entidadRefereenciada)]
-          <li>- Id_[referencia.Nombre/] [ ' [' 'ID del ' + referencia.Nombre + ']' /] // Referencia a la entidad [referencia.Nombre/]</li>
+[template public generateIndiceConsola(i : IndiceEntidad)]
+[file ('/src/view/Indice' + i.Nombre + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Indice[i.Nombre/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println("Pantalla índice de [i.entidad.entidadRefereenciada.Nombre/]");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("Listado de [i.entidad.entidadRefereenciada.Nombre/]:");
+            System.out.println("0. Salir");
+            System.out.println("1. Nombre o ID de [i.entidad.entidadRefereenciada.Nombre/] 01");
+            System.out.println("2. Nombre o ID de [i.entidad.entidadRefereenciada.Nombre/] 02");
+            System.out.println("3. Nombre o ID de [i.entidad.entidadRefereenciada.Nombre/] 03");
+            System.out.println("4. Volver");
+            System.out.print("Selecciona una opción  0-4 : ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+            if (opcion == 4 || opcion == 0) break;
+        }
+    }
+}
+[/file]
+[/template]
+
+[template public generateDetalleConsola(d : DetallesInstancia)]
+[file ('/src/view/Detalle' + d.Nombre + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Detalle[d.Nombre/] {
+    public static void mostrar(int id) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Pantalla de detalle de [d.entidad.entidadRefereenciada.Nombre/]");
+        System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+        System.out.println("Campos:");
+        [for (atr : Atributo | d.entidad.entidadRefereenciada.atributos)]
+        System.out.println("- [atr.Nombre/]: valor_de_[atr.Nombre/]");
         [/for]
-      [/for]
-    </ul>
-  </div>
-</body>
-</html>
+        System.out.println("1. Borrar [d.entidad.entidadRefereenciada.Nombre/]");
+        System.out.println("2. Volver");
+        System.out.print("Selecciona una opción [1-2/]: ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+    }
+}
 [/file]
 [/template]
 
-[template public generateCRUD(c : CRUD)]
-[file ('/HTML/'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Listado de acciones de [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Listado de acciones de [c.Nombre/]</h1>
-  </div>
+[template public generateCrearConsola(c : CrearInstancia)]
+[file ('/src/view/Crear' + c.Nombre + '.java', false, 'UTF-8')]
+package src.view;
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | c.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
+import java.util.Scanner;
 
-  <div class="actions">
-    <div class="action-block">
-      <h4>Crear nuevo</h4>
-      <p>Crea un nuevo elemento de tipo [c.Nombre/].</p>
-      <a href="crear_[c.Nombre.toLowerCase()/].html"><button>Crear</button></a>
-    </div>
-
-    <div class="action-block">
-      <h4>Listar</h4>
-      <p>Consulta el listado completo de [c.Nombre/].</p>
-      <a href="indice_[c.Nombre.toLowerCase()/].html"><button>Listar</button></a>
-    </div>
-
-    <div class="action-block">
-      <h4>Borrar</h4>
-      <p>Elimina un elemento existente de [c.Nombre/].</p>
-      <a href="borrar_[c.Nombre.toLowerCase()/].html"><button>Borrar</button></a>
-    </div>
-
-    <div class="action-block">
-      <h4>Salir</h4>
-      <p>Regresar al menú anterior o página principal.</p>
-      <a href="[c.usuario.Nombre.toLowerCase()/]/index.html"><button>Salir</button></a>
-    </div>
-  </div>
-</body>
-</html>
+public class Crear[c.Nombre/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Página de creación de [c.entidad.entidadRefereenciada.Nombre/]");
+        System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+        System.out.println("Introduzca la información correspondiente:");
+        [for (atr : Atributo | c.entidad.entidadRefereenciada.atributos)]
+        System.out.print("- [atr.Nombre/]: ");
+        sc.nextLine();
+        [/for]
+        System.out.println("1. Aceptar");
+        System.out.println("2. Cancelar");
+        System.out.print("Selecciona una opción [1-2/]: ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        if (opcion == 1) {
+            System.out.println("Entidad creada correctamente.");
+        } else {
+            System.out.println("Creación cancelada.");
+        }
+    }
+}
 [/file]
 [/template]
 
-[template public generateCuestionario(c : Cuestionario)]
-[file ('/HTML/cuestionario_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+[template public generateBorrarConsola(b : BorradoInstancia)]
+[file ('/src/view/Borrar' + b.Nombre + '.java', false, 'UTF-8')]
+package src.view;
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Cuestionario [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Cuestionario interactivo: [c.Nombre/]</h1>
-  </div>
+import java.util.Scanner;
 
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | c.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <div class="content">
-    <p><strong>Descripción:</strong> [c.Descripcion/]</p>
-    <form action="#" method="post">
-      [let i : Integer = 1 /]
-      
-      [for (preg : Pregunta | c.preguntasC)]
-        <div class="pregunta">
-          <p><strong>Pregunta [i/]:</strong> [preg.Texto/]</p>
-
-          [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
-            [for (resp : Respuesta | preg.respuestas)]
-              <label>
-                <input type="radio" name="preg_[i/]" value="[resp.Texto/]"> [resp.Texto/]
-              </label><br>
-            [/for]
-          [/if]
-
-          [if (preg.Tipo = TipoPregunta::V_F)]
-            <label><input type="radio" name="preg_[i/]" value="Verdadero"> Verdadero</label><br>
-            <label><input type="radio" name="preg_[i/]" value="Falso"> Falso</label><br>
-          [/if]
-
-          [if (preg.Tipo = TipoPregunta::Corta)]
-            <input type="text" name="preg_[i/]" placeholder="Escribe tu respuesta..."><br>
-          [/if]
-        </div>
-        
-        <!-- Incrementar el contador para la siguiente pregunta -->
-        [set i = i + 1 /]
-      [/for]
-
-      <div class="actions" style="margin-top: 30px;">
-        <button type="submit">Enviar respuestas</button>
-        <button type="reset">Cancelar</button>
-      </div>
-    </form>
-  </div>
-</body>
-</html>
-[/file]
-[/template]
-
-
-
-
-[template public generateEncuesta(c : Encuesta)]
-[file ('/HTML/encuesta_'.concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Encuesta - [c.Nombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-  <div class="header">
-    <h1>Encuesta: [c.Nombre/]</h1>
-  </div>
-
-  <div class="social">
-    <h3>Redes sociales:</h3>
-    [for (rs : RedSocial | c.redsocial)]
-      <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
-    [/for]
-  </div>
-
-  <div class="content">
-    <h3>Descripción de la Encuesta:</h3>
-    <p>[c.Descripcion/]</p>
-
-    <!-- Formulario para responder la encuesta -->
-    <form action="#" method="post">
-      
-      <!-- Iteramos sobre las preguntas de la encuesta -->
-      [for (preg : Pregunta | c.preguntasE)]
-        <div class="pregunta">
-          <p><strong>Pregunta:</strong> [preg.Texto/]</p>
-
-          <!-- Si la pregunta es de opción múltiple -->
-          [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
-            [for (resp : Respuesta | preg.respuestas)]
-              <label>
-                <input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="[resp.Texto/]"> [resp.Texto/]
-              </label><br>
-            [/for]
-          [/if]
-
-          <!-- Si la pregunta es de verdadero o falso -->
-          [if (preg.Tipo = TipoPregunta::V_F)]
-            <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Verdadero"> Verdadero</label><br>
-            <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Falso"> Falso</label><br>
-          [/if]
-
-          <!-- Si la pregunta es de respuesta corta -->
-          [if (preg.Tipo = TipoPregunta::Corta)]
-            <input type="text" name="[preg.Texto.replaceAll(' ', '_')/]" placeholder="Escribe tu respuesta..."><br>
-          [/if]
-        </div>
-      [/for]
-
-      <!-- Botón para enviar la encuesta -->
-      <button type="submit">Enviar Encuesta</button>
-    </form>
-  </div>
-
-</body>
-</html>
-
+public class Borrar[b.Nombre/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Pantalla de borrar [b.entidad.entidadRefereenciada.Nombre/]");
+        System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+        System.out.println("1. Nombre o ID de entidad 01 (Borrar)");
+        System.out.println("2. Nombre o ID de entidad 02 (Borrar)");
+        System.out.println("0. Salir");
+        System.out.print("Selecciona una opción [0-2/]: ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        if (opcion != 0) {
+            System.out.println(">> [b.entidad.entidadRefereenciada.Nombre/] borrada!!");
+        } else {
+            System.out.println("Volviendo...");
+        }
+    }
+}
 [/file]
 [/template]
