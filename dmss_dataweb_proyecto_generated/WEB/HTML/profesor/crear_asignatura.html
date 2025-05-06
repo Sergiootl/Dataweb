@@ -5,29 +5,51 @@
         <title>Crear nueva instancia de Asignatura</title>
         <link rel="stylesheet" href="../styles.css">
 
-	    <script>
-		  let redirTimer;
-		  function mostrarMensajeConfirmacion(event) {
-		    event.preventDefault();
-		    document.getElementById("modalConfirmacion").style.display = "block";
-		    document.getElementById("formularioCreacion").reset();
-		
-		    redirTimer = setTimeout(() => {
-		      window.location.href = "index_profesor.html";
-		    }, 5000);
-		  }
-		
-		  function cerrarModal() {
-		    clearTimeout(redirTimer);
-		    window.location.href = "index_profesor.html";
-		  }
-		</script>
+        <style>
+          .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+          }
 
+          .form-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            background-color: #fff;
+          }
+        </style>
+
+        <script>
+          let redirTimer;
+          function mostrarMensajeConfirmacion(event) {
+            event.preventDefault();
+            document.getElementById("modalConfirmacion").style.display = "block";
+            document.getElementById("formularioCreacion").reset();
+
+            redirTimer = setTimeout(() => {
+              window.location.href = "index_profesor.html";
+            }, 5000);
+          }
+
+          function cerrarModal() {
+            clearTimeout(redirTimer);
+            window.location.href = "index_profesor.html";
+          }
+        </script>
       </head>
+
       <body>
         <!-- Header Principal - Fondo rojo -->
         <div class="header">
-            <h1>Universidad de Extremadura Data Management</h1>
+          <h1>Universidad de Extremadura Data Management</h1>
         </div>
 
         <!-- Subheader - Fondo verde -->
@@ -39,20 +61,21 @@
           <div class="main-content">
             <form id="formularioCreacion" onsubmit="mostrarMensajeConfirmacion(event)">
               <div class="content">
-				<h2>PÃ¡gina para crear una nueva instancia de Asignatura</h2>
+                <h2>PÃ¡gina para crear una nueva instancia de Asignatura</h2>
                 <h3>Introduzca la informaciÃ³n correspondiente a los siguientes campos de Asignatura :</h3>
+
                   <div class="field">
                       <p>
                         <label for="Nombre">Nombre:</label>
-                          <input type="text" name="Nombre" id="Nombre" />
+                          <input type="text" class="form-input" name="Nombre" id="Nombre" />
                       </p>
                       <p>
                         <label for="Creditos">Creditos:</label>
-                          <input type="number" name="Creditos" id="Creditos" />
+                          <input type="number" class="form-input" name="Creditos" id="Creditos" />
                       </p>
                       <p>
                         <label for="Optativa">Optativa:</label>
-                          <select name="Optativa" id="Optativa">
+                          <select class="form-input" name="Optativa" id="Optativa">
                             <option value="true">SÃ­</option>
                             <option value="false">No</option>
                           </select>
@@ -60,18 +83,19 @@
 
                       <p>
                         <label for="ref_Titulo">Seleccione un Titulo:</label>
-                        <select name="ref_Titulo" id="ref_Titulo">
+                        <select class="form-input" name="ref_Titulo" id="ref_Titulo">
                           <option value="Titulo">Titulo</option>
                         </select>
                       </p>
                       <p>
                         <label for="ref_Profesor">Seleccione un Profesor:</label>
-                        <select name="ref_Profesor" id="ref_Profesor">
+                        <select class="form-input" name="ref_Profesor" id="ref_Profesor">
                           <option value="Profesor">Profesor</option>
                         </select>
                       </p>
                   </div>
               </div>
+
               <div class="actions">
                 <button type="submit">Confirmar</button>
               </div>
@@ -82,16 +106,14 @@
           <div class="sidebar social">
             <h3>Redes Sociales:</h3>
             <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
+              <a class="twitter-timeline"
+                 data-width="100%"
                  data-height="400"
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
-                  Twitter</a></p>
-              <p>- <a href="https://www.web.com" target="_blank" class="social-link">
-                  Web</a></p>
+              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">Twitter</a></p>
+              <p>- <a href="https://www.web.com" target="_blank" class="social-link">Web</a></p>
           </div>
         </div>
 

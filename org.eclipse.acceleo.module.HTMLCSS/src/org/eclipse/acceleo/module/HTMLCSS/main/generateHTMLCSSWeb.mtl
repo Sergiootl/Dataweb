@@ -309,6 +309,7 @@ button, .button {
 button:hover, .button:hover {
   background-color: #4e7d2a;  /* Verde más oscuro */
 }
+
 [/file]
 
 
@@ -544,29 +545,51 @@ button:hover, .button:hover {
         <title>Crear nueva instancia de [c.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
 
-	    <script>
-		  let redirTimer;
-		  function mostrarMensajeConfirmacion(event) {
-		    event.preventDefault();
-		    document.getElementById("modalConfirmacion").style.display = "block";
-		    document.getElementById("formularioCreacion").reset();
-		
-		    redirTimer = setTimeout(() => {
-		      window.location.href = "index_[acceso.Nombre.toLowerCase()/].html";
-		    }, 5000);
-		  }
-		
-		  function cerrarModal() {
-		    clearTimeout(redirTimer);
-		    window.location.href = "index_[acceso.Nombre.toLowerCase()/].html";
-		  }
-		</script>
+        <style>
+          .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+          }
 
+          .form-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            background-color: #fff;
+          }
+        </style>
+
+        <script>
+          let redirTimer;
+          function mostrarMensajeConfirmacion(event) {
+            event.preventDefault();
+            document.getElementById("modalConfirmacion").style.display = "block";
+            document.getElementById("formularioCreacion").reset();
+
+            redirTimer = setTimeout(() => {
+              window.location.href = "index_[acceso.Nombre.toLowerCase()/].html";
+            }, 5000);
+          }
+
+          function cerrarModal() {
+            clearTimeout(redirTimer);
+            window.location.href = "index_[acceso.Nombre.toLowerCase()/].html";
+          }
+        </script>
       </head>
+
       <body>
         <!-- Header Principal - Fondo rojo -->
         <div class="header">
-            <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
+          <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
         </div>
 
         <!-- Subheader - Fondo verde -->
@@ -578,21 +601,22 @@ button:hover, .button:hover {
           <div class="main-content">
             <form id="formularioCreacion" onsubmit="mostrarMensajeConfirmacion(event)">
               <div class="content">
-				<h2>Página para crear una nueva instancia de [c.Nombre/]</h2>
+                <h2>Página para crear una nueva instancia de [c.Nombre/]</h2>
                 <h3>Introduzca la información correspondiente a los siguientes campos de [c.Nombre/] :</h3>
-                [for (ent : Entidad | c.entidad)] 
+
+                [for (ent : Entidad | c.entidad)]
                   <div class="field">
-                    [for (attr : Atributo | ent.atributos)] 
+                    [for (attr : Atributo | ent.atributos)]
                       <p>
                         <label for="[attr.Nombre/]">[attr.Nombre/]:</label>
                         [if (attr.TipoAtributo = TipoAtributo::String)]
-                          <input type="text" name="[attr.Nombre/]" id="[attr.Nombre/]" />
+                          <input type="text" class="form-input" name="[attr.Nombre/]" id="[attr.Nombre/]" />
                         [/if]
                         [if (attr.TipoAtributo = TipoAtributo::Integer)]
-                          <input type="number" name="[attr.Nombre/]" id="[attr.Nombre/]" />
+                          <input type="number" class="form-input" name="[attr.Nombre/]" id="[attr.Nombre/]" />
                         [/if]
                         [if (attr.TipoAtributo = TipoAtributo::Boolean)]
-                          <select name="[attr.Nombre/]" id="[attr.Nombre/]">
+                          <select class="form-input" name="[attr.Nombre/]" id="[attr.Nombre/]">
                             <option value="true">Sí</option>
                             <option value="false">No</option>
                           </select>
@@ -600,10 +624,10 @@ button:hover, .button:hover {
                       </p>
                     [/for]
 
-                    [for (referencia : Entidad | ent.entidadRefereenciada)] 
+                    [for (referencia : Entidad | ent.entidadRefereenciada)]
                       <p>
                         <label for="ref_[referencia.Nombre/]">Seleccione un [referencia.Nombre/]:</label>
-                        <select name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]">
+                        <select class="form-input" name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]">
                           <option value="[referencia.Nombre/]">[referencia.Nombre/]</option>
                         </select>
                       </p>
@@ -611,6 +635,7 @@ button:hover, .button:hover {
                   </div>
                 [/for]
               </div>
+
               <div class="actions">
                 <button type="submit">Confirmar</button>
               </div>
@@ -621,15 +646,14 @@ button:hover, .button:hover {
           <div class="sidebar social">
             <h3>Redes Sociales:</h3>
             <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
+              <a class="twitter-timeline"
+                 data-width="100%"
                  data-height="400"
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             [for (rs : RedSocial | c.redsocial)]
-              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-                  [rs.Nombre/]</a></p>
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">[rs.Nombre/]</a></p>
             [/for]
           </div>
         </div>
