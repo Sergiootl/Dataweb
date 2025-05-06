@@ -6,6 +6,28 @@
         <title>ActualizaciÃ³n de Asignatura</title>
         <link rel="stylesheet" href="../styles.css">
 
+        <style>
+          .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+          }
+
+          .form-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            background-color: #fff;
+          }
+        </style>
+
         <script>
           function mostrarMensaje() {
             const mensaje = document.getElementById("mensajeExito");
@@ -14,11 +36,13 @@
               window.location.href = "index_Administrador.html";
             }, 5000);
           }
+
           function cerrarMensaje() {
             window.location.href = "index_Administrador.html";
           }
         </script>
       </head>
+
       <body>
         <div class="header">
           <h1>Pantalla de actualizaciÃ³n de Asignatura</h1>
@@ -40,35 +64,57 @@
                         
                         
                       </p>
+
                         <label for="Nombre">Actualizar Nombre:</label>
-                          <input type="text" id="Nombre_input" name="Nombre" 
+                          <input type="text" class="form-input" id="Nombre_input" name="Nombre" 
                                  value="Asignatura">
+
+
                       <p>
                         Creditos
                         
                          (Integer) 
                         
                       </p>
+
+
                         <label for="Creditos">Actualizar Creditos:</label>
-                          <input type="number" id="Creditos_input" name="Creditos" 
+                          <input type="number" class="form-input" id="Creditos_input" name="Creditos" 
                                  value="invalid">
+
                       <p>
                         Optativa
                         
                         
                          (Boolean) 
                       </p>
-                        <label for="Optativa">Actualizar Optativa:</label>
-                          <input type="checkbox" id="Optativa_input" name="Optativa" 
-                                 >
 
-                      <p>- Id_Titulo [ID del Titulo] : Referencia a la entidad Titulo</p>
-                      <p>- Id_Profesor [ID del Profesor] : Referencia a la entidad Profesor</p>
+
+
+                        <label for="Optativa">Actualizar Optativa:</label>
+                          <select class="form-input" id="Optativa_input" name="Optativa">
+                            <option value="true" >SÃ­</option>
+                            <option value="false" >No</option>
+                          </select>
+
+                      <p>
+                        <label for="ref_Titulo">Seleccione un Titulo:</label>
+                        <select class="form-input" name="ref_Titulo" id="ref_Titulo">
+                          <option value="Titulo">Titulo</option>
+                        </select>
+                      </p>
+                      <p>
+                        <label for="ref_Profesor">Seleccione un Profesor:</label>
+                        <select class="form-input" name="ref_Profesor" id="ref_Profesor">
+                          <option value="Profesor">Profesor</option>
+                        </select>
+                      </p>
                   </div>
 
                 <div class="actions">
                   <button type="submit" class="button">Actualizar</button>
                 </div>
+				<button onclick="window.history.back()" class="button">Volver</button>
               </form>
             </div>
           </div>

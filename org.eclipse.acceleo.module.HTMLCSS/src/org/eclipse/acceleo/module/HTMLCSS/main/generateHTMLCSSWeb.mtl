@@ -781,6 +781,28 @@ button:hover, .button:hover {
         <title>Actualización de [a.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
 
+        <style>
+          .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+          }
+
+          .form-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            background-color: #fff;
+          }
+        </style>
+
         <script>
           function mostrarMensaje() {
             const mensaje = document.getElementById("mensajeExito");
@@ -789,11 +811,13 @@ button:hover, .button:hover {
               window.location.href = "index_[acceso.Nombre/].html";
             }, 5000);
           }
+
           function cerrarMensaje() {
             window.location.href = "index_[acceso.Nombre/].html";
           }
         </script>
       </head>
+
       <body>
         <div class="header">
           <h1>Pantalla de actualización de [a.Nombre/]</h1>
@@ -817,31 +841,41 @@ button:hover, .button:hover {
                         [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
                         [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
                       </p>
+
                       [if (attr.TipoAtributo = TipoAtributo::String)]
                         <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
                         [let nombreAttr : String = attr.Nombre]
-                          <input type="text" id="[attr.Nombre/]_input" name="[attr.Nombre/]" 
+                          <input type="text" class="form-input" id="[attr.Nombre/]_input" name="[attr.Nombre/]" 
                                  value="[a.eGet(a.eClass().getEStructuralFeature(nombreAttr))/]">
                         [/let]
                       [/if]
+
                       [if (attr.TipoAtributo = TipoAtributo::Integer)]
                         <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
                         [let nombreAttr : String = attr.Nombre]
-                          <input type="number" id="[attr.Nombre/]_input" name="[attr.Nombre/]" 
+                          <input type="number" class="form-input" id="[attr.Nombre/]_input" name="[attr.Nombre/]" 
                                  value="[a.eGet(a.eClass().getEStructuralFeature(nombreAttr))/]">
                         [/let]
                       [/if]
+
                       [if (attr.TipoAtributo = TipoAtributo::Boolean)]
                         <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
                         [let nombreAttr : String = attr.Nombre]
-                          <input type="checkbox" id="[attr.Nombre/]_input" name="[attr.Nombre/]" 
-                                 [if a.eGet(a.eClass().getEStructuralFeature(nombreAttr)) = true]checked[/if]>
+                          <select class="form-input" id="[attr.Nombre/]_input" name="[attr.Nombre/]">
+                            <option value="true" [if a.eGet(a.eClass().getEStructuralFeature(nombreAttr)) = true]selected[/if]>Sí</option>
+                            <option value="false" [if a.eGet(a.eClass().getEStructuralFeature(nombreAttr)) = false]selected[/if]>No</option>
+                          </select>
                         [/let]
                       [/if]
                     [/for]
 
-                    [for (referencia : Entidad | ent.entidadRefereenciada)] 
-                      <p>- Id_[referencia.Nombre/][ ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
+                    [for (referencia : Entidad | ent.entidadRefereenciada)]
+                      <p>
+                        <label for="ref_[referencia.Nombre/]">Seleccione un [referencia.Nombre/]:</label>
+                        <select class="form-input" name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]">
+                          <option value="[referencia.Nombre/]">[referencia.Nombre/]</option>
+                        </select>
+                      </p>
                     [/for]
                   </div>
                 [/for]
@@ -849,6 +883,7 @@ button:hover, .button:hover {
                 <div class="actions">
                   <button type="submit" class="button">Actualizar</button>
                 </div>
+				<button onclick="window.history.back()" class="button">Volver</button>
               </form>
             </div>
           </div>
@@ -883,6 +918,7 @@ button:hover, .button:hover {
     [/file]
   [/for]
 [/template]
+
 
 [template public generateBorrado(b : BorradoInstancia)]
   [for (acceso : Rol | b.usuario)]
