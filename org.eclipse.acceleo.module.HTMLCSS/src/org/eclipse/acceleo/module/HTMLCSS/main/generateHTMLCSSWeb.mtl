@@ -2,28 +2,74 @@
  
 [template public generateAplicacion(a : Aplicacion)]
 [comment @main /]
-
 [file ('/HTML/styles.css', false, 'UTF-8')]
-  /* styles.css - Contiene todos los estilos para la aplicación */
+/* styles.css */
+
+/* Definir los colores */
+:root {
+  --color-primary: #8C2B32;  /* Color rojizo */
+  --color-secondary: #5D5C31;  /* Color verde */
+  --color-light: #FFFFFF;  /* Fondo blanco */
+  --color-dark: #000000;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fdfcfa;
+  background-color: var(--color-light);  /* Fondo blanco */
 }
 
-.header {
-  background-color: #6c5ce7;
-  color: white;
-  padding: 20px;
+/* Para la página principal (index) */
+.header.index {
+  background-color: var(--color-primary);  /* Color rojo */
+  color: var(--color-light);
   text-align: center;
-  font-weight: 300;
+  padding: 20px;
   font-size: 28px;
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: 0 0 10px 10px;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 0;  /* Sin bordes redondeados en la parte inferior */
 }
 
+/* Para las demás páginas */
+.header {
+  background-color: var(--color-primary);  /* Color rojo */
+  color: var(--color-light);
+  text-align: center;
+  padding: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 0 0 0 0;  /* Sin borde redondeado */
+}
+
+/* Subheader - Fondo verde */
+.subheader {
+  background-color: var(--color-secondary);  /* Verde */
+  color: var(--color-light);
+  text-align: center;
+  padding: 10px;
+  font-weight: 500;
+  width: 100%; /* Asegurarse de que ocupe todo el ancho */
+  margin: 0;
+  box-sizing: border-box; /* Asegura que el padding no haga que el ancho sea mayor que el 100% */
+}
+
+/* Para las páginas que no sean index.html */
+body:not(.index) .header, body:not(.index) .subheader {
+  width: 100vw; /* Asegura que ocupe todo el ancho de la ventana (view width) */
+  padding: 15px; /* Ajustar padding */
+  font-size: 22px; /* Ajustar tamaño de fuente */
+}
+
+/* Para el index.html, mantener el tamaño grande */
+body.index .header, body.index .subheader {
+  font-size: 28px;  /* Tamaño grande para el index */
+  padding: 20px;    /* Padding más grande */
+}
+
+/* Contenedor principal */
 .container {
   display: flex;
   flex-direction: row;
@@ -32,55 +78,41 @@ body {
   margin: 0 auto;
 }
 
+/* Contenido principal */
 .main-content {
   width: 80%;
   padding-right: 20px;
   margin-left: 20px;
 }
 
+/* Barra lateral */
 .sidebar {
   width: 20%;
   background-color: #f0f0ff;
   padding: 10px;
-  border-left: 3px solid #6c5ce7;
+  border-left: 3px solid var(--color-primary);
   border-radius: 8px;
 }
 
-.menu {
-  background-color: #ffeaa7;
-  padding: 20px;
-  text-align: center;
-  font-weight: bold;
-  color: #2d3436;
-}
-
+/* Footer */
 .footer {
-  background-color: #dfe6e9;
+  background-color: var(--color-primary);  /* Rojizo */
   text-align: center;
   padding: 10px;
   font-size: 14px;
-  color: #555;
+  color: var(--color-light);
 }
 
-.twitter-timeline-container {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-}
 
-.twitter-timeline {
-  border: none;
-  overflow: hidden;
-}
-
+/* Enlaces */
 a {
-  color: #0984e3;
+  color: var(--color-secondary);  /* Verde */
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-  color: #6c5ce7;
+  color: var(--color-primary);  /* Rojizo */
 }
 
 /* Estilos para los bloques horizontales de acciones */
@@ -99,7 +131,7 @@ a:hover {
   border: 1px solid #ccc;
   border-radius: 10px;
   text-align: center;
-  background-color: #fff;
+  background-color: var(--color-light);
   box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.2s ease-in-out;
 }
@@ -112,7 +144,7 @@ a:hover {
 .action-block h4 {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #2d3436;
+  color: var(--color-dark);
 }
 
 .action-block p {
@@ -124,7 +156,7 @@ a:hover {
 .action-block button {
   padding: 10px 20px;
   background-color: #00b894;
-  color: white;
+  color: var(--color-light);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -136,7 +168,150 @@ a:hover {
   background-color: #019875;
 }
 
+/* Twitter timeline container */
+.twitter-timeline-container {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.twitter-timeline {
+  border: none;
+  overflow: hidden;
+}
+
+/* Estilos para los bloques de roles */
+.roles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;  /* Reducir el espacio entre los bloques */
+  justify-content: flex-start;  /* Alinea los bloques al inicio */
+  padding: 20px;
+}
+
+.role-block {
+  background-color: var(--color-light);  /* Fondo blanco */
+  border: 1px solid #ccc;  /* Borde sutil */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 30%;  /* Los bloques ocuparán un 30% del ancho de la fila por defecto */
+  flex-grow: 1;  /* Permite que los bloques crezcan para llenar el espacio disponible */
+}
+
+.role-block a {
+  text-decoration: none;
+  color: var(--color-dark);
+}
+
+.role-block h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-primary);  /* Rojizo */
+}
+
+.role-block:hover {
+  transform: scale(1.05);  /* Efecto al pasar el ratón */
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .role-block {
+    width: 45%;  /* En pantallas medianas, dos bloques por fila */
+  }
+}
+
+@media (max-width: 480px) {
+  .role-block {
+    width: 100%;  /* En pantallas pequeñas, un bloque por fila */
+  }
+}
+
+.mensaje-exito {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.mensaje-exito .cerrar {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+/* Modal común para ambos templates */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  text-align: center;
+  font-size: 1.2em;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: red;
+}
+
+/* Estilos específicos para Actualización */
+.modal-content.actualizacion {
+  color: blue;
+}
+
+/* Estilos específicos para Borrado */
+.modal-content.borrado {
+  color: red;
+}
+/* Estilos para todos los botones */
+button, .button {
+  padding: 12px 24px;
+  background-color: var(--color-secondary);  /* Verde */
+  color: var(--color-light);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover {
+  background-color: #4e7d2a;  /* Verde más oscuro */
+}
 [/file]
+
+
 
 
 [file ('/HTML/index.html', false, 'UTF-8')]
@@ -147,46 +322,48 @@ a:hover {
   <title>[a.Nombre/] - Home</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="index">  <!-- Agregamos la clase "index" aquí -->
   <div class="header">
     <h1>[a.Nombre/]</h1>
   </div>
 
   <div class="container">
-<div class="main-content">
-  <h2>Bienvenidos a la página principal de [a.Nombre/]</h2>
-  <p>Roles de acceso a la información:</p>
-  <ol>
-    [for (r : Rol | a.roles)]
-      <li><a href="[r.Nombre.toLowerCase()/]/index_[r.Nombre.toLowerCase()/].html">[r.Nombre/]</a></li>
-    [/for]
-  </ol>
-</div>
+    <div class="main-content">
+      <h2>Bienvenidos a la página principal de [a.Nombre/]</h2>
+      <p>Roles de acceso a la información:</p>
+      
+      <!-- Roles como bloques -->
+      <div class="roles-container">
+        [for (r : Rol | a.roles)]
+          <div class="role-block">
+            <a href="[r.Nombre.toLowerCase()/]/index_[r.Nombre.toLowerCase()/].html">
+              <h3>[r.Nombre/]</h3>
+            </a>
+          </div>
+        [/for]
+      </div>
+    </div>
 
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
 
+      <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
 
-	<div class="sidebar social">
-	  <h3>Redes Sociales:</h3>
-	  
-	  <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-	  <div class="twitter-timeline-container">
-	    <a class="twitter-timeline" 
-	       data-width="100%" 
-	       data-height="400"
-	       href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-	  </div>
-	
-	  <!-- Cargar el script de Twitter de manera asíncrona -->
-	  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-	
-	  <!-- Mostrar las demás redes sociales como enlaces -->
-	  [for (rs : RedSocial | a.redessociales)]
-	    <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-	        [rs.Nombre/]</a></p>
-	  [/for]
-	</div>
-  </div>
+      <!-- Cargar el script de Twitter de manera asíncrona -->
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+      <!-- Mostrar las demás redes sociales como enlaces -->
+      [for (rs : RedSocial | a.redessociales)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+            [rs.Nombre/]</a></p>
+      [/for]
+    </div>
   </div>
 
   <div class="footer">
@@ -194,6 +371,8 @@ a:hover {
   </div>
 </body>
 </html>
+
+
 [/file]
 
 [for (r : Rol | a.roles)]
@@ -215,53 +394,60 @@ a:hover {
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-  <div class="header">
-    <h1>Pantalla principal del Rol [r.Nombre/]</h1>
-  </div>
+<!-- Header Principal - Fondo rojo -->
+<div class="header">
+  <h1>[Aplicacion.allInstances()->any(rol | rol.roles->includes(r)).Nombre/]</h1>
+</div>
+
+<!-- Subheader - Fondo verde -->
+<div class="subheader">
+  <h2>Pantalla principal del Rol [r.Nombre/]</h2>
+</div>
+
+
 
   <div class="container">
     <div class="main-content">
       <h2>Bienvenido al Rol [r.Nombre/]</h2>
       <p>A continuación, podrás acceder al listado de páginas a las que tiene acceso:</p>
       <ol>
-      [for (p : PaginaPantalla | r.accesoapaginapantalla)]
-  [if (p.oclIsKindOf(IndiceEntidad))] 
-    <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceEntidad [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(IndiceExtendido))] 
-    <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceExtendido [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(IndiceDetalle))] 
-    <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceDetalle [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(CrearInstancia))] 
-    <li><a href="crear_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CrearInstancia [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(ActualizacionInstancia))] 
-    <li><a href="actualizacion_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] ActualizacionInstancia [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(DetallesInstancia))] 
-    <li><a href="detalle_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] DetallesInstancia [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(BorradoInstancia))] 
-    [let b : BorradoInstancia = p.oclAsType(BorradoInstancia)]
-     <li><a href="borrar_[b.entidad.Nombre.toLowerCase()/].html">[ '[' + b.entidad.Nombre + ']' /] BorradoInstancia [b.Nombre/]</a></li>
-    [/let]
-  [/if]
-  [if (p.oclIsKindOf(CRUD))] 
-    <li><a href="crud_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CRUD [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(Cuestionario))] 
-    <li><a href="cuestionario_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Cuestionario [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(Encuesta))] 
-    <li><a href="encuesta_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Encuesta [p.Nombre/]</a></li>
-  [/if]
-  [if (p.oclIsKindOf(Normal))] 
-    <li><a href="[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Página Normal [p.Nombre/]</a></li>
-  [/if]
-[/for]
-
+        [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+          [if (p.oclIsKindOf(IndiceEntidad))] 
+            <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceEntidad [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(IndiceExtendido))] 
+            <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceExtendido [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(IndiceDetalle))] 
+            <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceDetalle [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(CrearInstancia))] 
+            <li><a href="crear_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CrearInstancia [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(ActualizacionInstancia))] 
+            <li><a href="actualizacion_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] ActualizacionInstancia [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(DetallesInstancia))] 
+            <li><a href="detalle_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] DetallesInstancia [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(BorradoInstancia))] 
+            [let b : BorradoInstancia = p.oclAsType(BorradoInstancia)]
+             <li><a href="borrar_[b.entidad.Nombre.toLowerCase()/].html">[ '[' + b.entidad.Nombre + ']' /] BorradoInstancia [b.Nombre/]</a></li>
+            [/let]
+          [/if]
+          [if (p.oclIsKindOf(CRUD))] 
+            <li><a href="crud_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CRUD [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(Cuestionario))] 
+            <li><a href="cuestionario_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Cuestionario [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(Encuesta))] 
+            <li><a href="encuesta_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Encuesta [p.Nombre/]</a></li>
+          [/if]
+          [if (p.oclIsKindOf(Normal))] 
+            <li><a href="[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Página Normal [p.Nombre/]</a></li>
+          [/if]
+        [/for]
       </ol>
     </div>
 
@@ -278,6 +464,7 @@ a:hover {
   </div>
 </body>
 </html>
+
 [/file]
 [/template]
 
@@ -354,22 +541,47 @@ a:hover {
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Crear nuevo [c.Nombre/]</title>
+        <title>Crear nueva instancia de [c.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
+
+	    <script>
+		  let redirTimer;
+		  function mostrarMensajeConfirmacion(event) {
+		    event.preventDefault();
+		    document.getElementById("modalConfirmacion").style.display = "block";
+		    document.getElementById("formularioCreacion").reset();
+		
+		    redirTimer = setTimeout(() => {
+		      window.location.href = "index_[acceso.Nombre.toLowerCase()/].html";
+		    }, 5000);
+		  }
+		
+		  function cerrarModal() {
+		    clearTimeout(redirTimer);
+		    window.location.href = "index_[acceso.Nombre.toLowerCase()/].html";
+		  }
+		</script>
+
       </head>
       <body>
+        <!-- Header Principal - Fondo rojo -->
         <div class="header">
-          Crear nuevo [c.Nombre/]
+            <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
+        </div>
+
+        <!-- Subheader - Fondo verde -->
+        <div class="subheader">
+          <h2>Crear nueva instancia de [c.Nombre/]</h2>
         </div>
 
         <div class="container">
           <div class="main-content">
-            <form action="guardar_[c.Nombre.toLowerCase()/].html" method="post">
+            <form id="formularioCreacion" onsubmit="mostrarMensajeConfirmacion(event)">
               <div class="content">
-                <h3>Introduce los campos:</h3>
+				<h2>Página para crear una nueva instancia de [c.Nombre/]</h2>
+                <h3>Introduzca la información correspondiente a los siguientes campos de [c.Nombre/] :</h3>
                 [for (ent : Entidad | c.entidad)] 
                   <div class="field">
-                    <h3>[ent.Nombre/]:</h3>
                     [for (attr : Atributo | ent.atributos)] 
                       <p>
                         <label for="[attr.Nombre/]">[attr.Nombre/]:</label>
@@ -390,8 +602,10 @@ a:hover {
 
                     [for (referencia : Entidad | ent.entidadRefereenciada)] 
                       <p>
-                        <label for="ref_[referencia.Nombre/]">ID del [referencia.Nombre/]:</label>
-                        <input type="text" name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]" placeholder="Referencia a [referencia.Nombre/]" />
+                        <label for="ref_[referencia.Nombre/]">Seleccione un [referencia.Nombre/]:</label>
+                        <select name="ref_[referencia.Nombre/]" id="ref_[referencia.Nombre/]">
+                          <option value="[referencia.Nombre/]">[referencia.Nombre/]</option>
+                        </select>
                       </p>
                     [/for]
                   </div>
@@ -400,12 +614,12 @@ a:hover {
               <div class="actions">
                 <button type="submit">Confirmar</button>
               </div>
+              <button onclick="window.history.back()" class="button">Volver</button>
             </form>
           </div>
 
           <div class="sidebar social">
             <h3>Redes Sociales:</h3>
-
             <div class="twitter-timeline-container">
               <a class="twitter-timeline" 
                  data-width="100%" 
@@ -413,11 +627,19 @@ a:hover {
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
             [for (rs : RedSocial | c.redsocial)]
               <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
                   [rs.Nombre/]</a></p>
             [/for]
+          </div>
+        </div>
+
+        <!-- Modal de confirmación -->
+        <div id="modalConfirmacion" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <strong>La instancia ha sido creada con éxito.</strong><br />
+            Redirigiendo a la página principal...
           </div>
         </div>
 
@@ -442,8 +664,14 @@ a:hover {
         <link rel="stylesheet" href="../styles.css">
       </head>
       <body>
+        <!-- Header Principal -->
         <div class="header">
           <h1>Pantalla de detalle de [d.Nombre/]</h1>
+        </div>
+
+        <!-- Subheader -->
+        <div class="subheader">
+          <h2>Detalles de la Instancia de [d.Nombre/]</h2>
         </div>
 
         <div class="container">
@@ -483,6 +711,7 @@ a:hover {
                 </div>
               [/for]
             </div>
+<button onclick="window.history.back()" class="button">Volver</button>
           </div>
 
           <div class="sidebar social">
@@ -506,8 +735,9 @@ a:hover {
           </div>
         </div>
 
+        <!-- Footer -->
         <div class="footer">
-          Aplicación generada automáticamente.
+          <p>Aplicación generada automáticamente.</p>
         </div>
       </body>
       </html>
@@ -526,29 +756,43 @@ a:hover {
         <meta charset="UTF-8">
         <title>Actualización de [a.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
+
+        <script>
+          function mostrarMensaje() {
+            const mensaje = document.getElementById("mensajeExito");
+            mensaje.style.display = "block";
+            setTimeout(() => {
+              window.location.href = "index_[acceso.Nombre/].html";
+            }, 5000);
+          }
+          function cerrarMensaje() {
+            window.location.href = "index_[acceso.Nombre/].html";
+          }
+        </script>
       </head>
       <body>
         <div class="header">
           <h1>Pantalla de actualización de [a.Nombre/]</h1>
         </div>
 
+        <div class="subheader">
+          <h2>Actualiza la información de la Instancia de [a.Nombre/]</h2>
+        </div>
+
         <div class="container">
           <div class="main-content">
             <div class="content">
               <h3>Campos para actualización:</h3>
-              <form method="POST" action="[a.usuario.Nombre.toLowerCase()/]/actualizar/[a.Nombre.toLowerCase()/].html">
-
+              <form method="POST" action="[a.usuario.Nombre.toLowerCase()/]/actualizar/[a.Nombre.toLowerCase()/].html" onsubmit="event.preventDefault(); mostrarMensaje();">
                 [for (ent : Entidad | a.entidad)]
                   <div class="field">
                     [for (attr : Atributo | ent.atributos)]
                       <p>
-                        [attr.Nombre/] // 
+                        [attr.Nombre/]
                         [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
                         [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
                         [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
                       </p>
-
-                      <!-- Campos para ser actualizados -->
                       [if (attr.TipoAtributo = TipoAtributo::String)]
                         <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
                         [let nombreAttr : String = attr.Nombre]
@@ -556,7 +800,6 @@ a:hover {
                                  value="[a.eGet(a.eClass().getEStructuralFeature(nombreAttr))/]">
                         [/let]
                       [/if]
-
                       [if (attr.TipoAtributo = TipoAtributo::Integer)]
                         <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
                         [let nombreAttr : String = attr.Nombre]
@@ -564,7 +807,6 @@ a:hover {
                                  value="[a.eGet(a.eClass().getEStructuralFeature(nombreAttr))/]">
                         [/let]
                       [/if]
-
                       [if (attr.TipoAtributo = TipoAtributo::Boolean)]
                         <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
                         [let nombreAttr : String = attr.Nombre]
@@ -572,39 +814,30 @@ a:hover {
                                  [if a.eGet(a.eClass().getEStructuralFeature(nombreAttr)) = true]checked[/if]>
                         [/let]
                       [/if]
-
                     [/for]
 
-                    <!-- Claves foráneas de la entidad -->
                     [for (referencia : Entidad | ent.entidadRefereenciada)] 
                       <p>- Id_[referencia.Nombre/][ ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
                     [/for]
                   </div>
                 [/for]
 
-                <!-- Botones para actualizar o cancelar -->
                 <div class="actions">
                   <button type="submit" class="button">Actualizar</button>
                 </div>
-
               </form>
             </div>
           </div>
 
           <div class="sidebar social">
             <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
             <div class="twitter-timeline-container">
               <a class="twitter-timeline" 
                  data-width="100%" 
                  data-height="400"
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
-          
-            <!-- Cargar el script de Twitter de manera asíncrona -->
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demás redes sociales como enlaces -->
             [for (rs : RedSocial | a.redsocial)]
               <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
                   [rs.Nombre/]</a></p>
@@ -612,10 +845,14 @@ a:hover {
           </div>
         </div>
 
+        <div id="mensajeExito" class="mensaje-exito">
+          <span class="cerrar" onclick="cerrarMensaje()">×</span>
+          <p><strong>La instancia ha sido actualizada con éxito.</strong></p>
+        </div>
+
         <div class="footer">
           Aplicación generada automáticamente.
         </div>
-
       </body>
       </html>
 
@@ -632,18 +869,52 @@ a:hover {
         <meta charset="UTF-8">
         <title>Borrar [b.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
+        <style>
+          .mensaje-exito {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
+          }
+          .mensaje-exito .cerrar {
+            float: right;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 15px;
+          }
+        </style>
         <script>
           function confirmarBorrado() {
-            document.getElementById("mensajeConfirmacion").style.display = "block";
+            const mensaje = document.getElementById("mensajeExito");
+            mensaje.style.display = "block";
             document.getElementById("botonBorrar").disabled = true;
+            setTimeout(() => {
+              window.location.href = "index_[b.usuario.Nombre/].html";
+            }, 5000);
+          }
+          function cerrarMensaje() {
+            window.location.href = "index_[b.usuario.Nombre/].html";
           }
         </script>
       </head>
       <body>
+        <!-- Header Principal -->
         <div class="header">
           [for (ent : Entidad | b.entidad)]
-            <h1>Página de borrado de la asignatura [ent.Nombre/]</h1>
+            <h1>Página de borrado de la entidad [ent.Nombre/]</h1>
           [/for]
+        </div>
+
+        <!-- Subheader -->
+        <div class="subheader">
+          <h2>Confirma la eliminación de [b.Nombre/]</h2>
         </div>
 
         <div class="container">
@@ -655,10 +926,6 @@ a:hover {
               [/for]
 
               <button id="botonBorrar" onclick="confirmarBorrado()" class="button" style="background-color: red; color: white;">Borrar</button>
-
-              <div id="mensajeConfirmacion" style="display: none; margin-top: 20px; color: green;">
-                <strong>La entidad se ha borrado con éxito.</strong>
-              </div>
 
               <div class="note" style="margin-top: 40px;">
                 <p><strong>Nota:</strong> No se eliminan los datos correspondientes a las referencias de la [b.Nombre/]:</p>
@@ -675,18 +942,13 @@ a:hover {
 
           <div class="sidebar social">
             <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
             <div class="twitter-timeline-container">
               <a class="twitter-timeline" 
                  data-width="100%" 
                  data-height="400"
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
-          
-            <!-- Cargar el script de Twitter de manera asíncrona -->
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demás redes sociales como enlaces -->
             [for (rs : RedSocial | b.redsocial)]
               <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
                   [rs.Nombre/]</a></p>
@@ -694,10 +956,15 @@ a:hover {
           </div>
         </div>
 
+        <div id="mensajeExito" class="mensaje-exito">
+          <span class="cerrar" onclick="cerrarMensaje()">×</span>
+          <p><strong>La entidad ha sido borrada con éxito.</strong></p>
+        </div>
+
+        <!-- Footer -->
         <div class="footer">
           Aplicación generada automáticamente.
         </div>
-
       </body>
       </html>
     [/file]
@@ -769,7 +1036,6 @@ a:hover {
   [/file]
   [/for]
 [/template]
-
 
 [template public generateIndiceExtendido(i : IndiceExtendido)]
   [for (acceso : Rol | i.usuario)]
@@ -855,7 +1121,6 @@ a:hover {
   [/for]
 [/template]
 
-
 [template public generateIndiceDetalle(i : IndiceDetalle)]
   [for (acceso : Rol | i.usuario)]
     [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_').concat(i.indiceNombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
@@ -931,7 +1196,6 @@ a:hover {
   [/file]
   [/for]
 [/template]
-
 
 [template public generateContenidoNormal(p : Normal)]
   [for (acceso : Rol | p.usuario)]
@@ -1021,7 +1285,6 @@ a:hover {
   [/for]
 [/template]
 
-
 [template public generateCRUD(c : CRUD)]
   [for (acceso : Rol | c.usuario)]
     [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/CRUD_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
@@ -1092,7 +1355,6 @@ a:hover {
   [/for]
 [/template]
 
-
 [template public generateCuestionario(c : Cuestionario)]
   [for (acceso : Rol | c.usuario)]
     [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/cuestionario_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
@@ -1105,15 +1367,21 @@ a:hover {
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Header Principal -->
   <div class="header">
     <h1>Cuestionario interactivo: [c.Nombre/]</h1>
+  </div>
+
+  <!-- Subheader -->
+  <div class="subheader">
+    <h2>Inicia el cuestionario y responde las preguntas</h2>
   </div>
 
   <div class="container">
     <div class="main-content">
       <div class="content">
         <p><strong>Descripción:</strong> [c.Descripcion/]</p>
-        <form action="#" method="post">
+        <form action="resultado_cuestionario_[c.Nombre.toLowerCase()/].html" method="post">
           [let i : Integer = 1 /]
           
           [for (preg : Pregunta | c.preguntasC)]
@@ -1142,8 +1410,16 @@ a:hover {
           [/for]
 
           <div class="actions" style="margin-top: 30px;">
-            <button type="submit">Enviar respuestas</button>
-          </div>
+			  <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
+			</div>
+			
+			<script>
+			  function enviarRespuestas() {
+			    // Aquí se redirige a la página de resultados, que puede ser dinámica usando el nombre del cuestionario
+			    window.location.href = "resultado_cuestionario_" + "[c.Nombre.toLowerCase()/]" + ".html";
+			  }
+			</script>
+
         </form>
       </div>
     </div>
@@ -1167,6 +1443,94 @@ a:hover {
                   [rs.Nombre/]</a></p>
             [/for]
           </div>
+  </div>
+
+  <div class="footer">
+    Aplicación generada automáticamente.
+  </div>
+
+</body>
+</html>
+
+    [/file]
+  [/for]
+  <!-- Crear la página de resultados al final del cuestionario -->
+  [for (r : Rol | c.roles)]
+    [generateResultadoCuestionario(c)/]
+  [/for]
+[/template]
+
+[template public generateResultadoCuestionario(c : Cuestionario)]
+  [for (acceso : Rol | c.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/resultado_cuestionario_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Resultado del Cuestionario [c.Nombre/]</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Header Principal -->
+  <div class="header">
+    <h1>Resultado del Cuestionario: [c.Nombre/]</h1>
+  </div>
+
+  <!-- Subheader -->
+  <div class="subheader">
+    <h2>Resultado de las preguntas respondidas</h2>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <h3>Preguntas y Respuestas Correctas:</h3>
+
+        [let i : Integer = 1 /]
+
+        [for (preg : Pregunta | c.preguntasC)]
+          <div class="pregunta">
+            <p><strong>Pregunta [i/]:</strong> [preg.Texto/]</p>
+
+            [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+              <p><strong>Respuesta Correcta:</strong> [preg.respuestas->select(r | r.Rcorrecta = true)->first().Texto/]</p>
+            [/if]
+
+            [if (preg.Tipo = TipoPregunta::V_F)]
+              <p><strong>Respuesta Correcta:</strong> [preg.respuestas->select(r | r.Rcorrecta = true)->first().Texto/]</p>
+            [/if]
+
+            [if (preg.Tipo = TipoPregunta::Corta)]
+              <p><strong>Respuesta Correcta:</strong> [preg.RespuestaCorrecta/]</p>
+            [/if]
+
+          </div>
+          
+          [set i = i + 1 /]
+        [/for]
+      </div>
+    </div>
+
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
+    
+      <!-- Cargar el script de Twitter de manera asíncrona -->
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+      <!-- Mostrar las demás redes sociales como enlaces -->
+      [for (rs : RedSocial | c.redsocial)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+            [rs.Nombre/]</a></p>
+      [/for]
+    </div>
   </div>
 
   <div class="footer">

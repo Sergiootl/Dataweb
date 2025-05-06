@@ -7,15 +7,21 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Header Principal -->
   <div class="header">
     <h1>Cuestionario interactivo: 1</h1>
+  </div>
+
+  <!-- Subheader -->
+  <div class="subheader">
+    <h2>Inicia el cuestionario y responde las preguntas</h2>
   </div>
 
   <div class="container">
     <div class="main-content">
       <div class="content">
         <p><strong>DescripciÃ³n:</strong> ¿Cuantos minutos tiene una hora?</p>
-        <form action="#" method="post">
+        <form action="resultado_cuestionario_1.html" method="post">
           
             <div class="pregunta">
               <p><strong>Pregunta 1:</strong> ¿Cuantos minutos tiene una hora?</p>
@@ -43,9 +49,16 @@
             
 
           <div class="actions" style="margin-top: 30px;">
-            <button type="submit">Enviar respuestas</button>
-            <button type="reset">Cancelar</button>
-          </div>
+			  <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
+			</div>
+			
+			<script>
+			  function enviarRespuestas() {
+			    // AquÃ­ se redirige a la pÃ¡gina de resultados, que puede ser dinÃ¡mica usando el nombre del cuestionario
+			    window.location.href = "resultado_cuestionario_" + "1" + ".html";
+			  }
+			</script>
+
         </form>
       </div>
     </div>

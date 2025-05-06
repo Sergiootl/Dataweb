@@ -1,23 +1,70 @@
-  /* styles.css - Contiene todos los estilos para la aplicaciÃ³n */
+/* styles.css */
+
+/* Definir los colores */
+:root {
+  --color-primary: #8C2B32;  /* Color rojizo */
+  --color-secondary: #5D5C31;  /* Color verde */
+  --color-light: #FFFFFF;  /* Fondo blanco */
+  --color-dark: #000000;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fdfcfa;
+  background-color: var(--color-light);  /* Fondo blanco */
 }
 
-.header {
-  background-color: #6c5ce7;
-  color: white;
-  padding: 20px;
+/* Para la pÃ¡gina principal (index) */
+.header.index {
+  background-color: var(--color-primary);  /* Color rojo */
+  color: var(--color-light);
   text-align: center;
-  font-weight: 300;
+  padding: 20px;
   font-size: 28px;
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: 0 0 10px 10px;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 0;  /* Sin bordes redondeados en la parte inferior */
 }
 
+/* Para las demÃ¡s pÃ¡ginas */
+.header {
+  background-color: var(--color-primary);  /* Color rojo */
+  color: var(--color-light);
+  text-align: center;
+  padding: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 0 0 0 0;  /* Sin borde redondeado */
+}
+
+/* Subheader - Fondo verde */
+.subheader {
+  background-color: var(--color-secondary);  /* Verde */
+  color: var(--color-light);
+  text-align: center;
+  padding: 10px;
+  font-weight: 500;
+  width: 100%; /* Asegurarse de que ocupe todo el ancho */
+  margin: 0;
+  box-sizing: border-box; /* Asegura que el padding no haga que el ancho sea mayor que el 100% */
+}
+
+/* Para las pÃ¡ginas que no sean index.html */
+body:not(.index) .header, body:not(.index) .subheader {
+  width: 100vw; /* Asegura que ocupe todo el ancho de la ventana (view width) */
+  padding: 15px; /* Ajustar padding */
+  font-size: 22px; /* Ajustar tamaÃ±o de fuente */
+}
+
+/* Para el index.html, mantener el tamaÃ±o grande */
+body.index .header, body.index .subheader {
+  font-size: 28px;  /* TamaÃ±o grande para el index */
+  padding: 20px;    /* Padding mÃ¡s grande */
+}
+
+/* Contenedor principal */
 .container {
   display: flex;
   flex-direction: row;
@@ -26,55 +73,41 @@ body {
   margin: 0 auto;
 }
 
+/* Contenido principal */
 .main-content {
   width: 80%;
   padding-right: 20px;
   margin-left: 20px;
 }
 
+/* Barra lateral */
 .sidebar {
   width: 20%;
   background-color: #f0f0ff;
   padding: 10px;
-  border-left: 3px solid #6c5ce7;
+  border-left: 3px solid var(--color-primary);
   border-radius: 8px;
 }
 
-.menu {
-  background-color: #ffeaa7;
-  padding: 20px;
-  text-align: center;
-  font-weight: bold;
-  color: #2d3436;
-}
-
+/* Footer */
 .footer {
-  background-color: #dfe6e9;
+  background-color: var(--color-primary);  /* Rojizo */
   text-align: center;
   padding: 10px;
   font-size: 14px;
-  color: #555;
+  color: var(--color-light);
 }
 
-.twitter-timeline-container {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-}
 
-.twitter-timeline {
-  border: none;
-  overflow: hidden;
-}
-
+/* Enlaces */
 a {
-  color: #0984e3;
+  color: var(--color-secondary);  /* Verde */
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-  color: #6c5ce7;
+  color: var(--color-primary);  /* Rojizo */
 }
 
 /* Estilos para los bloques horizontales de acciones */
@@ -93,7 +126,7 @@ a:hover {
   border: 1px solid #ccc;
   border-radius: 10px;
   text-align: center;
-  background-color: #fff;
+  background-color: var(--color-light);
   box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.2s ease-in-out;
 }
@@ -106,7 +139,7 @@ a:hover {
 .action-block h4 {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #2d3436;
+  color: var(--color-dark);
 }
 
 .action-block p {
@@ -118,7 +151,7 @@ a:hover {
 .action-block button {
   padding: 10px 20px;
   background-color: #00b894;
-  color: white;
+  color: var(--color-light);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -130,3 +163,144 @@ a:hover {
   background-color: #019875;
 }
 
+/* Twitter timeline container */
+.twitter-timeline-container {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.twitter-timeline {
+  border: none;
+  overflow: hidden;
+}
+
+/* Estilos para los bloques de roles */
+.roles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;  /* Reducir el espacio entre los bloques */
+  justify-content: flex-start;  /* Alinea los bloques al inicio */
+  padding: 20px;
+}
+
+.role-block {
+  background-color: var(--color-light);  /* Fondo blanco */
+  border: 1px solid #ccc;  /* Borde sutil */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 30%;  /* Los bloques ocuparÃ¡n un 30% del ancho de la fila por defecto */
+  flex-grow: 1;  /* Permite que los bloques crezcan para llenar el espacio disponible */
+}
+
+.role-block a {
+  text-decoration: none;
+  color: var(--color-dark);
+}
+
+.role-block h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-primary);  /* Rojizo */
+}
+
+.role-block:hover {
+  transform: scale(1.05);  /* Efecto al pasar el ratÃ³n */
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .role-block {
+    width: 45%;  /* En pantallas medianas, dos bloques por fila */
+  }
+}
+
+@media (max-width: 480px) {
+  .role-block {
+    width: 100%;  /* En pantallas pequeÃ±as, un bloque por fila */
+  }
+}
+
+.mensaje-exito {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.mensaje-exito .cerrar {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+/* Modal comÃºn para ambos templates */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  text-align: center;
+  font-size: 1.2em;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: red;
+}
+
+/* Estilos especÃ­ficos para ActualizaciÃ³n */
+.modal-content.actualizacion {
+  color: blue;
+}
+
+/* Estilos especÃ­ficos para Borrado */
+.modal-content.borrado {
+  color: red;
+}
+/* Estilos para todos los botones */
+button, .button {
+  padding: 12px 24px;
+  background-color: var(--color-secondary);  /* Verde */
+  color: var(--color-light);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover {
+  background-color: #4e7d2a;  /* Verde mÃ¡s oscuro */
+}

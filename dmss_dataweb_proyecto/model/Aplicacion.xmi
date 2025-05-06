@@ -126,6 +126,38 @@
       usuario="//@roles.0 //@roles.1 //@roles.3"
       redsocial="//@redessociales.0 //@redessociales.1"
       entidad="//@basedatos.0/@tablas.0"/>
+  <paginapantallas
+      xsi:type="dataweb:CrearInstancia"
+      Nombre="Titulo"
+      entidad="//@basedatos.0/@tablas.0"/>
+  <paginapantallas
+      xsi:type="dataweb:DetallesInstancia"
+      Nombre="Titulo"
+      entidad="//@basedatos.0/@tablas.0"/>
+  <paginapantallas
+      xsi:type="dataweb:ActualizacionInstancia"
+      Nombre="Titulo"
+      entidad="//@basedatos.0/@tablas.0"/>
+  <paginapantallas
+      xsi:type="dataweb:BorradoInstancia"
+      Nombre="Titulo"
+      entidad="//@basedatos.0/@tablas.0"/>
+  <paginapantallas
+      xsi:type="dataweb:CrearInstancia"
+      Nombre="Profesor"
+      entidad="//@basedatos.0/@tablas.3"/>
+  <paginapantallas
+      xsi:type="dataweb:DetallesInstancia"
+      Nombre="Profesor"
+      entidad="//@basedatos.0/@tablas.3"/>
+  <paginapantallas
+      xsi:type="dataweb:ActualizacionInstancia"
+      Nombre="Profesor"
+      entidad="//@basedatos.0/@tablas.3"/>
+  <paginapantallas
+      xsi:type="dataweb:BorradoInstancia"
+      Nombre="Profesor"
+      entidad="//@basedatos.0/@tablas.3"/>
   <basedatos
       Nombre="Uex">
     <tablas
@@ -144,7 +176,8 @@
         entidadRefereenciada="//@basedatos.0/@tablas.0 //@basedatos.0/@tablas.3"
         usuarios="//@roles.1 //@roles.0 //@roles.2">
       <atributos
-          Nombre="01"
+          Nombre="Nombre"
+          TipoAtributo="String"
           PrimaryKey="true"/>
       <atributos
           Nombre="Creditos"/>

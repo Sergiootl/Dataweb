@@ -2,24 +2,49 @@
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Crear nuevo Asignatura</title>
+        <title>Crear nueva instancia de Asignatura</title>
         <link rel="stylesheet" href="../styles.css">
+
+	    <script>
+		  let redirTimer;
+		  function mostrarMensajeConfirmacion(event) {
+		    event.preventDefault();
+		    document.getElementById("modalConfirmacion").style.display = "block";
+		    document.getElementById("formularioCreacion").reset();
+		
+		    redirTimer = setTimeout(() => {
+		      window.location.href = "index_profesor.html";
+		    }, 5000);
+		  }
+		
+		  function cerrarModal() {
+		    clearTimeout(redirTimer);
+		    window.location.href = "index_profesor.html";
+		  }
+		</script>
+
       </head>
       <body>
+        <!-- Header Principal - Fondo rojo -->
         <div class="header">
-          Crear nuevo Asignatura
+            <h1>Universidad de Extremadura Data Management</h1>
+        </div>
+
+        <!-- Subheader - Fondo verde -->
+        <div class="subheader">
+          <h2>Crear nueva instancia de Asignatura</h2>
         </div>
 
         <div class="container">
           <div class="main-content">
-            <form action="guardar_asignatura.html" method="post">
+            <form id="formularioCreacion" onsubmit="mostrarMensajeConfirmacion(event)">
               <div class="content">
-                <h3>Introduce los campos:</h3>
+				<h2>PÃ¡gina para crear una nueva instancia de Asignatura</h2>
+                <h3>Introduzca la informaciÃ³n correspondiente a los siguientes campos de Asignatura :</h3>
                   <div class="field">
-                    <h3>Asignatura:</h3>
                       <p>
-                        <label for="01">01:</label>
-                          <input type="number" name="01" id="01" />
+                        <label for="Nombre">Nombre:</label>
+                          <input type="text" name="Nombre" id="Nombre" />
                       </p>
                       <p>
                         <label for="Creditos">Creditos:</label>
@@ -34,24 +59,28 @@
                       </p>
 
                       <p>
-                        <label for="ref_Titulo">ID del Titulo:</label>
-                        <input type="text" name="ref_Titulo" id="ref_Titulo" placeholder="Referencia a Titulo" />
+                        <label for="ref_Titulo">Seleccione un Titulo:</label>
+                        <select name="ref_Titulo" id="ref_Titulo">
+                          <option value="Titulo">Titulo</option>
+                        </select>
                       </p>
                       <p>
-                        <label for="ref_Profesor">ID del Profesor:</label>
-                        <input type="text" name="ref_Profesor" id="ref_Profesor" placeholder="Referencia a Profesor" />
+                        <label for="ref_Profesor">Seleccione un Profesor:</label>
+                        <select name="ref_Profesor" id="ref_Profesor">
+                          <option value="Profesor">Profesor</option>
+                        </select>
                       </p>
                   </div>
               </div>
               <div class="actions">
                 <button type="submit">Confirmar</button>
               </div>
+              <button onclick="window.history.back()" class="button">Volver</button>
             </form>
           </div>
 
           <div class="sidebar social">
             <h3>Redes Sociales:</h3>
-
             <div class="twitter-timeline-container">
               <a class="twitter-timeline" 
                  data-width="100%" 
@@ -59,11 +88,19 @@
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
               <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
                   Twitter</a></p>
               <p>- <a href="https://www.web.com" target="_blank" class="social-link">
                   Web</a></p>
+          </div>
+        </div>
+
+        <!-- Modal de confirmaciÃ³n -->
+        <div id="modalConfirmacion" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <strong>La instancia ha sido creada con Ã©xito.</strong><br />
+            Redirigiendo a la pÃ¡gina principal...
           </div>
         </div>
 

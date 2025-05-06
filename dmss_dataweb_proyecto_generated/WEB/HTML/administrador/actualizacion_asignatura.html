@@ -5,90 +5,83 @@
         <meta charset="UTF-8">
         <title>ActualizaciÃ³n de Asignatura</title>
         <link rel="stylesheet" href="../styles.css">
+
+        <script>
+          function mostrarMensaje() {
+            const mensaje = document.getElementById("mensajeExito");
+            mensaje.style.display = "block";
+            setTimeout(() => {
+              window.location.href = "index_Administrador.html";
+            }, 5000);
+          }
+          function cerrarMensaje() {
+            window.location.href = "index_Administrador.html";
+          }
+        </script>
       </head>
       <body>
         <div class="header">
           <h1>Pantalla de actualizaciÃ³n de Asignatura</h1>
         </div>
 
+        <div class="subheader">
+          <h2>Actualiza la informaciÃ³n de la Instancia de Asignatura</h2>
+        </div>
+
         <div class="container">
           <div class="main-content">
             <div class="content">
               <h3>Campos para actualizaciÃ³n:</h3>
-              <form method="POST" action="administradorprofesorestudiante/actualizar/asignatura.html">
-
+              <form method="POST" action="administradorprofesorestudiante/actualizar/asignatura.html" onsubmit="event.preventDefault(); mostrarMensaje();">
                   <div class="field">
                       <p>
-                        01 // 
+                        Nombre
+                         (String) 
                         
-                         (Integer) 
                         
                       </p>
-
-                      <!-- Campos para ser actualizados -->
-
-                        <label for="01">Actualizar 01:</label>
-                          <input type="number" id="01_input" name="01" 
-                                 value="invalid">
-
-
+                        <label for="Nombre">Actualizar Nombre:</label>
+                          <input type="text" id="Nombre_input" name="Nombre" 
+                                 value="Asignatura">
                       <p>
-                        Creditos // 
+                        Creditos
                         
                          (Integer) 
                         
                       </p>
-
-                      <!-- Campos para ser actualizados -->
-
                         <label for="Creditos">Actualizar Creditos:</label>
                           <input type="number" id="Creditos_input" name="Creditos" 
                                  value="invalid">
-
-
                       <p>
-                        Optativa // 
+                        Optativa
                         
                         
                          (Boolean) 
                       </p>
-
-                      <!-- Campos para ser actualizados -->
-
-
                         <label for="Optativa">Actualizar Optativa:</label>
                           <input type="checkbox" id="Optativa_input" name="Optativa" 
                                  >
 
-
-                    <!-- Claves forÃ¡neas de la entidad -->
                       <p>- Id_Titulo [ID del Titulo] : Referencia a la entidad Titulo</p>
                       <p>- Id_Profesor [ID del Profesor] : Referencia a la entidad Profesor</p>
                   </div>
 
-                <!-- Botones para actualizar o cancelar -->
                 <div class="actions">
                   <button type="submit" class="button">Actualizar</button>
                 </div>
-
               </form>
             </div>
           </div>
 
           <div class="sidebar social">
             <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
             <div class="twitter-timeline-container">
               <a class="twitter-timeline" 
                  data-width="100%" 
                  data-height="400"
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
-          
-            <!-- Cargar el script de Twitter de manera asÃ­ncrona -->
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demÃ¡s redes sociales como enlaces -->
               <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
                   Twitter</a></p>
               <p>- <a href="https://www.web.com" target="_blank" class="social-link">
@@ -96,10 +89,14 @@
           </div>
         </div>
 
+        <div id="mensajeExito" class="mensaje-exito">
+          <span class="cerrar" onclick="cerrarMensaje()">Ã—</span>
+          <p><strong>La instancia ha sido actualizada con Ã©xito.</strong></p>
+        </div>
+
         <div class="footer">
           AplicaciÃ³n generada automÃ¡ticamente.
         </div>
-
       </body>
       </html>
 
