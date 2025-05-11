@@ -3,47 +3,107 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Evento - PÃ¡gina de contenido</title>
+  <title>Hola, evento de programacion - PÃ¡gina de contenido</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .main-content {
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 250px;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border-radius: 8px;
+    }
+
+    /* Styles for the multimedia images */
+    .multimedia-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    .media-item {
+      text-align: center;
+    }
+
+    .media-item img {
+      width: 100%;
+      height: auto;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .media-type {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <div class="header">
-    <h1>Evento</h1>
+    <h1>Hola, evento de programacion</h1>
   </div>
 
   <div class="container">
     <div class="main-content">
       <div class="content">
-        <h3>Contenido:</h3>
-        <p></p>
+        <h3>Contenido Multimedia:</h3>
+
+        <!-- Multimedia Gallery -->
+		<div class="multimedia-gallery">
+		  <!-- Hardcoded Image Filenames -->
+		  <div class="media-item">
+		    <img src="../../../images/python.png" alt="Imagen multimedia Python">
+		    <p class="media-type">Normal.Tipo</p> <!-- Texto que corresponde a 'Tipo' -->
+		  </div>
+		
+		  <div class="media-item">
+		    <img src="../../../images/c++.jpg" alt="Imagen multimedia C++">
+		    <p class="media-type">Normal.Tipo</p> <!-- Texto que corresponde a 'Tipo' -->
+		  </div>
+		
+		  <div class="media-item">
+		    <img src="../../../images/java.png" alt="Imagen multimedia Java">
+		    <p class="media-type">Normal.Tipo</p> <!-- Texto que corresponde a 'Tipo' -->
+		  </div>
+		</div>
 
 
 
-
+        <!-- Actions (back button) -->
         <div class="actions">
           <a href="administrador/index.html" class="button">Volver</a>
         </div>
       </div>
+    </div>
 
-    <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-            </div>
-          
-            <!-- Cargar el script de Twitter de manera asÃ­ncrona -->
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demÃ¡s redes sociales como enlaces -->
-              <p>- <a href="https://www.web.com" target="_blank" class="social-link">
-                  Web</a></p>
-              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
-                  Twitter</a></p>
-          </div>
+    <div class="sidebar">
+      <h3>Redes Sociales:</h3>
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <p>- <a href="https://www.web.com" target="_blank" class="social-link">
+            Web</a></p>
+        <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
+            Twitter</a></p>
+    </div>
   </div>
 
   <div class="footer">

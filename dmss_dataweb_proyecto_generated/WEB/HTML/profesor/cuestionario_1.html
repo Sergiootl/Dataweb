@@ -23,65 +23,57 @@
         <p><strong>DescripciÃ³n:</strong> ¿Cuantos minutos tiene una hora?</p>
         <form action="resultado_cuestionario_1.html" method="post">
           
-            <div class="pregunta">
-              <p><strong>Pregunta 1:</strong> ¿Cuantos minutos tiene una hora?</p>
-
-                  <label>
-                    <input type="radio" name="preg_1" value="60"> 60
-                  </label><br>
-                  <label>
-                    <input type="radio" name="preg_2" value="70"> 70
-                  </label><br>
-
-
-            </div>
-            
-            
-            <div class="pregunta">
-              <p><strong>Pregunta 2:</strong> El caballo blanco de santiago es blanco</p>
-
-
-                <label><input type="radio" name="preg_2" value="Verdadero"> Verdadero</label><br>
-                <label><input type="radio" name="preg_2" value="Falso"> Falso</label><br>
-
-            </div>
-            
-            
-
+          <ol>
+		    <li>
+		      <p><strong>Pregunta 2:</strong> ¿Cuantos minutos tiene una hora?</p>
+		
+		          <label>
+		            <input type="radio" name="preg_2" value="60"> 60
+		          </label><br>
+		          <label>
+		            <input type="radio" name="preg_2" value="70"> 70
+		          </label><br>
+		
+		
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 3:</strong> El caballo blanco de santiago es blanco</p>
+		
+		
+		        <label><input type="radio" name="preg_3" value="Verdadero"> Verdadero</label><br>
+		        <label><input type="radio" name="preg_3" value="Falso"> Falso</label><br>
+		
+		    </li>
+		</ol>
           <div class="actions" style="margin-top: 30px;">
-			  <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
-			</div>
-			
-			<script>
-			  function enviarRespuestas() {
-			    // AquÃ­ se redirige a la pÃ¡gina de resultados, que puede ser dinÃ¡mica usando el nombre del cuestionario
-			    window.location.href = "resultado_cuestionario_" + "1" + ".html";
-			  }
-			</script>
+            <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
+          </div>
 
+          <script>
+            function enviarRespuestas() {
+              window.location.href = "resultado_cuestionario_" + "1" + ".html";
+            }
+          </script>
         </form>
       </div>
     </div>
 
     <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-            </div>
-          
-            <!-- Cargar el script de Twitter de manera asÃ­ncrona -->
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demÃ¡s redes sociales como enlaces -->
-              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
-                  Twitter</a></p>
-              <p>- <a href="https://www.web.com" target="_blank" class="social-link">
-                  Web</a></p>
-          </div>
+      <h3>Redes Sociales:</h3>
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
+
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
+            Twitter</a></p>
+        <p>- <a href="https://www.web.com" target="_blank" class="social-link">
+            Web</a></p>
+    </div>
   </div>
 
   <div class="footer">
