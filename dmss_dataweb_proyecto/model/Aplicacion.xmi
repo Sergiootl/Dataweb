@@ -26,42 +26,154 @@
       paginapantalla="//@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.6 //@paginapantallas.7 //@paginapantallas.8 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
   <paginapantallas
       xsi:type="dataweb:Encuesta"
-      Nombre="1"
+      Nombre="Sistemas operativos"
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
       redsocial="//@redessociales.0 //@redessociales.1"
       entidad="//@basedatos.0/@tablas.0"
       Descripcion="¿Cuanto te ha gustado la app?">
     <preguntasE
+        Texto="¿Cómo calificarías la facilidad de uso del sistema que has utilizado?"
+        Rcorrecta="//@paginapantallas.0/@preguntasE.0/@respuestas.1">
+      <respuestas
+          Texto="Muy facil de usar"/>
+      <respuestas
+          Texto="Facil de usar"/>
+      <respuestas
+          Texto="Moderadamente facil"/>
+      <respuestas
+          Texto="Dificil de usar"/>
+      <respuestas
+          Texto="Muy dificil de usar"/>
+    </preguntasE>
+    <preguntasE
         Tipo="Corta"
-        Texto="¿Cuanto te ha gustado la app?"
-        Rcorrecta="//@paginapantallas.0/@preguntasE.0/@respuestas.0">
+        Texto="¿Qué características mejorarías en la plataforma para facilitar su uso?"
+        Rcorrecta="//@paginapantallas.0/@preguntasE.1/@respuestas.0">
       <respuestas
-          Texto="Mucho"/>
+          Texto="Que no sea de pago"/>
+    </preguntasE>
+    <preguntasE
+        Texto="¿En qué medida consideras que la interfaz gráfica del sistema es atractiva?">
       <respuestas
-          Texto="Muchisimo"/>
+          Texto="Muy atractiva"/>
+      <respuestas
+          Texto="Atractiva"/>
+      <respuestas
+          Texto="Neutral"/>
+      <respuestas
+          Texto="Poco atractiva"/>
+      <respuestas
+          Texto="Nada atractiva"/>
+    </preguntasE>
+    <preguntasE
+        Texto="¿Cuánto tiempo, aproximadamente, sueles pasar usando la aplicación/plataforma cada semana?"
+        Rcorrecta="//@paginapantallas.0/@preguntasE.3/@respuestas.1">
+      <respuestas
+          Texto="Menos de 1 hora"/>
+      <respuestas
+          Texto="Entre 1 y 3 horas"/>
+      <respuestas
+          Texto="Entre 3 y 5 horas"/>
+      <respuestas
+          Texto="Más de 5 horas"/>
+    </preguntasE>
+    <preguntasE
+        Texto=" ¿Qué tan probable es que recomiendes este sistema a otras personas?"
+        Rcorrecta="//@paginapantallas.0/@preguntasE.4/@respuestas.1">
+      <respuestas
+          Texto="Muy probable"/>
+      <respuestas
+          Texto="Probable"/>
+      <respuestas
+          Texto="Neutral"/>
+      <respuestas
+          Texto="Poco probable"/>
+      <respuestas
+          Texto="Nada probable"/>
     </preguntasE>
   </paginapantallas>
   <paginapantallas
       xsi:type="dataweb:Cuestionario"
-      Nombre="1"
+      Nombre="Informatica"
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
       redsocial="//@redessociales.0 //@redessociales.1"
       entidad="//@basedatos.0/@tablas.0"
       Descripcion="¿Cuantos minutos tiene una hora?">
     <preguntasC
-        Texto="¿Cuantos minutos tiene una hora?"
+        Tipo="Corta"
+        Texto="¿Qué es un sistema operativo?"
         Rcorrecta="//@paginapantallas.1/@preguntasC.0/@respuestas.0">
       <respuestas
-          Texto="60"/>
+          Texto="Un conjunto de programas que gestiona los recursos de la computadora."/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es un protocolo de red?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.1/@respuestas.0">
       <respuestas
-          Texto="70"/>
+          Texto="Un conjunto de reglas para la comunicación entre dispositivos en una red."/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es la encapsulación en programación orientada a objetos?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.2/@respuestas.0">
+      <respuestas
+          Texto="La ocultación de detalles internos y la exposición de solo lo necesario."/>
+    </preguntasC>
+    <preguntasC
+        Texto="¿Qué es una dirección IP?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.3/@respuestas.1">
+      <respuestas
+          Texto="a) Una unidad de medida de velocidad en internet"/>
+      <respuestas
+          Texto="b) Una etiqueta numérica que identifica un dispositivo en una red"/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es un servidor web?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.4/@respuestas.0">
+      <respuestas
+          Texto="Un software que sirve y procesa páginas web."/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es una variable en programación?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.5/@respuestas.0">
+      <respuestas
+          Texto="Un espacio en la memoria que almacena un valor."/>
+    </preguntasC>
+    <preguntasC
+        Texto="¿Cuál es la diferencia entre TCP y UDP?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.6/@respuestas.2">
+      <respuestas
+          Texto="a) TCP es más rápido que UDP"/>
+      <respuestas
+          Texto="b) UDP garantiza la entrega de los datos, mientras que TCP no"/>
+      <respuestas
+          Texto="c) TCP es orientado a la conexión y UDP no lo es"/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es el ciclo de vida de un proceso en un sistema operativo?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.7/@respuestas.0">
+      <respuestas
+          Texto="Las etapas que pasa un proceso desde su creación hasta su terminación."/>
     </preguntasC>
     <preguntasC
         Tipo="V_F"
-        Texto="El caballo blanco de santiago es blanco"
-        Rcorrecta="//@paginapantallas.1/@preguntasC.1/@respuestas.0">
+        Texto="El protocolo HTTP es utilizado para transferir datos de manera segura entre el cliente y el servidor."
+        Rcorrecta="//@paginapantallas.1/@preguntasC.9/@respuestas.1">
       <respuestas
           Texto="Verdadero"/>
+      <respuestas
+          Texto="Falso"/>
+    </preguntasC>
+    <preguntasC
+        Tipo="V_F"
+        Texto="La encapsulación en programación orientada a objetos permite ocultar los detalles de implementación y mostrar solo las interfaces necesarias."
+        Rcorrecta="//@paginapantallas.1/@preguntasC.9/@respuestas.0">
+      <respuestas
+          Texto=" Verdadero"/>
       <respuestas
           Texto="Falso"/>
     </preguntasC>

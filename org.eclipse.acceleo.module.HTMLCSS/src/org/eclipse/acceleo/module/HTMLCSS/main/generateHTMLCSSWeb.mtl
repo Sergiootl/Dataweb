@@ -393,6 +393,48 @@ button:hover, .button:hover {
   <meta charset="UTF-8">
   <title>Pagina principal del Rol [r.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
+<style>
+/* Estilo más fino y compacto para listas largas */
+.entity-list {
+  list-style-type: decimal;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Cada elemento más compacto */
+.entity-list li {
+  background-color: #fdfdfd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover más discreto */
+.entity-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para enlaces: más finos pero legibles */
+.entity-list li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.entity-list li a:hover {
+  color: #0056b3;
+}
+</style>
+
 </head>
 <body>
 <!-- Header Principal - Fondo rojo -->
@@ -411,16 +453,16 @@ button:hover, .button:hover {
     <div class="main-content">
       <h2>Bienvenido al rol [r.Nombre/]</h2>
       <p>A continuacion, se muestra el listado de paginas a las que tiene acceso:</p>
-      <ol>
+<ol class="entity-list">
         [for (p : PaginaPantalla | r.accesoapaginapantalla)]
           [if (p.oclIsKindOf(IndiceEntidad))] 
-            <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceEntidad [p.Nombre/]</a></li>
+            <li><a href="indice_Entidad_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceEntidad [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(IndiceExtendido))] 
-            <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceExtendido [p.Nombre/]</a></li>
+            <li><a href="indiceExtendido_Entidad_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceExtendido [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(IndiceDetalle))] 
-            <li><a href="indice_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceDetalle [p.Nombre/]</a></li>
+            <li><a href="indiceDetalle_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceDetalle [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(CrearInstancia))] 
             <li><a href="crear_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CrearInstancia [p.Nombre/]</a></li>
@@ -668,8 +710,8 @@ button:hover, .button:hover {
         <div id="modalConfirmacion" class="modal">
           <div class="modal-content">
             <span class="close" onclick="cerrarModal()">&times;</span>
-            <strong>La instancia ha sido creada con éxito.</strong><br />
-            Redirigiendo a la página principal...
+            <strong>La instancia ha sido creada con exito.</strong><br />
+            Redirigiendo a la pagina principal...
           </div>
         </div>
 
@@ -912,11 +954,11 @@ button:hover, .button:hover {
 
         <div id="mensajeExito" class="mensaje-exito">
           <span class="cerrar" onclick="cerrarMensaje()">×</span>
-          <p><strong>La instancia ha sido actualizada con éxito.</strong></p>
+          <p><strong>La instancia ha sido actualizada con exito.</strong></p>
         </div>
 
         <div class="footer">
-          Aplicación generada automáticamente.
+          Aplicación generada automaticamente.
         </div>
       </body>
       </html>
@@ -1023,12 +1065,12 @@ button:hover, .button:hover {
 
         <div id="mensajeExito" class="mensaje-exito">
           <span class="cerrar" onclick="cerrarMensaje()">×</span>
-          <p><strong>La entidad ha sido borrada con éxito.</strong></p>
+          <p><strong>La entidad ha sido borrada con exito.</strong></p>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-          Aplicación generada automáticamente.
+          Aplicación generada automaticamente.
         </div>
       </body>
       </html>
@@ -1161,9 +1203,6 @@ button:hover, .button:hover {
     [/file]
   [/for]
 [/template]
-
-
-
 
 [template public generateIndiceExtendido(e : Indice)]
   [for (acceso : Rol | e.usuario)]
@@ -1323,9 +1362,6 @@ button:hover, .button:hover {
   [/for]
 [/template]
 
-
-
- 
 [template public generateIndiceDetalle(e : Indice)]
   [for (acceso : Rol | e.usuario)]
     [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indiceDetalle_Entidad_').concat(e.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
@@ -1504,11 +1540,9 @@ button:hover, .button:hover {
   [/for]
 [/template]
 
-
-
 [template public generateContenidoNormal(p : Normal)]
   [for (acceso : Rol | p.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/pagina_').concat(p.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/pagina_normal_').concat(p.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
@@ -1627,11 +1661,6 @@ button:hover, .button:hover {
   [/for]
 [/template]
 
-
-
-
-
-
 [template public generateCRUD(c : CRUD)]
   [for (acceso : Rol | c.usuario)]
     [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/CRUD_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
@@ -1660,7 +1689,7 @@ button:hover, .button:hover {
         <div class="action-block">
           <h4>Listar</h4>
           <p>Consulta el listado completo de [c.Nombre/].</p>
-          <a href="indice_[c.Nombre.toLowerCase()/].html"><button>Listar</button></a>
+          <a href="indice_Entidad_[c.Nombre.toLowerCase()/].html"><button>Listar</button></a>
         </div>
 
         <div class="action-block">

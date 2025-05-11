@@ -4,6 +4,48 @@
   <meta charset="UTF-8">
   <title>Pagina principal del Rol Administrador</title>
   <link rel="stylesheet" href="../styles.css">
+<style>
+/* Estilo mÃ¡s fino y compacto para listas largas */
+.entity-list {
+  list-style-type: decimal;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Cada elemento mÃ¡s compacto */
+.entity-list li {
+  background-color: #fdfdfd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover mÃ¡s discreto */
+.entity-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para enlaces: mÃ¡s finos pero legibles */
+.entity-list li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.entity-list li a:hover {
+  color: #0056b3;
+}
+</style>
+
 </head>
 <body>
 <!-- Header Principal - Fondo rojo -->
@@ -22,18 +64,18 @@
     <div class="main-content">
       <h2>Bienvenido al rol Administrador</h2>
       <p>A continuacion, se muestra el listado de paginas a las que tiene acceso:</p>
-      <ol>
+<ol class="entity-list">
             <li><a href="crear_asignatura.html">[Asignatura] CrearInstancia Asignatura</a></li>
             <li><a href="detalle_asignatura.html">[Asignatura] DetallesInstancia Asignatura</a></li>
             <li><a href="actualizacion_asignatura.html">[Asignatura] ActualizacionInstancia Asignatura</a></li>
              <li><a href="borrar_asignatura.html">[Asignatura] BorradoInstancia Asignatura</a></li>
-            <li><a href="indice_titulo.html">[Titulo] IndiceDetalle Titulo</a></li>
-            <li><a href="indice_titulo.html">[Titulo] IndiceExtendido Titulo</a></li>
-            <li><a href="indice_titulo.html">[Titulo] IndiceEntidad Titulo</a></li>
+            <li><a href="indiceDetalle_titulo.html">[Titulo] IndiceDetalle Titulo</a></li>
+            <li><a href="indiceExtendido_Entidad_titulo.html">[Titulo] IndiceExtendido Titulo</a></li>
+            <li><a href="indice_Entidad_titulo.html">[Titulo] IndiceEntidad Titulo</a></li>
             <li><a href="crud_titulo.html">[Titulo] CRUD Titulo</a></li>
             <li><a href="evento.html">[Profesor] Pagina Normal Evento</a></li>
-            <li><a href="encuesta_1.html">[Titulo] Encuesta 1</a></li>
-            <li><a href="cuestionario_1.html">[Titulo] Cuestionario 1</a></li>
+            <li><a href="encuesta_sistemas operativos.html">[Titulo] Encuesta Sistemas operativos</a></li>
+            <li><a href="cuestionario_informatica.html">[Titulo] Cuestionario Informatica</a></li>
             <li><a href="crear_titulo.html">[Titulo] CrearInstancia Titulo</a></li>
             <li><a href="detalle_titulo.html">[Titulo] DetallesInstancia Titulo</a></li>
             <li><a href="actualizacion_titulo.html">[Titulo] ActualizacionInstancia Titulo</a></li>
