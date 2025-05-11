@@ -1,0 +1,162 @@
+
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Indice extendido de Titulo</title>
+        <link rel="stylesheet" href="../styles.css">
+		<!-- Header Principal -->
+        <div class="header">
+          	<h1>Universidad de Extremadura Data Management</h1>
+        </div>
+
+        <!-- Subheader -->
+        <div class="subheader">
+          <h2>Indice extendido de Titulo</h2>
+        </div>
+        <style>
+          /* Estilo para la lista de entidades */
+.entity-list {
+  list-style-type: decimal; /* Mantiene la numeraciÃ³n automÃ¡tica */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo para cada elemento de la lista */
+.entity-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para los elementos */
+.entity-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevaciÃ³n */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mÃ¡s intensa al pasar el cursor */
+}
+
+/* Estilo para los enlaces de cada item */
+.entity-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+/* Efecto hover para los enlaces */
+.entity-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+          /* Pagination styling */
+          .pagination {
+            margin-top: 20px;
+            text-align: center;
+          }
+
+          .pagination a {
+            margin: 0 5px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+          }
+
+          .pagination a:hover {
+            background-color: #0056b3;
+          }
+
+          /* Filter section */
+          form {
+            margin-bottom: 20px;
+          }
+
+          label {
+            font-weight: bold;
+          }
+
+
+        </style>
+      </head>
+
+      <body>
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+
+              <!-- Filtro ficticio -->
+              <form method="get">
+                <label for="filtroGenero">Filtrar por Genero:</label>
+                <select id="filtroGenero" name="filtroGenero">
+                  <option value="todos">Todos</option>
+                  <option value="ficcion">Ficcion</option>
+                  <option value="no-ficcion">No Ficcion</option>
+                </select>
+                <input type="submit" value="Aplicar filtro">
+              </form>
+
+              <h3>Listado de Titulo</h3>
+
+              <!-- Lista ordenada con paginacion -->
+              <ol class="entity-list">
+                  <li>
+                    <a href="detalle_titulo.html">Titulo 1</a> (Acceso a los detalles)
+                  </li>
+                  <li>
+                    <a href="detalle_titulo.html">Titulo 2</a> (Acceso a los detalles)
+                  </li>
+                  <li>
+                    <a href="detalle_titulo.html">Titulo 3</a> (Acceso a los detalles)
+                  </li>
+                  <li>
+                    <a href="detalle_titulo.html">Titulo 4</a> (Acceso a los detalles)
+                  </li>
+                  <li>
+                    <a href="detalle_titulo.html">Titulo 5</a> (Acceso a los detalles)
+                  </li>
+                  <li>
+                    <a href="detalle_titulo.html">Titulo 6</a> (Acceso a los detalles)
+                  </li>
+              </ol>
+
+              <!-- PaginaciÃ³n -->
+              <div class="pagination">
+                <a href="?pagina=1&filtroGenero=todos">1</a>
+                <a href="?pagina=2&filtroGenero=todos">2</a>
+                <a href="?pagina=3&filtroGenero=todos">3</a>
+                <a href="?pagina=4&filtroGenero=todos">4</a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
+                  Twitter</a></p>
+              <p>- <a href="https://www.web.com" target="_blank" class="social-link">
+                  Web</a></p>
+          </div>
+        </div>
+
+        <div class="footer">
+          Aplicacion generada automaticamente.
+        </div>
+      </body>
+      </html>
+

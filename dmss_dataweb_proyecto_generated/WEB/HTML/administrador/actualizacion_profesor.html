@@ -3,7 +3,7 @@
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Actualizacion de Asignatura</title>
+        <title>Actualizacion de Profesor</title>
         <link rel="stylesheet" href="../styles.css">
 
         <style>
@@ -33,12 +33,12 @@
             const mensaje = document.getElementById("mensajeExito");
             mensaje.style.display = "block";
             setTimeout(() => {
-              window.location.href = "index_Profesor.html";
+              window.location.href = "index_Administrador.html";
             }, 5000);
           }
 
           function cerrarMensaje() {
-            window.location.href = "index_Profesor.html";
+            window.location.href = "index_Administrador.html";
           }
         </script>
       </head>
@@ -49,14 +49,14 @@
         </div>
 
         <div class="subheader">
-          <h2>Actualiza la informacion de Asignatura</h2>
+          <h2>Actualiza la informacion de Profesor</h2>
         </div>
 
         <div class="container">
           <div class="main-content">
             <div class="content">
               <h3>Campos para actualizar:</h3>
-              <form method="POST" action="administradorprofesorestudiante/actualizar/asignatura.html" onsubmit="event.preventDefault(); mostrarMensaje();">
+              <form method="POST" action="administrador/actualizar/profesor.html" onsubmit="event.preventDefault(); mostrarMensaje();">
                   <div class="field">
                       <p>
                         Nombre
@@ -67,46 +67,50 @@
 
                         <label for="Nombre">Actualizar Nombre:</label>
                           <input type="text" class="form-input" id="Nombre_input" name="Nombre" 
-                                 value="Asignatura">
+                                 value="Profesor">
 
 
                       <p>
-                        Creditos
+                        Apellidos
+                         (String) 
+                        
+                        
+                      </p>
+
+                        <label for="Apellidos">Actualizar Apellidos:</label>
+                          <input type="text" class="form-input" id="Apellidos_input" name="Apellidos" 
+                                 value="invalid">
+
+
+                      <p>
+                        DNI
                         
                          (Integer) 
                         
                       </p>
 
 
-                        <label for="Creditos">Actualizar Creditos:</label>
-                          <input type="number" class="form-input" id="Creditos_input" name="Creditos" 
+                        <label for="DNI">Actualizar DNI:</label>
+                          <input type="number" class="form-input" id="DNI_input" name="DNI" 
                                  value="invalid">
 
                       <p>
-                        Optativa
+                        Departamento
+                         (String) 
                         
                         
-                         (Boolean) 
                       </p>
 
+                        <label for="Departamento">Actualizar Departamento:</label>
+                          <input type="text" class="form-input" id="Departamento_input" name="Departamento" 
+                                 value="invalid">
 
 
-                        <label for="Optativa">Actualizar Optativa:</label>
-                          <select class="form-input" id="Optativa_input" name="Optativa">
-                            <option value="true" >Si</option>
-                            <option value="false" >No</option>
-                          </select>
 
                       <p>
-                        <label for="ref_Titulo">Seleccione un Titulo:</label>
-                        <select class="form-input" name="ref_Titulo" id="ref_Titulo">
-                          <option value="Titulo">Titulo</option>
-                        </select>
-                      </p>
-                      <p>
-                        <label for="ref_Profesor">Seleccione un Profesor:</label>
-                        <select class="form-input" name="ref_Profesor" id="ref_Profesor">
-                          <option value="Profesor">Profesor</option>
+                        <label for="ref_Asignatura">Seleccione un Asignatura:</label>
+                        <select class="form-input" name="ref_Asignatura" id="ref_Asignatura">
+                          <option value="Asignatura">Asignatura</option>
                         </select>
                       </p>
                   </div>
@@ -128,10 +132,6 @@
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
-                  Twitter</a></p>
-              <p>- <a href="https://www.web.com" target="_blank" class="social-link">
-                  Web</a></p>
           </div>
         </div>
 

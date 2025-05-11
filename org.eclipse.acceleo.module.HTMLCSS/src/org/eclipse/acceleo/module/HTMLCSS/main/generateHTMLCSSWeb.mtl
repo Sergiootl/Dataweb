@@ -330,8 +330,8 @@ button:hover, .button:hover {
 
   <div class="container">
     <div class="main-content">
-      <h2>Bienvenidos a la página principal de [a.Nombre/]</h2>
-      <p>Roles de acceso a la información:</p>
+      <h2>Bienvenidos a la pagina principal de [a.Nombre/]</h2>
+      <p>Roles de acceso a la informacion:</p>
       
       <!-- Roles como bloques -->
       <div class="roles-container">
@@ -391,7 +391,7 @@ button:hover, .button:hover {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Página principal del Rol [r.Nombre/]</title>
+  <title>Pagina principal del Rol [r.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -402,15 +402,15 @@ button:hover, .button:hover {
 
 <!-- Subheader - Fondo verde -->
 <div class="subheader">
-  <h2>Pantalla principal del Rol [r.Nombre/]</h2>
+  <h2>Pantalla principal del rol [r.Nombre/]</h2>
 </div>
 
 
 
   <div class="container">
     <div class="main-content">
-      <h2>Bienvenido al Rol [r.Nombre/]</h2>
-      <p>A continuación, podrás acceder al listado de páginas a las que tiene acceso:</p>
+      <h2>Bienvenido al rol [r.Nombre/]</h2>
+      <p>A continuacion, se muestra el listado de paginas a las que tiene acceso:</p>
       <ol>
         [for (p : PaginaPantalla | r.accesoapaginapantalla)]
           [if (p.oclIsKindOf(IndiceEntidad))] 
@@ -446,7 +446,7 @@ button:hover, .button:hover {
             <li><a href="encuesta_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Encuesta [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(Normal))] 
-            <li><a href="[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Página Normal [p.Nombre/]</a></li>
+            <li><a href="[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Pagina Normal [p.Nombre/]</a></li>
           [/if]
         [/for]
       </ol>
@@ -470,69 +470,75 @@ button:hover, .button:hover {
 [/template]
 
 [template public generatePagina(p : PaginaPantalla)]
-  
+
   [if (p.oclIsKindOf(IndiceEntidad))]
-    [let de : IndiceEntidad = p.oclAsType(IndiceEntidad)]
-      [generateIndiceEntidad(de)/]
+    [let ie : IndiceEntidad = p.oclAsType(IndiceEntidad)]
+      [generateIndiceEntidad(ie)/]
     [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(IndiceExtendido))]
-    [let de : IndiceExtendido = p.oclAsType(IndiceExtendido)]
-      [generateIndiceExtendido(de)/]
+    [let iex : IndiceExtendido = p.oclAsType(IndiceExtendido)]
+      [generateIndiceExtendido(iex)/]
     [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(IndiceDetalle))]
-    [let de : IndiceDetalle = p.oclAsType(IndiceDetalle)]
-      [generateIndiceDetalle(de)/]
+    [let id : IndiceDetalle = p.oclAsType(IndiceDetalle)]
+      [generateIndiceDetalle(id)/]
     [/let]
   [/if]
 
   [if (p.oclIsKindOf(DetallesInstancia))]
-    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
-      [generateDetalle(de.oclAsType(DetallesInstancia))/]
+    [let di : DetallesInstancia = p.oclAsType(DetallesInstancia)]
+      [generateDetalle(di)/]
     [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(CrearInstancia))]
-    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
-      [generateCreacion(de.oclAsType(CrearInstancia))/]
+    [let ci : CrearInstancia = p.oclAsType(CrearInstancia)]
+      [generateCreacion(ci)/]
     [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(BorradoInstancia))]
-    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
-      [generateBorrado(de.oclAsType(BorradoInstancia))/]
+    [let bi : BorradoInstancia = p.oclAsType(BorradoInstancia)]
+      [generateBorrado(bi)/]
     [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(CRUD))]
-    [let de : DependienteDeEntidad = p.oclAsType(DependienteDeEntidad)]
-      [generateCRUD(de.oclAsType(CRUD))/]
+    [let crud : CRUD = p.oclAsType(CRUD)]
+      [generateCRUD(crud)/]
     [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(Cuestionario))]
-    [generateCuestionario(p.oclAsType(Cuestionario))/]
+    [let c : Cuestionario = p.oclAsType(Cuestionario)]
+      [generateCuestionario(c)/]
+      [generateResultadoCuestionario(c)/]
+    [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(Encuesta))]
-    [generateEncuesta(p.oclAsType(Encuesta))/]
+    [let e : Encuesta = p.oclAsType(Encuesta)]
+      [generateEncuesta(e)/]
+      [generateResultadoEncuesta(e)/]
+    [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(ActualizacionInstancia))]
     [let a : ActualizacionInstancia = p.oclAsType(ActualizacionInstancia)]
       [generateActualizacion(a)/]
     [/let]
   [/if]
-  
+
   [if (p.oclIsKindOf(Normal))]
-    [let normal : Normal = p.oclAsType(Normal)]
-      [generateContenidoNormal(normal)/]
+    [let n : Normal = p.oclAsType(Normal)]
+      [generateContenidoNormal(n)/]
     [/let]
   [/if]
-  
+
 [/template]
 
 [template public generateCreacion(c : CrearInstancia)]
@@ -601,8 +607,8 @@ button:hover, .button:hover {
           <div class="main-content">
             <form id="formularioCreacion" onsubmit="mostrarMensajeConfirmacion(event)">
               <div class="content">
-                <h2>Página para crear una nueva instancia de [c.Nombre/]</h2>
-                <h3>Introduzca la información correspondiente a los siguientes campos de [c.Nombre/] :</h3>
+                <h2>Pagina para crear una nueva instancia de [c.Nombre/]</h2>
+                <h3>Introduzca la informacion correspondiente a los siguientes campos de [c.Nombre/] :</h3>
 
                 [for (ent : Entidad | c.entidad)]
                   <div class="field">
@@ -617,7 +623,7 @@ button:hover, .button:hover {
                         [/if]
                         [if (attr.TipoAtributo = TipoAtributo::Boolean)]
                           <select class="form-input" name="[attr.Nombre/]" id="[attr.Nombre/]">
-                            <option value="true">Sí</option>
+                            <option value="true">Si</option>
                             <option value="false">No</option>
                           </select>
                         [/if]
@@ -690,7 +696,7 @@ button:hover, .button:hover {
       <body>
         <!-- Header Principal -->
         <div class="header">
-          <h1>Pantalla de detalle de [d.Nombre/]</h1>
+          <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(d)).Nombre/]</h1>
         </div>
 
         <!-- Subheader -->
@@ -778,7 +784,7 @@ button:hover, .button:hover {
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Actualización de [a.Nombre/]</title>
+        <title>Actualizacion de [a.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
 
         <style>
@@ -820,17 +826,17 @@ button:hover, .button:hover {
 
       <body>
         <div class="header">
-          <h1>Pantalla de actualización de [a.Nombre/]</h1>
+          <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(a)).Nombre/]</h1>
         </div>
 
         <div class="subheader">
-          <h2>Actualiza la información de la Instancia de [a.Nombre/]</h2>
+          <h2>Actualiza la informacion de [a.Nombre/]</h2>
         </div>
 
         <div class="container">
           <div class="main-content">
             <div class="content">
-              <h3>Campos para actualización:</h3>
+              <h3>Campos para actualizar:</h3>
               <form method="POST" action="[a.usuario.Nombre.toLowerCase()/]/actualizar/[a.Nombre.toLowerCase()/].html" onsubmit="event.preventDefault(); mostrarMensaje();">
                 [for (ent : Entidad | a.entidad)]
                   <div class="field">
@@ -862,7 +868,7 @@ button:hover, .button:hover {
                         <label for="[attr.Nombre/]">Actualizar [attr.Nombre/]:</label>
                         [let nombreAttr : String = attr.Nombre]
                           <select class="form-input" id="[attr.Nombre/]_input" name="[attr.Nombre/]">
-                            <option value="true" [if a.eGet(a.eClass().getEStructuralFeature(nombreAttr)) = true]selected[/if]>Sí</option>
+                            <option value="true" [if a.eGet(a.eClass().getEStructuralFeature(nombreAttr)) = true]selected[/if]>Si</option>
                             <option value="false" [if a.eGet(a.eClass().getEStructuralFeature(nombreAttr)) = false]selected[/if]>No</option>
                           </select>
                         [/let]
@@ -919,7 +925,6 @@ button:hover, .button:hover {
   [/for]
 [/template]
 
-
 [template public generateBorrado(b : BorradoInstancia)]
   [for (acceso : Rol | b.usuario)]
     [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/borrar_').concat(b.entidad.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
@@ -968,21 +973,21 @@ button:hover, .button:hover {
         <!-- Header Principal -->
         <div class="header">
           [for (ent : Entidad | b.entidad)]
-            <h1>Página de borrado de la entidad [ent.Nombre/]</h1>
+          <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(b)).Nombre/]</h1>
           [/for]
         </div>
 
         <!-- Subheader -->
         <div class="subheader">
-          <h2>Confirma la eliminación de [b.Nombre/]</h2>
+          <h2>Confirma la eliminacion de [b.Nombre/]</h2>
         </div>
 
         <div class="container">
           <div class="main-content">
             <div class="content">
-              <h3>¿Estás seguro de borrar esta entidad?</h3>
+              <h3>¿Estas seguro de borrar esta entidad?</h3>
               [for (ent : Entidad | b.entidad)]
-                <p><strong>¿Está seguro de borrar [ent.Nombre/]?</strong></p>
+                <p><strong>¿Esta seguro de borrar [ent.Nombre/]?</strong></p>
               [/for]
 
               <button id="botonBorrar" onclick="confirmarBorrado()" class="button" style="background-color: red; color: white;">Borrar</button>
@@ -992,7 +997,7 @@ button:hover, .button:hover {
                 <ul>
                   [for (ent : Entidad | b.entidad)]
                     [for (referencia : Entidad | ent.entidadRefereenciada)]
-                      <li>- Id_[referencia.Nombre/] [ ' [' 'ID del ' + referencia.Nombre + ']' /] // Referencia a la entidad [referencia.Nombre/]</li>
+                      <li>Id_[referencia.Nombre/] [ ' [' 'ID del ' + referencia.Nombre + ']' /] // Referencia a la entidad [referencia.Nombre/]</li>
                     [/for]
                   [/for]
                 </ul>
@@ -1031,231 +1036,475 @@ button:hover, .button:hover {
   [/for]
 [/template]
 
-[template public generateIndiceEntidad(i : IndiceEntidad)]
-  [for (acceso : Rol | i.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_').concat(i.indiceNombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+[template public generateIndiceEntidad(e : Indice)]
+  [for (acceso : Rol | e.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_Entidad_').concat(e.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Listado de [i.indiceNombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Listado de [i.indiceNombre/]</h1>
-  </div>
-
-  <div class="container">
-    <div class="main-content">
-      <div class="content">
-        <h3>Listado de instancias de [i.entidadNombre/]:</h3>
-        <ul style="padding-left: 20px;">
-          [for (inst : Entidad | i.instancias)]
-            <li>[inst.id/] - [inst.Nombre/] - 
-              <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a>
-            </li>
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Indice de [e.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+		<!-- Header Principal -->
+        <div class="header">
+          [for (ent : Entidad | e.entidad)]
+          	<h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(e)).Nombre/]</h1>
           [/for]
-        </ul>
-        <p>Este índice muestra sólo los campos básicos de la entidad [i.entidadNombre/], como su identificador y nombre.</p>
-      </div>
-
-      <div class="actions">
-        <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-      </div>
-    </div>
-
-    <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-            </div>
-          
-            <!-- Cargar el script de Twitter de manera asíncrona -->
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demás redes sociales como enlaces -->
-            [for (rs : RedSocial | b.redsocial)]
-              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-                  [rs.Nombre/]</a></p>
-            [/for]
-          </div>
-  </div>
-
-  <div class="footer">
-    Aplicación generada automáticamente.
-  </div>
-</body>
-</html>
-
-  [/file]
-  [/for]
-[/template]
-
-[template public generateIndiceExtendido(i : IndiceExtendido)]
-  [for (acceso : Rol | i.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_').concat(i.indiceNombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Listado extendido de [i.indiceNombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Listado extendido de [i.indiceNombre/]</h1>
-  </div>
-
-  <div class="container">
-    <div class="main-content">
-      <div class="filters">
-        <h3>Filtrar por género:</h3>
-        <form method="get" action="#">
-          <label for="filtroGenero">Género:</label>
-          <select name="filtroGenero" id="filtroGenero">
-            <option value="CienciaFiccion">Ciencia Ficción</option>
-            <option value="Fantasia">Fantasía</option>
-            <option value="Terror">Terror</option>
-          </select>
-          <button type="submit">Aplicar filtro</button>
-        </form>
-      </div>
-
-      <div class="content">
-        <h4>Resultados de búsqueda:</h4>
-        <ul style="padding-left: 20px;">
-          [for (inst : Entidad | i.instancias)]
-            <li>[inst.id/] - [inst.Nombre/] - 
-              <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a>
-            </li>
-          [/for]
-        </ul>
-        <p>Este índice incluye paginación y la posibilidad de filtrar por género.</p>
-        
-        <div class="pagination">
-          <button>Anterior</button>
-          <button>Siguiente</button>
         </div>
-      </div>
 
-      <div class="actions">
-        <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-      </div>
-    </div>
+        <!-- Subheader -->
+        <div class="subheader">
+          <h2>Confirma la eliminacion de [e.Nombre/]</h2>
+        </div>
+	<style>
+/* Estilo para la lista de entidades */
+.entity-list {
+  list-style-type: decimal; /* Mantiene la numeración automática */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-    <div class="sidebar social">
+/* Estilo para cada elemento de la lista */
+.entity-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para los elementos */
+.entity-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevación */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
+}
+
+/* Estilo para los enlaces de cada item */
+.entity-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+/* Efecto hover para los enlaces */
+.entity-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+
+
+</style>
+      </head>
+
+      <body>
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+              <h3>Listado de instancias de la clase [e.Nombre/]</h3>
+
+              <!-- Lista ordenada -->
+              <ol class="entity-list">
+                <li>
+                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 01</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 02</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 03</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 04</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 05</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 06</a> (Acceso a los detalles)
+                </li>
+              </ol>
+
+            </div>
+<button onclick="window.history.back()" class="button">Volver</button>
+          </div>
+				
+
+          <div class="sidebar social">
             <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
             <div class="twitter-timeline-container">
               <a class="twitter-timeline" 
                  data-width="100%" 
                  data-height="400"
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
-          
-            <!-- Cargar el script de Twitter de manera asíncrona -->
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demás redes sociales como enlaces -->
-            [for (rs : RedSocial | b.redsocial)]
+            [for (rs : RedSocial | e.redsocial)]
               <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
                   [rs.Nombre/]</a></p>
             [/for]
           </div>
-  </div>
+        </div>
 
-  <div class="footer">
-    Aplicación generada automáticamente.
-  </div>
-</body>
-</html>
+        <div class="footer">
+          Aplicacion generada automaticamente.
+        </div>
+      </body>
+      </html>
 
-  [/file]
+    [/file]
   [/for]
 [/template]
 
-[template public generateIndiceDetalle(i : IndiceDetalle)]
-  [for (acceso : Rol | i.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_').concat(i.indiceNombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Listado y detalle de [i.indiceNombre/]</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Listado y detalle de [i.indiceNombre/]</h1>
-  </div>
 
-  <div class="container">
-    <div class="main-content">
-      <div class="content">
-        <h3>Listado de instancias de [i.entidadNombre/]:</h3>
-        <ul style="padding-left: 20px;">
-          [for (inst : Entidad | i.instancias)]
-            <li>[inst.id/] - [inst.Nombre/] - 
-              <a href="detalle_[inst.Nombre.toLowerCase()/].html">Acceder a los detalles</a>
+
+[template public generateIndiceExtendido(e : Indice)]
+  [for (acceso : Rol | e.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indiceExtendido_Entidad_').concat(e.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Indice extendido de [e.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+		<!-- Header Principal -->
+        <div class="header">
+          [for (ent : Entidad | e.entidad)]
+          	<h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(e)).Nombre/]</h1>
+          [/for]
+        </div>
+
+        <!-- Subheader -->
+        <div class="subheader">
+          <h2>Indice extendido de [e.Nombre/]</h2>
+        </div>
+        <style>
+          /* Estilo para la lista de entidades */
+.entity-list {
+  list-style-type: decimal; /* Mantiene la numeración automática */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo para cada elemento de la lista */
+.entity-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para los elementos */
+.entity-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevación */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
+}
+
+/* Estilo para los enlaces de cada item */
+.entity-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+/* Efecto hover para los enlaces */
+.entity-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+          /* Pagination styling */
+          .pagination {
+            margin-top: 20px;
+            text-align: center;
+          }
+
+          .pagination a {
+            margin: 0 5px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+          }
+
+          .pagination a:hover {
+            background-color: #0056b3;
+          }
+
+          /* Filter section */
+          form {
+            margin-bottom: 20px;
+          }
+
+          label {
+            font-weight: bold;
+          }
+
+
+        </style>
+      </head>
+
+      <body>
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+
+              <!-- Filtro ficticio -->
+              <form method="get">
+                <label for="filtroGenero">Filtrar por Genero:</label>
+                <select id="filtroGenero" name="filtroGenero">
+                  <option value="todos">Todos</option>
+                  <option value="ficcion">Ficcion</option>
+                  <option value="no-ficcion">No Ficcion</option>
+                </select>
+                <input type="submit" value="Aplicar filtro">
+              </form>
+
+              <h3>Listado de [e.Nombre/]</h3>
+
+              <!-- Lista ordenada con paginacion -->
+              <ol class="entity-list">
+                [for (i : Integer | Sequence{1 .. 6})]
+                  <li>
+                    <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] [i/]</a> (Acceso a los detalles)
+                  </li>
+                [/for]
+              </ol>
+
+              <!-- Paginación -->
+              <div class="pagination">
+                <a href="?pagina=1&filtroGenero=todos">1</a>
+                <a href="?pagina=2&filtroGenero=todos">2</a>
+                <a href="?pagina=3&filtroGenero=todos">3</a>
+                <a href="?pagina=4&filtroGenero=todos">4</a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            [for (rs : RedSocial | e.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+        </div>
+
+        <div class="footer">
+          Aplicacion generada automaticamente.
+        </div>
+      </body>
+      </html>
+
+    [/file]
+  [/for]
+[/template]
+
+
+
+ 
+[template public generateIndiceDetalle(e : Indice)]
+  [for (acceso : Rol | e.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indiceDetalle_Entidad_').concat(e.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <title>Índice y Detalle de [e.Nombre/]</title>
+      <link rel="stylesheet" href="../styles.css">
+<!-- Header Principal -->
+<div class="header">
+  [for (ent : Entidad | e.entidad)]
+    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(e)).Nombre/]</h1>
+  [/for]
+</div>
+
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Índice extendido de [e.Nombre/]</h2>
+</div>
+      <style>
+  /* Estilo para la lista de entidades */
+  .entity-list {
+    list-style-type: decimal; /* Mantiene la numeración automática */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Estilo para cada elemento de la lista */
+  .entity-list li {
+    background-color: #f9f9f9; /* Fondo suave para cada item */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd; /* Borde sutil */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Efecto hover para los elementos */
+  .entity-list li:hover {
+    transform: translateY(-5px); /* Efecto de elevación */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
+  }
+
+  /* Estilo para los enlaces de cada item */
+  .entity-list li a {
+    text-decoration: none;
+    color: #333; /* Color de texto oscuro */
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    transition: color 0.3s ease;
+  }
+
+  /* Efecto hover para los enlaces */
+  .entity-list li a:hover {
+    color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+  }
+
+  /* Sección de detalle */
+  .detail {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    margin-left: 20px;
+    width: 60%;
+  }
+
+  .detail h4 {
+    color: #007bff;
+  }
+
+  .detail p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  /* Contenedor principal */
+  .container {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+  }
+
+  .main-content {
+    display: flex;
+    width: 100%;
+  }
+</style>
+    </head>
+
+    <body>
+      <div class="container">
+        <div class="main-content">
+          <!-- Sección de índice (izquierda) -->
+          <div class="content">
+            <h3>Listado de [e.Nombre/]</h3>
+            <ol class="entity-list">
+              <li><a href="#detalle1">[e.Nombre/] 01</a></li>
+              <li><a href="#detalle2">[e.Nombre/] 02</a></li>
+              <li><a href="#detalle3">[e.Nombre/] 03</a></li>
+              <li><a href="#detalle4">[e.Nombre/] 04</a></li>
+              <li><a href="#detalle5">[e.Nombre/] 05</a></li>
+              <li><a href="#detalle6">[e.Nombre/] 06</a></li>
+            </ol>
+          </div>
+
+          <!-- Sección de detalle (derecha) -->
+<div class="detail">
+  <h3>Campos:</h3>
+  [for (ent : Entidad | e.entidad)] 
+    <div class="field">
+      [for (attr : Atributo | ent.atributos)] 
+        <p>
+          [attr.Nombre/] // 
+          [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
+          [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
+          [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
+        </p>
+      [/for]
+
+      <!-- Aquí se muestran las claves foráneas de la entidad -->
+      [for (referencia : Entidad | ent.entidadRefereenciada)] 
+        <p>- Id_[referencia.Nombre/][ ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
+      [/for]
+
+      <div class="options" style="margin-top: 20px;">
+        <h4>Listado de opciones:</h4>
+        <ol style="padding-left: 20px;">
+          <li style="margin-bottom: 10px;">
+            <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
+          </li>
+          [for (referencia : Entidad | ent.entidadRefereenciada)] 
+            <li style="margin-bottom: 10px;">
+              <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [ ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
             </li>
           [/for]
-        </ul>
-
-        <h3>Detalle de la instancia seleccionada:</h3>
-        [if (i.instanciaSeleccionada)]
-          <div class="detalle">
-            <p><strong>ID:</strong> [i.instanciaSeleccionada.id/]</p>
-            <p><strong>Nombre:</strong> [i.instanciaSeleccionada.Nombre/]</p>
-            <p><strong>Descripción:</strong> [i.instanciaSeleccionada.Descripcion/]</p>
-          </div>
-        [/if]
-
-        <p>Este índice muestra todas las instancias y permite ver los detalles de una instancia seleccionada.</p>
-        
-        <div class="actions">
-          <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-        </div>
+        </ol>
       </div>
     </div>
+  [/for]
+</div>
 
-    <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-            </div>
-          
-            <!-- Cargar el script de Twitter de manera asíncrona -->
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demás redes sociales como enlaces -->
-            [for (rs : RedSocial | b.redsocial)]
-              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-                  [rs.Nombre/]</a></p>
-            [/for]
+
+
+        </div>
+
+        <div class="sidebar social">
+          <h3>Redes Sociales:</h3>
+          <div class="twitter-timeline-container">
+            <a class="twitter-timeline" 
+               data-width="100%" 
+               data-height="400"
+               href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
           </div>
-  </div>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          [for (rs : RedSocial | e.redsocial)]
+            <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+              [rs.Nombre/]</a></p>
+          [/for]
+        </div>
 
-  <div class="footer">
-    Aplicación generada automáticamente.
-  </div>
-</body>
-</html>
+      </div>
+<button onclick="window.history.back()" class="button">Volver</button>
+      <div class="footer">
+        Aplicación generada automáticamente.
+      </div>
+    </body>
+    </html>
 
   [/file]
   [/for]
 [/template]
+
+
 
 [template public generateContenidoNormal(p : Normal)]
   [for (acceso : Rol | p.usuario)]
@@ -1265,74 +1514,107 @@ button:hover, .button:hover {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>[p.Nombre/] - Página de contenido</title>
+  <title>[p.Contenido/] - Página de contenido</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .main-content {
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 250px;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border-radius: 8px;
+    }
+
+    /* Styles for the multimedia images */
+    .multimedia-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    .media-item {
+      text-align: center;
+    }
+
+    .media-item img {
+      width: 100%;
+      height: auto;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .media-type {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <div class="header">
-    <h1>[p.Nombre/]</h1>
+    <h1>[p.Contenido/]</h1>
   </div>
 
   <div class="container">
     <div class="main-content">
       <div class="content">
-        <h3>Contenido:</h3>
-        <p>[p.texto/]</p>
+        <h3>Contenido Multimedia:</h3>
 
-        [for (img : Imagen | p.imagenes)]
-          <div class="image">
-            <img src="[img.url/]" alt="[img.descripcion/]">
-          </div>
-        [/for]
+        <!-- Multimedia Gallery -->
+		<div class="multimedia-gallery">
+		  <!-- Hardcoded Image Filenames -->
+		  <div class="media-item">
+		    <img src="../../../images/python.png" alt="Imagen multimedia Python">
+		    <p class="media-type">Normal.Tipo</p> <!-- Texto que corresponde a 'Tipo' -->
+		  </div>
+		
+		  <div class="media-item">
+		    <img src="../../../images/c++.jpg" alt="Imagen multimedia C++">
+		    <p class="media-type">Normal.Tipo</p> <!-- Texto que corresponde a 'Tipo' -->
+		  </div>
+		
+		  <div class="media-item">
+		    <img src="../../../images/java.png" alt="Imagen multimedia Java">
+		    <p class="media-type">Normal.Tipo</p> <!-- Texto que corresponde a 'Tipo' -->
+		  </div>
+		</div>
 
-        [for (video : Video | p.videos)]
-          <div class="video">
-            <video controls>
-              <source src="[video.url/]" type="video/mp4">
-              Tu navegador no soporta el formato de video.
-            </video>
-          </div>
-        [/for]
 
-        [for (tabla : Tabla | p.tablas)]
-          <div class="table">
-            <h4>[tabla.Nombre/]</h4>
-            <table>
-              [for (fila : Fila | tabla.filas)]
-                <tr>
-                  [for (celda : Celda | fila.celdas)]
-                    <td>[celda.Contenido/]</td>
-                  [/for]
-                </tr>
-              [/for]
-            </table>
-          </div>
-        [/for]
 
+        <!-- Actions (back button) -->
         <div class="actions">
           <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
         </div>
       </div>
+    </div>
 
-    <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-            </div>
-          
-            <!-- Cargar el script de Twitter de manera asíncrona -->
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demás redes sociales como enlaces -->
-            [for (rs : RedSocial | p.redsocial)]
-              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-                  [rs.Nombre/]</a></p>
-            [/for]
-          </div>
+    <div class="sidebar">
+      <h3>Redes Sociales:</h3>
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+      [for (rs : RedSocial | p.redsocial)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+            [rs.Nombre/]</a></p>
+      [/for]
+    </div>
   </div>
 
   <div class="footer">
@@ -1344,6 +1626,11 @@ button:hover, .button:hover {
     [/file]
   [/for]
 [/template]
+
+
+
+
+
 
 [template public generateCRUD(c : CRUD)]
   [for (acceso : Rol | c.usuario)]
@@ -1442,67 +1729,60 @@ button:hover, .button:hover {
       <div class="content">
         <p><strong>Descripción:</strong> [c.Descripcion/]</p>
         <form action="resultado_cuestionario_[c.Nombre.toLowerCase()/].html" method="post">
-          [let i : Integer = 1 /]
           
-          [for (preg : Pregunta | c.preguntasC)]
-            <div class="pregunta">
-              <p><strong>Pregunta [i/]:</strong> [preg.Texto/]</p>
-
-              [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
-                [for (resp : Respuesta | preg.respuestas)]
-                  <label>
-                    <input type="radio" name="preg_[i/]" value="[resp.Texto/]"> [resp.Texto/]
-                  </label><br>
-                [/for]
-              [/if]
-
-              [if (preg.Tipo = TipoPregunta::V_F)]
-                <label><input type="radio" name="preg_[i/]" value="Verdadero"> Verdadero</label><br>
-                <label><input type="radio" name="preg_[i/]" value="Falso"> Falso</label><br>
-              [/if]
-
-              [if (preg.Tipo = TipoPregunta::Corta)]
-                <input type="text" name="preg_[i/]" placeholder="Escribe tu respuesta..."><br>
-              [/if]
-            </div>
-            
-            [set i = i + 1 /]
-          [/for]
-
+          <ol>
+		  [for (preg : Pregunta | c.preguntasC)]
+		    <li>
+		      <p><strong>Pregunta [c.preguntasC->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
+		
+		      [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+		        [for (resp : Respuesta | preg.respuestas)]
+		          <label>
+		            <input type="radio" name="preg_[c.preguntasC->indexOf(preg) + 1/]" value="[resp.Texto/]"> [resp.Texto/]
+		          </label><br>
+		        [/for]
+		      [/if]
+		
+		      [if (preg.Tipo = TipoPregunta::V_F)]
+		        <label><input type="radio" name="preg_[c.preguntasC->indexOf(preg) + 1/]" value="Verdadero"> Verdadero</label><br>
+		        <label><input type="radio" name="preg_[c.preguntasC->indexOf(preg) + 1/]" value="Falso"> Falso</label><br>
+		      [/if]
+		
+		      [if (preg.Tipo = TipoPregunta::Corta)]
+		        <input type="text" name="preg_[c.preguntasC->indexOf(preg) + 1/]" placeholder="Escribe tu respuesta..."><br>
+		      [/if]
+		    </li>
+		  [/for]
+		</ol>
           <div class="actions" style="margin-top: 30px;">
-			  <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
-			</div>
-			
-			<script>
-			  function enviarRespuestas() {
-			    // Aquí se redirige a la página de resultados, que puede ser dinámica usando el nombre del cuestionario
-			    window.location.href = "resultado_cuestionario_" + "[c.Nombre.toLowerCase()/]" + ".html";
-			  }
-			</script>
+            <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
+          </div>
 
+          <script>
+            function enviarRespuestas() {
+              window.location.href = "resultado_cuestionario_" + "[c.Nombre.toLowerCase()/]" + ".html";
+            }
+          </script>
         </form>
       </div>
     </div>
 
     <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-            </div>
-          
-            <!-- Cargar el script de Twitter de manera asíncrona -->
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demás redes sociales como enlaces -->
-            [for (rs : RedSocial | c.redsocial)]
-              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-                  [rs.Nombre/]</a></p>
-            [/for]
-          </div>
+      <h3>Redes Sociales:</h3>
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
+
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+      [for (rs : RedSocial | c.redsocial)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+            [rs.Nombre/]</a></p>
+      [/for]
+    </div>
   </div>
 
   <div class="footer">
@@ -1512,11 +1792,7 @@ button:hover, .button:hover {
 </body>
 </html>
 
-    [/file]
-  [/for]
-  <!-- Crear la página de resultados al final del cuestionario -->
-  [for (r : Rol | c.roles)]
-    [generateResultadoCuestionario(c)/]
+    [/file]  <!-- Cierre correcto del bloque file -->
   [/for]
 [/template]
 
@@ -1547,31 +1823,18 @@ button:hover, .button:hover {
       <div class="content">
         <h3>Preguntas y Respuestas Correctas:</h3>
 
-        [let i : Integer = 1 /]
+        <ol>
+          [for (preg : Pregunta | c.preguntasC)]
+            <li>
+              <p><strong>Pregunta [c.preguntasC->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
+              <p><strong>Respuesta Correcta:</strong> [preg.Rcorrecta.Texto/]</p>
+            </li>
+          [/for]
+        </ol>
 
-        [for (preg : Pregunta | c.preguntasC)]
-          <div class="pregunta">
-            <p><strong>Pregunta [i/]:</strong> [preg.Texto/]</p>
-
-            [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
-              <p><strong>Respuesta Correcta:</strong> [preg.respuestas->select(r | r.Rcorrecta = true)->first().Texto/]</p>
-            [/if]
-
-            [if (preg.Tipo = TipoPregunta::V_F)]
-              <p><strong>Respuesta Correcta:</strong> [preg.respuestas->select(r | r.Rcorrecta = true)->first().Texto/]</p>
-            [/if]
-
-            [if (preg.Tipo = TipoPregunta::Corta)]
-              <p><strong>Respuesta Correcta:</strong> [preg.RespuestaCorrecta/]</p>
-            [/if]
-
-          </div>
-          
-          [set i = i + 1 /]
-        [/for]
       </div>
     </div>
-
+<button onclick="window.history.back()" class="button">Volver</button>
     <div class="sidebar social">
       <h3>Redes Sociales:</h3>
       <!-- Mostrar el timeline de Twitter dentro del contenedor -->
@@ -1604,7 +1867,6 @@ button:hover, .button:hover {
   [/for]
 [/template]
 
-
 [template public generateEncuesta(c : Encuesta)]
   [for (acceso : Rol | c.usuario)]
     [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/encuesta_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
@@ -1629,31 +1891,31 @@ button:hover, .button:hover {
         <p>[c.Descripcion/]</p>
 
         <!-- Formulario para responder la encuesta -->
-        <form action="#" method="post">
+        <form action="resultado_encuesta_[c.Nombre.toLowerCase()/].html" method="post">
           
           <!-- Iteramos sobre las preguntas de la encuesta -->
           [for (preg : Pregunta | c.preguntasE)]
             <div class="pregunta">
-              <p><strong>Pregunta:</strong> [preg.Texto/]</p>
+              <p><strong>Pregunta [c.preguntasE->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
 
               <!-- Si la pregunta es de opción múltiple -->
               [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
                 [for (resp : Respuesta | preg.respuestas)]
                   <label>
-                    <input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="[resp.Texto/]"> [resp.Texto/]
+                    <input type="radio" name="preg_[c.preguntasE->indexOf(preg) + 1/]" value="[resp.Texto/]"> [resp.Texto/]
                   </label><br>
                 [/for]
               [/if]
 
               <!-- Si la pregunta es de verdadero o falso -->
               [if (preg.Tipo = TipoPregunta::V_F)]
-                <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Verdadero"> Verdadero</label><br>
-                <label><input type="radio" name="[preg.Texto.replaceAll(' ', '_')/]" value="Falso"> Falso</label><br>
+                <label><input type="radio" name="preg_[c.preguntasE->indexOf(preg) + 1/]" value="Verdadero"> Verdadero</label><br>
+                <label><input type="radio" name="preg_[c.preguntasE->indexOf(preg) + 1/]" value="Falso"> Falso</label><br>
               [/if]
 
               <!-- Si la pregunta es de respuesta corta -->
               [if (preg.Tipo = TipoPregunta::Corta)]
-                <input type="text" name="[preg.Texto.replaceAll(' ', '_')/]" placeholder="Escribe tu respuesta..."><br>
+                <input type="text" name="preg_[c.preguntasE->indexOf(preg) + 1/]" placeholder="Escribe tu respuesta..."><br>
               [/if]
             </div>
           [/for]
@@ -1692,7 +1954,72 @@ button:hover, .button:hover {
 </body>
 </html>
 
-    [/file]
+    [/file]  <!-- Cierre correcto del bloque file -->
   [/for]
 [/template]
 
+[template public generateResultadoEncuesta(c : Encuesta)]
+  [for (acceso : Rol | c.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/resultado_encuesta_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Resultado de la Encuesta [c.Nombre/]</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <div class="header">
+    <h1>Resultado de la Encuesta: [c.Nombre/]</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <h3>Preguntas y Respuestas Correctas:</h3>
+
+        <ol>
+          [for (preg : Pregunta | c.preguntasE)]
+            <li>
+              <p><strong>Pregunta [c.preguntasE->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
+              <p><strong>Respuesta Correcta:</strong> [preg.Rcorrecta.Texto/]</p>
+            </li>
+          [/for]
+        </ol>
+
+      </div>
+    </div>
+<button onclick="window.history.back()" class="button">Volver</button>
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
+    
+      <!-- Cargar el script de Twitter de manera asíncrona -->
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+      <!-- Mostrar las demás redes sociales como enlaces -->
+      [for (rs : RedSocial | c.redsocial)]
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+            [rs.Nombre/]</a></p>
+      [/for]
+    </div>
+  </div>
+
+  <div class="footer">
+    Aplicación generada automáticamente.
+  </div>
+
+</body>
+</html>
+
+    [/file]
+  [/for]
+[/template]

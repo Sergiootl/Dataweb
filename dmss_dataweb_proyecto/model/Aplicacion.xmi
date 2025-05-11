@@ -8,7 +8,7 @@
     Descripcion="Uex App">
   <roles Nombre="Administrador"
       entidades="//@basedatos.0/@tablas.0 //@basedatos.0/@tablas.1 //@basedatos.0/@tablas.2 //@basedatos.0/@tablas.3"
-      accesoapaginapantalla="//@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
+      accesoapaginapantalla="//@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.12 //@paginapantallas.13 //@paginapantallas.14 //@paginapantallas.15 //@paginapantallas.16 //@paginapantallas.17 //@paginapantallas.18 //@paginapantallas.19"/>
   <roles Nombre="Profesor"
       entidades="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.3"
       accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.2"/>
@@ -33,7 +33,8 @@
       Descripcion="¿Cuanto te ha gustado la app?">
     <preguntasE
         Tipo="Corta"
-        Texto="¿Cuanto te ha gustado la app?">
+        Texto="¿Cuanto te ha gustado la app?"
+        Rcorrecta="//@paginapantallas.0/@preguntasE.0/@respuestas.0">
       <respuestas
           Texto="Mucho"/>
       <respuestas
@@ -113,7 +114,14 @@
       usuario="//@roles.0 //@roles.1 //@roles.3 //@roles.2"
       redsocial="//@redessociales.1 //@redessociales.0"
       entidad="//@basedatos.0/@tablas.3"
-      Contenido="Hola, evento de programacion"/>
+      Contenido="Hola, evento de programacion">
+    <contenidomultimedia
+        Tipo="Java"/>
+    <contenidomultimedia
+        Tipo="Python"/>
+    <contenidomultimedia
+        Tipo="C++"/>
+  </paginapantallas>
   <paginapantallas
       xsi:type="dataweb:Index"
       Nombre="Home"
@@ -129,34 +137,42 @@
   <paginapantallas
       xsi:type="dataweb:CrearInstancia"
       Nombre="Titulo"
+      usuario="//@roles.0"
       entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:DetallesInstancia"
       Nombre="Titulo"
+      usuario="//@roles.0"
       entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:ActualizacionInstancia"
       Nombre="Titulo"
+      usuario="//@roles.0"
       entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:BorradoInstancia"
       Nombre="Titulo"
+      usuario="//@roles.0"
       entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:CrearInstancia"
       Nombre="Profesor"
+      usuario="//@roles.0"
       entidad="//@basedatos.0/@tablas.3"/>
   <paginapantallas
       xsi:type="dataweb:DetallesInstancia"
       Nombre="Profesor"
+      usuario="//@roles.0"
       entidad="//@basedatos.0/@tablas.3"/>
   <paginapantallas
       xsi:type="dataweb:ActualizacionInstancia"
       Nombre="Profesor"
+      usuario="//@roles.0"
       entidad="//@basedatos.0/@tablas.3"/>
   <paginapantallas
       xsi:type="dataweb:BorradoInstancia"
       Nombre="Profesor"
+      usuario="//@roles.0"
       entidad="//@basedatos.0/@tablas.3"/>
   <basedatos
       Nombre="Uex">

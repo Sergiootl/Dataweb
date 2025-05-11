@@ -2,7 +2,7 @@
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Crear nueva instancia de Asignatura</title>
+        <title>Crear nueva instancia de Profesor</title>
         <link rel="stylesheet" href="../styles.css">
 
         <style>
@@ -35,13 +35,13 @@
             document.getElementById("formularioCreacion").reset();
 
             redirTimer = setTimeout(() => {
-              window.location.href = "index_profesor.html";
+              window.location.href = "index_administrador.html";
             }, 5000);
           }
 
           function cerrarModal() {
             clearTimeout(redirTimer);
-            window.location.href = "index_profesor.html";
+            window.location.href = "index_administrador.html";
           }
         </script>
       </head>
@@ -54,15 +54,15 @@
 
         <!-- Subheader - Fondo verde -->
         <div class="subheader">
-          <h2>Crear nueva instancia de Asignatura</h2>
+          <h2>Crear nueva instancia de Profesor</h2>
         </div>
 
         <div class="container">
           <div class="main-content">
             <form id="formularioCreacion" onsubmit="mostrarMensajeConfirmacion(event)">
               <div class="content">
-                <h2>Pagina para crear una nueva instancia de Asignatura</h2>
-                <h3>Introduzca la informacion correspondiente a los siguientes campos de Asignatura :</h3>
+                <h2>Pagina para crear una nueva instancia de Profesor</h2>
+                <h3>Introduzca la informacion correspondiente a los siguientes campos de Profesor :</h3>
 
                   <div class="field">
                       <p>
@@ -70,27 +70,22 @@
                           <input type="text" class="form-input" name="Nombre" id="Nombre" />
                       </p>
                       <p>
-                        <label for="Creditos">Creditos:</label>
-                          <input type="number" class="form-input" name="Creditos" id="Creditos" />
+                        <label for="Apellidos">Apellidos:</label>
+                          <input type="text" class="form-input" name="Apellidos" id="Apellidos" />
                       </p>
                       <p>
-                        <label for="Optativa">Optativa:</label>
-                          <select class="form-input" name="Optativa" id="Optativa">
-                            <option value="true">Si</option>
-                            <option value="false">No</option>
-                          </select>
+                        <label for="DNI">DNI:</label>
+                          <input type="number" class="form-input" name="DNI" id="DNI" />
+                      </p>
+                      <p>
+                        <label for="Departamento">Departamento:</label>
+                          <input type="text" class="form-input" name="Departamento" id="Departamento" />
                       </p>
 
                       <p>
-                        <label for="ref_Titulo">Seleccione un Titulo:</label>
-                        <select class="form-input" name="ref_Titulo" id="ref_Titulo">
-                          <option value="Titulo">Titulo</option>
-                        </select>
-                      </p>
-                      <p>
-                        <label for="ref_Profesor">Seleccione un Profesor:</label>
-                        <select class="form-input" name="ref_Profesor" id="ref_Profesor">
-                          <option value="Profesor">Profesor</option>
+                        <label for="ref_Asignatura">Seleccione un Asignatura:</label>
+                        <select class="form-input" name="ref_Asignatura" id="ref_Asignatura">
+                          <option value="Asignatura">Asignatura</option>
                         </select>
                       </p>
                   </div>
@@ -112,8 +107,6 @@
                  href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
             </div>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">Twitter</a></p>
-              <p>- <a href="https://www.web.com" target="_blank" class="social-link">Web</a></p>
           </div>
         </div>
 
