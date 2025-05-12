@@ -309,6 +309,329 @@ button, .button {
 button:hover, .button:hover {
   background-color: #4e7d2a;  /* Verde más oscuro */
 }
+/* ------------------------ */
+/* Estilos para generateRolIndex */
+/* ------------------------ */
+
+.entity-list {
+  list-style-type: decimal;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.entity-list li {
+  background-color: #fdfdfd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.entity-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.entity-list li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.entity-list li a:hover {
+  color: #0056b3;
+}
+
+/* ------------------------ */
+/* Estilos para generateCreacion */
+/* ------------------------ */
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  background-color: #fff;
+}
+
+/* ------------------------ */
+/* Estilos para generateBorrado */
+/* ------------------------ */
+
+.mensaje-exito {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.mensaje-exito .cerrar {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+/* ------------------------ */
+/* Estilos para generateIndiceEntidad */
+/* ------------------------ */
+
+.entity-list {
+  list-style-type: decimal; /* Mantiene la numeración automática */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entity-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.entity-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevación */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
+}
+
+.entity-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.entity-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+
+/* ------------------------ */
+/* Estilos para generateIndiceExtendido */
+/* ------------------------ */
+
+.entity-list {
+  list-style-type: decimal; /* Mantiene la numeración automática */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entity-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.entity-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevación */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
+}
+
+.entity-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.entity-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+
+/* Paginación */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a {
+  margin: 0 5px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  background-color: #0056b3;
+}
+
+/* Sección de filtro */
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+/* --------------------------- */
+/* Estilos para generateIndiceDetalle (renombrado) */
+/* --------------------------- */
+
+/* Estilo para la lista de entidades */
+.indice-detalle-list {
+  list-style-type: decimal; /* Mantiene la numeración automática */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo para cada elemento de la lista */
+.indice-detalle-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para los elementos */
+.indice-detalle-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevación */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
+}
+
+/* Estilo para los enlaces de cada item */
+.indice-detalle-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+/* Efecto hover para los enlaces */
+.indice-detalle-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+
+/* Sección de detalle */
+.indice-detalle-section {
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  margin-left: 20px;
+  width: 60%;
+}
+
+.indice-detalle-section h4 {
+  color: #007bff;
+}
+
+.indice-detalle-section p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Contenedor principal */
+.indice-detalle-container {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.indice-detalle-main-content {
+  display: flex;
+  width: 100%;
+}
+/* ------------------------- */
+/* Estilos para generateContenidoNormal */
+/* ------------------------- */
+
+/* Estilos para el contenedor principal */
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+  flex: 1;
+}
+
+/* Estilos para la barra lateral */
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+/* Estilos para la galería de multimedia */
+.multimedia-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.media-item {
+  text-align: center;
+}
+
+.media-item img {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.media-type {
+  margin-top: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
 
 [/file]
 
@@ -393,47 +716,7 @@ button:hover, .button:hover {
   <meta charset="UTF-8">
   <title>Pagina principal del Rol [r.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
-<style>
-/* Estilo más fino y compacto para listas largas */
-.entity-list {
-  list-style-type: decimal;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
 
-/* Cada elemento más compacto */
-.entity-list li {
-  background-color: #fdfdfd;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Hover más discreto */
-.entity-list li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo para enlaces: más finos pero legibles */
-.entity-list li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
-  font-weight: 500;
-  display: block;
-  transition: color 0.2s ease;
-}
-
-.entity-list li a:hover {
-  color: #0056b3;
-}
-</style>
 
 </head>
 <body>
@@ -446,9 +729,6 @@ button:hover, .button:hover {
 <div class="subheader">
   <h2>Pantalla principal del rol [r.Nombre/]</h2>
 </div>
-
-
-
   <div class="container">
     <div class="main-content">
       <h2>Bienvenido al rol [r.Nombre/]</h2>
@@ -592,29 +872,6 @@ button:hover, .button:hover {
         <meta charset="UTF-8">
         <title>Crear nueva instancia de [c.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
-
-        <style>
-          .form-input {
-            width: 100%;
-            padding: 10px 14px;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background-color: #f9f9f9;
-            font-size: 15px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-          }
-
-          .form-input:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-            background-color: #fff;
-          }
-        </style>
-
         <script>
           let redirTimer;
           function mostrarMensajeConfirmacion(event) {
@@ -828,29 +1085,6 @@ button:hover, .button:hover {
         <meta charset="UTF-8">
         <title>Actualizacion de [a.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
-
-        <style>
-          .form-input {
-            width: 100%;
-            padding: 10px 14px;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background-color: #f9f9f9;
-            font-size: 15px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-          }
-
-          .form-input:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-            background-color: #fff;
-          }
-        </style>
-
         <script>
           function mostrarMensaje() {
             const mensaje = document.getElementById("mensajeExito");
@@ -976,27 +1210,7 @@ button:hover, .button:hover {
         <meta charset="UTF-8">
         <title>Borrar [b.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
-        <style>
-          .mensaje-exito {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            padding: 20px;
-            border-radius: 10px;
-            display: none;
-            z-index: 1000;
-            box-shadow: 0 0 10px rgba(0,0,0,0.25);
-          }
-          .mensaje-exito .cerrar {
-            float: right;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: 15px;
-          }
-        </style>
+
         <script>
           function confirmarBorrado() {
             const mensaje = document.getElementById("mensajeExito");
@@ -1099,50 +1313,6 @@ button:hover, .button:hover {
         <div class="subheader">
           <h2>Confirma la eliminacion de [e.Nombre/]</h2>
         </div>
-	<style>
-/* Estilo para la lista de entidades */
-.entity-list {
-  list-style-type: decimal; /* Mantiene la numeración automática */
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Estilo para cada elemento de la lista */
-.entity-list li {
-  background-color: #f9f9f9; /* Fondo suave para cada item */
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd; /* Borde sutil */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Efecto hover para los elementos */
-.entity-list li:hover {
-  transform: translateY(-5px); /* Efecto de elevación */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
-}
-
-/* Estilo para los enlaces de cada item */
-.entity-list li a {
-  text-decoration: none;
-  color: #333; /* Color de texto oscuro */
-  font-size: 18px;
-  font-weight: bold;
-  display: block;
-  transition: color 0.3s ease;
-}
-
-/* Efecto hover para los enlaces */
-.entity-list li a:hover {
-  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
-}
-
-
-</style>
       </head>
 
       <body>
@@ -1225,77 +1395,6 @@ button:hover, .button:hover {
         <div class="subheader">
           <h2>Indice extendido de [e.Nombre/]</h2>
         </div>
-        <style>
-          /* Estilo para la lista de entidades */
-.entity-list {
-  list-style-type: decimal; /* Mantiene la numeración automática */
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Estilo para cada elemento de la lista */
-.entity-list li {
-  background-color: #f9f9f9; /* Fondo suave para cada item */
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd; /* Borde sutil */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Efecto hover para los elementos */
-.entity-list li:hover {
-  transform: translateY(-5px); /* Efecto de elevación */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
-}
-
-/* Estilo para los enlaces de cada item */
-.entity-list li a {
-  text-decoration: none;
-  color: #333; /* Color de texto oscuro */
-  font-size: 18px;
-  font-weight: bold;
-  display: block;
-  transition: color 0.3s ease;
-}
-
-/* Efecto hover para los enlaces */
-.entity-list li a:hover {
-  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
-}
-          /* Pagination styling */
-          .pagination {
-            margin-top: 20px;
-            text-align: center;
-          }
-
-          .pagination a {
-            margin: 0 5px;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 4px;
-            text-decoration: none;
-          }
-
-          .pagination a:hover {
-            background-color: #0056b3;
-          }
-
-          /* Filter section */
-          form {
-            margin-bottom: 20px;
-          }
-
-          label {
-            font-weight: bold;
-          }
-
-
-        </style>
       </head>
 
       <body>
@@ -1383,87 +1482,16 @@ button:hover, .button:hover {
 <div class="subheader">
   <h2>Índice extendido de [e.Nombre/]</h2>
 </div>
-      <style>
-  /* Estilo para la lista de entidades */
-  .entity-list {
-    list-style-type: decimal; /* Mantiene la numeración automática */
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  /* Estilo para cada elemento de la lista */
-  .entity-list li {
-    background-color: #f9f9f9; /* Fondo suave para cada item */
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd; /* Borde sutil */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  /* Efecto hover para los elementos */
-  .entity-list li:hover {
-    transform: translateY(-5px); /* Efecto de elevación */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el cursor */
-  }
-
-  /* Estilo para los enlaces de cada item */
-  .entity-list li a {
-    text-decoration: none;
-    color: #333; /* Color de texto oscuro */
-    font-size: 18px;
-    font-weight: bold;
-    display: block;
-    transition: color 0.3s ease;
-  }
-
-  /* Efecto hover para los enlaces */
-  .entity-list li a:hover {
-    color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
-  }
-
-  /* Sección de detalle */
-  .detail {
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    margin-left: 20px;
-    width: 60%;
-  }
-
-  .detail h4 {
-    color: #007bff;
-  }
-
-  .detail p {
-    font-size: 14px;
-    color: #555;
-  }
-
-  /* Contenedor principal */
-  .container {
-    display: flex;
-    gap: 40px;
-    margin-top: 20px;
-  }
-
-  .main-content {
-    display: flex;
-    width: 100%;
-  }
-</style>
+      
     </head>
 
     <body>
-      <div class="container">
-        <div class="main-content">
+      <div class="indice-detalle-container">
+        <div class="indice-detalle-main-content">
           <!-- Sección de índice (izquierda) -->
-          <div class="content">
+          <div class="indice-detalle-content">
             <h3>Listado de [e.Nombre/]</h3>
-            <ol class="entity-list">
+            <ol class="indice-detalle-list">
               <li><a href="#detalle1">[e.Nombre/] 01</a></li>
               <li><a href="#detalle2">[e.Nombre/] 02</a></li>
               <li><a href="#detalle3">[e.Nombre/] 03</a></li>
@@ -1474,62 +1502,59 @@ button:hover, .button:hover {
           </div>
 
           <!-- Sección de detalle (derecha) -->
-<div class="detail">
-  <h3>Campos:</h3>
-  [for (ent : Entidad | e.entidad)] 
-    <div class="field">
-      [for (attr : Atributo | ent.atributos)] 
-        <p>
-          [attr.Nombre/] // 
-          [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
-          [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
-          [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
-        </p>
-      [/for]
+          <div class="indice-detalle-section">
+            <h3>Campos:</h3>
+            [for (ent : Entidad | e.entidad)] 
+              <div class="field">
+                [for (attr : Atributo | ent.atributos)] 
+                  <p>
+                    [attr.Nombre/] // 
+                    [if (attr.TipoAtributo = TipoAtributo::String)] (String) [/if]
+                    [if (attr.TipoAtributo = TipoAtributo::Integer)] (Integer) [/if]
+                    [if (attr.TipoAtributo = TipoAtributo::Boolean)] (Boolean) [/if]
+                  </p>
+                [/for]
 
-      <!-- Aquí se muestran las claves foráneas de la entidad -->
-      [for (referencia : Entidad | ent.entidadRefereenciada)] 
-        <p>- Id_[referencia.Nombre/][ ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
-      [/for]
+                <!-- Aquí se muestran las claves foráneas de la entidad -->
+                [for (referencia : Entidad | ent.entidadRefereenciada)] 
+                  <p>- Id_[referencia.Nombre/][ ' [' 'ID del ' + referencia.Nombre+ ']' /] : Referencia a la entidad [referencia.Nombre/]</p>
+                [/for]
 
-      <div class="options" style="margin-top: 20px;">
-        <h4>Listado de opciones:</h4>
-        <ol style="padding-left: 20px;">
-          <li style="margin-bottom: 10px;">
-            <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
-          </li>
-          [for (referencia : Entidad | ent.entidadRefereenciada)] 
-            <li style="margin-bottom: 10px;">
-              <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [ ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
-            </li>
-          [/for]
-        </ol>
-      </div>
-    </div>
-  [/for]
-</div>
-
-
-
+                <div class="options" style="margin-top: 20px;">
+                  <h4>Listado de opciones:</h4>
+                  <ol style="padding-left: 20px;">
+                    <li style="margin-bottom: 10px;">
+                      <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
+                    </li>
+                    [for (referencia : Entidad | ent.entidadRefereenciada)] 
+                      <li style="margin-bottom: 10px;">
+                        <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [ ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
+                      </li>
+                    [/for]
+                  </ol>
+                </div>
+              </div>
+            [/for]
+          </div>
         </div>
 
         <div class="sidebar social">
-          <h3>Redes Sociales:</h3>
-          <div class="twitter-timeline-container">
-            <a class="twitter-timeline" 
-               data-width="100%" 
-               data-height="400"
-               href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            <h3>Redes Sociales:</h3>
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            [for (rs : RedSocial | e.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
           </div>
-          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          [for (rs : RedSocial | e.redsocial)]
-            <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-              [rs.Nombre/]</a></p>
-          [/for]
-        </div>
 
       </div>
-<button onclick="window.history.back()" class="button">Volver</button>
+      <button onclick="window.history.back()" class="button">Volver</button>
       <div class="footer">
         Aplicación generada automáticamente.
       </div>
@@ -1539,6 +1564,7 @@ button:hover, .button:hover {
   [/file]
   [/for]
 [/template]
+
 
 [template public generateContenidoNormal(p : Normal)]
   [for (acceso : Rol | p.usuario)]
@@ -1550,56 +1576,20 @@ button:hover, .button:hover {
   <meta charset="UTF-8">
   <title>[p.Contenido/] - Página de contenido</title>
   <link rel="stylesheet" href="../styles.css">
-  <style>
-    .container {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
+  <!-- Header Principal -->
+<div class="header">
+  [for (ent : Entidad | p.entidad)]
+    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(p)).Nombre/]</h1>
+  [/for]
+</div>
 
-    .main-content {
-      flex: 1;
-    }
-
-    .sidebar {
-      width: 250px;
-      padding: 20px;
-      background-color: #f4f4f4;
-      border-radius: 8px;
-    }
-
-    /* Styles for the multimedia images */
-    .multimedia-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 20px;
-      padding: 20px 0;
-    }
-
-    .media-item {
-      text-align: center;
-    }
-
-    .media-item img {
-      width: 100%;
-      height: auto;
-      max-height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .media-type {
-      margin-top: 8px;
-      font-weight: bold;
-      color: #333;
-    }
-  </style>
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Índice extendido de [p.Nombre/]</h2>
+</div>
 </head>
 <body>
-  <div class="header">
-    <h1>[p.Contenido/]</h1>
-  </div>
+  
 
   <div class="container">
     <div class="main-content">

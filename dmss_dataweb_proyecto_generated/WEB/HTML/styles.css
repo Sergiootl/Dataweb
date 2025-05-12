@@ -304,4 +304,327 @@ button, .button {
 button:hover, .button:hover {
   background-color: #4e7d2a;  /* Verde mÃ¡s oscuro */
 }
+/* ------------------------ */
+/* Estilos para generateRolIndex */
+/* ------------------------ */
+
+.entity-list {
+  list-style-type: decimal;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.entity-list li {
+  background-color: #fdfdfd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.entity-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.entity-list li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.entity-list li a:hover {
+  color: #0056b3;
+}
+
+/* ------------------------ */
+/* Estilos para generateCreacion */
+/* ------------------------ */
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  background-color: #fff;
+}
+
+/* ------------------------ */
+/* Estilos para generateBorrado */
+/* ------------------------ */
+
+.mensaje-exito {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.mensaje-exito .cerrar {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+/* ------------------------ */
+/* Estilos para generateIndiceEntidad */
+/* ------------------------ */
+
+.entity-list {
+  list-style-type: decimal; /* Mantiene la numeraciÃ³n automÃ¡tica */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entity-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.entity-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevaciÃ³n */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mÃ¡s intensa al pasar el cursor */
+}
+
+.entity-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.entity-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+
+/* ------------------------ */
+/* Estilos para generateIndiceExtendido */
+/* ------------------------ */
+
+.entity-list {
+  list-style-type: decimal; /* Mantiene la numeraciÃ³n automÃ¡tica */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entity-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.entity-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevaciÃ³n */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mÃ¡s intensa al pasar el cursor */
+}
+
+.entity-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.entity-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+
+/* PaginaciÃ³n */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a {
+  margin: 0 5px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  background-color: #0056b3;
+}
+
+/* SecciÃ³n de filtro */
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+/* --------------------------- */
+/* Estilos para generateIndiceDetalle (renombrado) */
+/* --------------------------- */
+
+/* Estilo para la lista de entidades */
+.indice-detalle-list {
+  list-style-type: decimal; /* Mantiene la numeraciÃ³n automÃ¡tica */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo para cada elemento de la lista */
+.indice-detalle-list li {
+  background-color: #f9f9f9; /* Fondo suave para cada item */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd; /* Borde sutil */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para los elementos */
+.indice-detalle-list li:hover {
+  transform: translateY(-5px); /* Efecto de elevaciÃ³n */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mÃ¡s intensa al pasar el cursor */
+}
+
+/* Estilo para los enlaces de cada item */
+.indice-detalle-list li a {
+  text-decoration: none;
+  color: #333; /* Color de texto oscuro */
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+/* Efecto hover para los enlaces */
+.indice-detalle-list li a:hover {
+  color: #007BFF; /* Cambia el color del enlace al pasar el cursor */
+}
+
+/* SecciÃ³n de detalle */
+.indice-detalle-section {
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  margin-left: 20px;
+  width: 60%;
+}
+
+.indice-detalle-section h4 {
+  color: #007bff;
+}
+
+.indice-detalle-section p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Contenedor principal */
+.indice-detalle-container {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.indice-detalle-main-content {
+  display: flex;
+  width: 100%;
+}
+/* ------------------------- */
+/* Estilos para generateContenidoNormal */
+/* ------------------------- */
+
+/* Estilos para el contenedor principal */
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+  flex: 1;
+}
+
+/* Estilos para la barra lateral */
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+/* Estilos para la galerÃ­a de multimedia */
+.multimedia-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.media-item {
+  text-align: center;
+}
+
+.media-item img {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.media-type {
+  margin-top: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
 
