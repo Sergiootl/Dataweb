@@ -429,7 +429,7 @@ button:hover, .button:hover {
   text-decoration: none;
   color: #333; /* Color de texto oscuro */
   font-size: 18px;
-  font-weight: bold;
+  font-weight: normal;
   display: block;
   transition: color 0.3s ease;
 }
@@ -469,7 +469,7 @@ button:hover, .button:hover {
   text-decoration: none;
   color: #333; /* Color de texto oscuro */
   font-size: 18px;
-  font-weight: bold;
+  font-weight: normal;
   display: block;
   transition: color 0.3s ease;
 }
@@ -626,8 +626,35 @@ label {
 
 .media-type {
   margin-top: 8px;
-  font-weight: bold;
+  font-weight:bold ;
   color: #333;
+}
+
+
+/* Contenedor para el botón */
+.button-container {
+  display: flex;
+  justify-content: center;  /* Centra el botón horizontalmente */
+  align-items: center;      /* Centra el botón verticalmente */
+  margin-top: 20px;         /* Margen superior más pequeño */
+  margin-bottom: 20px;      /* Margen inferior más pequeño */
+}
+
+/* Estilo del botón */
+.button {
+  padding: 10px 20px;         /* Añadir padding para el botón */
+  background-color: #4CAF50;   /* Color de fondo */
+  color: white;                /* Color del texto */
+  border: none;                /* Eliminar bordes */
+  border-radius: 5px;          /* Bordes redondeados */
+  font-size: 16px;             /* Tamaño de fuente */
+  cursor: pointer;            /* Cambia el cursor cuando se pasa sobre el botón */
+  transition: background-color 0.3s; /* Efecto suave para cambio de color */
+}
+
+/* Estilo para cuando el botón es presionado */
+.button:hover {
+  background-color: #45a049;   /* Cambio de color en hover */
 }
 
 
@@ -660,7 +687,7 @@ label {
       <div class="roles-container">
         [for (r : Rol | a.roles)]
           <div class="role-block">
-            <a href="[r.Nombre.toLowerCase()/]/index_[r.Nombre.toLowerCase()/].html">
+            <a href="[r.Nombre.toLowerCase()/]/P_Index_[r.Nombre.toLowerCase()/].html">
               <h3>[r.Nombre/]</h3>
             </a>
           </div>
@@ -691,7 +718,8 @@ label {
   </div>
 
   <div class="footer">
-    <p>[a.Descripcion/]</p>
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
   </div>
 </body>
 </html>
@@ -709,12 +737,12 @@ label {
 [/template]
 
 [template public generateRolIndex(r : Rol)]
-[file ('/HTML/'.concat(r.Nombre.toLowerCase()).concat('/index_').concat(r.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+[file ('/HTML/'.concat(r.Nombre).concat('/P_Index_').concat(r.Nombre).concat('.html'), false, 'UTF-8')]
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Pagina principal del Rol [r.Nombre/]</title>
+  <title>Pagina del rol [r.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
 
 
@@ -727,7 +755,7 @@ label {
 
 <!-- Subheader - Fondo verde -->
 <div class="subheader">
-  <h2>Pantalla principal del rol [r.Nombre/]</h2>
+  <h2>Pagina del rol [r.Nombre/]</h2>
 </div>
   <div class="container">
     <div class="main-content">
@@ -736,54 +764,73 @@ label {
 <ol class="entity-list">
         [for (p : PaginaPantalla | r.accesoapaginapantalla)]
           [if (p.oclIsKindOf(IndiceEntidad))] 
-            <li><a href="indice_Entidad_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceEntidad [p.Nombre/]</a></li>
+            <li><a href="P_IndiceEntidad_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceEntidad [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(IndiceExtendido))] 
-            <li><a href="indiceExtendido_Entidad_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceExtendido [p.Nombre/]</a></li>
+            <li><a href="P_IndiceExtendido_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceExtendido [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(IndiceDetalle))] 
-            <li><a href="indiceDetalle_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceDetalle [p.Nombre/]</a></li>
+            <li><a href="P_IndiceDetalle_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] IndiceDetalle [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(CrearInstancia))] 
-            <li><a href="crear_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CrearInstancia [p.Nombre/]</a></li>
+            <li><a href="P_Crear_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] CrearInstancia [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(ActualizacionInstancia))] 
-            <li><a href="actualizacion_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] ActualizacionInstancia [p.Nombre/]</a></li>
+            <li><a href="P_ActualizaR_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] ActualizacionInstancia [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(DetallesInstancia))] 
-            <li><a href="detalle_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] DetallesInstancia [p.Nombre/]</a></li>
+            <li><a href="P_Detalle_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] DetallesInstancia [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(BorradoInstancia))] 
             [let b : BorradoInstancia = p.oclAsType(BorradoInstancia)]
-             <li><a href="borrar_[b.entidad.Nombre.toLowerCase()/].html">[ '[' + b.entidad.Nombre + ']' /] BorradoInstancia [b.Nombre/]</a></li>
+             <li><a href="P_Borrar_[b.entidad.Nombre/].html">[ '[' + b.entidad.Nombre + ']' /] BorradoInstancia [b.Nombre/]</a></li>
             [/let]
           [/if]
           [if (p.oclIsKindOf(CRUD))] 
-            <li><a href="crud_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] CRUD [p.Nombre/]</a></li>
+            <li><a href="P_Crud_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] CRUD [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(Cuestionario))] 
-            <li><a href="cuestionario_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Cuestionario [p.Nombre/]</a></li>
+            <li><a href="P_Cuestionario_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] Cuestionario [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(Encuesta))] 
-            <li><a href="encuesta_[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Encuesta [p.Nombre/]</a></li>
+            <li><a href="P_Encuesta_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] Encuesta [p.Nombre/]</a></li>
           [/if]
           [if (p.oclIsKindOf(Normal))] 
-            <li><a href="[p.Nombre.toLowerCase()/].html">[ '[' + p.entidad.Nombre + ']' /] Pagina Normal [p.Nombre/]</a></li>
+            <li><a href="P_Normal_[p.Nombre/].html">[ '[' + p.entidad.Nombre + ']' /] Pagina Normal [p.Nombre/]</a></li>
           [/if]
         [/for]
       </ol>
+              <div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
     </div>
+
 
     <div class="sidebar social">
       <h3>Redes Sociales:</h3>
+
+      <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
+
+      <!-- Cargar el script de Twitter de manera asíncrona -->
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+      <!-- Mostrar las demás redes sociales como enlaces -->
       [for (rs : RedSocial | r.accesoapaginapantalla.redsocial)]
-        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com">[rs.Nombre/]</a></p>
+        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+            [rs.Nombre/]</a></p>
       [/for]
     </div>
   </div>
 
   <div class="footer">
-    <p>© [r.Nombre/] - Todos los derechos reservados</p>
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
   </div>
 </body>
 </html>
@@ -865,12 +912,12 @@ label {
 
 [template public generateCreacion(c : CrearInstancia)]
   [for (acceso : Rol | c.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/crear_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Crear_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
       <!DOCTYPE html>
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Crear nueva instancia de [c.Nombre/]</title>
+        <title>Pagina creacion de [c.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
         <script>
           let redirTimer;
@@ -880,13 +927,13 @@ label {
             document.getElementById("formularioCreacion").reset();
 
             redirTimer = setTimeout(() => {
-              window.location.href = "index_[acceso.Nombre.toLowerCase()/].html";
+              window.location.href = "P_Index_[acceso.Nombre/].html";
             }, 5000);
           }
 
           function cerrarModal() {
             clearTimeout(redirTimer);
-            window.location.href = "index_[acceso.Nombre.toLowerCase()/].html";
+            window.location.href = "P_Index_[acceso.Nombre/].html";
           }
         </script>
       </head>
@@ -899,14 +946,13 @@ label {
 
         <!-- Subheader - Fondo verde -->
         <div class="subheader">
-          <h2>Crear nueva instancia de [c.Nombre/]</h2>
+          <h2>Pagina creacion de [c.Nombre/]</h2>
         </div>
 
         <div class="container">
           <div class="main-content">
             <form id="formularioCreacion" onsubmit="mostrarMensajeConfirmacion(event)">
               <div class="content">
-                <h2>Pagina para crear una nueva instancia de [c.Nombre/]</h2>
                 <h3>Introduzca la informacion correspondiente a los siguientes campos de [c.Nombre/] :</h3>
 
                 [for (ent : Entidad | c.entidad)]
@@ -944,7 +990,9 @@ label {
               <div class="actions">
                 <button type="submit">Confirmar</button>
               </div>
-              <button onclick="window.history.back()" class="button">Volver</button>
+              <div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
             </form>
           </div>
 
@@ -973,7 +1021,8 @@ label {
         </div>
 
         <div class="footer">
-          Aplicación generada automáticamente.
+          <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
         </div>
       </body>
       </html>
@@ -982,14 +1031,14 @@ label {
 [/template]
 
 [template public generateDetalle(d : DetallesInstancia)]
-  [for (acceso : Rol | d.usuario)]  <!-- Revisa si d.usuario está bien definido -->
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/detalle_').concat(d.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+  [for (acceso : Rol | d.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Detalle_').concat(d.Nombre).concat('.html'), false, 'UTF-8')]
 
       <!DOCTYPE html>
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Detalle de [d.Nombre/]</title>
+        <title>Pagina detalle [d.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
       </head>
       <body>
@@ -1000,7 +1049,7 @@ label {
 
         <!-- Subheader -->
         <div class="subheader">
-          <h2>Detalles de la Instancia de [d.Nombre/]</h2>
+          <h2>Pagina detalle [d.Nombre/]</h2>
         </div>
 
         <div class="container">
@@ -1040,7 +1089,9 @@ label {
                 </div>
               [/for]
             </div>
-<button onclick="window.history.back()" class="button">Volver</button>
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
           </div>
 
           <div class="sidebar social">
@@ -1066,7 +1117,8 @@ label {
 
         <!-- Footer -->
         <div class="footer">
-          <p>Aplicación generada automáticamente.</p>
+          <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
         </div>
       </body>
       </html>
@@ -1077,25 +1129,25 @@ label {
 
 [template public generateActualizacion(a : ActualizacionInstancia)]
   [for (acceso : Rol | a.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/actualizacion_').concat(a.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Actualizar_').concat(a.Nombre).concat('.html'), false, 'UTF-8')]
 
       <!DOCTYPE html>
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Actualizacion de [a.Nombre/]</title>
+        <title>Pagina actualizacion de [a.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
         <script>
           function mostrarMensaje() {
             const mensaje = document.getElementById("mensajeExito");
             mensaje.style.display = "block";
             setTimeout(() => {
-              window.location.href = "index_[acceso.Nombre/].html";
+              window.location.href = "P_Index_[acceso.Nombre/].html";
             }, 5000);
           }
 
           function cerrarMensaje() {
-            window.location.href = "index_[acceso.Nombre/].html";
+            window.location.href = "P_Index_[acceso.Nombre/].html";
           }
         </script>
       </head>
@@ -1106,7 +1158,7 @@ label {
         </div>
 
         <div class="subheader">
-          <h2>Actualiza la informacion de [a.Nombre/]</h2>
+          <h2>Pagina actualizacion de [a.Nombre/]</h2>
         </div>
 
         <div class="container">
@@ -1165,7 +1217,9 @@ label {
                 <div class="actions">
                   <button type="submit" class="button">Actualizar</button>
                 </div>
-				<button onclick="window.history.back()" class="button">Volver</button>
+				<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
               </form>
             </div>
           </div>
@@ -1192,7 +1246,8 @@ label {
         </div>
 
         <div class="footer">
-          Aplicación generada automaticamente.
+          <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
         </div>
       </body>
       </html>
@@ -1203,12 +1258,12 @@ label {
 
 [template public generateBorrado(b : BorradoInstancia)]
   [for (acceso : Rol | b.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/borrar_').concat(b.entidad.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Borrar_').concat(b.entidad.Nombre).concat('.html'), false, 'UTF-8')]
       <!DOCTYPE html>
       <html lang="es">
       <head>
         <meta charset="UTF-8">
-        <title>Borrar [b.Nombre/]</title>
+        <title>Pagina borrado de [b.Nombre/]</title>
         <link rel="stylesheet" href="../styles.css">
 
         <script>
@@ -1217,11 +1272,11 @@ label {
             mensaje.style.display = "block";
             document.getElementById("botonBorrar").disabled = true;
             setTimeout(() => {
-              window.location.href = "index_[b.usuario.Nombre/].html";
+              window.location.href = "P_Index_[b.usuario.Nombre/].html";
             }, 5000);
           }
           function cerrarMensaje() {
-            window.location.href = "index_[b.usuario.Nombre/].html";
+            window.location.href = "P_Index_[b.usuario.Nombre/].html";
           }
         </script>
       </head>
@@ -1235,7 +1290,7 @@ label {
 
         <!-- Subheader -->
         <div class="subheader">
-          <h2>Confirma la eliminacion de [b.Nombre/]</h2>
+          <h2>Pagina borrado de [b.Nombre/]</h2>
         </div>
 
         <div class="container">
@@ -1259,6 +1314,9 @@ label {
                 </ul>
               </div>
             </div>
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
           </div>
 
           <div class="sidebar social">
@@ -1284,192 +1342,24 @@ label {
 
         <!-- Footer -->
         <div class="footer">
-          Aplicación generada automaticamente.
+          <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
         </div>
       </body>
       </html>
-    [/file]
-  [/for]
-[/template]
-
-[template public generateIndiceEntidad(e : Indice)]
-  [for (acceso : Rol | e.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indice_Entidad_').concat(e.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-
-      <!DOCTYPE html>
-      <html lang="es">
-      <head>
-        <meta charset="UTF-8">
-        <title>Indice de [e.Nombre/]</title>
-        <link rel="stylesheet" href="../styles.css">
-		<!-- Header Principal -->
-        <div class="header">
-          [for (ent : Entidad | e.entidad)]
-          	<h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(e)).Nombre/]</h1>
-          [/for]
-        </div>
-
-        <!-- Subheader -->
-        <div class="subheader">
-          <h2>Confirma la eliminacion de [e.Nombre/]</h2>
-        </div>
-      </head>
-
-      <body>
-        <div class="container">
-          <div class="main-content">
-            <div class="content">
-              <h3>Listado de instancias de la clase [e.Nombre/]</h3>
-
-              <!-- Lista ordenada -->
-              <ol class="entity-list">
-                <li>
-                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 01</a> (Acceso a los detalles)
-                </li>
-                <li>
-                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 02</a> (Acceso a los detalles)
-                </li>
-                <li>
-                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 03</a> (Acceso a los detalles)
-                </li>
-                <li>
-                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 04</a> (Acceso a los detalles)
-                </li>
-                <li>
-                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 05</a> (Acceso a los detalles)
-                </li>
-                <li>
-                  <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] 06</a> (Acceso a los detalles)
-                </li>
-              </ol>
-
-            </div>
-<button onclick="window.history.back()" class="button">Volver</button>
-          </div>
-				
-
-          <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-            </div>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            [for (rs : RedSocial | e.redsocial)]
-              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-                  [rs.Nombre/]</a></p>
-            [/for]
-          </div>
-        </div>
-
-        <div class="footer">
-          Aplicacion generada automaticamente.
-        </div>
-      </body>
-      </html>
-
-    [/file]
-  [/for]
-[/template]
-
-[template public generateIndiceExtendido(e : Indice)]
-  [for (acceso : Rol | e.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indiceExtendido_Entidad_').concat(e.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
-
-      <!DOCTYPE html>
-      <html lang="es">
-      <head>
-        <meta charset="UTF-8">
-        <title>Indice extendido de [e.Nombre/]</title>
-        <link rel="stylesheet" href="../styles.css">
-		<!-- Header Principal -->
-        <div class="header">
-          [for (ent : Entidad | e.entidad)]
-          	<h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(e)).Nombre/]</h1>
-          [/for]
-        </div>
-
-        <!-- Subheader -->
-        <div class="subheader">
-          <h2>Indice extendido de [e.Nombre/]</h2>
-        </div>
-      </head>
-
-      <body>
-        <div class="container">
-          <div class="main-content">
-            <div class="content">
-
-              <!-- Filtro ficticio -->
-              <form method="get">
-                <label for="filtroGenero">Filtrar por Genero:</label>
-                <select id="filtroGenero" name="filtroGenero">
-                  <option value="todos">Todos</option>
-                  <option value="ficcion">Ficcion</option>
-                  <option value="no-ficcion">No Ficcion</option>
-                </select>
-                <input type="submit" value="Aplicar filtro">
-              </form>
-
-              <h3>Listado de [e.Nombre/]</h3>
-
-              <!-- Lista ordenada con paginacion -->
-              <ol class="entity-list">
-                [for (i : Integer | Sequence{1 .. 6})]
-                  <li>
-                    <a href="detalle_[e.Nombre.toLowerCase()/].html">[e.Nombre/] [i/]</a> (Acceso a los detalles)
-                  </li>
-                [/for]
-              </ol>
-
-              <!-- Paginación -->
-              <div class="pagination">
-                <a href="?pagina=1&filtroGenero=todos">1</a>
-                <a href="?pagina=2&filtroGenero=todos">2</a>
-                <a href="?pagina=3&filtroGenero=todos">3</a>
-                <a href="?pagina=4&filtroGenero=todos">4</a>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-            </div>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            [for (rs : RedSocial | e.redsocial)]
-              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-                  [rs.Nombre/]</a></p>
-            [/for]
-          </div>
-        </div>
-
-        <div class="footer">
-          Aplicacion generada automaticamente.
-        </div>
-      </body>
-      </html>
-
     [/file]
   [/for]
 [/template]
 
 [template public generateIndiceDetalle(e : Indice)]
   [for (acceso : Rol | e.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/indiceDetalle_Entidad_').concat(e.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_IndiceDetalle_').concat(e.Nombre).concat('.html'), false, 'UTF-8')]
 
     <!DOCTYPE html>
     <html lang="es">
     <head>
       <meta charset="UTF-8">
-      <title>Índice y Detalle de [e.Nombre/]</title>
+      <title>Pagina de Indice con detalle de [e.Nombre/]</title>
       <link rel="stylesheet" href="../styles.css">
 <!-- Header Principal -->
 <div class="header">
@@ -1480,7 +1370,7 @@ label {
 
 <!-- Subheader -->
 <div class="subheader">
-  <h2>Índice extendido de [e.Nombre/]</h2>
+  <h2>Pagina de Indice con detalle de [e.Nombre/]</h2>
 </div>
       
     </head>
@@ -1524,18 +1414,20 @@ label {
                   <h4>Listado de opciones:</h4>
                   <ol style="padding-left: 20px;">
                     <li style="margin-bottom: 10px;">
-                      <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
+                      <a href="P_Borrar_[ent.Nombre/].html">Borrar [ent.Nombre/]</a>
                     </li>
                     [for (referencia : Entidad | ent.entidadRefereenciada)] 
                       <li style="margin-bottom: 10px;">
-                        <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [ ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
+                        <a href="P_Detalle_[referencia.Nombre/].html">Consultar detalles de [ ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
                       </li>
                     [/for]
                   </ol>
                 </div>
               </div>
             [/for]
+
           </div>
+
         </div>
 
         <div class="sidebar social">
@@ -1554,9 +1446,12 @@ label {
           </div>
 
       </div>
-      <button onclick="window.history.back()" class="button">Volver</button>
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
       <div class="footer">
-        Aplicación generada automáticamente.
+       <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
       </div>
     </body>
     </html>
@@ -1565,16 +1460,191 @@ label {
   [/for]
 [/template]
 
+[template public generateIndiceEntidad(e : Indice)]
+  [for (acceso : Rol | e.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_IndiceEntidad_').concat(e.Nombre).concat('.html'), false, 'UTF-8')]
+
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Pagina de Indice de [e.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+		<!-- Header Principal -->
+        <div class="header">
+          [for (ent : Entidad | e.entidad)]
+          	<h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(e)).Nombre/]</h1>
+          [/for]
+        </div>
+
+        <!-- Subheader -->
+        <div class="subheader">
+          <h2>Pagina de Indice de [e.Nombre/]</h2>
+        </div>
+      </head>
+
+      <body>
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+              <h3>Listado de instancias de la clase [e.Nombre/]</h3>
+
+              <!-- Lista ordenada -->
+              <ol class="entity-list">
+                <li>
+                  <a href="P_Detalle_[e.Nombre/].html">[e.Nombre/] 01</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="P_Detalle_[e.Nombre/].html">[e.Nombre/] 02</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="P_Detalle_[e.Nombre/].html">[e.Nombre/] 03</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="P_Detalle_[e.Nombre/].html">[e.Nombre/] 04</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="P_Detalle_[e.Nombre/].html">[e.Nombre/] 05</a> (Acceso a los detalles)
+                </li>
+                <li>
+                  <a href="P_Detalle_[e.Nombre/].html">[e.Nombre/] 06</a> (Acceso a los detalles)
+                </li>
+              </ol>
+
+            </div>
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
+          </div>
+				
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            [for (rs : RedSocial | e.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+        </div>
+
+        <div class="footer">
+         <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+        </div>
+      </body>
+      </html>
+
+    [/file]
+  [/for]
+[/template]
+
+[template public generateIndiceExtendido(e : Indice)]
+  [for (acceso : Rol | e.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_IndiceExtendido_').concat(e.Nombre).concat('.html'), false, 'UTF-8')]
+
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Pagina de Indice extendido de [e.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+		<!-- Header Principal -->
+        <div class="header">
+          [for (ent : Entidad | e.entidad)]
+          	<h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(e)).Nombre/]</h1>
+          [/for]
+        </div>
+
+        <!-- Subheader -->
+        <div class="subheader">
+          <h2>Pagina de Indice extendido de [e.Nombre/]</h2>
+        </div>
+      </head>
+
+      <body>
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+
+              <!-- Filtro ficticio -->
+              <form method="get">
+                <label for="filtroGenero">Filtrar por Genero:</label>
+                <select id="filtroGenero" name="filtroGenero">
+                  <option value="todos">Todos</option>
+                  <option value="ficcion">Ficcion</option>
+                  <option value="no-ficcion">No Ficcion</option>
+                </select>
+                <input type="submit" value="Aplicar filtro">
+              </form>
+
+              <h3>Listado de [e.Nombre/]</h3>
+
+              <!-- Lista ordenada con paginacion -->
+              <ol class="entity-list">
+                [for (i : Integer | Sequence{1 .. 6})]
+                  <li>
+                    <a href="P_Detalle_[e.Nombre/].html">[e.Nombre/] [i/]</a> (Acceso a los detalles)
+                  </li>
+                [/for]
+              </ol>
+
+              <!-- Paginación -->
+              <div class="pagination">
+                <a href="?pagina=1&filtroGenero=todos">1</a>
+                <a href="?pagina=2&filtroGenero=todos">2</a>
+                <a href="?pagina=3&filtroGenero=todos">3</a>
+                <a href="?pagina=4&filtroGenero=todos">4</a>
+              </div>
+
+            </div>
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            [for (rs : RedSocial | e.redsocial)]
+              <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+                  [rs.Nombre/]</a></p>
+            [/for]
+          </div>
+        </div>
+
+        <div class="footer">
+         <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+        </div>
+      </body>
+      </html>
+
+    [/file]
+  [/for]
+[/template]
 
 [template public generateContenidoNormal(p : Normal)]
   [for (acceso : Rol | p.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/pagina_normal_').concat(p.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Normal_').concat(p.Nombre).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>[p.Contenido/] - Página de contenido</title>
+  <title>Pagina de contenido normal</title>
   <link rel="stylesheet" href="../styles.css">
   <!-- Header Principal -->
 <div class="header">
@@ -1585,7 +1655,7 @@ label {
 
 <!-- Subheader -->
 <div class="subheader">
-  <h2>Índice extendido de [p.Nombre/]</h2>
+  <h2>Pagina de contenido normal</h2>
 </div>
 </head>
 <body>
@@ -1594,6 +1664,7 @@ label {
   <div class="container">
     <div class="main-content">
       <div class="content">
+<h1>[p.Contenido/]</h1>
         <h3>Contenido Multimedia:</h3>
 
         <!-- Multimedia Gallery -->
@@ -1617,10 +1688,9 @@ label {
 
 
 
-        <!-- Actions (back button) -->
-        <div class="actions">
-          <a href="[acceso.Nombre.toLowerCase()/]/index.html" class="button">Volver</a>
-        </div>
+     <div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
       </div>
     </div>
 
@@ -1642,7 +1712,8 @@ label {
   </div>
 
   <div class="footer">
-    Aplicación generada automáticamente.
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
   </div>
 </body>
 </html>
@@ -1653,19 +1724,28 @@ label {
 
 [template public generateCRUD(c : CRUD)]
   [for (acceso : Rol | c.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/CRUD_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_CRUD_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Listado de acciones de [c.Nombre/]</title>
+  <title>Pagina CRUD de [c.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
+<!-- Header Principal -->
+<div class="header">
+  [for (ent : Entidad | c.entidad)]
+    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
+  [/for]
+</div>
+
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Pagina CRUD de [c.Nombre/]</h2>
+</div>
 </head>
 <body>
-  <div class="header">
-    <h1>Listado de acciones de [c.Nombre/]</h1>
-  </div>
+
 
   <div class="container">
     <div class="main-content">
@@ -1673,21 +1753,24 @@ label {
         <div class="action-block">
           <h4>Crear nuevo</h4>
           <p>Crea un nuevo elemento de tipo [c.Nombre/].</p>
-          <a href="crear_[c.Nombre.toLowerCase()/].html"><button>Crear</button></a>
+          <a href="P_crear_[c.Nombre/].html"><button>Crear</button></a>
         </div>
 
         <div class="action-block">
           <h4>Listar</h4>
           <p>Consulta el listado completo de [c.Nombre/].</p>
-          <a href="indice_Entidad_[c.Nombre.toLowerCase()/].html"><button>Listar</button></a>
+          <a href="P_IndiceEntidad_[c.Nombre/].html"><button>Listar</button></a>
         </div>
 
         <div class="action-block">
           <h4>Borrar</h4>
           <p>Elimina un elemento existente de [c.Nombre/].</p>
-          <a href="borrar_[c.Nombre.toLowerCase()/].html"><button>Borrar</button></a>
+          <a href="P_Borrar_[c.Nombre/].html"><button>Borrar</button></a>
         </div>
       </div>
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
     </div>
 
     <div class="sidebar social">
@@ -1712,7 +1795,8 @@ label {
   </div>
 
   <div class="footer">
-    Aplicación generada automáticamente.
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
   </div>
 </body>
 </html>
@@ -1723,25 +1807,27 @@ label {
 
 [template public generateCuestionario(c : Cuestionario)]
   [for (acceso : Rol | c.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/cuestionario_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Cuestionario_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Cuestionario [c.Nombre/]</title>
+  <title>Cuestionario de [c.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-  <!-- Header Principal -->
-  <div class="header">
-    <h1>Cuestionario interactivo: [c.Nombre/]</h1>
-  </div>
+<!-- Header Principal -->
+<div class="header">
+  [for (ent : Entidad | c.entidad)]
+    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
+  [/for]
+</div>
 
-  <!-- Subheader -->
-  <div class="subheader">
-    <h2>Inicia el cuestionario y responde las preguntas</h2>
-  </div>
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Cuestionario de [c.Nombre/]</h2>
+</div>
 
   <div class="container">
     <div class="main-content">
@@ -1776,10 +1862,12 @@ label {
           <div class="actions" style="margin-top: 30px;">
             <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
           </div>
-
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
           <script>
             function enviarRespuestas() {
-              window.location.href = "resultado_cuestionario_" + "[c.Nombre.toLowerCase()/]" + ".html";
+              window.location.href = "P_Resultado_Cuestionario_" + "[c.Nombre/]" + ".html";
             }
           </script>
         </form>
@@ -1805,37 +1893,40 @@ label {
   </div>
 
   <div class="footer">
-    Aplicación generada automáticamente.
+   <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
   </div>
 
 </body>
 </html>
 
-    [/file]  <!-- Cierre correcto del bloque file -->
+    [/file] 
   [/for]
 [/template]
 
 [template public generateResultadoCuestionario(c : Cuestionario)]
   [for (acceso : Rol | c.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/resultado_cuestionario_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Resultado_Cuestionario_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Resultado del Cuestionario [c.Nombre/]</title>
+  <title>Resultado del cuestionario de [c.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-  <!-- Header Principal -->
-  <div class="header">
-    <h1>Resultado del Cuestionario: [c.Nombre/]</h1>
-  </div>
+<!-- Header Principal -->
+<div class="header">
+  [for (ent : Entidad | c.entidad)]
+    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
+  [/for]
+</div>
 
-  <!-- Subheader -->
-  <div class="subheader">
-    <h2>Resultado de las preguntas respondidas</h2>
-  </div>
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Resultado del cuestionario de [c.Nombre/]</h2>
+</div>
 
   <div class="container">
     <div class="main-content">
@@ -1874,9 +1965,12 @@ label {
       [/for]
     </div>
   </div>
-
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
   <div class="footer">
-    Aplicación generada automáticamente.
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
   </div>
 
 </body>
@@ -1888,20 +1982,27 @@ label {
 
 [template public generateEncuesta(c : Encuesta)]
   [for (acceso : Rol | c.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/encuesta_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Encuesta_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Encuesta - [c.Nombre/]</title>
+  <title>Encuesta de [c.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+<!-- Header Principal -->
+<div class="header">
+  [for (ent : Entidad | c.entidad)]
+    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
+  [/for]
+</div>
 
-  <div class="header">
-    <h1>Encuesta: [c.Nombre/]</h1>
-  </div>
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Encuesta de [c.Nombre/]</h2>
+</div>
 
   <div class="container">
     <div class="main-content">
@@ -1965,34 +2066,45 @@ label {
             [/for]
           </div>
   </div>
-
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
   <div class="footer">
-    Aplicación generada automáticamente.
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
   </div>
 
 </body>
 </html>
 
-    [/file]  <!-- Cierre correcto del bloque file -->
+    [/file]
   [/for]
 [/template]
 
 [template public generateResultadoEncuesta(c : Encuesta)]
   [for (acceso : Rol | c.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre.toLowerCase()).concat('/resultado_encuesta_').concat(c.Nombre.toLowerCase()).concat('.html'), false, 'UTF-8')]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Resultado_Encuesta_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Resultado de la Encuesta [c.Nombre/]</title>
+  <title>Resultado de la encuesta de [c.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
-  <div class="header">
-    <h1>Resultado de la Encuesta: [c.Nombre/]</h1>
-  </div>
+<!-- Header Principal -->
+<div class="header">
+  [for (ent : Entidad | c.entidad)]
+    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
+  [/for]
+</div>
+
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Resultado de la encuesta de [c.Nombre/]</h2>
+</div>
 
   <div class="container">
     <div class="main-content">
@@ -2031,9 +2143,12 @@ label {
       [/for]
     </div>
   </div>
-
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
   <div class="footer">
-    Aplicación generada automáticamente.
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
   </div>
 
 </body>

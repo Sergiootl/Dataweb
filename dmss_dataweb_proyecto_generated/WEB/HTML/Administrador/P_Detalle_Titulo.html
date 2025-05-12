@@ -1,0 +1,92 @@
+
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Pagina detalle Titulo</title>
+        <link rel="stylesheet" href="../styles.css">
+      </head>
+      <body>
+        <!-- Header Principal -->
+        <div class="header">
+          <h1>Universidad de Extremadura Data Management</h1>
+        </div>
+
+        <!-- Subheader -->
+        <div class="subheader">
+          <h2>Pagina detalle Titulo</h2>
+        </div>
+
+        <div class="container">
+          <div class="main-content">
+
+            <div class="content">
+              <h3>Campos:</h3>
+                <div class="field">
+                    <p>
+                      Nombre // 
+                       (String) 
+                      
+                      
+                    </p>
+                    <p>
+                      Creditos totales // 
+                      
+                       (Integer) 
+                      
+                    </p>
+
+                  <!-- AquÃ­ se muestran las claves forÃ¡neas de la entidad -->
+                    <p>- Id_Asignatura [ID del Asignatura] : Referencia a la entidad Asignatura</p>
+                    <p>- Id_Estudiante [ID del Estudiante] : Referencia a la entidad Estudiante</p>
+                    <p>- Id_Profesor [ID del Profesor] : Referencia a la entidad Profesor</p>
+
+                  <div class="options" style="margin-top: 20px;">
+                    <h4>Listado de opciones:</h4>
+                    <ol style="padding-left: 20px;">
+                      <li style="margin-bottom: 10px;">
+                        <a href="borrar_titulo.html">Borrar Titulo</a>
+                      </li>
+                        <li style="margin-bottom: 10px;">
+                          <a href="detalle_asignatura.html">Consultar detalles de  [ID del Asignatura] // Referencia a la entidad Asignatura</a>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                          <a href="detalle_estudiante.html">Consultar detalles de  [ID del Estudiante] // Referencia a la entidad Estudiante</a>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                          <a href="detalle_profesor.html">Consultar detalles de  [ID del Profesor] // Referencia a la entidad Profesor</a>
+                        </li>
+                    </ol>
+                  </div>
+                </div>
+            </div>
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asÃ­ncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demÃ¡s redes sociales como enlaces -->
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+          <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+        </div>
+      </body>
+      </html>
+

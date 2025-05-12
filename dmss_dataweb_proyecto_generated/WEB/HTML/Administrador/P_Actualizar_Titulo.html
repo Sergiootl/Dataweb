@@ -1,0 +1,116 @@
+
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Pagina actualizacion de Titulo</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script>
+          function mostrarMensaje() {
+            const mensaje = document.getElementById("mensajeExito");
+            mensaje.style.display = "block";
+            setTimeout(() => {
+              window.location.href = "P_Index_Administrador.html";
+            }, 5000);
+          }
+
+          function cerrarMensaje() {
+            window.location.href = "P_Index_Administrador.html";
+          }
+        </script>
+      </head>
+
+      <body>
+        <div class="header">
+          <h1>Universidad de Extremadura Data Management</h1>
+        </div>
+
+        <div class="subheader">
+          <h2>Pagina actualizacion de Titulo</h2>
+        </div>
+
+        <div class="container">
+          <div class="main-content">
+            <div class="content">
+              <h3>Campos para actualizar:</h3>
+              <form method="POST" action="administrador/actualizar/titulo.html" onsubmit="event.preventDefault(); mostrarMensaje();">
+                  <div class="field">
+                      <p>
+                        Nombre
+                         (String) 
+                        
+                        
+                      </p>
+
+                        <label for="Nombre">Actualizar Nombre:</label>
+                          <input type="text" class="form-input" id="Nombre_input" name="Nombre" 
+                                 value="Titulo">
+
+
+                      <p>
+                        Creditos totales
+                        
+                         (Integer) 
+                        
+                      </p>
+
+
+                        <label for="Creditos totales">Actualizar Creditos totales:</label>
+                          <input type="number" class="form-input" id="Creditos totales_input" name="Creditos totales" 
+                                 value="invalid">
+
+
+                      <p>
+                        <label for="ref_Asignatura">Seleccione un Asignatura:</label>
+                        <select class="form-input" name="ref_Asignatura" id="ref_Asignatura">
+                          <option value="Asignatura">Asignatura</option>
+                        </select>
+                      </p>
+                      <p>
+                        <label for="ref_Estudiante">Seleccione un Estudiante:</label>
+                        <select class="form-input" name="ref_Estudiante" id="ref_Estudiante">
+                          <option value="Estudiante">Estudiante</option>
+                        </select>
+                      </p>
+                      <p>
+                        <label for="ref_Profesor">Seleccione un Profesor:</label>
+                        <select class="form-input" name="ref_Profesor" id="ref_Profesor">
+                          <option value="Profesor">Profesor</option>
+                        </select>
+                      </p>
+                  </div>
+
+                <div class="actions">
+                  <button type="submit" class="button">Actualizar</button>
+                </div>
+				<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
+              </form>
+            </div>
+          </div>
+
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </div>
+
+        <div id="mensajeExito" class="mensaje-exito">
+          <span class="cerrar" onclick="cerrarMensaje()">Ã—</span>
+          <p><strong>La instancia ha sido actualizada con exito.</strong></p>
+        </div>
+
+        <div class="footer">
+          <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+        </div>
+      </body>
+      </html>
+

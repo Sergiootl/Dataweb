@@ -1,0 +1,106 @@
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <title>Pagina de Indice con detalle de Titulo</title>
+      <link rel="stylesheet" href="../styles.css">
+<!-- Header Principal -->
+<div class="header">
+    <h1>Universidad de Extremadura Data Management</h1>
+</div>
+
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Pagina de Indice con detalle de Titulo</h2>
+</div>
+      
+    </head>
+
+    <body>
+      <div class="indice-detalle-container">
+        <div class="indice-detalle-main-content">
+          <!-- SecciÃ³n de Ã­ndice (izquierda) -->
+          <div class="indice-detalle-content">
+            <h3>Listado de Titulo</h3>
+            <ol class="indice-detalle-list">
+              <li><a href="#detalle1">Titulo 01</a></li>
+              <li><a href="#detalle2">Titulo 02</a></li>
+              <li><a href="#detalle3">Titulo 03</a></li>
+              <li><a href="#detalle4">Titulo 04</a></li>
+              <li><a href="#detalle5">Titulo 05</a></li>
+              <li><a href="#detalle6">Titulo 06</a></li>
+            </ol>
+          </div>
+
+          <!-- SecciÃ³n de detalle (derecha) -->
+          <div class="indice-detalle-section">
+            <h3>Campos:</h3>
+              <div class="field">
+                  <p>
+                    Nombre // 
+                     (String) 
+                    
+                    
+                  </p>
+                  <p>
+                    Creditos totales // 
+                    
+                     (Integer) 
+                    
+                  </p>
+
+                <!-- AquÃ­ se muestran las claves forÃ¡neas de la entidad -->
+                  <p>- Id_Asignatura [ID del Asignatura] : Referencia a la entidad Asignatura</p>
+                  <p>- Id_Estudiante [ID del Estudiante] : Referencia a la entidad Estudiante</p>
+                  <p>- Id_Profesor [ID del Profesor] : Referencia a la entidad Profesor</p>
+
+                <div class="options" style="margin-top: 20px;">
+                  <h4>Listado de opciones:</h4>
+                  <ol style="padding-left: 20px;">
+                    <li style="margin-bottom: 10px;">
+                      <a href="P_Borrar_Titulo.html">Borrar Titulo</a>
+                    </li>
+                      <li style="margin-bottom: 10px;">
+                        <a href="P_Detalle_Asignatura.html">Consultar detalles de  [ID del Asignatura] // Referencia a la entidad Asignatura</a>
+                      </li>
+                      <li style="margin-bottom: 10px;">
+                        <a href="P_Detalle_Estudiante.html">Consultar detalles de  [ID del Estudiante] // Referencia a la entidad Estudiante</a>
+                      </li>
+                      <li style="margin-bottom: 10px;">
+                        <a href="P_Detalle_Profesor.html">Consultar detalles de  [ID del Profesor] // Referencia a la entidad Profesor</a>
+                      </li>
+                  </ol>
+                </div>
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
+                  Twitter</a></p>
+              <p>- <a href="https://www.web.com" target="_blank" class="social-link">
+                  Web</a></p>
+          </div>
+
+      </div>
+<div class="button-container">
+  <button onclick="window.history.back()" class="button">Volver</button>
+</div>
+      <div class="footer">
+       <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+      </div>
+    </body>
+    </html>
+

@@ -424,7 +424,7 @@ button:hover, .button:hover {
   text-decoration: none;
   color: #333; /* Color de texto oscuro */
   font-size: 18px;
-  font-weight: bold;
+  font-weight: normal;
   display: block;
   transition: color 0.3s ease;
 }
@@ -464,7 +464,7 @@ button:hover, .button:hover {
   text-decoration: none;
   color: #333; /* Color de texto oscuro */
   font-size: 18px;
-  font-weight: bold;
+  font-weight: normal;
   display: block;
   transition: color 0.3s ease;
 }
@@ -621,8 +621,35 @@ label {
 
 .media-type {
   margin-top: 8px;
-  font-weight: bold;
+  font-weight:bold ;
   color: #333;
+}
+
+
+/* Contenedor para el botÃ³n */
+.button-container {
+  display: flex;
+  justify-content: center;  /* Centra el botÃ³n horizontalmente */
+  align-items: center;      /* Centra el botÃ³n verticalmente */
+  margin-top: 20px;         /* Margen superior mÃ¡s pequeÃ±o */
+  margin-bottom: 20px;      /* Margen inferior mÃ¡s pequeÃ±o */
+}
+
+/* Estilo del botÃ³n */
+.button {
+  padding: 10px 20px;         /* AÃ±adir padding para el botÃ³n */
+  background-color: #4CAF50;   /* Color de fondo */
+  color: white;                /* Color del texto */
+  border: none;                /* Eliminar bordes */
+  border-radius: 5px;          /* Bordes redondeados */
+  font-size: 16px;             /* TamaÃ±o de fuente */
+  cursor: pointer;            /* Cambia el cursor cuando se pasa sobre el botÃ³n */
+  transition: background-color 0.3s; /* Efecto suave para cambio de color */
+}
+
+/* Estilo para cuando el botÃ³n es presionado */
+.button:hover {
+  background-color: #45a049;   /* Cambio de color en hover */
 }
 
 
