@@ -11,14 +11,31 @@ public class IndiceTitulo {
             System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
             System.out.println("Listado de AsignaturaEstudianteProfesor:");
             System.out.println("0. Salir");
-            System.out.println("1. Nombre o ID de AsignaturaEstudianteProfesor 01");
-            System.out.println("2. Nombre o ID de AsignaturaEstudianteProfesor 02");
-            System.out.println("3. Nombre o ID de AsignaturaEstudianteProfesor 03");
-            System.out.println("4. Volver");
-            System.out.print("Selecciona una opción  0-4 : ");
+            int contador = 1;
+            System.out.println(contador + ". Nombre o ID de Nombre (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Creditos (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Optativa (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Nombre (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Apellidos (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de DNI (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Nombre (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Apellidos (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de DNI (Acceso a los detalles)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Departamento (Acceso a los detalles)");
+            contador++;
+            System.out.print("Selecciona una opción [0-" + (contador - 1) + "]: ");
             opcion = sc.nextInt();
             sc.nextLine();
-            if (opcion == 4 || opcion == 0) break;
+            if (opcion == 0) break;
         }
     }
 }

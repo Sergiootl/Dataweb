@@ -13,7 +13,7 @@ public class CRUDTitulo {
             System.out.println("1. Listar Titulo");
             System.out.println("2. Crear Titulo");
             System.out.println("3. Borrar Titulo");
-            System.out.print("Selecciona una opción 0-3 : ");
+            System.out.print("Selecciona una opción [0-3]: ");
             opcion = sc.nextInt();
             sc.nextLine();
             switch(opcion) {

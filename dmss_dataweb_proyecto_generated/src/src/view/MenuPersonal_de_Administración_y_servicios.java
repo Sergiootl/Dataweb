@@ -2,18 +2,16 @@ package src.view;
 
 import java.util.Scanner;
 
-public class MenuProfesor {
+public class MenuPersonal_de_Administración_y_servicios {
     public static void mostrar() {
         Scanner sc = new Scanner(System.in);
         int opcion = -1;
         while (opcion != 0) {
-            System.out.println("=== Pantalla principal del Rol Profesor ===");
+            System.out.println("=== Pantalla principal del Rol Personal de Administración y servicios ===");
             System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
             System.out.println("0. Salir");
             int contador = 1;
             System.out.println(contador + ". Asignatura - DetallesInstancia");
-            contador++;
-            System.out.println(contador + ". Asignatura - ActualizacionInstancia");
             contador++;
             System.out.println(contador + ". Titulo - IndiceDetalle");
             contador++;
@@ -31,8 +29,6 @@ public class MenuProfesor {
             contador++;
             System.out.println(contador + ". Titulo - Cuestionario");
             contador++;
-            System.out.println(contador + ". Asignatura - CrearInstancia");
-            contador++;
             System.out.print("Selecciona una opción [0-" + (contador - 1) + "]: ");
             opcion = sc.nextInt();
             sc.nextLine();
@@ -43,41 +39,33 @@ public class MenuProfesor {
                     break;
                 case 2:
  
-    ActualizarAsignatura.mostrar();
+    IndiceDetalleTitulo.mostrar();
                     break;
                 case 3:
  
-    IndiceDetalleTitulo.mostrar();
-                    break;
-                case 4:
- 
     IndiceExtendidoTitulo.mostrar();
                     break;
-                case 5:
+                case 4:
                     IndiceTitulo.mostrar();
  
                     break;
-                case 6:
+                case 5:
  
                     break;
-                case 7:
+                case 6:
                     CRUDTitulo.mostrar();
  
                     break;
-                case 8:
+                case 7:
  
     ContenidoNormalEvento.mostrar();
                     break;
-                case 9:
+                case 8:
                     EncuestaSistemas_operativos.mostrar();
  
                     break;
-                case 10:
+                case 9:
                     CuestionarioInformatica.mostrar();
- 
-                    break;
-                case 11:
-                    CrearAsignatura.mostrar();
  
                     break;
                 case 0:

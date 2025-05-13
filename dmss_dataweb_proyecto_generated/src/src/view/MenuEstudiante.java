@@ -10,52 +10,63 @@ public class MenuEstudiante {
             System.out.println("=== Pantalla principal del Rol Estudiante ===");
             System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
             System.out.println("0. Salir");
-
             int contador = 1;
-                System.out.println(contador + ". Asignatura");
-                contador++;
-                System.out.println(contador + ". Asignatura");
-                contador++;
-                System.out.println(contador + ". Titulo");
-                contador++;
-                System.out.println(contador + ". Titulo");
-                contador++;
-                System.out.println(contador + ". Titulo");
-                contador++;
-                System.out.println(contador + ". Home");
-                contador++;
-                System.out.println(contador + ". 1");
-                contador++;
-                System.out.println(contador + ". 1");
-                contador++;
-                System.out.println(contador + ". Evento");
-                contador++;
-
-			
-            System.out.print("Selecciona una opción 0-"+(contador-1)+": ");
+            System.out.println(contador + ". Asignatura - DetallesInstancia");
+            contador++;
+            System.out.println(contador + ". Asignatura - ActualizacionInstancia");
+            contador++;
+            System.out.println(contador + ". Titulo - IndiceDetalle");
+            contador++;
+            System.out.println(contador + ". Titulo - IndiceExtendido");
+            contador++;
+            System.out.println(contador + ". Titulo - IndiceEntidad");
+            contador++;
+            System.out.println(contador + ". Titulo - Index");
+            contador++;
+            System.out.println(contador + ". Titulo - Encuesta");
+            contador++;
+            System.out.println(contador + ". Titulo - Cuestionario");
+            contador++;
+            System.out.println(contador + ". Profesor - Normal");
+            contador++;
+            System.out.print("Selecciona una opción [0-" + (contador - 1) + "]: ");
             opcion = sc.nextInt();
             sc.nextLine();
-
             switch(opcion) {
-                case 2:
+                case 1:
                     DetalleAsignatura.mostrar(0);
+ 
+                    break;
+                case 2:
+ 
+    ActualizarAsignatura.mostrar();
                     break;
                 case 3:
+ 
+    IndiceDetalleTitulo.mostrar();
                     break;
                 case 4:
+ 
+    IndiceExtendidoTitulo.mostrar();
                     break;
                 case 5:
+                    IndiceTitulo.mostrar();
+ 
                     break;
                 case 6:
-                    IndiceTitulo.mostrar();
+ 
                     break;
                 case 7:
+                    EncuestaSistemas_operativos.mostrar();
+ 
                     break;
                 case 8:
+                    CuestionarioInformatica.mostrar();
+ 
                     break;
                 case 9:
-                    break;
-                case 10:
+ 
+    ContenidoNormalEvento.mostrar();
                     break;
                 case 0:
                     System.out.println("Volviendo al menú principal...");

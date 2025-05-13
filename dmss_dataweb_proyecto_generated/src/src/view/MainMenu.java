@@ -10,25 +10,25 @@ public class MainMenu {
             System.out.println("=== Universidad de Extremadura Data Management ===");
             System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
             System.out.println("0. Salir");
-                System.out.println(2 + ". Administrador");
-                System.out.println(3 + ". Profesor");
-                System.out.println(4 + ". Estudiante");
-                System.out.println(5 + ". Personal de Administración y servicios");
-            System.out.print("Selecciona una opción 0-4: ");
+            System.out.println(1 + ". Administrador");
+            System.out.println(2 + ". Profesor");
+            System.out.println(3 + ". Estudiante");
+            System.out.println(4 + ". Personal de Administración y servicios");
+            System.out.print("Selecciona una opción [0-4]: ");
             opcion = sc.nextInt();
             sc.nextLine();
             switch(opcion) {
-                case 2:
+                case 1:
                     MenuAdministrador.mostrar();
                     break;
-                case 3:
+                case 2:
                     MenuProfesor.mostrar();
                     break;
-                case 4:
+                case 3:
                     MenuEstudiante.mostrar();
                     break;
-                case 5:
-                    //MenuPersonal de Administración y servicios.mostrar();
+                case 4:
+                    MenuPersonal_de_Administración_y_servicios.mostrar();
                     break;
                 case 0:
                     System.out.println("Saliendo...");

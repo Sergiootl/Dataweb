@@ -2,13 +2,13 @@ package src.view;
 
 import java.util.Scanner;
 
-public class BorrarAsignatura {
+public class BorrarProfesor {
     public static void mostrar() {
         Scanner sc = new Scanner(System.in);
         int opcion = -1;
 
         while (opcion != 0) {
-            System.out.println("Pantalla de borrar TituloProfesor");
+            System.out.println("Pantalla de borrar Asignatura");
             System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
             System.out.println("0. Salir");
 
@@ -16,15 +16,9 @@ public class BorrarAsignatura {
             int contador = 1;
             System.out.println(contador + ". Nombre o ID de Nombre (Borrar)");
             contador++;
-            System.out.println(contador + ". Nombre o ID de Creditos totales (Borrar)");
+            System.out.println(contador + ". Nombre o ID de Creditos (Borrar)");
             contador++;
-            System.out.println(contador + ". Nombre o ID de Nombre (Borrar)");
-            contador++;
-            System.out.println(contador + ". Nombre o ID de Apellidos (Borrar)");
-            contador++;
-            System.out.println(contador + ". Nombre o ID de DNI (Borrar)");
-            contador++;
-            System.out.println(contador + ". Nombre o ID de Departamento (Borrar)");
+            System.out.println(contador + ". Nombre o ID de Optativa (Borrar)");
             contador++;
 
             System.out.print("Selecciona una opción [0-" + (contador - 1) + "]: ");
@@ -36,19 +30,10 @@ public class BorrarAsignatura {
                     System.out.println(">> Nombre borrada!!");
                     break;
                 case 2:
-                    System.out.println(">> Creditos totales borrada!!");
+                    System.out.println(">> Creditos borrada!!");
                     break;
                 case 3:
-                    System.out.println(">> Nombre borrada!!");
-                    break;
-                case 4:
-                    System.out.println(">> Apellidos borrada!!");
-                    break;
-                case 5:
-                    System.out.println(">> DNI borrada!!");
-                    break;
-                case 6:
-                    System.out.println(">> Departamento borrada!!");
+                    System.out.println(">> Optativa borrada!!");
                     break;
                 case 0:
                     System.out.println("Volviendo...");
