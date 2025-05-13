@@ -2,11 +2,11 @@ package src.view;
 
 import java.util.Scanner;
 
-public class IndiceExtendidoTitulo {
+public class IndiceExtendidoAsignatura {
 
     public static void mostrar() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("=== Índice extendido: Titulo ===");
+        System.out.println("=== Índice extendido: Asignatura ===");
 
         System.out.println("Aplicación: invalid");
         

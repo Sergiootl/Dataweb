@@ -19,7 +19,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="R01_index_unico" value="&#xA;    &#x9;paginapantallas->select(p | p.oclIsTypeOf(Index))->size() = 1"/>
-      <details key="R04_fuentes_externas_minimas" value="&#xA;&#x9;    redessociales->size() >= 1 and &#xA;&#x9;    paginapantallas->exists(p | p.oclIsTypeOf(Interactiva))"/>
+      <details key="R04_fuentes_externas_minimas" value="&#xA;&#x9;    redessociales->size() >= 1 "/>
       <details key="R06b_encuesta_y_cuestionario" value="&#xA;&#x9;    paginapantallas->exists(p | p.oclIsTypeOf(Encuesta)) and&#xA;&#x9;    paginapantallas->exists(p | p.oclIsTypeOf(Cuestionario))"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

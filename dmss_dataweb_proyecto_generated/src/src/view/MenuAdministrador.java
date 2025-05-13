@@ -19,11 +19,11 @@ public class MenuAdministrador {
             contador++;
             System.out.println(contador + ". Asignatura - BorradoInstancia");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceDetalle");
+            System.out.println(contador + ". Asignatura - IndiceDetalle");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceExtendido");
+            System.out.println(contador + ". Asignatura - IndiceExtendido");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceEntidad");
+            System.out.println(contador + ". Asignatura - IndiceEntidad");
             contador++;
             System.out.println(contador + ". Titulo - Index");
             contador++;
@@ -35,17 +35,7 @@ public class MenuAdministrador {
             contador++;
             System.out.println(contador + ". Titulo - Cuestionario");
             contador++;
-            System.out.println(contador + ". Titulo - CrearInstancia");
-            contador++;
-            System.out.println(contador + ". Titulo - DetallesInstancia");
-            contador++;
-            System.out.println(contador + ". Titulo - ActualizacionInstancia");
-            contador++;
-            System.out.println(contador + ". Titulo - BorradoInstancia");
-            contador++;
             System.out.println(contador + ". Profesor - CrearInstancia");
-            contador++;
-            System.out.println(contador + ". Profesor - DetallesInstancia");
             contador++;
             System.out.println(contador + ". Profesor - ActualizacionInstancia");
             contador++;
@@ -73,14 +63,14 @@ public class MenuAdministrador {
                     break;
                 case 5:
  
-    IndiceDetalleTitulo.mostrar();
+    IndiceDetalleAsignatura.mostrar();
                     break;
                 case 6:
  
-    IndiceExtendidoTitulo.mostrar();
+    IndiceExtendidoAsignatura.mostrar();
                     break;
                 case 7:
-                    IndiceTitulo.mostrar();
+                    IndiceAsignatura.mostrar();
  
                     break;
                 case 8:
@@ -103,34 +93,14 @@ public class MenuAdministrador {
  
                     break;
                 case 13:
-                    CrearTitulo.mostrar();
- 
-                    break;
-                case 14:
-                    DetalleTitulo.mostrar(0);
- 
-                    break;
-                case 15:
- 
-    ActualizarTitulo.mostrar();
-                    break;
-                case 16:
-                    BorrarTitulo.mostrar();
- 
-                    break;
-                case 17:
                     CrearProfesor.mostrar();
  
                     break;
-                case 18:
-                    DetalleProfesor.mostrar(0);
- 
-                    break;
-                case 19:
+                case 14:
  
     ActualizarProfesor.mostrar();
                     break;
-                case 20:
+                case 15:
                     BorrarProfesor.mostrar();
  
                     break;

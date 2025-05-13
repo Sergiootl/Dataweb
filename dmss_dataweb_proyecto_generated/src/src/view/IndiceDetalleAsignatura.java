@@ -2,11 +2,11 @@ package src.view;
 
 import java.util.Scanner;
 
-public class IndiceDetalleTitulo {
+public class IndiceDetalleAsignatura {
 
     public static void mostrar() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("=== Detalle de índice: Titulo ===");
+        System.out.println("=== Detalle de índice: Asignatura ===");
 
         System.out.println("Aplicación: invalid");
         System.out.println("Listado de :");
@@ -21,14 +21,9 @@ public class IndiceDetalleTitulo {
         if (opcion > 0 && opcion <= 6) {
             System.out.println("=== Detalle de la instancia seleccionada ===");
             System.out.println("Nombre (String): valor_de_Nombre");
-            System.out.println("Creditos totales (Integer): valor_de_Creditos totales");
+            System.out.println("Creditos (Integer): valor_de_Creditos");
+            System.out.println("Optativa (Boolean): valor_de_Optativa");
 
-            System.out.println("Id_Asignatura: Referencia a la entidad Asignatura");
-            System.out.println("- Consultar detalles de Asignatura");
-            System.out.println("Id_Estudiante: Referencia a la entidad Estudiante");
-            System.out.println("- Consultar detalles de Estudiante");
-            System.out.println("Id_Profesor: Referencia a la entidad Profesor");
-            System.out.println("- Consultar detalles de Profesor");
         } else {
             System.out.println("Saliendo...");
         }

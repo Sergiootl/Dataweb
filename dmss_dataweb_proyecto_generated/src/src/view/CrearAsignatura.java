@@ -5,21 +5,9 @@ import java.util.Scanner;
 public class CrearAsignatura {
     public static void mostrar() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Página de creación de TituloProfesor");
+        System.out.println("Página de creación de ");
         System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
         System.out.println("Introduzca la información correspondiente:");
-        System.out.print("- Nombre: ");
-        sc.nextLine();
-        System.out.print("- Creditos totales: ");
-        sc.nextLine();
-        System.out.print("- Nombre: ");
-        sc.nextLine();
-        System.out.print("- Apellidos: ");
-        sc.nextLine();
-        System.out.print("- DNI: ");
-        sc.nextLine();
-        System.out.print("- Departamento: ");
-        sc.nextLine();
         System.out.println("1. Aceptar");
         System.out.println("2. Cancelar");
         System.out.print("Selecciona una opción [1-2]: ");

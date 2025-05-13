@@ -5,19 +5,17 @@ import java.util.Scanner;
 public class ActualizarProfesor {
     public static void mostrar() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("=== Actualizar Asignatura ===");
+        System.out.println("=== Actualizar  ===");
 
         // Listar las instancias disponibles
         System.out.println("Listado de instancias:");
         int contador = 1;
-        System.out.println(contador + ". Asignatura");
-        contador++;
 
         System.out.print("Selecciona una instancia para actualizar (0 para salir): ");
         int opcion = sc.nextInt();
         sc.nextLine();
 
-        if (opcion > 0 && opcion <= 1) {
+        if (opcion > 0 && opcion <= 0) {
             System.out.println("=== Actualizando instancia seleccionada ===");
 			String nuevoValor;
             // Mostrar y permitir la edición de los atributos

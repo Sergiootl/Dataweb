@@ -15,11 +15,11 @@ public class MenuProfesor {
             contador++;
             System.out.println(contador + ". Asignatura - ActualizacionInstancia");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceDetalle");
+            System.out.println(contador + ". Asignatura - IndiceDetalle");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceExtendido");
+            System.out.println(contador + ". Asignatura - IndiceExtendido");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceEntidad");
+            System.out.println(contador + ". Asignatura - IndiceEntidad");
             contador++;
             System.out.println(contador + ". Titulo - Index");
             contador++;
@@ -47,14 +47,14 @@ public class MenuProfesor {
                     break;
                 case 3:
  
-    IndiceDetalleTitulo.mostrar();
+    IndiceDetalleAsignatura.mostrar();
                     break;
                 case 4:
  
-    IndiceExtendidoTitulo.mostrar();
+    IndiceExtendidoAsignatura.mostrar();
                     break;
                 case 5:
-                    IndiceTitulo.mostrar();
+                    IndiceAsignatura.mostrar();
  
                     break;
                 case 6:

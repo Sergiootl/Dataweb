@@ -17,11 +17,11 @@ public class CuestionarioInformatica {
         System.out.print("Escribe tu respuesta: ");
         String respuesta1 = sc.nextLine();
 
-        if (respuesta1.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@50279dbe (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
+        if (respuesta1.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b026faa (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
             System.out.println("Respuesta correcta.");
             correctas++;
         } else {
-            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@50279dbe (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
+            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@b026faa (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
         }
 
         // Pregunta 2
@@ -29,11 +29,11 @@ public class CuestionarioInformatica {
         System.out.print("Escribe tu respuesta: ");
         String respuesta2 = sc.nextLine();
 
-        if (respuesta2.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@115b1e26 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
+        if (respuesta2.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@8a91d0e (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
             System.out.println("Respuesta correcta.");
             correctas++;
         } else {
-            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@115b1e26 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
+            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@8a91d0e (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
         }
 
         // Pregunta 3
@@ -41,11 +41,11 @@ public class CuestionarioInformatica {
         System.out.print("Escribe tu respuesta: ");
         String respuesta3 = sc.nextLine();
 
-        if (respuesta3.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@57171100 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
+        if (respuesta3.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1722c741 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
             System.out.println("Respuesta correcta.");
             correctas++;
         } else {
-            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@57171100 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
+            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1722c741 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
         }
 
         // Pregunta 4
@@ -68,11 +68,11 @@ public class CuestionarioInformatica {
         System.out.print("Escribe tu respuesta: ");
         String respuesta5 = sc.nextLine();
 
-        if (respuesta5.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@307b00f6 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
+        if (respuesta5.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@59c4141b (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
             System.out.println("Respuesta correcta.");
             correctas++;
         } else {
-            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@307b00f6 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
+            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@59c4141b (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
         }
 
         // Pregunta 6
@@ -80,11 +80,11 @@ public class CuestionarioInformatica {
         System.out.print("Escribe tu respuesta: ");
         String respuesta6 = sc.nextLine();
 
-        if (respuesta6.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@5f8b98e8 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
+        if (respuesta6.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@585dd8ad (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
             System.out.println("Respuesta correcta.");
             correctas++;
         } else {
-            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@5f8b98e8 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
+            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@585dd8ad (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
         }
 
         // Pregunta 7
@@ -108,11 +108,11 @@ public class CuestionarioInformatica {
         System.out.print("Escribe tu respuesta: ");
         String respuesta8 = sc.nextLine();
 
-        if (respuesta8.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@6d84d9f8 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
+        if (respuesta8.equals("org.eclipse.emf.ecore.impl.DynamicEObjectImpl@352eeff0 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false))")) {
             System.out.println("Respuesta correcta.");
             correctas++;
         } else {
-            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@6d84d9f8 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@75e2f097 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
+            System.out.println("Respuesta incorrecta. La respuesta correcta es org.eclipse.emf.ecore.impl.DynamicEObjectImpl@352eeff0 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@3232a034 (name: Respuesta) (instanceClassName: null) (abstract: false, interface: false)).");
         }
 
         // Pregunta 9

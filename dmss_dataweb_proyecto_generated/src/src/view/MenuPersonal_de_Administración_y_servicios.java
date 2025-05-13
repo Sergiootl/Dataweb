@@ -13,11 +13,11 @@ public class MenuPersonal_de_Administración_y_servicios {
             int contador = 1;
             System.out.println(contador + ". Asignatura - DetallesInstancia");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceDetalle");
+            System.out.println(contador + ". Asignatura - IndiceDetalle");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceExtendido");
+            System.out.println(contador + ". Asignatura - IndiceExtendido");
             contador++;
-            System.out.println(contador + ". Titulo - IndiceEntidad");
+            System.out.println(contador + ". Asignatura - IndiceEntidad");
             contador++;
             System.out.println(contador + ". Titulo - Index");
             contador++;
@@ -39,14 +39,14 @@ public class MenuPersonal_de_Administración_y_servicios {
                     break;
                 case 2:
  
-    IndiceDetalleTitulo.mostrar();
+    IndiceDetalleAsignatura.mostrar();
                     break;
                 case 3:
  
-    IndiceExtendidoTitulo.mostrar();
+    IndiceExtendidoAsignatura.mostrar();
                     break;
                 case 4:
-                    IndiceTitulo.mostrar();
+                    IndiceAsignatura.mostrar();
  
                     break;
                 case 5:
