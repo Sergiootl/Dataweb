@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+
 <!-- Header Principal -->
 <div class="header">
     <h1>Universidad de Extremadura Data Management</h1>
@@ -20,15 +21,22 @@
   <div class="container">
     <div class="main-content">
       <div class="content">
-        <h3>DescripciÃ³n de la Encuesta:</h3>
-        <p>¿Cuanto te ha gustado la app?</p>
+        <h3>Descripcion de la Encuesta:</h3>
+        <p>Encuesta sobre los sistemas operativos</p>
+		<div class="atributos-derivados">
+		  <h2>Resumen de preguntas</h2>
+		  <ul>
+		    <li><strong>Numero de preguntas Verdadero/Falso:</strong> <span>0</span></li>
+		    <li><strong>Numero de preguntas de Seleccion multiple:</strong> <span>4</span></li>
+		  </ul>
+		</div>
 
         <!-- Formulario para responder la encuesta -->
         <form action="resultado_encuesta_sistemas operativos.html" method="post">
           
           <!-- Iteramos sobre las preguntas de la encuesta -->
             <div class="pregunta">
-              <p><strong>Pregunta 2:</strong> ¿Cómo calificarías la facilidad de uso del sistema que has utilizado?</p>
+              <p><strong>Pregunta 1:</strong> ¿Cómo calificarías la facilidad de uso del sistema que has utilizado?</p>
 
               <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
                   <label>
@@ -52,7 +60,7 @@
               <!-- Si la pregunta es de respuesta corta -->
             </div>
             <div class="pregunta">
-              <p><strong>Pregunta 3:</strong> ¿Qué características mejorarías en la plataforma para facilitar su uso?</p>
+              <p><strong>Pregunta 2:</strong> ¿Qué características mejorarías en la plataforma para facilitar su uso?</p>
 
               <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
 
@@ -62,7 +70,7 @@
                 <input type="text" name="preg_3" placeholder="Escribe tu respuesta..."><br>
             </div>
             <div class="pregunta">
-              <p><strong>Pregunta 4:</strong> ¿En qué medida consideras que la interfaz gráfica del sistema es atractiva?</p>
+              <p><strong>Pregunta 3:</strong> ¿En qué medida consideras que la interfaz gráfica del sistema es atractiva?</p>
 
               <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
                   <label>
@@ -86,7 +94,7 @@
               <!-- Si la pregunta es de respuesta corta -->
             </div>
             <div class="pregunta">
-              <p><strong>Pregunta 5:</strong> ¿Cuánto tiempo, aproximadamente, sueles pasar usando la aplicación/plataforma cada semana?</p>
+              <p><strong>Pregunta 4:</strong> ¿Cuánto tiempo, aproximadamente, sueles pasar usando la aplicación/plataforma cada semana?</p>
 
               <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
                   <label>
@@ -107,7 +115,7 @@
               <!-- Si la pregunta es de respuesta corta -->
             </div>
             <div class="pregunta">
-              <p><strong>Pregunta 6:</strong>  ¿Qué tan probable es que recomiendes este sistema a otras personas?</p>
+              <p><strong>Pregunta 5:</strong>  ¿Qué tan probable es que recomiendes este sistema a otras personas?</p>
 
               <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
                   <label>
@@ -131,8 +139,17 @@
               <!-- Si la pregunta es de respuesta corta -->
             </div>
 
-          <!-- BotÃ³n para enviar la encuesta -->
-          <button type="submit">Enviar Encuesta</button>
+          <div class="actions" style="margin-top: 30px;">
+            <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
+          </div>
+			<div class="button-container">
+			  <a href="P_Index_Administrador.html" class="button">Volver</a>
+			</div>
+<script>
+            function enviarRespuestas() {
+              window.location.href = "P_Resultado_Encuesta_" + "Sistemas operativos" + ".html";
+            }
+          </script>
         </form>
       </div>
     </div>
@@ -157,9 +174,6 @@
                   Web</a></p>
           </div>
   </div>
-<div class="button-container">
-  <button onclick="window.history.back()" class="button">Volver</button>
-</div>
   <div class="footer">
     <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
 	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>

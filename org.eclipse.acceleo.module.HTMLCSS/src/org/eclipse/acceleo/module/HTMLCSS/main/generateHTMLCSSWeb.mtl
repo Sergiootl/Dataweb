@@ -682,6 +682,7 @@ label {
     <div class="main-content">
       <h2>Bienvenidos a la pagina principal de [a.Nombre/]</h2>
       <p>Roles de acceso a la informacion:</p>
+		<p>El numero medio de paginas que tienen accesibles todos los roles es [a.paginasMediasAccesibles/]:</p>
       
       <!-- Roles como bloques -->
       <div class="roles-container">
@@ -760,7 +761,7 @@ label {
   <div class="container">
     <div class="main-content">
       <h2>Bienvenido al rol [r.Nombre/]</h2>
-      <p>A continuacion, se muestra el listado de paginas a las que tiene acceso:</p>
+      <p>A continuacion, se muestra el listado de paginas a las que tiene acceso, que pertenecen a un total de [r.numeroEntidadesAccesibles/] entidades:</p>
 <ol class="entity-list">
         [for (p : PaginaPantalla | r.accesoapaginapantalla)]
           [if (p.oclIsKindOf(IndiceEntidad))] 
@@ -806,26 +807,30 @@ label {
     </div>
 
 
-    <div class="sidebar social">
-      <h3>Redes Sociales:</h3>
+<div class="sidebar social">
+  <h3>Redes Sociales:</h3>
 
-      <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-      <div class="twitter-timeline-container">
-        <a class="twitter-timeline" 
-           data-width="100%" 
-           data-height="400"
-           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
-      </div>
+  <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+  <div class="twitter-timeline-container">
+    <a class="twitter-timeline" 
+       data-width="100%" 
+       data-height="400"
+       href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+  </div>
 
-      <!-- Cargar el script de Twitter de manera asíncrona -->
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <!-- Cargar el script de Twitter de manera asíncrona -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-      <!-- Mostrar las demás redes sociales como enlaces -->
-      [for (rs : RedSocial | r.accesoapaginapantalla.redsocial)]
-        <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-            [rs.Nombre/]</a></p>
-      [/for]
-    </div>
+  <!-- Mostrar las demás redes sociales (sin Twitter) sin duplicados -->
+  [for (rs : RedSocial | r.accesoapaginapantalla.redsocial->select(rs2 | rs2.Nombre <> 'Twitter')->asSet())]
+    <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
+        [rs.Nombre/]</a></p>
+  [/for]
+</div>
+
+
+
+
   </div>
 
   <div class="footer">
@@ -988,7 +993,7 @@ label {
               </div>
 
               <div class="actions">
-                <button type="submit">Confirmar</button>
+                <button type="submit">Crear</button>
               </div>
               <div class="button-container">
   <button onclick="window.history.back()" class="button">Volver</button>
@@ -1077,11 +1082,11 @@ label {
                     <h4>Listado de opciones:</h4>
                     <ol style="padding-left: 20px;">
                       <li style="margin-bottom: 10px;">
-                        <a href="borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
+                        <a href="P_Borrar_[ent.Nombre.toLowerCase()/].html">Borrar [ent.Nombre/]</a>
                       </li>
                       [for (referencia : Entidad | ent.entidadRefereenciada)] 
                         <li style="margin-bottom: 10px;">
-                          <a href="detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [ ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
+                          <a href="P_Detalle_[referencia.Nombre.toLowerCase()/].html">Consultar detalles de [ ' [' 'ID del ' + referencia.Nombre+ ']' /] // Referencia a la entidad [referencia.Nombre/]</a>
                         </li>
                       [/for]
                     </ol>
@@ -1753,7 +1758,7 @@ label {
         <div class="action-block">
           <h4>Crear nuevo</h4>
           <p>Crea un nuevo elemento de tipo [c.Nombre/].</p>
-          <a href="P_crear_[c.Nombre/].html"><button>Crear</button></a>
+          <a href="P_Crear_[c.Nombre/].html"><button>Crear</button></a>
         </div>
 
         <div class="action-block">
@@ -1832,13 +1837,21 @@ label {
   <div class="container">
     <div class="main-content">
       <div class="content">
-        <p><strong>Descripción:</strong> [c.Descripcion/]</p>
+        <p><strong>Descripcion:</strong> [c.Descripcion/]</p>
+		<div class="atributos-derivados">
+		  <h2>Resumen de preguntas</h2>
+		  <ul>
+		    <li><strong>Numero de preguntas Verdadero/Falso:</strong> <span>[c.numeroPregVF/]</span></li>
+		    <li><strong>Numero de preguntas de Seleccion multiple:</strong> <span>[c.numeroPregSelect/]</span></li>
+		  </ul>
+		</div>
+
         <form action="resultado_cuestionario_[c.Nombre.toLowerCase()/].html" method="post">
           
           <ol>
 		  [for (preg : Pregunta | c.preguntasC)]
 		    <li>
-		      <p><strong>Pregunta [c.preguntasC->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
+		      <p><strong>Pregunta [c.preguntasC->indexOf(preg)/]:</strong> [preg.Texto/]</p>
 		
 		      [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
 		        [for (resp : Respuesta | preg.respuestas)]
@@ -1863,8 +1876,9 @@ label {
             <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
           </div>
 <div class="button-container">
-  <button onclick="window.history.back()" class="button">Volver</button>
+  <a href="P_Index_[acceso.Nombre/].html" class="button">Volver</a>
 </div>
+
           <script>
             function enviarRespuestas() {
               window.location.href = "P_Resultado_Cuestionario_" + "[c.Nombre/]" + ".html";
@@ -1932,19 +1946,63 @@ label {
     <div class="main-content">
       <div class="content">
         <h3>Preguntas y Respuestas Correctas:</h3>
+<ol>
+  [for (preg : Pregunta | c.preguntasC)]
+    <li>
+      <p><strong>Pregunta [c.preguntasC->indexOf(preg)/]:</strong> [preg.Texto/]</p>
 
-        <ol>
-          [for (preg : Pregunta | c.preguntasC)]
-            <li>
-              <p><strong>Pregunta [c.preguntasC->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
-              <p><strong>Respuesta Correcta:</strong> [preg.Rcorrecta.Texto/]</p>
-            </li>
-          [/for]
-        </ol>
+      [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+        [for (resp : Respuesta | preg.respuestas)]
+          <label>
+            <input type="radio" disabled
+              [if (resp = preg.Rcorrecta)] checked [/if]
+            >
+            [if (resp = preg.Rcorrecta)]
+              <span style="color: green; font-weight: bold;">[resp.Texto/]</span>
+            [/if]
+            [if (resp <> preg.Rcorrecta)]
+              [resp.Texto/]
+            [/if]
+          </label><br>
+        [/for]
+      [/if]
+
+      [if (preg.Tipo = TipoPregunta::V_F)]
+        <label>
+          <input type="radio" disabled
+            [if (preg.Rcorrecta.Texto = 'Verdadero')] checked [/if]
+          >
+          [if (preg.Rcorrecta.Texto = 'Verdadero')]
+            <span style="color: green; font-weight: bold;">Verdadero</span>
+          [/if]
+          [if (preg.Rcorrecta.Texto <> 'Verdadero')]
+            Verdadero
+          [/if]
+        </label><br>
+
+        <label>
+          <input type="radio" disabled
+            [if (preg.Rcorrecta.Texto = 'Falso')] checked [/if]
+          >
+          [if (preg.Rcorrecta.Texto = 'Falso')]
+            <span style="color: green; font-weight: bold;">Falso</span>
+          [/if]
+          [if (preg.Rcorrecta.Texto <> 'Falso')]
+            Falso
+          [/if]
+        </label><br>
+      [/if]
+[if (preg.Tipo = TipoPregunta::Corta)]
+                <input type="text" disabled placeholder="Respuesta del usuario"><br>
+              [/if]
+    </li>
+  [/for]
+</ol>
+
 
       </div>
     </div>
-<button onclick="window.history.back()" class="button">Volver</button>
+
     <div class="sidebar social">
       <h3>Redes Sociales:</h3>
       <!-- Mostrar el timeline de Twitter dentro del contenedor -->
@@ -1992,6 +2050,7 @@ label {
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+
 <!-- Header Principal -->
 <div class="header">
   [for (ent : Entidad | c.entidad)]
@@ -2007,8 +2066,15 @@ label {
   <div class="container">
     <div class="main-content">
       <div class="content">
-        <h3>Descripción de la Encuesta:</h3>
+        <h3>Descripcion de la Encuesta:</h3>
         <p>[c.Descripcion/]</p>
+		<div class="atributos-derivados">
+		  <h2>Resumen de preguntas</h2>
+		  <ul>
+		    <li><strong>Numero de preguntas Verdadero/Falso:</strong> <span>[c.numeroPregVF/]</span></li>
+		    <li><strong>Numero de preguntas de Seleccion multiple:</strong> <span>[c.numeroPregSelect/]</span></li>
+		  </ul>
+		</div>
 
         <!-- Formulario para responder la encuesta -->
         <form action="resultado_encuesta_[c.Nombre.toLowerCase()/].html" method="post">
@@ -2016,7 +2082,7 @@ label {
           <!-- Iteramos sobre las preguntas de la encuesta -->
           [for (preg : Pregunta | c.preguntasE)]
             <div class="pregunta">
-              <p><strong>Pregunta [c.preguntasE->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
+              <p><strong>Pregunta [c.preguntasE->indexOf(preg)/]:</strong> [preg.Texto/]</p>
 
               <!-- Si la pregunta es de opción múltiple -->
               [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
@@ -2040,8 +2106,17 @@ label {
             </div>
           [/for]
 
-          <!-- Botón para enviar la encuesta -->
-          <button type="submit">Enviar Encuesta</button>
+          <div class="actions" style="margin-top: 30px;">
+            <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
+          </div>
+			<div class="button-container">
+			  <a href="P_Index_[acceso.Nombre/].html" class="button">Volver</a>
+			</div>
+<script>
+            function enviarRespuestas() {
+              window.location.href = "P_Resultado_Encuesta_" + "[c.Nombre/]" + ".html";
+            }
+          </script>
         </form>
       </div>
     </div>
@@ -2066,9 +2141,6 @@ label {
             [/for]
           </div>
   </div>
-<div class="button-container">
-  <button onclick="window.history.back()" class="button">Volver</button>
-</div>
   <div class="footer">
     <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
 	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
@@ -2081,76 +2153,86 @@ label {
   [/for]
 [/template]
 
-[template public generateResultadoEncuesta(c : Encuesta)]
-  [for (acceso : Rol | c.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Resultado_Encuesta_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
+[template public generateResultadoEncuesta(e : Encuesta)]
+  [for (acceso : Rol | e.usuario)]
+    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_Resultado_Encuesta_').concat(e.Nombre).concat('.html'), false, 'UTF-8')]
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Resultado de la encuesta de [c.Nombre/]</title>
+  <title>Resultado de la encuesta [e.Nombre/]</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Header Principal -->
+  <div class="header">
+    [for (ent : Entidad | e.entidad)]
+      <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(e)).Nombre/]</h1>
+    [/for]
+  </div>
 
-<!-- Header Principal -->
-<div class="header">
-  [for (ent : Entidad | c.entidad)]
-    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
-  [/for]
-</div>
-
-<!-- Subheader -->
-<div class="subheader">
-  <h2>Resultado de la encuesta de [c.Nombre/]</h2>
-</div>
+  <!-- Subheader -->
+  <div class="subheader">
+    <h2>Resultado de la encuesta [e.Nombre/]</h2>
+  </div>
 
   <div class="container">
     <div class="main-content">
       <div class="content">
-        <h3>Preguntas y Respuestas Correctas:</h3>
-
+        <h3>Preguntas respondidas:</h3>
         <ol>
-          [for (preg : Pregunta | c.preguntasE)]
+          [for (preg : Pregunta | e.preguntasE)]
             <li>
-              <p><strong>Pregunta [c.preguntasE->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
-              <p><strong>Respuesta Correcta:</strong> [preg.Rcorrecta.Texto/]</p>
+              <p><strong>Pregunta [e.preguntasE->indexOf(preg) + 1/]:</strong> [preg.Texto/]</p>
+
+              [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+                [for (resp : Respuesta | preg.respuestas)]
+                  <label>
+                    <input type="radio" disabled> [resp.Texto/]
+                  </label><br>
+                [/for]
+              [/if]
+
+              [if (preg.Tipo = TipoPregunta::V_F)]
+                <label><input type="radio" disabled> Verdadero</label><br>
+                <label><input type="radio" disabled> Falso</label><br>
+              [/if]
+
+              [if (preg.Tipo = TipoPregunta::Corta)]
+                <input type="text" disabled placeholder="Respuesta del usuario"><br>
+              [/if]
             </li>
           [/for]
         </ol>
-
       </div>
     </div>
-<button onclick="window.history.back()" class="button">Volver</button>
+
     <div class="sidebar social">
       <h3>Redes Sociales:</h3>
-      <!-- Mostrar el timeline de Twitter dentro del contenedor -->
       <div class="twitter-timeline-container">
         <a class="twitter-timeline" 
            data-width="100%" 
            data-height="400"
            href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
       </div>
-    
-      <!-- Cargar el script de Twitter de manera asíncrona -->
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    
-      <!-- Mostrar las demás redes sociales como enlaces -->
-      [for (rs : RedSocial | c.redsocial)]
+
+      [for (rs : RedSocial | e.redsocial)]
         <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
             [rs.Nombre/]</a></p>
       [/for]
     </div>
   </div>
-<div class="button-container">
-  <button onclick="window.history.back()" class="button">Volver</button>
-</div>
-  <div class="footer">
-    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
-	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+
+  <div class="button-container">
+    <button onclick="window.history.back()" class="button">Volver</button>
   </div>
 
+  <div class="footer">
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+    <p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+  </div>
 </body>
 </html>
 
