@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dataweb" nsURI="http://www.example.org/dataweb" nsPrefix="dataweb">
+  <eAnnotations source="gmf"/>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="operationReflection" value="true"/>
+    <details key="tableProviders" value="true"/>
+    <details key="complianceLevel" value="6.0"/>
+  </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
   </eAnnotations>
@@ -9,18 +15,13 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eAnnotations source="gmf"/>
-  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-    <details key="operationReflection" value="true"/>
-    <details key="tableProviders" value="true"/>
-    <details key="complianceLevel" value="6.0"/>
-  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Aplicacion">
     <eAnnotations source="DSLDoc">
       <details key="Author" value="Sergio Terrazas Lobato y Javier Costillo Palacios"/>
       <details key="Last updated" value="28/05/2025"/>
       <details key="Description" value="Representa la aplicación web completa, incluyendo la definición de sus páginas, los roles de usuario, las bases de datos y las redes sociales asociadas. La aplicación debe contener al menos una página índice única, una red social y páginas específicas para encuestas y cuestionarios. Gestiona el acceso a los recursos y las funcionalidades según los roles definidos."/>
     </eAnnotations>
+    <eAnnotations source="gmf.diagram"/>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="R01_index_unico R04_fuentes_externas_minimas R06b_encuesta_y_cuestionario"/>
     </eAnnotations>
@@ -29,7 +30,6 @@
       <details key="R04_fuentes_externas_minimas" value="&#xA;&#x9;    redessociales->size() >= 1 "/>
       <details key="R06b_encuesta_y_cuestionario" value="&#xA;&#x9;    paginapantallas->exists(p | p.oclIsTypeOf(Encuesta)) and&#xA;&#x9;    paginapantallas->exists(p | p.oclIsTypeOf(Cuestionario))"/>
     </eAnnotations>
-    <eAnnotations source="gmf.diagram"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="roles" lowerBound="1" upperBound="-1"
         eType="#//Rol" containment="true"/>
@@ -63,6 +63,10 @@
     <eAnnotations source="DSLDoc">
       <details key="Description" value="Define una tabla con atributos y posibles referencias a otras entidades para modelar relaciones. Controla qué roles tienen acceso a sus datos y establece restricciones para evitar autorreferencias o combinaciones inválidas de páginas de gestión."/>
     </eAnnotations>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="R02_crud_no_combinado R03_indice_y_detalle_van_juntos R05_no_autorreferencia R06_no_referencia_inversa R08_indice_unico_por_entidad"/>
     </eAnnotations>
@@ -72,10 +76,6 @@
       <details key="R05_no_autorreferencia" value="&#xA;    &#x9;not entidadRefereenciada->includes(self)"/>
       <details key="R06_no_referencia_inversa" value="&#xA;    &#x9;entidadRefereenciada->forAll(e | not e.entidadRefereenciada->includes(self))"/>
       <details key="R08_indice_unico_por_entidad" value="&#xA;&#x9;    Aplicacion.allInstances()->any(true).paginapantallas&#xA;&#x9;      ->select(p | p.entidad = self and p.oclIsTypeOf(IndiceEntidad))->size() &lt;= 1"/>
-    </eAnnotations>
-    <eAnnotations source="gmf.node">
-      <details key="label" value="name"/>
-      <details key="color" value="0,255,255"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" lowerBound="1"
         upperBound="-1" eType="#//Atributo" containment="true"/>
@@ -169,6 +169,12 @@
       <details key="label" value="name"/>
       <details key="color" value="0,255,255"/>
     </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="REXTRA2_rcorrecta_solo_en_tipos_validos"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="REXTRA2_rcorrecta_solo_en_tipos_validos" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  preguntasC->forAll(p |&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;      not p.Rcorrecta.oclIsUndefined()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;      p.Rcorrecta.oclIsUndefined()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  )"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Evaluado" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="preguntasC" lowerBound="1"
@@ -190,15 +196,15 @@
     <eAnnotations source="DSLDoc">
       <details key="Description" value="Elemento que representa una pregunta dentro de encuestas o cuestionarios, con un tipo definido (opción múltiple, verdadero/falso o respuesta corta), texto descriptivo, varias respuestas posibles y una respuesta correcta obligatoria."/>
     </eAnnotations>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="R07_preguntas_tienen_respuesta"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="R07_preguntas_tienen_respuesta" value="&#xA;    &#x9;not Rcorrecta.oclIsUndefined()"/>
-    </eAnnotations>
-    <eAnnotations source="gmf.node">
-      <details key="label" value="name"/>
-      <details key="color" value="0,255,255"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Tipo" eType="#//TipoPregunta"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="respuestas" upperBound="-1"
@@ -232,6 +238,12 @@
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
       <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="REXTRA1_encuesta_sin_respuesta_correcta"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="REXTRA1_encuesta_sin_respuesta_correcta" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  preguntasE->forAll(p | p.Rcorrecta.oclIsUndefined())"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="preguntasE" lowerBound="1"
         upperBound="-1" eType="#//Pregunta" containment="true"/>
