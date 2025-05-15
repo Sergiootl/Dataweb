@@ -125,6 +125,14 @@
             </ul>
 
         <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>REXTRA2_entidades_nombre_unico</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+  			tablas->forAll(t1, t2 | t1 <> t2 implies t1.Nombre <> t2.Nombre)
+                    </span>
+                </li>
+            </ul>
 
 
         <span style="background-color: Gold; font-family: calibri;">
@@ -210,6 +218,12 @@
                         
 	    Aplicacion.allInstances()->any(true).paginapantallas
 	      ->select(p | p.entidad = self and p.oclIsTypeOf(IndiceEntidad))->size() <= 1
+                    </span>
+                </li>
+                <li>invariant <b>REXTRA3_nombre_no_vacio</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+  		not Nombre.oclIsUndefined() and Nombre.size() > 0
                     </span>
                 </li>
             </ul>
@@ -629,14 +643,14 @@
 
         <!-- Invariantes -->
             <ul>
-                <li>invariant <b>REXTRA2_rcorrecta_solo_en_tipos_validos</b> :
+                <li>invariant <b>R07_cuestionario_preguntas_con_respuesta_correcta</b> :
                     <span style="font-style: italic; color: blue; font-family: calibri;">
                         
 					  preguntasC->forAll(p |
 					    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then
 					      not p.Rcorrecta.oclIsUndefined()
 					    else
-					      p.Rcorrecta.oclIsUndefined()
+					      true
 					    endif
 					  )
                     </span>
@@ -674,7 +688,7 @@
                      : Respuesta
                      (composition)
                 </li>
-                <li>(1..1) 
+                <li>(0..1) 
                     <b>Rcorrecta</b>
                     
                      : Respuesta
@@ -683,14 +697,6 @@
             </ul>
 
         <!-- Invariantes -->
-            <ul>
-                <li>invariant <b>R07_preguntas_tienen_respuesta</b> :
-                    <span style="font-style: italic; color: blue; font-family: calibri;">
-                        
-    	not Rcorrecta.oclIsUndefined()
-                    </span>
-                </li>
-            </ul>
 
 
         <span style="background-color: DarkGray; font-family: calibri;">
@@ -734,6 +740,14 @@
             </ul>
 
         <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>REXTRA1_pagina_debe_tener_entidad</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+					  self.entidad <> null
+                    </span>
+                </li>
+            </ul>
 
 
         <span style="background-color: Gold; font-family: calibri;">
@@ -848,14 +862,6 @@
             </ul>
 
         <!-- Invariantes -->
-            <ul>
-                <li>invariant <b>REXTRA1_encuesta_sin_respuesta_correcta</b> :
-                    <span style="font-style: italic; color: blue; font-family: calibri;">
-                        
-					  preguntasE->forAll(p | p.Rcorrecta.oclIsUndefined())
-                    </span>
-                </li>
-            </ul>
 
 
         <span style="background-color: DarkGray; font-family: calibri;">

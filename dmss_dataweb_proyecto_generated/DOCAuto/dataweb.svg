@@ -844,7 +844,7 @@
                 <path d="M2232 1225 L2242 1225 L2242 1234 L2232 1234 L2232 1225 Z"/>
             </clipPath>
             <clipPath clipPathUnits="userSpaceOnUse" id="clipPath245">
-                <path d="M2214 1349 L2295 1349 L2295 1364 L2214 1364 L2214 1349 Z"/>
+                <path d="M2215 1349 L2294 1349 L2294 1364 L2215 1364 L2215 1349 Z"/>
             </clipPath>
             <clipPath clipPathUnits="userSpaceOnUse" id="clipPath246">
                 <path d="M2206 1397 L2215 1397 L2215 1407 L2206 1407 L2206 1397 Z"/>
@@ -1287,7 +1287,7 @@
             <line y2="1229" fill="none" x1="2240" clip-path="url(#clipPath244)" x2="2233" y1="1226"/>
             <line y2="1232" fill="none" x1="2233" clip-path="url(#clipPath244)" x2="2240" y1="1229"/>
             <line y2="1405" fill="none" x1="2210" clip-path="url(#clipPath196)" x2="2210" y1="1313"/>
-            <text x="2215" xml:space="preserve" y="1361" clip-path="url(#clipPath245)" font-weight="bold" stroke="none">[1..1] Rcorrecta</text>
+            <text x="2216" xml:space="preserve" y="1361" clip-path="url(#clipPath245)" stroke="none">[0..1] Rcorrecta</text>
             <line y2="1405" fill="none" x1="2207" clip-path="url(#clipPath246)" x2="2210" y1="1398"/>
             <line y2="1398" fill="none" x1="2210" clip-path="url(#clipPath246)" x2="2213" y1="1405"/>
             <line y2="455" fill="none" x1="995" clip-path="url(#clipPath196)" x2="2304" y1="455"/>
