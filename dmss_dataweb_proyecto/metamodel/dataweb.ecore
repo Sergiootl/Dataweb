@@ -55,6 +55,12 @@
       <details key="label" value="name"/>
       <details key="color" value="0,255,255"/>
     </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="REXTRA2_entidades_nombre_unico"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="REXTRA2_entidades_nombre_unico" value="&#xA;  &#x9;&#x9;&#x9;tablas->forAll(t1, t2 | t1 &lt;> t2 implies t1.Nombre &lt;> t2.Nombre)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tablas" lowerBound="1"
         upperBound="-1" eType="#//Entidad" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -68,7 +74,7 @@
       <details key="color" value="0,255,255"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="R02_crud_no_combinado R03_indice_y_detalle_van_juntos R05_no_autorreferencia R06_no_referencia_inversa R08_indice_unico_por_entidad"/>
+      <details key="constraints" value="R02_crud_no_combinado R03_indice_y_detalle_van_juntos R05_no_autorreferencia R06_no_referencia_inversa R08_indice_unico_por_entidad REXTRA3_nombre_no_vacio"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="R02_crud_no_combinado" value="&#xA;&#x9;    let pp = Aplicacion.allInstances()->any(true).paginapantallas->select(p | p.entidad = self) in&#xA;&#x9;    pp->exists(p | p.oclIsTypeOf(CRUD)) implies&#xA;&#x9;    pp->forAll(p | not (&#xA;&#x9;        p.oclIsTypeOf(IndiceEntidad) or&#xA;&#x9;        p.oclIsTypeOf(IndiceExtendido) or&#xA;&#x9;        p.oclIsTypeOf(IndiceDetalle) or&#xA;&#x9;        p.oclIsTypeOf(DetallesInstancia) or&#xA;&#x9;        p.oclIsTypeOf(CrearInstancia) or&#xA;&#x9;        p.oclIsTypeOf(ActualizacionInstancia) or&#xA;&#x9;        p.oclIsTypeOf(BorradoInstancia)&#xA;&#x9;    ))"/>
@@ -76,6 +82,7 @@
       <details key="R05_no_autorreferencia" value="&#xA;    &#x9;not entidadRefereenciada->includes(self)"/>
       <details key="R06_no_referencia_inversa" value="&#xA;    &#x9;entidadRefereenciada->forAll(e | not e.entidadRefereenciada->includes(self))"/>
       <details key="R08_indice_unico_por_entidad" value="&#xA;&#x9;    Aplicacion.allInstances()->any(true).paginapantallas&#xA;&#x9;      ->select(p | p.entidad = self and p.oclIsTypeOf(IndiceEntidad))->size() &lt;= 1"/>
+      <details key="REXTRA3_nombre_no_vacio" value="&#xA;  &#x9;&#x9;not Nombre.oclIsUndefined() and Nombre.size() > 0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" lowerBound="1"
         upperBound="-1" eType="#//Atributo" containment="true"/>
@@ -170,10 +177,10 @@
       <details key="color" value="0,255,255"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="REXTRA2_rcorrecta_solo_en_tipos_validos"/>
+      <details key="constraints" value="R07_cuestionario_preguntas_con_respuesta_correcta"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="REXTRA2_rcorrecta_solo_en_tipos_validos" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  preguntasC->forAll(p |&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;      not p.Rcorrecta.oclIsUndefined()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;      p.Rcorrecta.oclIsUndefined()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  )"/>
+      <details key="R07_cuestionario_preguntas_con_respuesta_correcta" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  preguntasC->forAll(p |&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;      not p.Rcorrecta.oclIsUndefined()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;      true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  )"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Evaluado" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -200,23 +207,22 @@
       <details key="label" value="name"/>
       <details key="color" value="0,255,255"/>
     </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="R07_preguntas_tienen_respuesta"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="R07_preguntas_tienen_respuesta" value="&#xA;    &#x9;not Rcorrecta.oclIsUndefined()"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Tipo" eType="#//TipoPregunta"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="respuestas" upperBound="-1"
         eType="#//Respuesta" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Rcorrecta" lowerBound="1"
-        eType="#//Respuesta"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Rcorrecta" eType="#//Respuesta"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DependienteDeEntidad" abstract="true"
       eSuperTypes="#//PaginaPantalla">
     <eAnnotations source="DSLDoc">
       <details key="Description" value="Clase base para páginas que dependen directamente de una entidad y que están asociadas a roles específicos y, opcionalmente, a redes sociales para su acceso y visibilidad."/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="REXTRA1_pagina_debe_tener_entidad"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="REXTRA1_pagina_debe_tener_entidad" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  self.entidad &lt;> null"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Normal" eSuperTypes="#//PaginaPantalla">
@@ -238,12 +244,6 @@
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
       <details key="color" value="0,255,255"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="REXTRA1_encuesta_sin_respuesta_correcta"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="REXTRA1_encuesta_sin_respuesta_correcta" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  preguntasE->forAll(p | p.Rcorrecta.oclIsUndefined())"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="preguntasE" lowerBound="1"
         upperBound="-1" eType="#//Pregunta" containment="true"/>
