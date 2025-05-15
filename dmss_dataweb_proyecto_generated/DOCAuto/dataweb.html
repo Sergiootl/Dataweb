@@ -628,6 +628,20 @@
             </ul>
 
         <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>REXTRA2_rcorrecta_solo_en_tipos_validos</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+					  preguntasC->forAll(p |
+					    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then
+					      not p.Rcorrecta.oclIsUndefined()
+					    else
+					      p.Rcorrecta.oclIsUndefined()
+					    endif
+					  )
+                    </span>
+                </li>
+            </ul>
 
 
         <span style="background-color: Gold; font-family: calibri;">
@@ -834,6 +848,14 @@
             </ul>
 
         <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>REXTRA1_encuesta_sin_respuesta_correcta</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+					  preguntasE->forAll(p | p.Rcorrecta.oclIsUndefined())
+                    </span>
+                </li>
+            </ul>
 
 
         <span style="background-color: DarkGray; font-family: calibri;">
