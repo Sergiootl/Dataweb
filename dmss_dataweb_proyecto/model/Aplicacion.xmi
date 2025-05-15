@@ -30,7 +30,7 @@
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
       redsocial="//@redessociales.0 //@redessociales.1"
       entidad="//@basedatos.0/@tablas.0"
-      Descripcion="¿Cuanto te ha gustado la app?">
+      Descripcion="Encuesta sobre los sistemas operativos">
     <preguntasE
         Texto="¿Cómo calificarías la facilidad de uso del sistema que has utilizado?">
       <respuestas
@@ -94,7 +94,7 @@
       usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
       redsocial="//@redessociales.0 //@redessociales.1"
       entidad="//@basedatos.0/@tablas.0"
-      Descripcion="¿Cuantos minutos tiene una hora?">
+      Descripcion="Cuestionario de ámbito informático">
     <preguntasC
         Tipo="Corta"
         Texto="¿Qué es un sistema operativo?">
@@ -161,7 +161,7 @@
     <preguntasC
         Tipo="V_F"
         Texto="La encapsulación en programación orientada a objetos permite ocultar los detalles de implementación y mostrar solo las interfaces necesarias."
-        Rcorrecta="//@paginapantallas.1/@preguntasC.9/@respuestas.0">
+        Rcorrecta="//@paginapantallas.1/@preguntasC.8/@respuestas.0">
       <respuestas
           Texto=" Verdadero"/>
       <respuestas

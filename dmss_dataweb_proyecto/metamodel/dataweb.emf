@@ -15,10 +15,14 @@ package dataweb;
 @gmf.diagram
 class Aplicacion {
 	attr String Nombre;
+	@gmf.compartment
 	val Rol[+] roles;
+	@gmf.compartment
 	val RedSocial[*] redessociales;
 	attr String Descripcion;
+	@gmf.compartment
 	val PaginaPantalla[+] paginapantallas;
+	@gmf.compartment
 	val BaseDatos[*] basedatos;
 
 	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="
@@ -28,8 +32,9 @@ class Aplicacion {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class BaseDatos {
+	@gmf.compartment
 	val Entidad[+] tablas;
 	attr String Nombre;
 }
@@ -55,16 +60,19 @@ class BaseDatos {
     	entidadRefereenciada->forAll(e | not e.entidadRefereenciada->includes(self))", R08_indice_unico_por_entidad="
 	    Aplicacion.allInstances()->any(true).paginapantallas
 	      ->select(p | p.entidad = self and p.oclIsTypeOf(IndiceEntidad))->size() <= 1")
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class Entidad {
+	@gmf.compartment
 	val Atributo[+] atributos;
 	attr String Nombre;
+	@gmf.link(source="Entidad", target="Entidad", target.decoration="arrow", color="255,0,0", width="3")
 	ref Entidad[*] entidadRefereenciada;
+	@gmf.link(source="EntidadRol", target="Rol", target.decoration="arrow", color="255,0,0", width="3")
 	ref Rol[+]#entidades usuarios;
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class Atributo {
 	attr String Nombre;
 	attr TipoAtributo TipoAtributo;
@@ -72,44 +80,45 @@ class Atributo {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class CrearInstancia extends DependienteDeEntidad {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class IndiceExtendido extends Indice {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class DetallesInstancia extends DependienteDeEntidad {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class ActualizacionInstancia extends DependienteDeEntidad {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class IndiceEntidad extends Indice {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class IndiceDetalle extends Indice {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class BorradoInstancia extends DependienteDeEntidad {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class Cuestionario extends Interactiva {
 	attr boolean[1] Evaluado;
+	@gmf.compartment
 	val Pregunta[+] preguntasC;
 
 	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="preguntasC->select(p | p.Tipo = TipoPregunta::V_F)->size()")
@@ -123,11 +132,13 @@ class Cuestionario extends Interactiva {
 @Ecore(constraints="R07_preguntas_tienen_respuesta")
 @"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R07_preguntas_tienen_respuesta="
     	not Rcorrecta.oclIsUndefined()")
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Texto", color="0,255,255")
 class Pregunta {
 	attr TipoPregunta Tipo;
+	@gmf.compartment
 	val Respuesta[*] respuestas;
 	attr String Texto;
+	@gmf.link(source="Pregunta", target="Respuesta", target.decoration="arrow", color="255,0,0", width="3")
 	ref Respuesta[1] Rcorrecta;
 }
 
@@ -136,15 +147,17 @@ abstract class DependienteDeEntidad extends PaginaPantalla {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Contenido", color="0,255,255")
 class Normal extends PaginaPantalla {
 	attr String Contenido;
+	@gmf.compartment
 	val ContenidoMultimedia[*] contenidomultimedia;
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Descripcion", color="0,255,255")
 class Encuesta extends Interactiva {
+	@gmf.compartment
 	val Pregunta[+] preguntasE;
 
 	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="preguntasE->select(p | p.Tipo = TipoPregunta::V_F)->size()")
@@ -173,10 +186,12 @@ class Respuesta {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class Rol {
 	attr String Nombre;
+	@gmf.link(source="Rol", target="Entidad", target.decoration="arrow", color="255,0,0", width="3")
 	ref Entidad[*]#usuarios entidades;
+	@gmf.link(source="Rol", target="PaginaPantalla", target.decoration="arrow", color="255,0,0", width="3")
 	ref PaginaPantalla[*]#usuario accesoapaginapantalla;
 
 	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="entidades->size()")
@@ -184,9 +199,10 @@ class Rol {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class RedSocial {
 	attr String Nombre;
+	@gmf.link(source="PaginaPantalla", target="RedSocial", target.decoration="arrow", color="255,0,0", width="3")
 	ref PaginaPantalla[*]#redsocial paginapantalla;
 }
 
@@ -199,7 +215,7 @@ abstract class Indice extends DependienteDeEntidad {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Tipo", color="0,255,255")
 class ContenidoMultimedia {
 	attr String Tipo;
 }
@@ -207,14 +223,16 @@ class ContenidoMultimedia {
 @DSLDoc
 abstract class PaginaPantalla {
 	attr String Nombre;
+	@gmf.link(source="PaginaPantalla", target="Rol", target.decoration="arrow", color="255,0,0", width="3")
 	ref Rol[+]#accesoapaginapantalla usuario;
+	@gmf.link(source="PaginaPantalla", target="RedSocial", target.decoration="arrow", color="255,0,0", width="3")
 	ref RedSocial[*]#paginapantalla redsocial;
-	
+	@gmf.link(source="PaginaPantalla", target="Entidad", target.decoration="arrow", color="255,0,0", width="3")
 	ref Entidad[1] entidad;
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class Index extends PaginaPantalla {
 }
 
@@ -226,7 +244,7 @@ enum TipoAtributo {
 }
 
 @DSLDoc
-@gmf.node(label="name", color="0,255,255")
+@gmf.node(label="Nombre", color="0,255,255")
 class CRUD extends DependienteDeEntidad {
 }
 
