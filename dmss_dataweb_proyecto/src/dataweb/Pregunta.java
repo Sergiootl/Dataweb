@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataweb.DatawebPackage#getPregunta()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Texto' color='0,255,255'"
+ *        annotation="gmf.node label='Texto' color='255,255,0'"
  * @generated
  */
 public interface Pregunta extends EObject {
@@ -93,7 +93,7 @@ public interface Pregunta extends EObject {
 	 * @return the value of the '<em>Rcorrecta</em>' reference.
 	 * @see #setRcorrecta(Respuesta)
 	 * @see dataweb.DatawebPackage#getPregunta_Rcorrecta()
-	 * @model annotation="gmf.link source='Pregunta' target='Respuesta' target.decoration='arrow' color='255,0,0' width='3'"
+	 * @model annotation="gmf.link source='Pregunta' target='Respuesta' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	Respuesta getRcorrecta();

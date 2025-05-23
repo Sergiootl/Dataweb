@@ -11,7 +11,7 @@ package dataweb;
  *
  * @see dataweb.DatawebPackage#getIndex()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='75,0,130'"
  * @generated
  */
 public interface Index extends PaginaPantalla {

@@ -69,7 +69,7 @@ public class RolAccesoapaginapantallaEditPart extends ConnectionNodeEditPart imp
 		 * @generated
 		 */
 		public RolAccesoapaginapantallaFigure() {
-			this.setLineWidth(3);
+			this.setLineWidth(2);
 			this.setForegroundColor(THIS_FORE);
 
 			setTargetDecoration(createTargetDecoration());
@@ -88,6 +88,6 @@ public class RolAccesoapaginapantallaEditPart extends ConnectionNodeEditPart imp
 	/**
 	 * @generated
 	 */
-	static final Color THIS_FORE = new Color(null, 255, 0, 0);
+	static final Color THIS_FORE = new Color(null, 211, 211, 211);
 
 }

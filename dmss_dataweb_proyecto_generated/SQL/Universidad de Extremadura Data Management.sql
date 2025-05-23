@@ -63,7 +63,6 @@
             id_Profesor INT NOT NULL AUTO_INCREMENT,
 
             -- Atributos
-            
                     Nombre VARCHAR(255)
 ,                    Apellidos VARCHAR(255)
 ,                    DNI INT

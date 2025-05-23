@@ -328,6 +328,6 @@ public class Pregunta2EditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 0, 255, 255);
+	static final Color THIS_BACK = new Color(null, 255, 255, 0);
 
 }

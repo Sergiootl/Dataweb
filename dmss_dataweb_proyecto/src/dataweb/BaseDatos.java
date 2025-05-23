@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataweb.DatawebPackage#getBaseDatos()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='255,253,208'"
  * @generated
  */
 public interface BaseDatos extends EObject {

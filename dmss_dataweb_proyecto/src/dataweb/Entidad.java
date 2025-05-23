@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataweb.DatawebPackage#getEntidad()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='255,255,255'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='R06_no_referencia_inversa'"
  * @generated
  */
@@ -72,7 +72,7 @@ public interface Entidad extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Entidad Refereenciada</em>' reference list.
 	 * @see dataweb.DatawebPackage#getEntidad_EntidadRefereenciada()
-	 * @model annotation="gmf.link source='Entidad' target='Entidad' target.decoration='arrow' color='255,0,0' width='3'"
+	 * @model annotation="gmf.link source='Entidad' target='Entidad' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	EList<Entidad> getEntidadRefereenciada();
@@ -87,7 +87,7 @@ public interface Entidad extends EObject {
 	 * @see dataweb.DatawebPackage#getEntidad_Usuarios()
 	 * @see dataweb.Rol#getEntidades
 	 * @model opposite="entidades" required="true"
-	 *        annotation="gmf.link source='EntidadRol' target='Rol' target.decoration='arrow' color='255,0,0' width='3'"
+	 *        annotation="gmf.link source='EntidadRol' target='Rol' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	EList<Rol> getUsuarios();

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataweb.DatawebPackage#getRedSocial()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='255,20,147'"
  * @generated
  */
 public interface RedSocial extends EObject {
@@ -57,7 +57,7 @@ public interface RedSocial extends EObject {
 	 * @see dataweb.DatawebPackage#getRedSocial_Paginapantalla()
 	 * @see dataweb.PaginaPantalla#getRedsocial
 	 * @model opposite="redsocial"
-	 *        annotation="gmf.link source='PaginaPantalla' target='RedSocial' target.decoration='arrow' color='255,0,0' width='3'"
+	 *        annotation="gmf.link source='PaginaPantalla' target='RedSocial' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	EList<PaginaPantalla> getPaginapantalla();

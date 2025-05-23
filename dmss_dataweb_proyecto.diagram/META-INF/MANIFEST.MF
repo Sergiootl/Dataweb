@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: dataweb.diagram.part.DatawebDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: dataweb.diagram.edit.parts, 
+Export-Package: dataweb.diagram.edit.parts,
  dataweb.diagram.part,
  dataweb.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,

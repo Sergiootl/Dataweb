@@ -11,7 +11,7 @@ package dataweb;
  *
  * @see dataweb.DatawebPackage#getCRUD()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='199,21,133'"
  * @generated
  */
 public interface CRUD extends DependienteDeEntidad {

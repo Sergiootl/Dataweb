@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataweb.DatawebPackage#getContenidoMultimedia()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Tipo' color='0,255,255'"
+ *        annotation="gmf.node label='Tipo' color='255,255,255'"
  * @generated
  */
 public interface ContenidoMultimedia extends EObject {

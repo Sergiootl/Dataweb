@@ -7,11 +7,10 @@ public class IndiceDetalleAsignatura {
     public static void mostrar() {
         Scanner sc = new Scanner(System.in);
         System.out.println("=== Detalle de índice: Asignatura ===");
-
         System.out.println("Aplicación: invalid");
-        System.out.println("Listado de :");
+        System.out.println("Listado de Asignatura:");
         for (int j = 1; j <= 6; j++) {
-            System.out.println(j + ".  0" + j);
+            System.out.println(j + ". Asignatura 0" + j);
         }
 
         System.out.print("Selecciona una instancia para ver detalles (0 para salir): ");
@@ -28,6 +27,8 @@ public class IndiceDetalleAsignatura {
             System.out.println("Saliendo...");
         }
 
+        System.out.println("Síguenos en: https://www.twitter.com");
+        System.out.println("Síguenos en: https://www.web.com");
 
         System.out.println("Aplicación generada automáticamente - Todos los derechos reservados");
         System.out.println("Sergio Terrazas Lobato y Javier Costillo Palacios");

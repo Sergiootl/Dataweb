@@ -308,6 +308,6 @@ public class IndiceEntidadEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Color THIS_BACK = new Color(null, 0, 255, 255);
+	static final Color THIS_BACK = new Color(null, 139, 69, 19);
 
 }

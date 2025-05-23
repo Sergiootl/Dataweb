@@ -11,7 +11,7 @@ package dataweb;
  *
  * @see dataweb.DatawebPackage#getCrearInstancia()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='0,128,0'"
  * @generated
  */
 public interface CrearInstancia extends DependienteDeEntidad {

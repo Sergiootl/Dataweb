@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see dataweb.DatawebPackage#getNormal()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Contenido' color='0,255,255'"
+ *        annotation="gmf.node label='Contenido' color='0,51,102'"
  * @generated
  */
 public interface Normal extends PaginaPantalla {

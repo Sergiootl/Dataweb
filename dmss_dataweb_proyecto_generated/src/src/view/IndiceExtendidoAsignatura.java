@@ -18,13 +18,15 @@ public class IndiceExtendidoAsignatura {
         int filtro = sc.nextInt();
         sc.nextLine();
 
-        System.out.println("Listado de :");
+        System.out.println("Listado de Asignatura:");
         for (int j = 1; j <= 6; j++) {
-            System.out.println(j + ".  0" + j + " (Acceso a los detalles)");
+            System.out.println(j + ". Asignatura 0" + j + " (Acceso a los detalles)");
         }
 
         System.out.println("Paginación: 1 2 3 4");
 
+        System.out.println("Síguenos en: https://www.twitter.com");
+        System.out.println("Síguenos en: https://www.web.com");
 
         System.out.println("Aplicación generada automáticamente - Todos los derechos reservados");
         System.out.println("Sergio Terrazas Lobato y Javier Costillo Palacios");

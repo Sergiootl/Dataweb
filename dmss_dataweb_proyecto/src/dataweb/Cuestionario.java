@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see dataweb.DatawebPackage#getCuestionario()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='255,253,208'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='R07a_cuestionario_preguntas_con_respuesta_correcta'"
  * @generated
  */

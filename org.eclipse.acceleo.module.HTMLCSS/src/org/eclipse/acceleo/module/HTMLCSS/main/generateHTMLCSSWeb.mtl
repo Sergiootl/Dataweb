@@ -681,7 +681,8 @@ label {
     <div class="main-content">
       <h2>Bienvenidos a la pagina principal de [a.Nombre/]</h2>
       <p>Roles de acceso a la informacion:</p>
-		<p>El numero medio de paginas que tienen accesibles todos los roles es [a.paginasMediasAccesibles/]:</p>
+		<p>El numero medio de paginas que tienen accesibles todos los roles es [a.roles->collect(r | r.accesoapaginapantalla)->flatten()->size().div(roles->size())
+/]:</p>
       
       <!-- Roles como bloques -->
       <div class="roles-container">
@@ -760,7 +761,10 @@ label {
   <div class="container">
     <div class="main-content">
       <h2>Bienvenido al rol [r.Nombre/]</h2>
-      <p>A continuacion, se muestra el listado de paginas a las que tiene acceso, que pertenecen a un total de [r.numeroEntidadesAccesibles/] entidades:</p>
+      <p>A continuación, se muestra el listado de páginas a las que tiene acceso, que pertenecen a un total de 
+  [r.accesoapaginapantalla->collect(p | p.entidad)->asSet()->size()/] entidades:
+</p>
+
 <ol class="entity-list">
         [for (p : PaginaPantalla | r.accesoapaginapantalla)]
           [if (p.oclIsKindOf(IndiceEntidad))] 

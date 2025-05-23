@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataweb.DatawebPackage#getRespuesta()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Texto' color='0,255,255'"
+ *        annotation="gmf.node label='Texto' color='255,255,255'"
  * @generated
  */
 public interface Respuesta extends EObject {

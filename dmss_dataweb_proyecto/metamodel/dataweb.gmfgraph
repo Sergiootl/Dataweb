@@ -12,7 +12,7 @@
     <figures xsi:type="gmfgraph:PolylineDecoration" name="PaginaPantallaEntidadFigureTargetDecoration"/>
     <descriptors name="BaseDatosFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="BaseDatosFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="253" blue="208"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -26,7 +26,7 @@
     </descriptors>
     <descriptors name="EntidadFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="EntidadFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="255" blue="255"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -40,7 +40,7 @@
     </descriptors>
     <descriptors name="AtributoFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="AtributoFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -50,7 +50,7 @@
     </descriptors>
     <descriptors name="CrearInstanciaFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="CrearInstanciaFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" green="128"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -60,7 +60,7 @@
     </descriptors>
     <descriptors name="IndiceExtendidoFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="IndiceExtendidoFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="102"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -70,7 +70,7 @@
     </descriptors>
     <descriptors name="DetallesInstanciaFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="DetallesInstanciaFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="105" green="105" blue="105"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -90,7 +90,7 @@
     </descriptors>
     <descriptors name="IndiceEntidadFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="IndiceEntidadFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="139" green="69" blue="19"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -100,7 +100,7 @@
     </descriptors>
     <descriptors name="IndiceDetalleFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="IndiceDetalleFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="128" blue="128"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -110,7 +110,7 @@
     </descriptors>
     <descriptors name="BorradoInstanciaFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="BorradoInstanciaFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -120,7 +120,7 @@
     </descriptors>
     <descriptors name="CuestionarioFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="CuestionarioFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="253" blue="208"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -134,7 +134,7 @@
     </descriptors>
     <descriptors name="PreguntaFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="PreguntaFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="255"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -148,7 +148,7 @@
     </descriptors>
     <descriptors name="NormalFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="NormalFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" green="51" blue="102"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -162,7 +162,7 @@
     </descriptors>
     <descriptors name="EncuestaFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="EncuestaFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="253" blue="208"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -176,7 +176,7 @@
     </descriptors>
     <descriptors name="RespuestaFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="RespuestaFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="255" blue="255"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -186,7 +186,7 @@
     </descriptors>
     <descriptors name="RolFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="RolFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="215"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -196,7 +196,7 @@
     </descriptors>
     <descriptors name="RedSocialFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="RedSocialFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="20" blue="147"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -206,7 +206,7 @@
     </descriptors>
     <descriptors name="ContenidoMultimediaFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ContenidoMultimediaFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="255" blue="255"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -216,7 +216,7 @@
     </descriptors>
     <descriptors name="IndexFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="IndexFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="75" blue="130"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -226,7 +226,7 @@
     </descriptors>
     <descriptors name="CRUDFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="CRUDFigure">
-        <backgroundColor xsi:type="gmfgraph:RGBColor" green="255" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="199" green="21" blue="133"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
@@ -235,72 +235,72 @@
       <accessors accessor="getFigureCRUDLabelFigure" figure="//@figures.0/@descriptors.19/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="EntidadEntidadRefereenciadaFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EntidadEntidadRefereenciadaFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.0">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EntidadEntidadRefereenciadaFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.0">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="EntidadEntidadRefereenciadaExternalLabelFigure">
       <actualFigure xsi:type="gmfgraph:Label" name="EntidadEntidadRefereenciadaExternalLabel"/>
     </descriptors>
     <descriptors name="EntidadUsuariosFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EntidadUsuariosFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.1">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EntidadUsuariosFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="EntidadUsuariosExternalLabelFigure">
       <actualFigure xsi:type="gmfgraph:Label" name="EntidadUsuariosExternalLabel"/>
     </descriptors>
     <descriptors name="PreguntaRcorrectaFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PreguntaRcorrectaFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.2">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PreguntaRcorrectaFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.2">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="PreguntaRcorrectaExternalLabelFigure">
       <actualFigure xsi:type="gmfgraph:Label" name="PreguntaRcorrectaExternalLabel"/>
     </descriptors>
     <descriptors name="RolEntidadesFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RolEntidadesFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.3">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RolEntidadesFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.3">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="RolEntidadesExternalLabelFigure">
       <actualFigure xsi:type="gmfgraph:Label" name="RolEntidadesExternalLabel"/>
     </descriptors>
     <descriptors name="RolAccesoapaginapantallaFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RolAccesoapaginapantallaFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.4">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RolAccesoapaginapantallaFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.4">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="RolAccesoapaginapantallaExternalLabelFigure">
       <actualFigure xsi:type="gmfgraph:Label" name="RolAccesoapaginapantallaExternalLabel"/>
     </descriptors>
     <descriptors name="RedSocialPaginapantallaFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RedSocialPaginapantallaFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.5">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RedSocialPaginapantallaFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.5">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="RedSocialPaginapantallaExternalLabelFigure">
       <actualFigure xsi:type="gmfgraph:Label" name="RedSocialPaginapantallaExternalLabel"/>
     </descriptors>
     <descriptors name="PaginaPantallaUsuarioFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PaginaPantallaUsuarioFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.6">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PaginaPantallaUsuarioFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.6">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="PaginaPantallaUsuarioExternalLabelFigure">
       <actualFigure xsi:type="gmfgraph:Label" name="PaginaPantallaUsuarioExternalLabel"/>
     </descriptors>
     <descriptors name="PaginaPantallaRedsocialFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PaginaPantallaRedsocialFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.7">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PaginaPantallaRedsocialFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.7">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="PaginaPantallaRedsocialExternalLabelFigure">
       <actualFigure xsi:type="gmfgraph:Label" name="PaginaPantallaRedsocialExternalLabel"/>
     </descriptors>
     <descriptors name="PaginaPantallaEntidadFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PaginaPantallaEntidadFigure" lineWidth="3" targetDecoration="//@figures.0/@figures.8">
-        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PaginaPantallaEntidadFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.8">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="211" green="211" blue="211"/>
       </actualFigure>
     </descriptors>
     <descriptors name="PaginaPantallaEntidadExternalLabelFigure">

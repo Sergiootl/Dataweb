@@ -11,7 +11,7 @@ package dataweb;
  *
  * @see dataweb.DatawebPackage#getBorradoInstancia()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='255,0,0'"
  * @generated
  */
 public interface BorradoInstancia extends DependienteDeEntidad {

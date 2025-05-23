@@ -59,7 +59,7 @@ public interface PaginaPantalla extends EObject {
 	 * @see dataweb.DatawebPackage#getPaginaPantalla_Usuario()
 	 * @see dataweb.Rol#getAccesoapaginapantalla
 	 * @model opposite="accesoapaginapantalla" required="true"
-	 *        annotation="gmf.link source='PaginaPantalla' target='Rol' target.decoration='arrow' color='255,0,0' width='3'"
+	 *        annotation="gmf.link source='PaginaPantalla' target='Rol' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	EList<Rol> getUsuario();
@@ -74,7 +74,7 @@ public interface PaginaPantalla extends EObject {
 	 * @see dataweb.DatawebPackage#getPaginaPantalla_Redsocial()
 	 * @see dataweb.RedSocial#getPaginapantalla
 	 * @model opposite="paginapantalla"
-	 *        annotation="gmf.link source='PaginaPantalla' target='RedSocial' target.decoration='arrow' color='255,0,0' width='3'"
+	 *        annotation="gmf.link source='PaginaPantalla' target='RedSocial' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	EList<RedSocial> getRedsocial();
@@ -87,7 +87,7 @@ public interface PaginaPantalla extends EObject {
 	 * @see #setEntidad(Entidad)
 	 * @see dataweb.DatawebPackage#getPaginaPantalla_Entidad()
 	 * @model required="true"
-	 *        annotation="gmf.link source='PaginaPantalla' target='Entidad' target.decoration='arrow' color='255,0,0' width='3'"
+	 *        annotation="gmf.link source='PaginaPantalla' target='Entidad' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	Entidad getEntidad();

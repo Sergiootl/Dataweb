@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see dataweb.DatawebPackage#getEncuesta()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Descripcion' color='0,255,255'"
+ *        annotation="gmf.node label='Descripcion' color='255,253,208'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='R07b_encuesta_sin_respuesta_correcta'"
  * @generated
  */

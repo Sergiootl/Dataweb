@@ -4,12 +4,12 @@
     <title>Documentacion para dataweb</title>
     <meta name="description" content="dataweb/ Documentation">
 </head>
+
 <body>
     <span style="font-family: calibri; color: black">
     
     <!-- Metainformación del paquete -->
 	            <p>Author : Sergio Terrazas Lobato y Javier Costillo Palacios</p>
-			    <p>Last updated : 28/05/2025</p>
 
     <p><img src="dataweb.svg" border="1" alt="dataweb" height="400"/></p>
     <p>Name: dataweb</p>
@@ -25,9 +25,8 @@
         <br/>
 
         <p>Description : 
-            Representa la aplicación web completa, incluyendo la definición de sus páginas, los roles de usuario, las bases de datos y las redes sociales asociadas. La aplicación debe contener al menos una página índice única, una red social y páginas específicas para encuestas y cuestionarios. Gestiona el acceso a los recursos y las funcionalidades según los roles definidos.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -43,7 +42,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -71,7 +69,6 @@
                      (composition)
                 </li>
             </ul>
-
         <!-- Invariantes -->
             <ul>
                 <li>invariant <b>R01_index_unico</b> :
@@ -103,9 +100,8 @@
         <br/>
 
         <p>Description : 
-            Modelo que agrupa un conjunto de tablas o entidades que almacenan datos estructurados de la aplicación, permitiendo organizar la información de manera coherente y relacionada.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -113,7 +109,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -123,16 +118,7 @@
                      (composition)
                 </li>
             </ul>
-
         <!-- Invariantes -->
-            <ul>
-                <li>invariant <b>REXTRA2_entidades_nombre_unico</b> :
-                    <span style="font-style: italic; color: blue; font-family: calibri;">
-                        
-  			tablas->forAll(t1, t2 | t1 <> t2 implies t1.Nombre <> t2.Nombre)
-                    </span>
-                </li>
-            </ul>
 
 
         <span style="background-color: Gold; font-family: calibri;">
@@ -142,9 +128,8 @@
         <br/>
 
         <p>Description : 
-            Define una tabla con atributos y posibles referencias a otras entidades para modelar relaciones. Controla qué roles tienen acceso a sus datos y establece restricciones para evitar autorreferencias o combinaciones inválidas de páginas de gestión.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -152,7 +137,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -174,7 +158,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
             <ul>
                 <li>invariant <b>R02_crud_no_combinado</b> :
@@ -220,12 +203,6 @@
 	      ->select(p | p.entidad = self and p.oclIsTypeOf(IndiceEntidad))->size() <= 1
                     </span>
                 </li>
-                <li>invariant <b>REXTRA3_nombre_no_vacio</b> :
-                    <span style="font-style: italic; color: blue; font-family: calibri;">
-                        
-  		not Nombre.oclIsUndefined() and Nombre.size() > 0
-                    </span>
-                </li>
             </ul>
 
 
@@ -236,9 +213,8 @@
         <br/>
 
         <p>Description : 
-            Elemento que representa un campo dentro de una entidad, definido por un nombre, un tipo de dato (entero, booleano o cadena) y un indicador que señala si es clave primaria.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -254,9 +230,7 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
-
         <!-- Invariantes -->
 
 
@@ -267,9 +241,8 @@
         <br/>
 
         <p>Description : 
-            Página destinada a la creación de nuevas instancias de una entidad, accesible solo para ciertos roles, y que puede estar vinculada a redes sociales para facilitar la interacción.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -277,7 +250,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -299,7 +271,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -310,9 +281,8 @@
         <br/>
 
         <p>Description : 
-            Página índice que muestra listados de una entidad con atributos específicos y extendidos para proporcionar una visión más completa, restringida a determinados roles y redes sociales.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -324,7 +294,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -346,7 +315,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -357,9 +325,8 @@
         <br/>
 
         <p>Description : 
-            Página que despliega la información detallada de una instancia individual de una entidad, permitiendo visualizar datos completos para usuarios con acceso autorizado.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -367,7 +334,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -389,7 +355,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -400,11 +365,8 @@
         <br/>
 
         <p>Description : 
-            Página para modificar o actualizar datos de una instancia existente de una entidad, accesible para roles con permisos de edición y vinculada opcionalmente a redes sociales.
-
-
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -412,7 +374,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -434,7 +395,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -445,11 +405,8 @@
         <br/>
 
         <p>Description : 
-            Página índice básica que lista instancias de una entidad con algunos atributos seleccionados, facilitando la navegación y búsqueda de datos.
-
-
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -461,7 +418,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -483,7 +439,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -494,11 +449,8 @@
         <br/>
 
         <p>Description : 
-            Página que combina la funcionalidad de índice y detalle, mostrando listados junto con la información específica de las instancias, con control de acceso definido.
-
-
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -510,7 +462,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -532,7 +483,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -543,9 +493,8 @@
         <br/>
 
         <p>Description : 
-            Página destinada a eliminar instancias de una entidad, disponible únicamente para roles con permisos de borrado y que puede integrarse con redes sociales.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -553,7 +502,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -575,7 +523,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -586,9 +533,8 @@
         <br/>
 
         <p>Description : 
-            Página evaluada que contiene una serie de preguntas con respuestas, asociada a una entidad, diseñada para ser utilizada en evaluaciones y accesible a roles concretos.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -612,7 +558,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -640,19 +585,18 @@
                      (composition)
                 </li>
             </ul>
-
         <!-- Invariantes -->
             <ul>
-                <li>invariant <b>R07_cuestionario_preguntas_con_respuesta_correcta</b> :
+                <li>invariant <b>R07a_cuestionario_preguntas_con_respuesta_correcta</b> :
                     <span style="font-style: italic; color: blue; font-family: calibri;">
                         
-					  preguntasC->forAll(p |
-					    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then
-					      not p.Rcorrecta.oclIsUndefined()
-					    else
-					      true
-					    endif
-					  )
+  preguntasC->forAll(p |
+    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then
+      not p.Rcorrecta.oclIsUndefined()
+    else
+      p.Rcorrecta.oclIsUndefined()
+    endif
+  )
                     </span>
                 </li>
             </ul>
@@ -665,9 +609,8 @@
         <br/>
 
         <p>Description : 
-            Elemento que representa una pregunta dentro de encuestas o cuestionarios, con un tipo definido (opción múltiple, verdadero/falso o respuesta corta), texto descriptivo, varias respuestas posibles y una respuesta correcta obligatoria.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -679,7 +622,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(0..*) 
@@ -695,7 +637,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -706,9 +647,8 @@
         <br/>
 
         <p>Description : 
-            Clase base para páginas que dependen directamente de una entidad y que están asociadas a roles específicos y, opcionalmente, a redes sociales para su acceso y visibilidad.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -716,7 +656,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -738,16 +677,7 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
-            <ul>
-                <li>invariant <b>REXTRA1_pagina_debe_tener_entidad</b> :
-                    <span style="font-style: italic; color: blue; font-family: calibri;">
-                        
-					  self.entidad <> null
-                    </span>
-                </li>
-            </ul>
 
 
         <span style="background-color: Gold; font-family: calibri;">
@@ -757,9 +687,8 @@
         <br/>
 
         <p>Description : 
-            Página que contiene contenido textual y multimedia relacionado con una entidad, accesible para roles determinados y que puede incluir diferentes tipos de contenido para enriquecer la experiencia del usuario.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -771,7 +700,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -799,7 +727,6 @@
                      (composition)
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -810,9 +737,8 @@
         <br/>
 
         <p>Description : 
-            Página interactiva con preguntas diseñadas para recopilar información o feedback de los usuarios, vinculada a una entidad y restringida a ciertos roles, con soporte para preguntas de diferentes tipos.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -832,7 +758,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -860,8 +785,17 @@
                      (composition)
                 </li>
             </ul>
-
         <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>R07b_encuesta_sin_respuesta_correcta</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+  preguntasE->forAll(p |
+    p.Rcorrecta.oclIsUndefined()
+  )
+                    </span>
+                </li>
+            </ul>
 
 
         <span style="background-color: DarkGray; font-family: calibri;">
@@ -871,9 +805,8 @@
         <br/>
 
         <p>Description : 
-            Página que combina contenido con elementos de interacción, permitiendo a los usuarios participar activamente y vinculada a una entidad con control de acceso por roles.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -885,7 +818,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -907,7 +839,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -918,9 +849,8 @@
         <br/>
 
         <p>Description : 
-            Opción de respuesta a una pregunta, definida por un texto que describe la posible elección del usuario.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -928,9 +858,7 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
-
         <!-- Invariantes -->
 
 
@@ -941,9 +869,8 @@
         <br/>
 
         <p>Description : 
-            Perfil de usuario que define qué entidades y páginas pueden ser accedidas, gestionando permisos y visibilidad dentro de la aplicación.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -959,7 +886,6 @@
                         </span>
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(0..*) 
@@ -975,7 +901,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -986,9 +911,8 @@
         <br/>
 
         <p>Description : 
-            Representación de una red social integrada en la aplicación, que puede estar asociada a diferentes páginas para facilitar la interacción y compartir contenido.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -996,7 +920,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(0..*) 
@@ -1006,7 +929,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -1017,9 +939,8 @@
         <br/>
 
         <p>Description : 
-            Clase base para páginas índice que muestran listados de instancias de una entidad basados en uno o varios atributos seleccionados, con acceso controlado.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -1031,7 +952,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -1053,7 +973,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
             <ul>
                 <li>invariant <b>R09_atributos_en_indice_pertenecen_a_entidad</b> :
@@ -1072,9 +991,8 @@
         <br/>
 
         <p>Description : 
-            Elemento multimedia asociado a páginas, definido por un tipo que indica su naturaleza (imagen, video, audio, etc.), para enriquecer la presentación del contenido.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -1082,9 +1000,7 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
-
         <!-- Invariantes -->
 
 
@@ -1095,9 +1011,8 @@
         <br/>
 
         <p>Description : 
-            Página genérica vinculada a una entidad, que se puede asociar con roles y redes sociales para controlar su acceso y funcionalidad.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -1105,7 +1020,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -1127,7 +1041,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -1138,11 +1051,8 @@
         <br/>
 
         <p>Description : 
-            Página índice concreta que lista instancias de una entidad, usada como punto de entrada para la navegación en la aplicación.
-
-
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -1150,7 +1060,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -1172,7 +1081,6 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
 
 
@@ -1183,9 +1091,8 @@
         <br/>
 
         <p>Description : 
-            Página que proporciona las funcionalidades completas para crear, leer, actualizar y borrar instancias de una entidad, accesible a roles con permisos completos.
+            
         </p>
-
         <!-- Atributos -->
             <ul>
                 <li>(0..1) 
@@ -1193,7 +1100,6 @@
                      
                 </li>
             </ul>
-
         <!-- Referencias -->
             <ul>
                 <li>(1..*) 
@@ -1215,9 +1121,7 @@
                     
                 </li>
             </ul>
-
         <!-- Invariantes -->
-
 
     <!-- Enumeraciones -->
         <p style="background-color: #66CC66; font-family: calibri;">

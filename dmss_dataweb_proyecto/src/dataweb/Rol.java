@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataweb.DatawebPackage#getRol()
  * @model annotation="DSLDoc"
- *        annotation="gmf.node label='Nombre' color='0,255,255'"
+ *        annotation="gmf.node label='Nombre' color='255,215,0'"
  * @generated
  */
 public interface Rol extends EObject {
@@ -59,7 +59,7 @@ public interface Rol extends EObject {
 	 * @see dataweb.DatawebPackage#getRol_Entidades()
 	 * @see dataweb.Entidad#getUsuarios
 	 * @model opposite="usuarios"
-	 *        annotation="gmf.link source='Rol' target='Entidad' target.decoration='arrow' color='255,0,0' width='3'"
+	 *        annotation="gmf.link source='Rol' target='Entidad' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	EList<Entidad> getEntidades();
@@ -74,7 +74,7 @@ public interface Rol extends EObject {
 	 * @see dataweb.DatawebPackage#getRol_Accesoapaginapantalla()
 	 * @see dataweb.PaginaPantalla#getUsuario
 	 * @model opposite="usuario"
-	 *        annotation="gmf.link source='Rol' target='PaginaPantalla' target.decoration='arrow' color='255,0,0' width='3'"
+	 *        annotation="gmf.link source='Rol' target='PaginaPantalla' target.decoration='arrow' color='211,211,211' width='2'"
 	 * @generated
 	 */
 	EList<PaginaPantalla> getAccesoapaginapantalla();

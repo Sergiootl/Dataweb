@@ -69,7 +69,7 @@ public class EntidadUsuariosEditPart extends ConnectionNodeEditPart implements I
 		 * @generated
 		 */
 		public EntidadUsuariosFigure() {
-			this.setLineWidth(3);
+			this.setLineWidth(2);
 			this.setForegroundColor(THIS_FORE);
 
 			setTargetDecoration(createTargetDecoration());
@@ -88,6 +88,6 @@ public class EntidadUsuariosEditPart extends ConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	static final Color THIS_FORE = new Color(null, 255, 0, 0);
+	static final Color THIS_FORE = new Color(null, 211, 211, 211);
 
 }

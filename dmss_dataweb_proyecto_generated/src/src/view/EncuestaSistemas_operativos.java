@@ -6,7 +6,7 @@ public class EncuestaSistemas_operativos {
     public static void mostrar() {
         Scanner sc = new Scanner(System.in);
         System.out.println("=== Encuesta: Sistemas operativos ===");
-        System.out.println("¿Cuanto te ha gustado la app?");
+        System.out.println("Encuesta sobre los sistemas operativos");
         System.out.println("Responde las siguientes preguntas:");
 
         System.out.println("Pregunta: ¿Cómo calificarías la facilidad de uso del sistema que has utilizado?");

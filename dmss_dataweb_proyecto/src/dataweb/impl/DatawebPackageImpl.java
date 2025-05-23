@@ -1898,42 +1898,42 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "255,253,208"
 		   });
 		addAnnotation
 		  (entidadEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "255,255,255"
 		   });
 		addAnnotation
 		  (atributoEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "255,0,0"
 		   });
 		addAnnotation
 		  (crearInstanciaEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "0,128,0"
 		   });
 		addAnnotation
 		  (indiceExtendidoEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "255,102,0"
 		   });
 		addAnnotation
 		  (detallesInstanciaEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "105,105,105"
 		   });
 		addAnnotation
 		  (actualizacionInstanciaEClass,
@@ -1947,91 +1947,91 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "139,69,19"
 		   });
 		addAnnotation
 		  (indiceDetalleEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "128,0,128"
 		   });
 		addAnnotation
 		  (borradoInstanciaEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "255,0,0"
 		   });
 		addAnnotation
 		  (cuestionarioEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "255,253,208"
 		   });
 		addAnnotation
 		  (preguntaEClass,
 		   source,
 		   new String[] {
 			   "label", "Texto",
-			   "color", "0,255,255"
+			   "color", "255,255,0"
 		   });
 		addAnnotation
 		  (normalEClass,
 		   source,
 		   new String[] {
 			   "label", "Contenido",
-			   "color", "0,255,255"
+			   "color", "0,51,102"
 		   });
 		addAnnotation
 		  (encuestaEClass,
 		   source,
 		   new String[] {
 			   "label", "Descripcion",
-			   "color", "0,255,255"
+			   "color", "255,253,208"
 		   });
 		addAnnotation
 		  (respuestaEClass,
 		   source,
 		   new String[] {
 			   "label", "Texto",
-			   "color", "0,255,255"
+			   "color", "255,255,255"
 		   });
 		addAnnotation
 		  (rolEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "255,215,0"
 		   });
 		addAnnotation
 		  (redSocialEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "255,20,147"
 		   });
 		addAnnotation
 		  (contenidoMultimediaEClass,
 		   source,
 		   new String[] {
 			   "label", "Tipo",
-			   "color", "0,255,255"
+			   "color", "255,255,255"
 		   });
 		addAnnotation
 		  (indexEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "75,0,130"
 		   });
 		addAnnotation
 		  (crudEClass,
 		   source,
 		   new String[] {
 			   "label", "Nombre",
-			   "color", "0,255,255"
+			   "color", "199,21,133"
 		   });
 	}
 
@@ -2050,8 +2050,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "Entidad",
 			   "target", "Entidad",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 		addAnnotation
 		  (getEntidad_Usuarios(),
@@ -2060,8 +2060,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "EntidadRol",
 			   "target", "Rol",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 		addAnnotation
 		  (getPregunta_Rcorrecta(),
@@ -2070,8 +2070,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "Pregunta",
 			   "target", "Respuesta",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 		addAnnotation
 		  (getRol_Entidades(),
@@ -2080,8 +2080,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "Rol",
 			   "target", "Entidad",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 		addAnnotation
 		  (getRol_Accesoapaginapantalla(),
@@ -2090,8 +2090,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "Rol",
 			   "target", "PaginaPantalla",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 		addAnnotation
 		  (getRedSocial_Paginapantalla(),
@@ -2100,8 +2100,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "PaginaPantalla",
 			   "target", "RedSocial",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 		addAnnotation
 		  (getPaginaPantalla_Usuario(),
@@ -2110,8 +2110,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "PaginaPantalla",
 			   "target", "Rol",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 		addAnnotation
 		  (getPaginaPantalla_Redsocial(),
@@ -2120,8 +2120,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "PaginaPantalla",
 			   "target", "RedSocial",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 		addAnnotation
 		  (getPaginaPantalla_Entidad(),
@@ -2130,8 +2130,8 @@ public class DatawebPackageImpl extends EPackageImpl implements DatawebPackage {
 			   "source", "PaginaPantalla",
 			   "target", "Entidad",
 			   "target.decoration", "arrow",
-			   "color", "255,0,0",
-			   "width", "3"
+			   "color", "211,211,211",
+			   "width", "2"
 		   });
 	}
 
