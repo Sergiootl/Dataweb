@@ -18,7 +18,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Aplicacion">
     <eAnnotations source="DSLDoc">
       <details key="Author" value="Sergio Terrazas Lobato y Javier Costillo Palacios"/>
-      <details key="Last update" value="19/04/2025"/>
+      <details key="Last update" value="23/05/2025"/>
+      <details key="Description" value="Representa la aplicación web completa, incluyendo la definición de sus páginas, los roles de usuario, las bases de datos y las redes sociales asociadas. La aplicación debe contener al menos una página índice única, una red social y páginas específicas para encuestas y cuestionarios. Gestiona el acceso a los recursos y las funcionalidades según los roles definidos."/>
     </eAnnotations>
     <eAnnotations source="gmf.diagram"/>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -55,7 +56,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BaseDatos">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Modelo que agrupa un conjunto de tablas o entidades que almacenan datos estructurados de la aplicación, permitiendo organizar la información de manera coherente y relacionada."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="255,253,208"/>
@@ -67,7 +70,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entidad">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Define una tabla con atributos y posibles referencias a otras entidades para modelar relaciones. Controla qué roles tienen acceso a sus datos y establece restricciones para evitar autorreferencias o combinaciones inválidas de páginas de gestión."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="255,255,255"/>
@@ -109,7 +114,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Atributo">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Elemento que representa un campo dentro de una entidad, definido por un nombre, un tipo de dato (entero, booleano o cadena) y un indicador que señala si es clave primaria."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="255,0,0"/>
@@ -120,56 +127,72 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CrearInstancia" eSuperTypes="#//DependienteDeEntidad">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página destinada a la creación de nuevas instancias de una entidad, accesible solo para ciertos roles, y que puede estar vinculada a redes sociales para facilitar la interacción."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="0,128,0"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IndiceExtendido" eSuperTypes="#//Indice">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página índice que muestra listados de una entidad con atributos específicos y extendidos para proporcionar una visión más completa, restringida a determinados roles y redes sociales."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="255,102,0"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DetallesInstancia" eSuperTypes="#//DependienteDeEntidad">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página que despliega la información detallada de una instancia individual de una entidad, permitiendo visualizar datos completos para usuarios con acceso autorizado."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="105,105,105"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActualizacionInstancia" eSuperTypes="#//DependienteDeEntidad">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página para modificar o actualizar datos de una instancia existente de una entidad, accesible para roles con permisos de edición y vinculada opcionalmente a redes sociales."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="0,255,255"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IndiceEntidad" eSuperTypes="#//Indice">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página índice básica que lista instancias de una entidad con algunos atributos seleccionados, facilitando la navegación y búsqueda de datos."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="139,69,19"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IndiceDetalle" eSuperTypes="#//Indice">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página que combina la funcionalidad de índice y detalle, mostrando listados junto con la información específica de las instancias, con control de acceso definido."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="128,0,128"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BorradoInstancia" eSuperTypes="#//DependienteDeEntidad">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página destinada a eliminar instancias de una entidad, disponible únicamente para roles con permisos de borrado y que puede integrarse con redes sociales."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="255,0,0"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cuestionario" eSuperTypes="#//Interactiva">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página evaluada que contiene una serie de preguntas con respuestas, asociada a una entidad, diseñada para ser utilizada en evaluaciones y accesible a roles concretos."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="255,253,208"/>
@@ -200,7 +223,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pregunta">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Elemento que representa una pregunta dentro de encuestas o cuestionarios, con un tipo definido (opción múltiple, verdadero/falso o respuesta corta), texto descriptivo, varias respuestas posibles y una respuesta correcta obligatoria."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Texto"/>
       <details key="color" value="255,255,0"/>
@@ -223,10 +248,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DependienteDeEntidad" abstract="true"
       eSuperTypes="#//PaginaPantalla">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Clase base para páginas que dependen directamente de una entidad y que están asociadas a roles específicos y, opcionalmente, a redes sociales para su acceso y visibilidad."/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Normal" eSuperTypes="#//PaginaPantalla">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página que contiene contenido textual y multimedia relacionado con una entidad, accesible para roles determinados y que puede incluir diferentes tipos de contenido para enriquecer la experiencia del usuario."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Contenido"/>
       <details key="color" value="0,51,102"/>
@@ -238,7 +267,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Encuesta" eSuperTypes="#//Interactiva">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página interactiva con preguntas diseñadas para recopilar información o feedback de los usuarios, vinculada a una entidad y restringida a ciertos roles, con soporte para preguntas de diferentes tipos."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Descripcion"/>
       <details key="color" value="255,253,208"/>
@@ -267,17 +298,23 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Interactiva" abstract="true" eSuperTypes="#//PaginaPantalla">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página que combina contenido con elementos de interacción, permitiendo a los usuarios participar activamente y vinculada a una entidad con control de acceso por roles."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TipoPregunta">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Enumeración que representa los distintos formatos posibles de una pregunta dentro del sistema."/>
+    </eAnnotations>
     <eLiterals name="OpcionMultiple"/>
     <eLiterals name="V_F" value="1"/>
     <eLiterals name="Corta" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Respuesta">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Opción de respuesta a una pregunta, definida por un texto que describe la posible elección del usuario."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Texto"/>
       <details key="color" value="255,255,255"/>
@@ -285,7 +322,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rol">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Perfil de usuario que define qué entidades y páginas pueden ser accedidas, gestionando permisos y visibilidad dentro de la aplicación."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="255,215,0"/>
@@ -320,7 +359,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RedSocial">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Representación de una red social integrada en la aplicación, que puede estar asociada a diferentes páginas para facilitar la interacción y compartir contenido."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="255,20,147"/>
@@ -338,7 +379,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Indice" abstract="true" eSuperTypes="#//DependienteDeEntidad">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Clase base para páginas índice que muestran listados de instancias de una entidad basados en uno o varios atributos seleccionados, con acceso controlado."/>
+    </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="R09_atributos_en_indice_pertenecen_a_entidad"/>
     </eAnnotations>
@@ -348,7 +391,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Atributos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContenidoMultimedia">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Elemento multimedia asociado a páginas, definido por un tipo que indica su naturaleza (imagen, video, audio, etc.), para enriquecer la presentación del contenido."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Tipo"/>
       <details key="color" value="255,255,255"/>
@@ -356,7 +401,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Tipo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PaginaPantalla" abstract="true">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página genérica vinculada a una entidad, que se puede asociar con roles y redes sociales para controlar su acceso y funcionalidad."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usuario" lowerBound="1"
         upperBound="-1" eType="#//Rol" eOpposite="#//Rol/accesoapaginapantalla">
@@ -390,20 +437,26 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Index" eSuperTypes="#//PaginaPantalla">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página índice concreta que lista instancias de una entidad, usada como punto de entrada para la navegación en la aplicación."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="75,0,130"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TipoAtributo">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Enumeración que define el tipo de datos que puede tener un atributo en el modelo."/>
+    </eAnnotations>
     <eLiterals name="Integer"/>
     <eLiterals name="Boolean" value="1"/>
     <eLiterals name="String" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CRUD" eSuperTypes="#//DependienteDeEntidad">
-    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="DSLDoc">
+      <details key="Description" value="Página que proporciona las funcionalidades completas para crear, leer, actualizar y borrar instancias de una entidad, accesible a roles con permisos completos."/>
+    </eAnnotations>
     <eAnnotations source="gmf.node">
       <details key="label" value="Nombre"/>
       <details key="color" value="199,21,133"/>
