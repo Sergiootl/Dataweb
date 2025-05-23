@@ -1,0 +1,47 @@
+[comment encoding = UTF-8 /]
+[module generateSQL('http://www.example.org/dataweb')]
+
+[template public generateSQL(anAplicacion : Aplicacion)]
+[comment @main/]
+[file (anAplicacion.Nombre + '.sql', false, 'UTF-8')]
+
+[for (baseDeDatos : BaseDatos | anAplicacion.basedatos)]
+    -- Script de creación de base de datos
+    CREATE DATABASE IF NOT EXISTS [baseDeDatos.Nombre/];
+    USE [baseDeDatos.Nombre/];
+
+    -- Creación de entidades
+    [for (entidad : Entidad | baseDeDatos.tablas)]
+        -- Creación de la entidad [entidad.Nombre/]
+        CREATE TABLE IF NOT EXISTS [entidad.Nombre/] (
+            -- Clave primaria obligatoria
+            id_[entidad.Nombre/] INT NOT NULL AUTO_INCREMENT,
+
+            -- Atributos
+            [for (atributo : Atributo | entidad.atributos) separator(',')]
+                [if (atributo.TipoAtributo = TipoAtributo::_'String')] 
+                    [atributo.Nombre/] VARCHAR(255)
+                [/if]
+                [if (atributo.TipoAtributo = TipoAtributo::_'Boolean')] 
+                    [atributo.Nombre/] BOOLEAN
+                [/if]
+                [if (atributo.TipoAtributo = TipoAtributo::_'Integer')] 
+                    [atributo.Nombre/] INT
+                [/if]
+            [/for]
+
+            [if (entidad.atributos->notEmpty())],[/if]
+
+            -- Clave primaria
+            PRIMARY KEY (id_[entidad.Nombre/])
+
+            -- Claves foráneas (referencias a otras entidades)
+            [for (referencia : Entidad | entidad.entidadRefereenciada)]
+                , FOREIGN KEY (id_[referencia.Nombre/]) REFERENCES [referencia.Nombre/](id_[referencia.Nombre/])
+            [/for]
+        );
+    [/for]
+[/for]
+
+[/file]
+[/template]

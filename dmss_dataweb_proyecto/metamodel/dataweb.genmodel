@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/dmss_dataweb_proyecto/src" modelPluginID="dmss_dataweb_proyecto"
+    modelName="Dataweb" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>dataweb.emf</foreignModel>
+  <genPackages prefix="Dataweb" disposableProviderFactory="true" ecorePackage="dataweb.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dataweb.ecore#//TipoPregunta">
+      <genEnumLiterals ecoreEnumLiteral="dataweb.ecore#//TipoPregunta/OpcionMultiple"/>
+      <genEnumLiterals ecoreEnumLiteral="dataweb.ecore#//TipoPregunta/V_F"/>
+      <genEnumLiterals ecoreEnumLiteral="dataweb.ecore#//TipoPregunta/Corta"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dataweb.ecore#//TipoAtributo">
+      <genEnumLiterals ecoreEnumLiteral="dataweb.ecore#//TipoAtributo/Integer"/>
+      <genEnumLiterals ecoreEnumLiteral="dataweb.ecore#//TipoAtributo/Boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="dataweb.ecore#//TipoAtributo/String"/>
+    </genEnums>
+    <genClasses ecoreClass="dataweb.ecore#//Aplicacion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Aplicacion/Nombre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Aplicacion/roles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Aplicacion/redessociales"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Aplicacion/Descripcion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Aplicacion/paginapantallas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Aplicacion/basedatos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Aplicacion/paginasMediasAccesibles"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//BaseDatos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//BaseDatos/tablas"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//BaseDatos/Nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//Entidad">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Entidad/atributos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Entidad/Nombre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//Entidad/entidadRefereenciada"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//Entidad/usuarios"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//Atributo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Atributo/Nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Atributo/TipoAtributo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Atributo/PrimaryKey"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//CrearInstancia"/>
+    <genClasses ecoreClass="dataweb.ecore#//IndiceExtendido"/>
+    <genClasses ecoreClass="dataweb.ecore#//DetallesInstancia"/>
+    <genClasses ecoreClass="dataweb.ecore#//ActualizacionInstancia"/>
+    <genClasses ecoreClass="dataweb.ecore#//IndiceEntidad"/>
+    <genClasses ecoreClass="dataweb.ecore#//IndiceDetalle"/>
+    <genClasses ecoreClass="dataweb.ecore#//BorradoInstancia"/>
+    <genClasses ecoreClass="dataweb.ecore#//Cuestionario">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Cuestionario/Evaluado"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Cuestionario/preguntasC"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Cuestionario/numeroPregVF"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Cuestionario/numeroPregSelect"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//Pregunta">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Pregunta/Tipo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Pregunta/respuestas"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Pregunta/Texto"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//Pregunta/Rcorrecta"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dataweb.ecore#//DependienteDeEntidad"/>
+    <genClasses ecoreClass="dataweb.ecore#//Normal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Normal/Contenido"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Normal/contenidomultimedia"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//Encuesta">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataweb.ecore#//Encuesta/preguntasE"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Encuesta/numeroPregVF"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Encuesta/numeroPregSelect"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dataweb.ecore#//Interactiva">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Interactiva/Descripcion"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//Respuesta">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Respuesta/Texto"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//Rol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Rol/Nombre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//Rol/entidades"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//Rol/accesoapaginapantalla"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Rol/numeroEntidadesAccesibles"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//RedSocial">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//RedSocial/Nombre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//RedSocial/paginapantalla"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dataweb.ecore#//Indice">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//Indice/Atributos"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//ContenidoMultimedia">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//ContenidoMultimedia/Tipo"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="dataweb.ecore#//PaginaPantalla">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataweb.ecore#//PaginaPantalla/Nombre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//PaginaPantalla/usuario"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//PaginaPantalla/redsocial"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dataweb.ecore#//PaginaPantalla/entidad"/>
+    </genClasses>
+    <genClasses ecoreClass="dataweb.ecore#//Index"/>
+    <genClasses ecoreClass="dataweb.ecore#//CRUD"/>
+  </genPackages>
+</genmodel:GenModel>

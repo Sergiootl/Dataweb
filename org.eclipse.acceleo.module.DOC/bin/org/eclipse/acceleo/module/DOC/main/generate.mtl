@@ -1,0 +1,104 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.eclipse.org/emf/2002/Ecore')]
+
+[template public generateElement(anEPackage : EPackage)]
+[comment @main/]
+[file (anEPackage.name+'.html', false, 'UTF-8')]
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Documentacion para [anEPackage.name/]</title>
+    <meta name="description" content="[anEPackage.name/]/ Documentation">
+</head>
+<body>
+    <span style="font-family: calibri; color: black">
+    
+    <!-- Metainformación del paquete -->
+    [for (eClass : EClass | anEPackage.eClassifiers->select(e | e.oclIsKindOf(EClass)).oclAsType(EClass))]
+	    [for (ann : EAnnotation | eClass.eAnnotations->select(a | a.source = 'DSLDoc'))]
+	        [if ann.details->exists(d | d.key = 'Author')]
+	            <p>Author : [ann.details->select(d | d.key = 'Author')->first().value/]</p>
+	        [/if]
+			[if ann.details->exists(d | d.key.toLowerCase() = 'last updated')]
+			    <p>Last updated : [ann.details->select(d | d.key.toLowerCase() = 'last updated')->first().value/]</p>
+			[/if]
+	    [/for]
+	[/for]
+
+    <p><img src="[anEPackage.name/].svg" border="1" alt="[anEPackage.name/]" height="400"/></p>
+    <p>Name: [anEPackage.name/]</p>
+    <p>NS Prefix: [anEPackage.nsPrefix/]</p>
+    <p>NS URI: [anEPackage.nsURI/]</p>
+
+    <!-- Clases -->
+    [for (eClass : EClass | anEPackage.eClassifiers->select(e|e.oclIsKindOf(EClass)).oclAsType(EClass))]
+
+        <span style="background-color: [if eClass.abstract]DarkGray[else]Gold[/if]; font-family: calibri;">
+            EClass: [eClass.name/]
+        </span>
+        [if (eClass.abstract)] (abstract)[/if]
+        <br/>
+
+        <p>Description : 
+            [eClass.eAnnotations->select(source = 'DSLDoc').details->select(key = 'Description').value/]
+        </p>
+        <!-- Atributos -->
+        [if (eClass.eAllAttributes->notEmpty())]
+            <ul>
+            [for (attribute : EAttribute | eClass.eAllAttributes)]
+                <li>([attribute.lowerBound/]..[if attribute.upperBound = -1]*[else][attribute.upperBound/][/if]) 
+                    <b>[attribute.name/]</b> : [attribute.eAttributeType.name/] 
+                    [if (attribute.iD)] (ID)[/if] 
+                    [if (attribute.derived)] (derived) = 
+                        <span style="font-style: italic; color: blue; font-family: calibri;">
+                        [eClass.eAnnotations->select(source = 'http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot')
+                           .details->select(d | d.key = attribute.name).value/]
+                        </span>
+                    [/if]
+                </li>
+            [/for]
+            </ul>
+        [/if]
+        <!-- Referencias -->
+        [if (eClass.eAllReferences->notEmpty())]
+            <ul>
+            [for (reference : EReference | eClass.eAllReferences)]
+                <li>([reference.lowerBound/]..[if reference.upperBound = -1]*[else][reference.upperBound/][/if]) 
+                    <b>[reference.name/]</b>
+                    [if (not reference.eOpposite.oclIsUndefined())]#[reference.eOpposite.name/][/if]
+                     : [reference.eReferenceType.name/]
+                    [if (reference.containment)] (composition)[/if]
+                </li>
+            [/for]
+            </ul>
+        [/if]
+        <!-- Invariantes -->
+        [for (oclAnn : EAnnotation | eClass.eAnnotations->select(a | a.source = 'http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'))]
+            <ul>
+            [for (invKey : String | oclAnn.details->collect(d | d.key))]
+                <li>invariant <b>[invKey/]</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        [oclAnn.details->select(d | d.key = invKey)->first().value/]
+                    </span>
+                </li>
+            [/for]
+            </ul>
+        [/for]
+
+    [/for]
+    <!-- Enumeraciones -->
+    [for (eEnum : EEnum | anEPackage.eClassifiers->select(e|e.oclIsKindOf(EEnum)).oclAsType(EEnum))]
+        <p style="background-color: #66CC66; font-family: calibri;">
+            EEnum: [eEnum.name/] = {
+            [for (literal : EEnumLiteral | eEnum.eLiterals) separator(', ')]
+                [literal.value/]: [literal.name/]
+            [/for]
+            }
+        </p>
+    [/for]
+
+    </span>
+</body>
+</html>
+[/file]
+[/template]

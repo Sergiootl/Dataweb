@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataweb:Aplicacion
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dataweb="http://www.example.org/dataweb"
+    Nombre="Universidad de Extremadura Data Management"
+    Descripcion="Uex App">
+  <roles Nombre="Administrador"
+      entidades="//@basedatos.0/@tablas.0 //@basedatos.0/@tablas.1 //@basedatos.0/@tablas.2 //@basedatos.0/@tablas.3"
+      accesoapaginapantalla="//@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.12 //@paginapantallas.13 //@paginapantallas.14"/>
+  <roles Nombre="Profesor"
+      entidades="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.3"
+      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.2"/>
+  <roles Nombre="Estudiante"
+      entidades="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.2"
+      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.9"/>
+  <roles Nombre="Personal de Administración y servicios"
+      entidades="//@basedatos.0/@tablas.0"
+      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
+  <redessociales
+      Nombre="Twitter"
+      paginapantalla="//@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.6 //@paginapantallas.7 //@paginapantallas.8 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
+  <redessociales
+      Nombre="Web"
+      paginapantalla="//@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.6 //@paginapantallas.7 //@paginapantallas.8 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
+  <paginapantallas
+      xsi:type="dataweb:Encuesta"
+      Nombre="Sistemas operativos"
+      usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"
+      Descripcion="Encuesta sobre los sistemas operativos">
+    <preguntasE
+        Texto="¿Cómo calificarías la facilidad de uso del sistema que has utilizado?">
+      <respuestas
+          Texto="Muy facil de usar"/>
+      <respuestas
+          Texto="Facil de usar"/>
+      <respuestas
+          Texto="Moderadamente facil"/>
+      <respuestas
+          Texto="Dificil de usar"/>
+      <respuestas
+          Texto="Muy dificil de usar"/>
+    </preguntasE>
+    <preguntasE
+        Tipo="Corta"
+        Texto="¿Qué características mejorarías en la plataforma para facilitar su uso?">
+      <respuestas
+          Texto="Que no sea de pago"/>
+    </preguntasE>
+    <preguntasE
+        Texto="¿En qué medida consideras que la interfaz gráfica del sistema es atractiva?">
+      <respuestas
+          Texto="Muy atractiva"/>
+      <respuestas
+          Texto="Atractiva"/>
+      <respuestas
+          Texto="Neutral"/>
+      <respuestas
+          Texto="Poco atractiva"/>
+      <respuestas
+          Texto="Nada atractiva"/>
+    </preguntasE>
+    <preguntasE
+        Texto="¿Cuánto tiempo, aproximadamente, sueles pasar usando la aplicación/plataforma cada semana?">
+      <respuestas
+          Texto="Menos de 1 hora"/>
+      <respuestas
+          Texto="Entre 1 y 3 horas"/>
+      <respuestas
+          Texto="Entre 3 y 5 horas"/>
+      <respuestas
+          Texto="Más de 5 horas"/>
+    </preguntasE>
+    <preguntasE
+        Texto=" ¿Qué tan probable es que recomiendes este sistema a otras personas?">
+      <respuestas
+          Texto="Muy probable"/>
+      <respuestas
+          Texto="Probable"/>
+      <respuestas
+          Texto="Neutral"/>
+      <respuestas
+          Texto="Poco probable"/>
+      <respuestas
+          Texto="Nada probable"/>
+    </preguntasE>
+  </paginapantallas>
+  <paginapantallas
+      xsi:type="dataweb:Cuestionario"
+      Nombre="Informatica"
+      usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"
+      Descripcion="Cuestionario de ámbito informático">
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es un sistema operativo?">
+      <respuestas
+          Texto="Un conjunto de programas que gestiona los recursos de la computadora."/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es un protocolo de red?">
+      <respuestas
+          Texto="Un conjunto de reglas para la comunicación entre dispositivos en una red."/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es la encapsulación en programación orientada a objetos?">
+      <respuestas
+          Texto="La ocultación de detalles internos y la exposición de solo lo necesario."/>
+    </preguntasC>
+    <preguntasC
+        Texto="¿Qué es una dirección IP?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.3/@respuestas.1">
+      <respuestas
+          Texto="a) Una unidad de medida de velocidad en internet"/>
+      <respuestas
+          Texto="b) Una etiqueta numérica que identifica un dispositivo en una red"/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es un servidor web?">
+      <respuestas
+          Texto="Un software que sirve y procesa páginas web."/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es una variable en programación?">
+      <respuestas
+          Texto="Un espacio en la memoria que almacena un valor."/>
+    </preguntasC>
+    <preguntasC
+        Texto="¿Cuál es la diferencia entre TCP y UDP?"
+        Rcorrecta="//@paginapantallas.1/@preguntasC.6/@respuestas.2">
+      <respuestas
+          Texto="a) TCP es más rápido que UDP"/>
+      <respuestas
+          Texto="b) UDP garantiza la entrega de los datos, mientras que TCP no"/>
+      <respuestas
+          Texto="c) TCP es orientado a la conexión y UDP no lo es"/>
+    </preguntasC>
+    <preguntasC
+        Tipo="Corta"
+        Texto="¿Qué es el ciclo de vida de un proceso en un sistema operativo?">
+      <respuestas
+          Texto="Las etapas que pasa un proceso desde su creación hasta su terminación."/>
+    </preguntasC>
+    <preguntasC
+        Tipo="V_F"
+        Texto="El protocolo HTTP es utilizado para transferir datos de manera segura entre el cliente y el servidor."
+        Rcorrecta="//@paginapantallas.1/@preguntasC.9/@respuestas.1">
+      <respuestas
+          Texto="Verdadero"/>
+      <respuestas
+          Texto="Falso"/>
+    </preguntasC>
+    <preguntasC
+        Tipo="V_F"
+        Texto="La encapsulación en programación orientada a objetos permite ocultar los detalles de implementación y mostrar solo las interfaces necesarias."
+        Rcorrecta="//@paginapantallas.1/@preguntasC.8/@respuestas.0">
+      <respuestas
+          Texto=" Verdadero"/>
+      <respuestas
+          Texto="Falso"/>
+    </preguntasC>
+  </paginapantallas>
+  <paginapantallas
+      xsi:type="dataweb:CrearInstancia"
+      Nombre="Asignatura"
+      usuario="//@roles.0 //@roles.1"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.1"/>
+  <paginapantallas
+      xsi:type="dataweb:DetallesInstancia"
+      Nombre="Asignatura"
+      usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.1"/>
+  <paginapantallas
+      xsi:type="dataweb:ActualizacionInstancia"
+      Nombre="Asignatura"
+      usuario="//@roles.0 //@roles.1 //@roles.2"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.1"/>
+  <paginapantallas
+      xsi:type="dataweb:BorradoInstancia"
+      Nombre="Asignatura"
+      usuario="//@roles.0"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.1"/>
+  <paginapantallas
+      xsi:type="dataweb:IndiceEntidad"
+      Nombre="Asignatura"
+      usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.1"/>
+  <paginapantallas
+      xsi:type="dataweb:IndiceExtendido"
+      Nombre="Asignatura"
+      usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.1"/>
+  <paginapantallas
+      xsi:type="dataweb:IndiceDetalle"
+      Nombre="Asignatura"
+      usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.1"/>
+  <paginapantallas
+      xsi:type="dataweb:Normal"
+      Nombre="Evento"
+      usuario="//@roles.0 //@roles.1 //@roles.3 //@roles.2"
+      redsocial="//@redessociales.1 //@redessociales.0"
+      entidad="//@basedatos.0/@tablas.3"
+      Contenido="Hola, evento de programacion">
+    <contenidomultimedia
+        Tipo="Java"/>
+    <contenidomultimedia
+        Tipo="Python"/>
+    <contenidomultimedia
+        Tipo="C++"/>
+  </paginapantallas>
+  <paginapantallas
+      xsi:type="dataweb:Index"
+      Nombre="Home"
+      usuario="//@roles.0 //@roles.1 //@roles.2 //@roles.3"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"/>
+  <paginapantallas
+      xsi:type="dataweb:CRUD"
+      Nombre="Titulo"
+      usuario="//@roles.0 //@roles.1 //@roles.3"
+      redsocial="//@redessociales.0 //@redessociales.1"
+      entidad="//@basedatos.0/@tablas.0"/>
+  <paginapantallas
+      xsi:type="dataweb:CrearInstancia"
+      Nombre="Profesor"
+      usuario="//@roles.0"
+      entidad="//@basedatos.0/@tablas.3"/>
+  <paginapantallas
+      xsi:type="dataweb:ActualizacionInstancia"
+      Nombre="Profesor"
+      usuario="//@roles.0"
+      entidad="//@basedatos.0/@tablas.3"/>
+  <paginapantallas
+      xsi:type="dataweb:BorradoInstancia"
+      Nombre="Profesor"
+      usuario="//@roles.0"
+      entidad="//@basedatos.0/@tablas.3"/>
+  <basedatos
+      Nombre="Uex">
+    <tablas
+        Nombre="Titulo"
+        entidadRefereenciada="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.2 //@basedatos.0/@tablas.3"
+        usuarios="//@roles.0 //@roles.3">
+      <atributos
+          Nombre="Nombre"
+          TipoAtributo="String"
+          PrimaryKey="true"/>
+      <atributos
+          Nombre="Creditos totales"/>
+    </tablas>
+    <tablas
+        Nombre="Asignatura"
+        usuarios="//@roles.1 //@roles.0 //@roles.2">
+      <atributos
+          Nombre="Nombre"
+          TipoAtributo="String"
+          PrimaryKey="true"/>
+      <atributos
+          Nombre="Creditos"/>
+      <atributos
+          Nombre="Optativa"
+          TipoAtributo="Boolean"/>
+    </tablas>
+    <tablas
+        Nombre="Estudiante"
+        usuarios="//@roles.2 //@roles.0">
+      <atributos
+          Nombre="Nombre"
+          TipoAtributo="String"/>
+      <atributos
+          Nombre="Apellidos"
+          TipoAtributo="String"/>
+      <atributos
+          Nombre="DNI"
+          PrimaryKey="true"/>
+    </tablas>
+    <tablas
+        Nombre="Profesor"
+        usuarios="//@roles.0 //@roles.1">
+      <atributos
+          Nombre="Nombre"
+          TipoAtributo="String"/>
+      <atributos
+          Nombre="Apellidos"
+          TipoAtributo="String"/>
+      <atributos
+          Nombre="DNI"
+          PrimaryKey="true"/>
+      <atributos
+          Nombre="Departamento"
+          TipoAtributo="String"/>
+    </tablas>
+  </basedatos>
+</dataweb:Aplicacion>

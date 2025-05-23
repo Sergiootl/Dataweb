@@ -1,0 +1,280 @@
+@gmf
+@GenModel(operationReflection="true", tableProviders="true", complianceLevel="6.0")
+@"http://www.eclipse.org/OCL/Import"(ecore="http://www.eclipse.org/emf/2002/Ecore")
+@Ecore(invocationDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", settingDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", validationDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot")
+@namespace(uri="http://www.example.org/dataweb", prefix="dataweb")
+package dataweb;
+
+@DSLDoc(Author="Sergio Terrazas Lobato y Javier Costillo Palacios", "Last update"="19/04/2025")
+@gmf.diagram
+@Ecore(constraints="R01_index_unico R04_fuentes_externas_minimas R06b_encuesta_y_cuestionario")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R01_index_unico="
+    	paginapantallas->select(p | p.oclIsTypeOf(Index))->size() = 1", R04_fuentes_externas_minimas="
+	    redessociales->size() >= 1 ", R06b_encuesta_y_cuestionario="
+	    paginapantallas->exists(p | p.oclIsTypeOf(Encuesta)) and
+	    paginapantallas->exists(p | p.oclIsTypeOf(Cuestionario))")
+class Aplicacion {
+	attr String Nombre;
+
+	@gmf.compartment
+	val Rol[+] roles;
+
+	@gmf.compartment
+	val RedSocial[*] redessociales;
+	attr String Descripcion;
+
+	@gmf.compartment
+	val PaginaPantalla[+] paginapantallas;
+
+	@gmf.compartment
+	val BaseDatos[*] basedatos;
+
+	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="
+		      let totalPaginas = roles->collect(r | r.accesoapaginapantalla)->flatten()->size() in
+		      totalPaginas.div(roles->size())")
+	attr int[1] paginasMediasAccesibles;
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class BaseDatos {
+
+	@gmf.compartment
+	val Entidad[+] tablas;
+	attr String Nombre;
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+@Ecore(constraints="R02_crud_no_combinado R03_indice_y_detalle_van_juntos R05_no_autorreferencia R06_no_referencia_inversa R08_indice_unico_por_entidad")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R02_crud_no_combinado="
+	    let pp = Aplicacion.allInstances()->any(true).paginapantallas->select(p | p.entidad = self) in
+	    pp->exists(p | p.oclIsTypeOf(CRUD)) implies
+	    pp->forAll(p | not (
+	        p.oclIsTypeOf(IndiceEntidad) or
+	        p.oclIsTypeOf(IndiceExtendido) or
+	        p.oclIsTypeOf(IndiceDetalle) or
+	        p.oclIsTypeOf(DetallesInstancia) or
+	        p.oclIsTypeOf(CrearInstancia) or
+	        p.oclIsTypeOf(ActualizacionInstancia) or
+	        p.oclIsTypeOf(BorradoInstancia)
+	    ))", R03_indice_y_detalle_van_juntos="
+	    let pp = Aplicacion.allInstances()->any(true).paginapantallas->select(p | p.entidad = self) in
+	    (pp->exists(p | p.oclIsTypeOf(IndiceEntidad) or p.oclIsTypeOf(IndiceExtendido))) =
+	    (pp->exists(p | p.oclIsTypeOf(DetallesInstancia)))", R05_no_autorreferencia="
+    	not entidadRefereenciada->includes(self)", R06_no_referencia_inversa="
+    	entidadRefereenciada->forAll(e | not e.entidadRefereenciada->includes(self))", R08_indice_unico_por_entidad="
+	    Aplicacion.allInstances()->any(true).paginapantallas
+	      ->select(p | p.entidad = self and p.oclIsTypeOf(IndiceEntidad))->size() <= 1")
+class Entidad {
+
+	@gmf.compartment
+	val Atributo[+] atributos;
+	attr String Nombre;
+
+	@gmf.link(source="Entidad", target="Entidad", target.decoration="arrow", color="255,0,0", width="3")
+	ref Entidad[*] entidadRefereenciada;
+
+	@gmf.link(source="EntidadRol", target="Rol", target.decoration="arrow", color="255,0,0", width="3")
+	ref Rol[+]#entidades usuarios;
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class Atributo {
+	attr String Nombre;
+	attr TipoAtributo TipoAtributo;
+	attr boolean[1] PrimaryKey;
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class CrearInstancia extends DependienteDeEntidad {
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class IndiceExtendido extends Indice {
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class DetallesInstancia extends DependienteDeEntidad {
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class ActualizacionInstancia extends DependienteDeEntidad {
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class IndiceEntidad extends Indice {
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class IndiceDetalle extends Indice {
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class BorradoInstancia extends DependienteDeEntidad {
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+@Ecore(constraints="R07a_cuestionario_preguntas_con_respuesta_correcta")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R07a_cuestionario_preguntas_con_respuesta_correcta="
+  preguntasC->forAll(p |
+    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then
+      not p.Rcorrecta.oclIsUndefined()
+    else
+      p.Rcorrecta.oclIsUndefined()
+    endif
+  )")
+class Cuestionario extends Interactiva {
+	attr boolean[1] Evaluado;
+
+	@gmf.compartment
+	val Pregunta[+] preguntasC;
+
+	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="preguntasC->select(p | p.Tipo = TipoPregunta::V_F)->size()")
+	attr int[1] numeroPregVF;
+
+	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="preguntasC->select(p | p.Tipo = TipoPregunta::OpcionMultiple)->size()")
+	attr int[1] numeroPregSelect;
+}
+
+@DSLDoc
+@gmf.node(label="Texto", color="0,255,255")
+class Pregunta {
+	attr TipoPregunta Tipo;
+
+	@gmf.compartment
+	val Respuesta[*] respuestas;
+	attr String Texto;
+
+	@gmf.link(source="Pregunta", target="Respuesta", target.decoration="arrow", color="255,0,0", width="3")
+	ref Respuesta Rcorrecta;
+}
+
+@DSLDoc
+abstract class DependienteDeEntidad extends PaginaPantalla {
+}
+
+@DSLDoc
+@gmf.node(label="Contenido", color="0,255,255")
+class Normal extends PaginaPantalla {
+	attr String Contenido;
+
+	@gmf.compartment
+	val ContenidoMultimedia[*] contenidomultimedia;
+}
+
+@DSLDoc
+@gmf.node(label="Descripcion", color="0,255,255")
+@Ecore(constraints="R07b_encuesta_sin_respuesta_correcta")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R07b_encuesta_sin_respuesta_correcta="
+  preguntasE->forAll(p |
+    p.Rcorrecta.oclIsUndefined()
+  )")
+class Encuesta extends Interactiva {
+
+	@gmf.compartment
+	val Pregunta[+] preguntasE;
+
+	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="preguntasE->select(p | p.Tipo = TipoPregunta::V_F)->size()")
+	attr int[1] numeroPregVF;
+
+	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="preguntasE->select(p | p.Tipo = TipoPregunta::OpcionMultiple)->size()")
+	attr int[1] numeroPregSelect;
+}
+
+@DSLDoc
+abstract class Interactiva extends PaginaPantalla {
+	attr String Descripcion;
+}
+
+@DSLDoc
+enum TipoPregunta {
+	OpcionMultiple = 0;
+	V_F = 1;
+	Corta = 2;
+}
+
+@DSLDoc
+@gmf.node(label="Texto", color="0,255,255")
+class Respuesta {
+	attr String Texto;
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class Rol {
+	attr String Nombre;
+
+	@gmf.link(source="Rol", target="Entidad", target.decoration="arrow", color="255,0,0", width="3")
+	ref Entidad[*]#usuarios entidades;
+
+	@gmf.link(source="Rol", target="PaginaPantalla", target.decoration="arrow", color="255,0,0", width="3")
+	ref PaginaPantalla[*]#usuario accesoapaginapantalla;
+
+	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="entidades->size()")
+	volatile transient derived attr int[1] numeroEntidadesAccesibles;
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class RedSocial {
+	attr String Nombre;
+
+	@gmf.link(source="PaginaPantalla", target="RedSocial", target.decoration="arrow", color="255,0,0", width="3")
+	ref PaginaPantalla[*]#redsocial paginapantalla;
+}
+
+@DSLDoc
+@Ecore(constraints="R09_atributos_en_indice_pertenecen_a_entidad")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R09_atributos_en_indice_pertenecen_a_entidad="
+    	Atributos->forAll(a | self.entidad.atributos->exists(at | at.Nombre = a))")
+abstract class Indice extends DependienteDeEntidad {
+	attr String Atributos;
+}
+
+@DSLDoc
+@gmf.node(label="Tipo", color="0,255,255")
+class ContenidoMultimedia {
+	attr String Tipo;
+}
+
+@DSLDoc
+abstract class PaginaPantalla {
+	attr String Nombre;
+
+	@gmf.link(source="PaginaPantalla", target="Rol", target.decoration="arrow", color="255,0,0", width="3")
+	ref Rol[+]#accesoapaginapantalla usuario;
+
+	@gmf.link(source="PaginaPantalla", target="RedSocial", target.decoration="arrow", color="255,0,0", width="3")
+	ref RedSocial[*]#paginapantalla redsocial;
+
+	@gmf.link(source="PaginaPantalla", target="Entidad", target.decoration="arrow", color="255,0,0", width="3")
+	ref Entidad[1] entidad;
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class Index extends PaginaPantalla {
+}
+
+@DSLDoc
+enum TipoAtributo {
+	Integer = 0;
+	Boolean = 1;
+	String = 2;
+}
+
+@DSLDoc
+@gmf.node(label="Nombre", color="0,255,255")
+class CRUD extends DependienteDeEntidad {
+}
+

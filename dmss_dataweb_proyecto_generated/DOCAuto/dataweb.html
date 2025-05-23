@@ -1,0 +1,1240 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Documentacion para dataweb</title>
+    <meta name="description" content="dataweb/ Documentation">
+</head>
+<body>
+    <span style="font-family: calibri; color: black">
+    
+    <!-- Metainformación del paquete -->
+	            <p>Author : Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+			    <p>Last updated : 28/05/2025</p>
+
+    <p><img src="dataweb.svg" border="1" alt="dataweb" height="400"/></p>
+    <p>Name: dataweb</p>
+    <p>NS Prefix: dataweb</p>
+    <p>NS URI: http://www.example.org/dataweb</p>
+
+    <!-- Clases -->
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Aplicacion
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Representa la aplicación web completa, incluyendo la definición de sus páginas, los roles de usuario, las bases de datos y las redes sociales asociadas. La aplicación debe contener al menos una página índice única, una red social y páginas específicas para encuestas y cuestionarios. Gestiona el acceso a los recursos y las funcionalidades según los roles definidos.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Descripcion</b> : EString 
+                     
+                </li>
+                <li>(1..1) 
+                    <b>paginasMediasAccesibles</b> : EInt 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>roles</b>
+                    
+                     : Rol
+                     (composition)
+                </li>
+                <li>(0..*) 
+                    <b>redessociales</b>
+                    
+                     : RedSocial
+                     (composition)
+                </li>
+                <li>(1..*) 
+                    <b>paginapantallas</b>
+                    
+                     : PaginaPantalla
+                     (composition)
+                </li>
+                <li>(0..*) 
+                    <b>basedatos</b>
+                    
+                     : BaseDatos
+                     (composition)
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>R01_index_unico</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+    	paginapantallas->select(p | p.oclIsTypeOf(Index))->size() = 1
+                    </span>
+                </li>
+                <li>invariant <b>R04_fuentes_externas_minimas</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+	    redessociales->size() >= 1 
+                    </span>
+                </li>
+                <li>invariant <b>R06b_encuesta_y_cuestionario</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+	    paginapantallas->exists(p | p.oclIsTypeOf(Encuesta)) and
+	    paginapantallas->exists(p | p.oclIsTypeOf(Cuestionario))
+                    </span>
+                </li>
+            </ul>
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: BaseDatos
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Modelo que agrupa un conjunto de tablas o entidades que almacenan datos estructurados de la aplicación, permitiendo organizar la información de manera coherente y relacionada.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>tablas</b>
+                    
+                     : Entidad
+                     (composition)
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>REXTRA2_entidades_nombre_unico</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+  			tablas->forAll(t1, t2 | t1 <> t2 implies t1.Nombre <> t2.Nombre)
+                    </span>
+                </li>
+            </ul>
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Entidad
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Define una tabla con atributos y posibles referencias a otras entidades para modelar relaciones. Controla qué roles tienen acceso a sus datos y establece restricciones para evitar autorreferencias o combinaciones inválidas de páginas de gestión.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>atributos</b>
+                    
+                     : Atributo
+                     (composition)
+                </li>
+                <li>(0..*) 
+                    <b>entidadRefereenciada</b>
+                    
+                     : Entidad
+                    
+                </li>
+                <li>(1..*) 
+                    <b>usuarios</b>
+                    #entidades
+                     : Rol
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>R02_crud_no_combinado</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+	    let pp = Aplicacion.allInstances()->any(true).paginapantallas->select(p | p.entidad = self) in
+	    pp->exists(p | p.oclIsTypeOf(CRUD)) implies
+	    pp->forAll(p | not (
+	        p.oclIsTypeOf(IndiceEntidad) or
+	        p.oclIsTypeOf(IndiceExtendido) or
+	        p.oclIsTypeOf(IndiceDetalle) or
+	        p.oclIsTypeOf(DetallesInstancia) or
+	        p.oclIsTypeOf(CrearInstancia) or
+	        p.oclIsTypeOf(ActualizacionInstancia) or
+	        p.oclIsTypeOf(BorradoInstancia)
+	    ))
+                    </span>
+                </li>
+                <li>invariant <b>R03_indice_y_detalle_van_juntos</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+	    let pp = Aplicacion.allInstances()->any(true).paginapantallas->select(p | p.entidad = self) in
+	    (pp->exists(p | p.oclIsTypeOf(IndiceEntidad) or p.oclIsTypeOf(IndiceExtendido))) =
+	    (pp->exists(p | p.oclIsTypeOf(DetallesInstancia)))
+                    </span>
+                </li>
+                <li>invariant <b>R05_no_autorreferencia</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+    	not entidadRefereenciada->includes(self)
+                    </span>
+                </li>
+                <li>invariant <b>R06_no_referencia_inversa</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+    	entidadRefereenciada->forAll(e | not e.entidadRefereenciada->includes(self))
+                    </span>
+                </li>
+                <li>invariant <b>R08_indice_unico_por_entidad</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+	    Aplicacion.allInstances()->any(true).paginapantallas
+	      ->select(p | p.entidad = self and p.oclIsTypeOf(IndiceEntidad))->size() <= 1
+                    </span>
+                </li>
+                <li>invariant <b>REXTRA3_nombre_no_vacio</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+  		not Nombre.oclIsUndefined() and Nombre.size() > 0
+                    </span>
+                </li>
+            </ul>
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Atributo
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Elemento que representa un campo dentro de una entidad, definido por un nombre, un tipo de dato (entero, booleano o cadena) y un indicador que señala si es clave primaria.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>TipoAtributo</b> : TipoAtributo 
+                     
+                </li>
+                <li>(1..1) 
+                    <b>PrimaryKey</b> : EBoolean 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: CrearInstancia
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página destinada a la creación de nuevas instancias de una entidad, accesible solo para ciertos roles, y que puede estar vinculada a redes sociales para facilitar la interacción.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: IndiceExtendido
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página índice que muestra listados de una entidad con atributos específicos y extendidos para proporcionar una visión más completa, restringida a determinados roles y redes sociales.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Atributos</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: DetallesInstancia
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página que despliega la información detallada de una instancia individual de una entidad, permitiendo visualizar datos completos para usuarios con acceso autorizado.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: ActualizacionInstancia
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página para modificar o actualizar datos de una instancia existente de una entidad, accesible para roles con permisos de edición y vinculada opcionalmente a redes sociales.
+
+
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: IndiceEntidad
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página índice básica que lista instancias de una entidad con algunos atributos seleccionados, facilitando la navegación y búsqueda de datos.
+
+
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Atributos</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: IndiceDetalle
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página que combina la funcionalidad de índice y detalle, mostrando listados junto con la información específica de las instancias, con control de acceso definido.
+
+
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Atributos</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: BorradoInstancia
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página destinada a eliminar instancias de una entidad, disponible únicamente para roles con permisos de borrado y que puede integrarse con redes sociales.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Cuestionario
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página evaluada que contiene una serie de preguntas con respuestas, asociada a una entidad, diseñada para ser utilizada en evaluaciones y accesible a roles concretos.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Descripcion</b> : EString 
+                     
+                </li>
+                <li>(1..1) 
+                    <b>Evaluado</b> : EBoolean 
+                     
+                </li>
+                <li>(1..1) 
+                    <b>numeroPregVF</b> : EInt 
+                     
+                </li>
+                <li>(1..1) 
+                    <b>numeroPregSelect</b> : EInt 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+                <li>(1..*) 
+                    <b>preguntasC</b>
+                    
+                     : Pregunta
+                     (composition)
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>R07_cuestionario_preguntas_con_respuesta_correcta</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+					  preguntasC->forAll(p |
+					    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then
+					      not p.Rcorrecta.oclIsUndefined()
+					    else
+					      true
+					    endif
+					  )
+                    </span>
+                </li>
+            </ul>
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Pregunta
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Elemento que representa una pregunta dentro de encuestas o cuestionarios, con un tipo definido (opción múltiple, verdadero/falso o respuesta corta), texto descriptivo, varias respuestas posibles y una respuesta correcta obligatoria.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Tipo</b> : TipoPregunta 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Texto</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(0..*) 
+                    <b>respuestas</b>
+                    
+                     : Respuesta
+                     (composition)
+                </li>
+                <li>(0..1) 
+                    <b>Rcorrecta</b>
+                    
+                     : Respuesta
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: DarkGray; font-family: calibri;">
+            EClass: DependienteDeEntidad
+        </span>
+         (abstract)
+        <br/>
+
+        <p>Description : 
+            Clase base para páginas que dependen directamente de una entidad y que están asociadas a roles específicos y, opcionalmente, a redes sociales para su acceso y visibilidad.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>REXTRA1_pagina_debe_tener_entidad</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+					  self.entidad <> null
+                    </span>
+                </li>
+            </ul>
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Normal
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página que contiene contenido textual y multimedia relacionado con una entidad, accesible para roles determinados y que puede incluir diferentes tipos de contenido para enriquecer la experiencia del usuario.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Contenido</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+                <li>(0..*) 
+                    <b>contenidomultimedia</b>
+                    
+                     : ContenidoMultimedia
+                     (composition)
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Encuesta
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página interactiva con preguntas diseñadas para recopilar información o feedback de los usuarios, vinculada a una entidad y restringida a ciertos roles, con soporte para preguntas de diferentes tipos.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Descripcion</b> : EString 
+                     
+                </li>
+                <li>(1..1) 
+                    <b>numeroPregVF</b> : EInt 
+                     
+                </li>
+                <li>(1..1) 
+                    <b>numeroPregSelect</b> : EInt 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+                <li>(1..*) 
+                    <b>preguntasE</b>
+                    
+                     : Pregunta
+                     (composition)
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: DarkGray; font-family: calibri;">
+            EClass: Interactiva
+        </span>
+         (abstract)
+        <br/>
+
+        <p>Description : 
+            Página que combina contenido con elementos de interacción, permitiendo a los usuarios participar activamente y vinculada a una entidad con control de acceso por roles.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Descripcion</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Respuesta
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Opción de respuesta a una pregunta, definida por un texto que describe la posible elección del usuario.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Texto</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Rol
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Perfil de usuario que define qué entidades y páginas pueden ser accedidas, gestionando permisos y visibilidad dentro de la aplicación.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(1..1) 
+                    <b>numeroEntidadesAccesibles</b> : EInt 
+                     
+ (derived) = 
+                        <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+                        </span>
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(0..*) 
+                    <b>entidades</b>
+                    #usuarios
+                     : Entidad
+                    
+                </li>
+                <li>(0..*) 
+                    <b>accesoapaginapantalla</b>
+                    #usuario
+                     : PaginaPantalla
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: RedSocial
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Representación de una red social integrada en la aplicación, que puede estar asociada a diferentes páginas para facilitar la interacción y compartir contenido.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(0..*) 
+                    <b>paginapantalla</b>
+                    #redsocial
+                     : PaginaPantalla
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: DarkGray; font-family: calibri;">
+            EClass: Indice
+        </span>
+         (abstract)
+        <br/>
+
+        <p>Description : 
+            Clase base para páginas índice que muestran listados de instancias de una entidad basados en uno o varios atributos seleccionados, con acceso controlado.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+                <li>(0..1) 
+                    <b>Atributos</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+            <ul>
+                <li>invariant <b>R09_atributos_en_indice_pertenecen_a_entidad</b> :
+                    <span style="font-style: italic; color: blue; font-family: calibri;">
+                        
+    	Atributos->forAll(a | self.entidad.atributos->exists(at | at.Nombre = a))
+                    </span>
+                </li>
+            </ul>
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: ContenidoMultimedia
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Elemento multimedia asociado a páginas, definido por un tipo que indica su naturaleza (imagen, video, audio, etc.), para enriquecer la presentación del contenido.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Tipo</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: DarkGray; font-family: calibri;">
+            EClass: PaginaPantalla
+        </span>
+         (abstract)
+        <br/>
+
+        <p>Description : 
+            Página genérica vinculada a una entidad, que se puede asociar con roles y redes sociales para controlar su acceso y funcionalidad.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: Index
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página índice concreta que lista instancias de una entidad, usada como punto de entrada para la navegación en la aplicación.
+
+
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+        <span style="background-color: Gold; font-family: calibri;">
+            EClass: CRUD
+        </span>
+        
+        <br/>
+
+        <p>Description : 
+            Página que proporciona las funcionalidades completas para crear, leer, actualizar y borrar instancias de una entidad, accesible a roles con permisos completos.
+        </p>
+
+        <!-- Atributos -->
+            <ul>
+                <li>(0..1) 
+                    <b>Nombre</b> : EString 
+                     
+                </li>
+            </ul>
+
+        <!-- Referencias -->
+            <ul>
+                <li>(1..*) 
+                    <b>usuario</b>
+                    #accesoapaginapantalla
+                     : Rol
+                    
+                </li>
+                <li>(0..*) 
+                    <b>redsocial</b>
+                    #paginapantalla
+                     : RedSocial
+                    
+                </li>
+                <li>(1..1) 
+                    <b>entidad</b>
+                    
+                     : Entidad
+                    
+                </li>
+            </ul>
+
+        <!-- Invariantes -->
+
+
+    <!-- Enumeraciones -->
+        <p style="background-color: #66CC66; font-family: calibri;">
+            EEnum: TipoPregunta = {
+                0: OpcionMultiple
+,                 1: V_F
+,                 2: Corta
+            }
+        </p>
+        <p style="background-color: #66CC66; font-family: calibri;">
+            EEnum: TipoAtributo = {
+                0: Integer
+,                 1: Boolean
+,                 2: String
+            }
+        </p>
+
+    </span>
+</body>
+</html>

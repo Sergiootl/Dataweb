@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dataweb" nsURI="http://www.example.org/dataweb" nsPrefix="dataweb">
+  <eAnnotations source="gmf"/>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="operationReflection" value="true"/>
+    <details key="tableProviders" value="true"/>
+    <details key="complianceLevel" value="6.0"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Aplicacion">
+    <eAnnotations source="DSLDoc">
+      <details key="Author" value="Sergio Terrazas Lobato y Javier Costillo Palacios"/>
+      <details key="Last update" value="19/04/2025"/>
+    </eAnnotations>
+    <eAnnotations source="gmf.diagram"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R01_index_unico R04_fuentes_externas_minimas R06b_encuesta_y_cuestionario"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R01_index_unico" value="&#xA;    &#x9;paginapantallas->select(p | p.oclIsTypeOf(Index))->size() = 1"/>
+      <details key="R04_fuentes_externas_minimas" value="&#xA;&#x9;    redessociales->size() >= 1 "/>
+      <details key="R06b_encuesta_y_cuestionario" value="&#xA;&#x9;    paginapantallas->exists(p | p.oclIsTypeOf(Encuesta)) and&#xA;&#x9;    paginapantallas->exists(p | p.oclIsTypeOf(Cuestionario))"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" lowerBound="1" upperBound="-1"
+        eType="#//Rol" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redessociales" upperBound="-1"
+        eType="#//RedSocial" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paginapantallas" lowerBound="1"
+        upperBound="-1" eType="#//PaginaPantalla" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="basedatos" upperBound="-1"
+        eType="#//BaseDatos" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paginasMediasAccesibles"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="&#xA;&#x9;&#x9;      let totalPaginas = roles->collect(r | r.accesoapaginapantalla)->flatten()->size() in&#xA;&#x9;&#x9;      totalPaginas.div(roles->size())"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BaseDatos">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tablas" lowerBound="1"
+        upperBound="-1" eType="#//Entidad" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entidad">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R02_crud_no_combinado R03_indice_y_detalle_van_juntos R05_no_autorreferencia R06_no_referencia_inversa R08_indice_unico_por_entidad"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R02_crud_no_combinado" value="&#xA;&#x9;    let pp = Aplicacion.allInstances()->any(true).paginapantallas->select(p | p.entidad = self) in&#xA;&#x9;    pp->exists(p | p.oclIsTypeOf(CRUD)) implies&#xA;&#x9;    pp->forAll(p | not (&#xA;&#x9;        p.oclIsTypeOf(IndiceEntidad) or&#xA;&#x9;        p.oclIsTypeOf(IndiceExtendido) or&#xA;&#x9;        p.oclIsTypeOf(IndiceDetalle) or&#xA;&#x9;        p.oclIsTypeOf(DetallesInstancia) or&#xA;&#x9;        p.oclIsTypeOf(CrearInstancia) or&#xA;&#x9;        p.oclIsTypeOf(ActualizacionInstancia) or&#xA;&#x9;        p.oclIsTypeOf(BorradoInstancia)&#xA;&#x9;    ))"/>
+      <details key="R03_indice_y_detalle_van_juntos" value="&#xA;&#x9;    let pp = Aplicacion.allInstances()->any(true).paginapantallas->select(p | p.entidad = self) in&#xA;&#x9;    (pp->exists(p | p.oclIsTypeOf(IndiceEntidad) or p.oclIsTypeOf(IndiceExtendido))) =&#xA;&#x9;    (pp->exists(p | p.oclIsTypeOf(DetallesInstancia)))"/>
+      <details key="R05_no_autorreferencia" value="&#xA;    &#x9;not entidadRefereenciada->includes(self)"/>
+      <details key="R06_no_referencia_inversa" value="&#xA;    &#x9;entidadRefereenciada->forAll(e | not e.entidadRefereenciada->includes(self))"/>
+      <details key="R08_indice_unico_por_entidad" value="&#xA;&#x9;    Aplicacion.allInstances()->any(true).paginapantallas&#xA;&#x9;      ->select(p | p.entidad = self and p.oclIsTypeOf(IndiceEntidad))->size() &lt;= 1"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" lowerBound="1"
+        upperBound="-1" eType="#//Atributo" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entidadRefereenciada" upperBound="-1"
+        eType="#//Entidad">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="Entidad"/>
+        <details key="target" value="Entidad"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usuarios" lowerBound="1"
+        upperBound="-1" eType="#//Rol" eOpposite="#//Rol/entidades">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="EntidadRol"/>
+        <details key="target" value="Rol"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Atributo">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="TipoAtributo" eType="#//TipoAtributo"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PrimaryKey" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CrearInstancia" eSuperTypes="#//DependienteDeEntidad">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndiceExtendido" eSuperTypes="#//Indice">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DetallesInstancia" eSuperTypes="#//DependienteDeEntidad">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActualizacionInstancia" eSuperTypes="#//DependienteDeEntidad">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndiceEntidad" eSuperTypes="#//Indice">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndiceDetalle" eSuperTypes="#//Indice">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BorradoInstancia" eSuperTypes="#//DependienteDeEntidad">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cuestionario" eSuperTypes="#//Interactiva">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R07a_cuestionario_preguntas_con_respuesta_correcta"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R07a_cuestionario_preguntas_con_respuesta_correcta" value="&#xA;  preguntasC->forAll(p |&#xA;    if p.Tipo = TipoPregunta::V_F or p.Tipo = TipoPregunta::OpcionMultiple then&#xA;      not p.Rcorrecta.oclIsUndefined()&#xA;    else&#xA;      p.Rcorrecta.oclIsUndefined()&#xA;    endif&#xA;  )"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Evaluado" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preguntasC" lowerBound="1"
+        upperBound="-1" eType="#//Pregunta" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numeroPregVF" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="preguntasC->select(p | p.Tipo = TipoPregunta::V_F)->size()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numeroPregSelect" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="preguntasC->select(p | p.Tipo = TipoPregunta::OpcionMultiple)->size()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pregunta">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Texto"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Tipo" eType="#//TipoPregunta"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="respuestas" upperBound="-1"
+        eType="#//Respuesta" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Rcorrecta" eType="#//Respuesta">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="Pregunta"/>
+        <details key="target" value="Respuesta"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DependienteDeEntidad" abstract="true"
+      eSuperTypes="#//PaginaPantalla">
+    <eAnnotations source="DSLDoc"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Normal" eSuperTypes="#//PaginaPantalla">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Contenido"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Contenido" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenidomultimedia" upperBound="-1"
+        eType="#//ContenidoMultimedia" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Encuesta" eSuperTypes="#//Interactiva">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Descripcion"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R07b_encuesta_sin_respuesta_correcta"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R07b_encuesta_sin_respuesta_correcta" value="&#xA;  preguntasE->forAll(p |&#xA;    p.Rcorrecta.oclIsUndefined()&#xA;  )"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preguntasE" lowerBound="1"
+        upperBound="-1" eType="#//Pregunta" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numeroPregVF" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="preguntasE->select(p | p.Tipo = TipoPregunta::V_F)->size()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numeroPregSelect" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="preguntasE->select(p | p.Tipo = TipoPregunta::OpcionMultiple)->size()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interactiva" abstract="true" eSuperTypes="#//PaginaPantalla">
+    <eAnnotations source="DSLDoc"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoPregunta">
+    <eAnnotations source="DSLDoc"/>
+    <eLiterals name="OpcionMultiple"/>
+    <eLiterals name="V_F" value="1"/>
+    <eLiterals name="Corta" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Respuesta">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Texto"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rol">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entidades" upperBound="-1"
+        eType="#//Entidad" eOpposite="#//Entidad/usuarios">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="Rol"/>
+        <details key="target" value="Entidad"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accesoapaginapantalla"
+        upperBound="-1" eType="#//PaginaPantalla" eOpposite="#//PaginaPantalla/usuario">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="Rol"/>
+        <details key="target" value="PaginaPantalla"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numeroEntidadesAccesibles"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="entidades->size()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RedSocial">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paginapantalla" upperBound="-1"
+        eType="#//PaginaPantalla" eOpposite="#//PaginaPantalla/redsocial">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="PaginaPantalla"/>
+        <details key="target" value="RedSocial"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Indice" abstract="true" eSuperTypes="#//DependienteDeEntidad">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R09_atributos_en_indice_pertenecen_a_entidad"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R09_atributos_en_indice_pertenecen_a_entidad" value="&#xA;    &#x9;Atributos->forAll(a | self.entidad.atributos->exists(at | at.Nombre = a))"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Atributos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContenidoMultimedia">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Tipo"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Tipo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PaginaPantalla" abstract="true">
+    <eAnnotations source="DSLDoc"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usuario" lowerBound="1"
+        upperBound="-1" eType="#//Rol" eOpposite="#//Rol/accesoapaginapantalla">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="PaginaPantalla"/>
+        <details key="target" value="Rol"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redsocial" upperBound="-1"
+        eType="#//RedSocial" eOpposite="#//RedSocial/paginapantalla">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="PaginaPantalla"/>
+        <details key="target" value="RedSocial"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entidad" lowerBound="1"
+        eType="#//Entidad">
+      <eAnnotations source="gmf.link">
+        <details key="source" value="PaginaPantalla"/>
+        <details key="target" value="Entidad"/>
+        <details key="target.decoration" value="arrow"/>
+        <details key="color" value="255,0,0"/>
+        <details key="width" value="3"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Index" eSuperTypes="#//PaginaPantalla">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoAtributo">
+    <eAnnotations source="DSLDoc"/>
+    <eLiterals name="Integer"/>
+    <eLiterals name="Boolean" value="1"/>
+    <eLiterals name="String" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CRUD" eSuperTypes="#//DependienteDeEntidad">
+    <eAnnotations source="DSLDoc"/>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="Nombre"/>
+      <details key="color" value="0,255,255"/>
+    </eAnnotations>
+  </eClassifiers>
+</ecore:EPackage>

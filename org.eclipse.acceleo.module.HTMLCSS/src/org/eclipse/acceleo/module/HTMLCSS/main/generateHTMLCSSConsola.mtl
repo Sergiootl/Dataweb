@@ -1,0 +1,727 @@
+[comment encoding = UTF-8 /]
+[module generateHTMLCSSConsola('http://www.example.org/dataweb')]
+ 
+[template public generateAplicacion(a : Aplicacion)]
+[comment @main /]
+[file ('/src/view/MainMenu.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class MainMenu {
+    public static void main(String['[' ']'/] args) {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println("=== [a.Nombre/] ===");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("0. Salir");
+            [for (r : Rol | a.roles)]
+            System.out.println([a.roles->indexOf(r) /] + ". [r.Nombre/]");
+            [/for]
+            System.out.print("Selecciona una opción ['['/]0-[a.roles->size()/]]: ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+            switch(opcion) {
+                [for (r : Rol | a.roles)]
+                case [a.roles->indexOf(r)  /]:
+                    Menu[r.Nombre.replaceAll(' ', '_')/].mostrar();
+                    break;
+                [/for]
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+        sc.close();
+    }
+}
+[/file]
+
+[for (r : Rol | a.roles)]
+    [generateRolMenu(r)/]
+[/for]
+
+[for (p : PaginaPantalla | a.paginapantallas)]
+  [if (p.oclIsKindOf(CRUD))]
+    [generateCRUDConsola(p.oclAsType(CRUD))/]
+  [/if]
+  [if (p.oclIsKindOf(IndiceEntidad))]
+    [generateIndiceConsola(p.oclAsType(IndiceEntidad))/]
+  [/if]
+  [if (p.oclIsKindOf(DetallesInstancia))]
+    [generateDetalleConsola(p.oclAsType(DetallesInstancia))/]
+  [/if]
+  [if (p.oclIsKindOf(CrearInstancia))]
+    [generateCrearConsola(p.oclAsType(CrearInstancia))/]
+  [/if]
+[if (p.oclIsKindOf(ActualizacionInstancia))]
+  [generateActualizarConsola(p.oclAsType(ActualizacionInstancia))/]
+[/if]
+  [if (p.oclIsKindOf(BorradoInstancia))]
+    [generateBorrarConsola(p.oclAsType(BorradoInstancia))/]
+  [/if]
+  [if (p.oclIsKindOf(Cuestionario))]
+    [generateCuestionarioConsola(p.oclAsType(Cuestionario))/]
+  [/if]
+  [if (p.oclIsKindOf(Encuesta))]
+    [generateEncuestaConsola(p.oclAsType(Encuesta))/]
+  [/if]
+  [if (p.oclIsKindOf(Normal))]
+    [generateContenidoNormal(p.oclAsType(Normal))/]
+  [/if]
+ 
+    [if (p.oclIsKindOf(IndiceExtendido))]
+    [generateIndiceExtendido(p.oclAsType(IndiceExtendido))/].mostrar();
+    [/if]
+    [if (p.oclIsKindOf(IndiceDetalle))]
+    [generateIndiceDetalle(p.oclAsType(IndiceDetalle))/].mostrar();
+    [/if]
+    [if (p.oclIsKindOf(Normal))]
+    [generateContenidoNormal(p.oclAsType(Normal))/]
+    [/if]
+ 
+[/for]
+[/template]
+
+[template public generateIndiceEntidad(i : IndiceEntidad)]
+[file ('/src/view/IndiceEntidad' + i.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class IndiceEntidad[i.Nombre.replaceAll(' ', '_')/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+
+        while (opcion != 0) {
+            System.out.println("=== Índice de entidad: [i.Nombre/] ===");
+            System.out.println("Listado de instancias:");
+            System.out.println("0. Salir");
+
+            int contador = 0;
+            [for (inst : Entidad | i.entidad.entidadRefereenciada)]
+           
+            contador++; System.out.println(contador + ". [inst.Nombre/] (Acceso a los detalles)");
+            [/for]
+
+            System.out.print("Selecciona una opción ['['/]0-" + (contador  ) + "]: ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+
+            if (opcion == 0) {
+                System.out.println("Saliendo...");
+                break;
+            } else if (opcion > 0 && opcion <= [i.entidad.entidadRefereenciada->size()/]) {
+                System.out.println("Accediendo a los detalles de la instancia seleccionada...");
+                Detalle[i.entidad.entidadRefereenciada.Nombre/].mostrar(opcion);
+            } else {
+                System.out.println("Opción no válida.");
+            }
+        }
+    }
+}
+[/file]
+[/template]
+
+ [template public generateIndiceDetalle(indice : IndiceDetalle)]
+[file ('/src/view/IndiceDetalle' + indice.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class IndiceDetalle[indice.Nombre.replaceAll(' ', '_')/] {
+
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=== Detalle de índice: [indice.Nombre/] ===");
+        [for (ent : Entidad | indice.entidad)]
+        System.out.println("Aplicación: [Aplicacion.allInstances()->any(a | a.paginapantallas->includes(i)).Nombre/]");
+        System.out.println("Listado de [indice.Nombre/]:");
+        for (int j = 1; j <= 6; j++) {
+            System.out.println(j + ". [indice.Nombre/] 0" + j);
+        }
+
+        System.out.print("Selecciona una instancia para ver detalles (0 para salir): ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+
+        if (opcion > 0 && opcion <= 6) {
+            System.out.println("=== Detalle de la instancia seleccionada ===");
+            [for (attr : Atributo | ent.atributos)]
+            System.out.println("[attr.Nombre/] ([if (attr.TipoAtributo = TipoAtributo::String)]String[/if][if (attr.TipoAtributo = TipoAtributo::Integer)]Integer[/if][if (attr.TipoAtributo = TipoAtributo::Boolean)]Boolean[/if]): valor_de_[attr.Nombre/]");
+            [/for]
+
+            [for (ref : Entidad | ent.entidadRefereenciada)]
+            System.out.println("Id_[ref.Nombre/]: Referencia a la entidad [ref.Nombre/]");
+            System.out.println("- Consultar detalles de [ref.Nombre/]");
+            [/for]
+        } else {
+            System.out.println("Saliendo...");
+        }
+
+        [for (rs : RedSocial | indice.redsocial)]
+        System.out.println("Síguenos en: https://www.[rs.Nombre.toLowerCase()/].com");
+        [/for]
+
+        System.out.println("Aplicación generada automáticamente - Todos los derechos reservados");
+        System.out.println("Sergio Terrazas Lobato y Javier Costillo Palacios");
+        [/for]
+    }
+}
+[/file]
+[/template]
+ 
+[template public generateIndiceExtendido(indice : IndiceExtendido)]
+[file ('/src/view/IndiceExtendido' + indice.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class IndiceExtendido[indice.Nombre.replaceAll(' ', '_')/] {
+
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=== Índice extendido: [indice.Nombre/] ===");
+
+        [for (ent : Entidad | indice.entidad)]
+        System.out.println("Aplicación: [Aplicacion.allInstances()->any(a | a.paginapantallas->includes(i)).Nombre/]");
+        
+        System.out.println("Filtrar por Género:");
+        System.out.println("1. Todos");
+        System.out.println("2. Ficción");
+        System.out.println("3. No Ficción");
+        System.out.print("Selecciona una opción de filtro: ");
+        int filtro = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Listado de [indice.Nombre/]:");
+        for (int j = 1; j <= 6; j++) {
+            System.out.println(j + ". [indice.Nombre/] 0" + j + " (Acceso a los detalles)");
+        }
+
+        System.out.println("Paginación: 1 2 3 4");
+
+        [for (rs : RedSocial | indice.redsocial)]
+        System.out.println("Síguenos en: https://www.[rs.Nombre.toLowerCase()/].com");
+        [/for]
+
+        System.out.println("Aplicación generada automáticamente - Todos los derechos reservados");
+        System.out.println("Sergio Terrazas Lobato y Javier Costillo Palacios");
+        [/for]
+    }
+}
+[/file]
+[/template]
+
+[template public generateContenidoNormal(p : Normal)]
+[file ('/src/view/ContenidoNormal' + p.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class ContenidoNormal[p.Nombre.replaceAll(' ', '_')/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=== Página: [p.Nombre/] ===");
+        System.out.println("[p.Contenido/]");
+
+        [for (cm : ContenidoMultimedia | p.contenidomultimedia)]
+        System.out.println("Contenido multimedia: [cm.Tipo/]");
+        [/for]
+
+        System.out.println("Presiona Enter para volver...");
+        sc.nextLine();
+    }
+}
+[/file]
+[/template]
+
+[template public generateRolMenu(r : Rol)]
+[file ('/src/view/Menu' + r.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
+
+package src.view;
+
+import java.util.Scanner;
+
+public class Menu[r.Nombre.replaceAll(' ', '_')/] {
+
+    public static void mostrar() {
+
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+
+        while (opcion != 0) {
+            System.out.println("=== Pantalla principal del Rol [r.Nombre/] ===");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("0. Salir");
+
+            int contador = 0;
+
+            [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+            [if (not p.oclIsTypeOf(Index))]   
+            // Verificar si la funcionalidad existe para este rol
+             contador++;
+                System.out.println(contador + ". [p.entidad.Nombre/] - [p.eClass().name/]");
+            
+            [/if]
+            [/for]
+
+            System.out.print("Selecciona una opción ['['/]0-" + (contador) + "]: ");
+            opcion = sc.nextInt();
+			
+			if(opcion!=0){opcion++;}
+            sc.nextLine();
+			if(opcion>=8){opcion++;}
+
+            switch (opcion) {
+                [for (p : PaginaPantalla | r.accesoapaginapantalla)]
+                [if (not p.oclIsTypeOf(Index))]   
+                case [r.accesoapaginapantalla->indexOf(p) + 1/]: // Ajustar índice para coincidir con el contador
+                    [if (p.oclIsKindOf(CRUD))]
+                    CRUD[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(IndiceEntidad))]
+                    Indice[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(CrearInstancia))]
+                    Crear[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(BorradoInstancia))]
+                    Borrar[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(DetallesInstancia))]
+                    Detalle[p.Nombre.replaceAll(' ', '_')/].mostrar(0);
+                    [/if]
+                    [if (p.oclIsKindOf(Cuestionario))]
+                    Cuestionario[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(Encuesta))]
+                    Encuesta[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(IndiceExtendido))]
+                    IndiceExtendido[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(IndiceDetalle))]
+                    IndiceDetalle[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(Normal))]
+                    ContenidoNormal[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    [if (p.oclIsKindOf(ActualizacionInstancia))]
+                    Actualizar[p.Nombre.replaceAll(' ', '_')/].mostrar();
+                    [/if]
+                    break;
+                [/if]
+                [/for]
+                case 0:
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+}
+
+[/file]
+[/template]
+
+[template public generateResultadoEncuesta(c : Encuesta)]
+[file ('/src/view/ResultadoEncuesta' + c.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class ResultadoEncuesta[c.Nombre.replaceAll(' ', '_')/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=== Resultado de la encuesta: [c.Nombre/] ===");
+        System.out.println("Preguntas y respuestas correctas:");
+
+        int contador = 1;
+        [for (preg : Pregunta | c.preguntasE)]
+        System.out.println(contador + ". Pregunta: [preg.Texto/]");
+        System.out.println("   Respuesta correcta: [preg.Rcorrecta.Texto/]");
+        contador++;
+        [/for]
+
+        System.out.println("Presiona Enter para volver...");
+        sc.nextLine();
+    }
+}
+[/file]
+[/template]
+
+[template public generateCuestionarioConsola(c : Cuestionario)]
+[file ('/src/view/Cuestionario' + c.Nombre + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Cuestionario[c.Nombre.replaceAll(' ', '_')/] {
+
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        int correctas = 0;
+        int total = [c.preguntasC->size()/]; // Total number of questions
+
+        System.out.println("=== Cuestionario: [c.Nombre/] ===");
+        System.out.println("Responde las siguientes preguntas:");
+
+        [let i : Integer = 1 /]
+        [for (preg : Pregunta | c.preguntasC)]
+        // Pregunta [i/]
+        System.out.println("Pregunta [i/]: [preg.Texto/]");
+        [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+        System.out.println("Opciones:");
+        [for (resp : Respuesta | preg.respuestas)]
+        System.out.println("- [resp.Texto/]");
+        [/for]
+        System.out.print("Tu respuesta: ");
+        String respuesta[i/] = sc.nextLine();
+
+        if (respuesta[i/].equals("[preg.Rcorrecta.Texto/]")) {
+            System.out.println("Respuesta correcta.");
+            correctas++;
+        } else {
+            System.out.println("Respuesta incorrecta. La respuesta correcta es [preg.Rcorrecta.Texto/].");
+        }
+        [/if]
+        [if (preg.Tipo = TipoPregunta::V_F)]
+        System.out.println("Opciones: Verdadero / Falso");
+        System.out.print("Tu respuesta: ");
+        String respuesta[i/] = sc.nextLine();
+
+        if (respuesta[i/].equalsIgnoreCase("[preg.Rcorrecta.Texto/]")) {
+            System.out.println("Respuesta correcta.");
+            correctas++;
+        } else {
+            System.out.println("Respuesta incorrecta. La respuesta correcta es [preg.Rcorrecta.Texto/].");
+        }
+        [/if]
+        [if (preg.Tipo = TipoPregunta::Corta)]
+        System.out.print("Escribe tu respuesta: ");
+        String respuesta[i/] = sc.nextLine();
+
+        if (respuesta[i/].equals("[preg.Rcorrecta/]")) {
+            System.out.println("Respuesta correcta.");
+            correctas++;
+        } else {
+            System.out.println("Respuesta incorrecta. La respuesta correcta es [preg.Rcorrecta/].");
+        }
+        [/if]
+
+        [/for]
+
+        // Mostrar resultados
+        System.out.println("Gracias por completar el cuestionario.");
+        System.out.println("Resultados: " + correctas + " correctas de " + total + " preguntas.");
+        double calificacion = (double) correctas / total * 100;
+        System.out.println("Calificación: " + calificacion + "%");
+    }
+}
+[/file]
+[/template]
+
+[template public generateEncuestaConsola(c : Encuesta)]
+[file ('/src/view/Encuesta' + c.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Encuesta[c.Nombre.replaceAll(' ', '_')/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=== Encuesta: [c.Nombre/] ===");
+        System.out.println("[c.Descripcion/]");
+        System.out.println("Responde las siguientes preguntas:");
+
+        [for (preg : Pregunta | c.preguntasE)]
+        System.out.println("Pregunta: [preg.Texto/]");
+        [if (preg.Tipo = TipoPregunta::OpcionMultiple)]
+        System.out.println("Opciones:");
+        [for (resp : Respuesta | preg.respuestas)]
+        System.out.println("- [resp.Texto/]");
+        [/for]
+        System.out.print("Tu respuesta: ");
+        sc.nextLine();
+        [/if]
+        [if (preg.Tipo = TipoPregunta::V_F)]
+        System.out.println("Opciones: Verdadero / Falso");
+        System.out.print("Tu respuesta: ");
+        sc.nextLine();
+        [/if]
+        [if (preg.Tipo = TipoPregunta::Corta)]
+        System.out.print("Escribe tu respuesta: ");
+        sc.nextLine();
+        [/if]
+        [/for]
+
+        System.out.println("Gracias por completar la encuesta.");
+    }
+}
+[/file]
+[/template]
+
+[template public generateActualizarConsola(a : ActualizacionInstancia)]
+[file ('/src/view/Actualizar' + a.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Actualizar[a.Nombre.replaceAll(' ', '_')/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=== Actualizar [a.entidad.entidadRefereenciada.Nombre/] ===");
+
+        // Listar las instancias disponibles
+        System.out.println("Listado de instancias:");
+        int contador = 1;
+        [for (inst : Entidad | a.entidad.entidadRefereenciada)]
+        System.out.println(contador + ". [inst.Nombre/]");
+        contador++;
+        [/for]
+
+        System.out.print("Selecciona una instancia para actualizar (0 para salir): ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+
+        if (opcion > 0 && opcion <= [a.entidad.entidadRefereenciada->size()/]) {
+            System.out.println("=== Actualizando instancia seleccionada ===");
+			String nuevoValor;
+            // Mostrar y permitir la edición de los atributos
+            [for (atr : Atributo | a.entidad.atributos)]
+            System.out.print("[atr.Nombre/] (valor actual: valor_de_[atr.Nombre/]): ");
+            nuevoValor = sc.nextLine();
+            System.out.println("[atr.Nombre/] actualizado a: " + nuevoValor);
+            [/for]
+
+            System.out.println("Instancia actualizada correctamente.");
+        } else {
+            System.out.println("Saliendo...");
+        }
+    }
+}
+[/file]
+[/template]
+
+[template public generateCRUDConsola(c : CRUD)]
+[file ('/src/view/CRUD' + c.Nombre + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class CRUD[c.Nombre/] {
+    private static List<String> [c.Nombre.toLowerCase()/]s = new ArrayList<>(); // Lista para almacenar instancias
+
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+
+        while (opcion != 0) {
+            System.out.println("=== CRUD [c.Nombre/] ===");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("0. Salir");
+            System.out.println("1. Listar [c.Nombre/]");
+            System.out.println("2. Crear [c.Nombre/]");
+            System.out.println("3. Borrar [c.Nombre/]");
+            System.out.print("Selecciona una opción ['['/]0-3]: ");
+            opcion = sc.nextInt();
+            sc.nextLine(); // Consumir el salto de línea
+
+            switch (opcion) {
+                case 1:
+                    listar[c.Nombre/]();
+                    break;
+                case 2:
+                    crear[c.Nombre/](sc);
+                    break;
+                case 3:
+                    borrar[c.Nombre/](sc);
+                    break;
+                case 0:
+                    System.out.println("Volviendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+
+    private static void listar[c.Nombre/]() {
+        System.out.println("=== Listado de [c.Nombre/] ===");
+        if ([c.Nombre.toLowerCase()/]s.isEmpty()) {
+            System.out.println("No hay [c.Nombre.toLowerCase()/] disponibles.");
+        } else {
+            for (int i = 0; i < [c.Nombre.toLowerCase()/]s.size(); i++) {
+                System.out.println((i + 1) + ". " + [c.Nombre.toLowerCase()/]s.get(i));
+            }
+        }
+    }
+
+    private static void crear[c.Nombre/](Scanner sc) {
+        System.out.print("Introduce el nombre del nuevo [c.Nombre/]: ");
+        String nuevo[c.Nombre/] = sc.nextLine();
+        [c.Nombre.toLowerCase()/]s.add(nuevo[c.Nombre/]);
+        System.out.println("[c.Nombre/] \"" + nuevo[c.Nombre/] + "\" creado correctamente.");
+    }
+
+    private static void borrar[c.Nombre/](Scanner sc) {
+        listar[c.Nombre/]();
+        if (![c.Nombre.toLowerCase()/]s.isEmpty()) {
+            System.out.print("Selecciona el número del [c.Nombre/] a borrar: ");
+            int indice = sc.nextInt();
+            sc.nextLine(); // Consumir el salto de línea
+            if (indice > 0 && indice <= [c.Nombre.toLowerCase()/]s.size()) {
+                String [c.Nombre.toLowerCase()/]Borrado = [c.Nombre.toLowerCase()/]s.remove(indice - 1);
+                System.out.println("[c.Nombre/] \"" + [c.Nombre.toLowerCase()/]Borrado + "\" borrado correctamente.");
+            } else {
+                System.out.println("Índice no válido.");
+            }
+        }
+    }
+}
+[/file]
+[/template]
+
+[template public generateIndiceConsola(i : IndiceEntidad)]
+[file ('/src/view/Indice' + i.Nombre + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Indice[i.Nombre/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+        while (opcion != 0) {
+            System.out.println("Pantalla índice de [i.entidad.entidadRefereenciada.Nombre/]");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("Listado de [i.entidad.entidadRefereenciada.Nombre/]:");
+            System.out.println("0. Salir");
+            int contador = 1;
+            [for (item : Atributo | i.entidad.entidadRefereenciada.atributos)]
+            System.out.println(contador + ". Nombre o ID de [item.Nombre/] (Acceso a los detalles)");
+            contador++;
+            [/for]
+            System.out.print("Selecciona una opción ['['/]0-" + (contador - 1) + "]: ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+            if (opcion == 0) break;
+        }
+    }
+}
+[/file]
+[/template]
+
+[template public generateDetalleConsola(d : DetallesInstancia)]
+[file ('/src/view/Detalle' + d.Nombre + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Detalle[d.Nombre/] {
+    public static void mostrar(int id) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Pantalla de detalle de [d.entidad.entidadRefereenciada.Nombre/]");
+        System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+        System.out.println("Campos:");
+        [for (atr : Atributo | d.entidad.entidadRefereenciada.atributos)]
+        System.out.println("- [atr.Nombre/]: valor_de_[atr.Nombre/]");
+        [/for]
+        System.out.println("1. Borrar [d.entidad.entidadRefereenciada.Nombre/]");
+        System.out.println("2. Volver");
+        System.out.print("Selecciona una opción ['['/]1-2]: ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+
+		if(opcion == 1){
+		 System.out.println(" [d.entidad.entidadRefereenciada.Nombre/] borrada correctamente");
+     	
+		}
+    }
+}
+[/file]
+[/template]
+
+[template public generateCrearConsola(c : CrearInstancia)]
+[file ('/src/view/Crear' + c.Nombre + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Crear[c.Nombre/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Página de creación de [c.entidad.entidadRefereenciada.Nombre/]");
+        System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+        System.out.println("Introduzca la información correspondiente:");
+        [for (atr : Atributo | c.entidad.entidadRefereenciada.atributos)]
+        System.out.print("- [atr.Nombre/]: ");
+        sc.nextLine();
+        [/for]
+        System.out.println("1. Aceptar");
+        System.out.println("2. Cancelar");
+        System.out.print("Selecciona una opción ['['/]1-2]: ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        if (opcion == 1) {
+            System.out.println("Entidad creada correctamente.");
+        } else {
+            System.out.println("Creación cancelada.");
+        }
+    }
+}
+[/file]
+[/template]
+
+[template public generateBorrarConsola(b : BorradoInstancia)]
+[file ('/src/view/Borrar' + b.Nombre + '.java', false, 'UTF-8')]
+package src.view;
+
+import java.util.Scanner;
+
+public class Borrar[b.Nombre/] {
+    public static void mostrar() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = -1;
+
+        while (opcion != 0) {
+            System.out.println("Pantalla de borrar [b.entidad.entidadRefereenciada.Nombre/]");
+            System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
+            System.out.println("0. Salir");
+
+            // Mostrar lista de atributos con índices
+            int contador = 1;
+            [for (item : Atributo | b.entidad.entidadRefereenciada.atributos)]
+            System.out.println(contador + ". Nombre o ID de [item.Nombre/] (Borrar)");
+            contador++;
+            [/for]
+
+            System.out.print("Selecciona una opción ['['/]0-" + (contador - 1) + "]: ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcion) {
+                [for (item : Atributo | b.entidad.entidadRefereenciada.atributos)]
+                case [b.entidad.entidadRefereenciada.atributos->indexOf(item) /]:
+                    System.out.println(">> [item.Nombre/] borrada!!");
+                    break;
+                [/for]
+                case 0:
+                    System.out.println("Volviendo...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+}
+[/file]
+[/template]
