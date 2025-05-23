@@ -29,7 +29,7 @@
             id_Asignatura INT NOT NULL AUTO_INCREMENT,
 
             -- Atributos
-                    01 INT
+                    Nombre VARCHAR(255)
 ,                    Creditos INT
 ,                    Optativa BOOLEAN
 
@@ -39,8 +39,6 @@
             PRIMARY KEY (id_Asignatura)
 
             -- Claves foráneas (referencias a otras entidades)
-                , FOREIGN KEY (id_Titulo) REFERENCES Titulo(id_Titulo)
-                , FOREIGN KEY (id_Profesor) REFERENCES Profesor(id_Profesor)
         );
         -- Creación de la entidad Estudiante
         CREATE TABLE IF NOT EXISTS Estudiante (
@@ -58,7 +56,6 @@
             PRIMARY KEY (id_Estudiante)
 
             -- Claves foráneas (referencias a otras entidades)
-                , FOREIGN KEY (id_Asignatura) REFERENCES Asignatura(id_Asignatura)
         );
         -- Creación de la entidad Profesor
         CREATE TABLE IF NOT EXISTS Profesor (
@@ -77,6 +74,5 @@
             PRIMARY KEY (id_Profesor)
 
             -- Claves foráneas (referencias a otras entidades)
-                , FOREIGN KEY (id_Asignatura) REFERENCES Asignatura(id_Asignatura)
         );
 
