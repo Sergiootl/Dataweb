@@ -885,10 +885,11 @@ label {
   [/if]
 
   [if (p.oclIsKindOf(CRUD))]
-    [let crud : CRUD = p.oclAsType(CRUD)]
-      [generateCRUD(crud)/]
-    [/let]
-  [/if]
+	 [let crud : CRUD = p.oclAsType(CRUD)]
+	    [generateCRUD(crud)/]
+	  [/let]
+	[/if]
+
 
   [if (p.oclIsKindOf(Cuestionario))]
     [let c : Cuestionario = p.oclAsType(Cuestionario)]
@@ -1732,84 +1733,89 @@ label {
 
 [template public generateCRUD(c : CRUD)]
   [for (acceso : Rol | c.usuario)]
-    [file ('/HTML/'.concat(acceso.Nombre).concat('/P_CRUD_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Pagina CRUD de [c.Nombre/]</title>
-  <link rel="stylesheet" href="../styles.css">
-<!-- Header Principal -->
-<div class="header">
-  [for (ent : Entidad | c.entidad)]
-    <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
-  [/for]
-</div>
-
-<!-- Subheader -->
-<div class="subheader">
-  <h2>Pagina CRUD de [c.Nombre/]</h2>
-</div>
-</head>
-<body>
-
-
-  <div class="container">
-    <div class="main-content">
-      <div class="actions">
-        <div class="action-block">
-          <h4>Crear nuevo</h4>
-          <p>Crea un nuevo elemento de tipo [c.Nombre/].</p>
-          <a href="P_Crear_[c.Nombre/].html"><button>Crear</button></a>
+    [file('/HTML/'.concat(acceso.Nombre).concat('/P_CRUD_').concat(c.Nombre).concat('.html'), false, 'UTF-8')]
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Pagina CRUD de [c.Nombre/]</title>
+        <link rel="stylesheet" href="../styles.css">
+        <div class="header">
+          [for (ent : Entidad | c.entidad)]
+            <h1>[Aplicacion.allInstances()->any(rol | rol.paginapantallas->includes(c)).Nombre/]</h1>
+          [/for]
         </div>
-
-        <div class="action-block">
-          <h4>Listar</h4>
-          <p>Consulta el listado completo de [c.Nombre/].</p>
-          <a href="P_IndiceEntidad_[c.Nombre/].html"><button>Listar</button></a>
+        <div class="subheader">
+          <h2>Pagina CRUD de [c.Nombre/]</h2>
         </div>
-
-        <div class="action-block">
-          <h4>Borrar</h4>
-          <p>Elimina un elemento existente de [c.Nombre/].</p>
-          <a href="P_Borrar_[c.Nombre/].html"><button>Borrar</button></a>
-        </div>
-      </div>
-<div class="button-container">
-  <button onclick="window.history.back()" class="button">Volver</button>
-</div>
-    </div>
-
-    <div class="sidebar social">
-            <h3>Redes Sociales:</h3>
-            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
-            <div class="twitter-timeline-container">
-              <a class="twitter-timeline" 
-                 data-width="100%" 
-                 data-height="400"
-                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </head>
+      <body>
+        <div class="container">
+          <div class="main-content">
+            <div class="actions">
+              <div class="action-block">
+                <h4>Crear nuevo</h4>
+                <p>Crea un nuevo elemento de tipo [c.Nombre/].</p>
+                <a href="P_Crear_[c.Nombre/].html"><button>Crear</button></a>
+              </div>
+              <div class="action-block">
+                <h4>Actualizar</h4>
+                <p>Actualizar la instancia de [c.Nombre/].</p>
+                <a href="P_Actualizar_[c.Nombre/].html"><button>Listar</button></a>
+              </div>
+              <div class="action-block">
+                <h4>Borrar</h4>
+                <p>Elimina un elemento existente de [c.Nombre/].</p>
+                <a href="P_Borrar_[c.Nombre/].html"><button>Borrar</button></a>
+              </div>
             </div>
-          
-            <!-- Cargar el script de Twitter de manera asíncrona -->
+            <div class="button-container">
+              <button onclick="window.history.back()" class="button">Volver</button>
+            </div>
+          </div>
+          <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" data-width="100%" data-height="400"
+                href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          
-            <!-- Mostrar las demás redes sociales como enlaces -->
+
             [for (rs : RedSocial | c.redsocial)]
               <p>- <a href="https://www.[rs.Nombre.toLowerCase()/].com" target="_blank" class="social-link">
-                  [rs.Nombre/]</a></p>
+                [rs.Nombre/]</a></p>
             [/for]
           </div>
-  </div>
-
-  <div class="footer">
-    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
-	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
-  </div>
-</body>
-</html>
-
+        </div>
+        <div class="footer">
+          <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+          <p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+        </div>
+      </body>
+      </html>
     [/file]
+[for (p : PaginaPantalla | Aplicacion.allInstances()->asSequence()->first().paginapantallas->select(pp |
+    pp.entidad->exists(e1 | c.entidad->exists(e2 | e1 = e2)) and
+    (pp.oclIsKindOf(CrearInstancia) or pp.oclIsKindOf(BorradoInstancia) or pp.oclIsKindOf(ActualizacionInstancia))
+  ))]
+
+  [if (p.oclIsKindOf(CrearInstancia))]
+    [generateCreacion(p.oclAsType(CrearInstancia))/]
+  [/if]
+
+  [if (p.oclIsKindOf(BorradoInstancia))]
+    [generateBorrado(p.oclAsType(BorradoInstancia))/]
+  [/if]
+
+  [if (p.oclIsKindOf(ActualizacionInstancia))]
+    [generateActualizacion(p.oclAsType(ActualizacionInstancia))/]
+  [/if]
+
+[/for]
+
+
+
+
   [/for]
 [/template]
 
