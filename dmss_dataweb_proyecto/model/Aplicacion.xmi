@@ -11,13 +11,13 @@
       accesoapaginapantalla="//@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.12 //@paginapantallas.13 //@paginapantallas.14"/>
   <roles Nombre="Profesor"
       entidades="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.3"
-      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.2"/>
+      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.2"/>
   <roles Nombre="Estudiante"
       entidades="//@basedatos.0/@tablas.1 //@basedatos.0/@tablas.2"
       accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.0 //@paginapantallas.1 //@paginapantallas.9"/>
   <roles Nombre="Personal de Administración y servicios"
       entidades="//@basedatos.0/@tablas.0"
-      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
+      accesoapaginapantalla="//@paginapantallas.3 //@paginapantallas.8 //@paginapantallas.7 //@paginapantallas.6 //@paginapantallas.10 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
   <redessociales
       Nombre="Twitter"
       paginapantalla="//@paginapantallas.2 //@paginapantallas.3 //@paginapantallas.4 //@paginapantallas.5 //@paginapantallas.6 //@paginapantallas.7 //@paginapantallas.8 //@paginapantallas.10 //@paginapantallas.11 //@paginapantallas.9 //@paginapantallas.0 //@paginapantallas.1"/>
@@ -232,10 +232,10 @@
       entidad="//@basedatos.0/@tablas.0"/>
   <paginapantallas
       xsi:type="dataweb:CRUD"
-      Nombre="Titulo"
-      usuario="//@roles.0 //@roles.1 //@roles.3"
+      Nombre="Profesor"
+      usuario="//@roles.0"
       redsocial="//@redessociales.0 //@redessociales.1"
-      entidad="//@basedatos.0/@tablas.0"/>
+      entidad="//@basedatos.0/@tablas.3"/>
   <paginapantallas
       xsi:type="dataweb:CrearInstancia"
       Nombre="Profesor"
