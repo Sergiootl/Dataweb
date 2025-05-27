@@ -8,6 +8,10 @@ public class DetalleAsignatura {
         System.out.println("Pantalla de detalle de ");
         System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
         System.out.println("Campos:");
+ 	 
+        System.out.println("- Nombre:  String");
+        System.out.println("- Creditos:  Integer");
+        System.out.println("- Optativa:  Boolean");
         System.out.println("1. Borrar ");
         System.out.println("2. Volver");
         System.out.print("Selecciona una opción [1-2]: ");
@@ -15,7 +19,7 @@ public class DetalleAsignatura {
         sc.nextLine();
 
 		if(opcion == 1){
-		 System.out.println("  borrada correctamente");
+		 System.out.println(" Asignatura borrada correctamente");
      	
 		}
     }

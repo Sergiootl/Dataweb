@@ -8,6 +8,12 @@ public class CrearAsignatura {
         System.out.println("Página de creación de ");
         System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
         System.out.println("Introduzca la información correspondiente:");
+        System.out.print("- String Nombre: ");
+        sc.nextLine();
+        System.out.print("- Integer Creditos: ");
+        sc.nextLine();
+        System.out.print("- Boolean Optativa: ");
+        sc.nextLine();
         System.out.println("1. Aceptar");
         System.out.println("2. Cancelar");
         System.out.print("Selecciona una opción [1-2]: ");

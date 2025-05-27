@@ -14,12 +14,27 @@ public class BorrarAsignatura {
 
             // Mostrar lista de atributos con índices
             int contador = 1;
+            System.out.println(contador + ". Nombre o ID de Nombre (Borrar)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Creditos (Borrar)");
+            contador++;
+            System.out.println(contador + ". Nombre o ID de Optativa (Borrar)");
+            contador++;
 
             System.out.print("Selecciona una opción [0-" + (contador - 1) + "]: ");
             opcion = sc.nextInt();
             sc.nextLine();
 
             switch (opcion) {
+                case 1:
+                    System.out.println(">> Nombre borrada!!");
+                    break;
+                case 2:
+                    System.out.println(">> Creditos borrada!!");
+                    break;
+                case 3:
+                    System.out.println(">> Optativa borrada!!");
+                    break;
                 case 0:
                     System.out.println("Volviendo...");
                     break;

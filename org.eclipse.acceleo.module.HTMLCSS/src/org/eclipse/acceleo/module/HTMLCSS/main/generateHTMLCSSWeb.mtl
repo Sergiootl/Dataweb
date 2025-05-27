@@ -761,7 +761,7 @@ label {
   <div class="container">
     <div class="main-content">
       <h2>Bienvenido al rol [r.Nombre/]</h2>
-      <p>A continuación, se muestra el listado de páginas a las que tiene acceso, que pertenecen a un total de 
+      <p>A continuacion, se muestra el listado de páginas a las que tiene acceso, que pertenecen a un total de 
   [r.accesoapaginapantalla->collect(p | p.entidad)->asSet()->size()/] entidades:
 </p>
 

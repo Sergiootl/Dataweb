@@ -102,11 +102,12 @@ public class IndiceEntidad[i.Nombre.replaceAll(' ', '_')/] {
             System.out.println("Listado de instancias:");
             System.out.println("0. Salir");
 
-            int contador = 0;
-            [for (inst : Entidad | i.entidad.entidadRefereenciada)]
+            int contador = 1;
+            [for (inst : Entidad | i.entidad )]
            
-            contador++; System.out.println(contador + ". [inst.Nombre/] (Acceso a los detalles)");
-            [/for]
+             System.out.println(contador + ". [inst.Nombre/] (Acceso a los detalles)");
+contador++;           
+ [/for]
 
             System.out.print("Selecciona una opción ['['/]0-" + (contador  ) + "]: ");
             opcion = sc.nextInt();
@@ -115,12 +116,10 @@ public class IndiceEntidad[i.Nombre.replaceAll(' ', '_')/] {
             if (opcion == 0) {
                 System.out.println("Saliendo...");
                 break;
-            } else if (opcion > 0 && opcion <= [i.entidad.entidadRefereenciada->size()/]) {
+            } else if (opcion > 0 && opcion <= [i.entidad->size()/]) {
                 System.out.println("Accediendo a los detalles de la instancia seleccionada...");
-                Detalle[i.entidad.entidadRefereenciada.Nombre/].mostrar(opcion);
-            } else {
-                System.out.println("Opción no válida.");
-            }
+                Detalle[i.entidad. Nombre/].mostrar(opcion);
+            }  
         }
     }
 }
@@ -273,10 +272,12 @@ public class Menu[r.Nombre.replaceAll(' ', '_')/] {
             System.out.print("Selecciona una opción ['['/]0-" + (contador) + "]: ");
             opcion = sc.nextInt();
 			
+			 
 			if(opcion!=0){opcion++;}
             sc.nextLine();
-			if(opcion>=8){opcion++;}
-
+			
+			 if(opcion> 8){opcion++;}
+			 
             switch (opcion) {
                 [for (p : PaginaPantalla | r.accesoapaginapantalla)]
                 [if (not p.oclIsTypeOf(Index))]   
@@ -466,6 +467,7 @@ public class Encuesta[c.Nombre.replaceAll(' ', '_')/] {
 }
 [/file]
 [/template]
+ 
 
 [template public generateActualizarConsola(a : ActualizacionInstancia)]
 [file ('/src/view/Actualizar' + a.Nombre.replaceAll(' ', '_') + '.java', false, 'UTF-8')]
@@ -481,7 +483,7 @@ public class Actualizar[a.Nombre.replaceAll(' ', '_')/] {
         // Listar las instancias disponibles
         System.out.println("Listado de instancias:");
         int contador = 1;
-        [for (inst : Entidad | a.entidad.entidadRefereenciada)]
+        [for (inst : Entidad | a.entidad)]
         System.out.println(contador + ". [inst.Nombre/]");
         contador++;
         [/for]
@@ -490,7 +492,7 @@ public class Actualizar[a.Nombre.replaceAll(' ', '_')/] {
         int opcion = sc.nextInt();
         sc.nextLine();
 
-        if (opcion > 0 && opcion <= [a.entidad.entidadRefereenciada->size()/]) {
+        if (opcion > 0 && opcion <= [a.entidad->size()/]) {
             System.out.println("=== Actualizando instancia seleccionada ===");
 			String nuevoValor;
             // Mostrar y permitir la edición de los atributos
@@ -632,8 +634,9 @@ public class Detalle[d.Nombre/] {
         System.out.println("Pantalla de detalle de [d.entidad.entidadRefereenciada.Nombre/]");
         System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
         System.out.println("Campos:");
-        [for (atr : Atributo | d.entidad.entidadRefereenciada.atributos)]
-        System.out.println("- [atr.Nombre/]: valor_de_[atr.Nombre/]");
+ 	 
+        [for (atr : Atributo | d.entidad.atributos)]
+        System.out.println("- [atr.Nombre/]:  [atr.TipoAtributo/]");
         [/for]
         System.out.println("1. Borrar [d.entidad.entidadRefereenciada.Nombre/]");
         System.out.println("2. Volver");
@@ -642,7 +645,7 @@ public class Detalle[d.Nombre/] {
         sc.nextLine();
 
 		if(opcion == 1){
-		 System.out.println(" [d.entidad.entidadRefereenciada.Nombre/] borrada correctamente");
+		 System.out.println(" [d.entidad. Nombre/] borrada correctamente");
      	
 		}
     }
@@ -662,8 +665,8 @@ public class Crear[c.Nombre/] {
         System.out.println("Página de creación de [c.entidad.entidadRefereenciada.Nombre/]");
         System.out.println("Redes sociales: - Twitter @aneca - Twitter @aenui - Web: http://www.unex.es");
         System.out.println("Introduzca la información correspondiente:");
-        [for (atr : Atributo | c.entidad.entidadRefereenciada.atributos)]
-        System.out.print("- [atr.Nombre/]: ");
+        [for (atr : Atributo | c.entidad.atributos)]
+        System.out.print("- [atr.TipoAtributo/] [atr.Nombre/]: ");
         sc.nextLine();
         [/for]
         System.out.println("1. Aceptar");
@@ -699,7 +702,7 @@ public class Borrar[b.Nombre/] {
 
             // Mostrar lista de atributos con índices
             int contador = 1;
-            [for (item : Atributo | b.entidad.entidadRefereenciada.atributos)]
+            [for (item : Atributo | b.entidad.atributos)]
             System.out.println(contador + ". Nombre o ID de [item.Nombre/] (Borrar)");
             contador++;
             [/for]
@@ -709,8 +712,8 @@ public class Borrar[b.Nombre/] {
             sc.nextLine();
 
             switch (opcion) {
-                [for (item : Atributo | b.entidad.entidadRefereenciada.atributos)]
-                case [b.entidad.entidadRefereenciada.atributos->indexOf(item) /]:
+                [for (item : Atributo | b.entidad. atributos)]
+                case [b.entidad. atributos->indexOf(item) /]:
                     System.out.println(">> [item.Nombre/] borrada!!");
                     break;
                 [/for]

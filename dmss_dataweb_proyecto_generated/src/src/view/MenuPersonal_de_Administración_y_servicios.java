@@ -53,10 +53,12 @@ public class MenuPersonal_de_Administración_y_servicios {
             System.out.print("Selecciona una opción [0-" + (contador) + "]: ");
             opcion = sc.nextInt();
 			
+			 
 			if(opcion!=0){opcion++;}
             sc.nextLine();
-			if(opcion>=8){opcion++;}
-
+			
+			 if(opcion> 8){opcion++;}
+			 
             switch (opcion) {
                 case 2: // Ajustar índice para coincidir con el contador
                     DetalleAsignatura.mostrar(0);
