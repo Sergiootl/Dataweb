@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuestionario de Informatica</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<!-- Header Principal -->
+<div class="header">
+    <h1>Universidad de Extremadura Data Management</h1>
+</div>
+
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Cuestionario de Informatica</h2>
+</div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <p><strong>Descripcion:</strong> Cuestionario de ámbito informático</p>
+		<div class="atributos-derivados">
+		  <h2>Resumen de preguntas</h2>
+		  <ul>
+		    <li><strong>Numero de preguntas Verdadero/Falso:</strong> <span>2</span></li>
+		    <li><strong>Numero de preguntas de Seleccion multiple:</strong> <span>2</span></li>
+		  </ul>
+		</div>
+
+        <form action="resultado_cuestionario_informatica.html" method="post">
+          
+          <ol>
+		    <li>
+		      <p><strong>Pregunta 1:</strong> ¿Qué es un sistema operativo?</p>
+		
+		
+		
+		        <input type="text" name="preg_2" placeholder="Escribe tu respuesta..."><br>
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 2:</strong> ¿Qué es un protocolo de red?</p>
+		
+		
+		
+		        <input type="text" name="preg_3" placeholder="Escribe tu respuesta..."><br>
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 3:</strong> ¿Qué es la encapsulación en programación orientada a objetos?</p>
+		
+		
+		
+		        <input type="text" name="preg_4" placeholder="Escribe tu respuesta..."><br>
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 4:</strong> ¿Qué es una dirección IP?</p>
+		
+		          <label>
+		            <input type="radio" name="preg_5" value="a) Una unidad de medida de velocidad en internet"> a) Una unidad de medida de velocidad en internet
+		          </label><br>
+		          <label>
+		            <input type="radio" name="preg_5" value="b) Una etiqueta numérica que identifica un dispositivo en una red"> b) Una etiqueta numérica que identifica un dispositivo en una red
+		          </label><br>
+		
+		
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 5:</strong> ¿Qué es un servidor web?</p>
+		
+		
+		
+		        <input type="text" name="preg_6" placeholder="Escribe tu respuesta..."><br>
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 6:</strong> ¿Qué es una variable en programación?</p>
+		
+		
+		
+		        <input type="text" name="preg_7" placeholder="Escribe tu respuesta..."><br>
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 7:</strong> ¿Cuál es la diferencia entre TCP y UDP?</p>
+		
+		          <label>
+		            <input type="radio" name="preg_8" value="a) TCP es más rápido que UDP"> a) TCP es más rápido que UDP
+		          </label><br>
+		          <label>
+		            <input type="radio" name="preg_8" value="b) UDP garantiza la entrega de los datos, mientras que TCP no"> b) UDP garantiza la entrega de los datos, mientras que TCP no
+		          </label><br>
+		          <label>
+		            <input type="radio" name="preg_8" value="c) TCP es orientado a la conexión y UDP no lo es"> c) TCP es orientado a la conexión y UDP no lo es
+		          </label><br>
+		
+		
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 8:</strong> ¿Qué es el ciclo de vida de un proceso en un sistema operativo?</p>
+		
+		
+		
+		        <input type="text" name="preg_9" placeholder="Escribe tu respuesta..."><br>
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 9:</strong> El protocolo HTTP es utilizado para transferir datos de manera segura entre el cliente y el servidor.</p>
+		
+		
+		        <label><input type="radio" name="preg_10" value="Verdadero"> Verdadero</label><br>
+		        <label><input type="radio" name="preg_10" value="Falso"> Falso</label><br>
+		
+		    </li>
+		    <li>
+		      <p><strong>Pregunta 10:</strong> La encapsulación en programación orientada a objetos permite ocultar los detalles de implementación y mostrar solo las interfaces necesarias.</p>
+		
+		
+		        <label><input type="radio" name="preg_11" value="Verdadero"> Verdadero</label><br>
+		        <label><input type="radio" name="preg_11" value="Falso"> Falso</label><br>
+		
+		    </li>
+		</ol>
+          <div class="actions" style="margin-top: 30px;">
+            <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
+          </div>
+<div class="button-container">
+  <a href="P_Index_Estudiante.html" class="button">Volver</a>
+</div>
+
+          <script>
+            function enviarRespuestas() {
+              window.location.href = "P_Resultado_Cuestionario_" + "Informatica" + ".html";
+            }
+          </script>
+        </form>
+      </div>
+    </div>
+
+    <div class="sidebar social">
+      <h3>Redes Sociales:</h3>
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" 
+           data-width="100%" 
+           data-height="400"
+           href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+      </div>
+
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
+            Twitter</a></p>
+        <p>- <a href="https://www.web.com" target="_blank" class="social-link">
+            Web</a></p>
+    </div>
+  </div>
+
+  <div class="footer">
+   <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+  </div>
+
+</body>
+</html>
+

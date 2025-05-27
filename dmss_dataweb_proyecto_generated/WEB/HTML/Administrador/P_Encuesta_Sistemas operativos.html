@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Encuesta de Sistemas operativos</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<!-- Header Principal -->
+<div class="header">
+    <h1>Universidad de Extremadura Data Management</h1>
+</div>
+
+<!-- Subheader -->
+<div class="subheader">
+  <h2>Encuesta de Sistemas operativos</h2>
+</div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <h3>Descripcion de la Encuesta:</h3>
+        <p>Encuesta sobre los sistemas operativos</p>
+		<div class="atributos-derivados">
+		  <h2>Resumen de preguntas</h2>
+		  <ul>
+		    <li><strong>Numero de preguntas Verdadero/Falso:</strong> <span>0</span></li>
+		    <li><strong>Numero de preguntas de Seleccion multiple:</strong> <span>4</span></li>
+		  </ul>
+		</div>
+
+        <!-- Formulario para responder la encuesta -->
+        <form action="resultado_encuesta_sistemas operativos.html" method="post">
+          
+          <!-- Iteramos sobre las preguntas de la encuesta -->
+            <div class="pregunta">
+              <p><strong>Pregunta 1:</strong> ¿Cómo calificarías la facilidad de uso del sistema que has utilizado?</p>
+
+              <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
+                  <label>
+                    <input type="radio" name="preg_2" value="Muy facil de usar"> Muy facil de usar
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_2" value="Facil de usar"> Facil de usar
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_2" value="Moderadamente facil"> Moderadamente facil
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_2" value="Dificil de usar"> Dificil de usar
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_2" value="Muy dificil de usar"> Muy dificil de usar
+                  </label><br>
+
+              <!-- Si la pregunta es de verdadero o falso -->
+
+              <!-- Si la pregunta es de respuesta corta -->
+            </div>
+            <div class="pregunta">
+              <p><strong>Pregunta 2:</strong> ¿Qué características mejorarías en la plataforma para facilitar su uso?</p>
+
+              <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
+
+              <!-- Si la pregunta es de verdadero o falso -->
+
+              <!-- Si la pregunta es de respuesta corta -->
+                <input type="text" name="preg_3" placeholder="Escribe tu respuesta..."><br>
+            </div>
+            <div class="pregunta">
+              <p><strong>Pregunta 3:</strong> ¿En qué medida consideras que la interfaz gráfica del sistema es atractiva?</p>
+
+              <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
+                  <label>
+                    <input type="radio" name="preg_4" value="Muy atractiva"> Muy atractiva
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_4" value="Atractiva"> Atractiva
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_4" value="Neutral"> Neutral
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_4" value="Poco atractiva"> Poco atractiva
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_4" value="Nada atractiva"> Nada atractiva
+                  </label><br>
+
+              <!-- Si la pregunta es de verdadero o falso -->
+
+              <!-- Si la pregunta es de respuesta corta -->
+            </div>
+            <div class="pregunta">
+              <p><strong>Pregunta 4:</strong> ¿Cuánto tiempo, aproximadamente, sueles pasar usando la aplicación/plataforma cada semana?</p>
+
+              <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
+                  <label>
+                    <input type="radio" name="preg_5" value="Menos de 1 hora"> Menos de 1 hora
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_5" value="Entre 1 y 3 horas"> Entre 1 y 3 horas
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_5" value="Entre 3 y 5 horas"> Entre 3 y 5 horas
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_5" value="Más de 5 horas"> Más de 5 horas
+                  </label><br>
+
+              <!-- Si la pregunta es de verdadero o falso -->
+
+              <!-- Si la pregunta es de respuesta corta -->
+            </div>
+            <div class="pregunta">
+              <p><strong>Pregunta 5:</strong>  ¿Qué tan probable es que recomiendes este sistema a otras personas?</p>
+
+              <!-- Si la pregunta es de opciÃ³n mÃºltiple -->
+                  <label>
+                    <input type="radio" name="preg_6" value="Muy probable"> Muy probable
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_6" value="Probable"> Probable
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_6" value="Neutral"> Neutral
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_6" value="Poco probable"> Poco probable
+                  </label><br>
+                  <label>
+                    <input type="radio" name="preg_6" value="Nada probable"> Nada probable
+                  </label><br>
+
+              <!-- Si la pregunta es de verdadero o falso -->
+
+              <!-- Si la pregunta es de respuesta corta -->
+            </div>
+
+          <div class="actions" style="margin-top: 30px;">
+            <button type="button" onclick="enviarRespuestas()">Enviar respuestas</button>
+          </div>
+			<div class="button-container">
+			  <a href="P_Index_Administrador.html" class="button">Volver</a>
+			</div>
+<script>
+            function enviarRespuestas() {
+              window.location.href = "P_Resultado_Encuesta_" + "Sistemas operativos" + ".html";
+            }
+          </script>
+        </form>
+      </div>
+    </div>
+
+   <div class="sidebar social">
+            <h3>Redes Sociales:</h3>
+            <!-- Mostrar el timeline de Twitter dentro del contenedor -->
+            <div class="twitter-timeline-container">
+              <a class="twitter-timeline" 
+                 data-width="100%" 
+                 data-height="400"
+                 href="https://twitter.com/infouex?ref_src=twsrc%5Etfw">Tweets by infouex</a>
+            </div>
+          
+            <!-- Cargar el script de Twitter de manera asÃ­ncrona -->
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          
+            <!-- Mostrar las demÃ¡s redes sociales como enlaces -->
+              <p>- <a href="https://www.twitter.com" target="_blank" class="social-link">
+                  Twitter</a></p>
+              <p>- <a href="https://www.web.com" target="_blank" class="social-link">
+                  Web</a></p>
+          </div>
+  </div>
+  <div class="footer">
+    <p>Aplicacion generada automaticamente - Todos los derechos reservados</p>
+	<p>Sergio Terrazas Lobato y Javier Costillo Palacios</p>
+  </div>
+
+</body>
+</html>
+
